@@ -1,0 +1,30 @@
+//
+//  PrefixHeader.pch
+//  SmartPartyBuilding
+//
+//  Created by 王卫华 on 2017/5/9.
+//  Copyright © 2017年 王卫华. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+/********************** 头文件 ***********************/
+
+#import <WHCategories.h>
+/********************** 宏定义 ***********************/
+
+#define MAS_SHORTHAND
+#define MAS_SHORTHAND_GLOBALS
+
+/** 主题色 */
+#define wh_themeColor wh_RGB(0, 0, 0)
+
+/** 主要字体颜色 */
+#define wh_norFontColor wh_RGB(43, 43, 43)
+/** 分割线颜色 */
+#define wh_lineColor wh_RGB(221, 221, 221)
+
+#define HighLightTextColor [UIColor colorWithRed:92/255.0 green:140/255.0 blue:193/255.0 alpha:1.0]
+
+#endif /* PrefixHeader_pch */

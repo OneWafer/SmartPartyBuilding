@@ -1,0 +1,95 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - CYLTabBarController (1.10.0)
+  - DZNEmptyDataSet (1.8.1)
+  - IQKeyboardManager (4.0.9)
+  - LBXScan/LBXNative (2.0)
+  - LBXScan/UI (2.0)
+  - LCActionSheet (3.2.2):
+    - Masonry (~> 1.0.2)
+  - Masonry (1.0.2)
+  - MJExtension (3.0.13)
+  - MJPhotoBrowser (1.0.2):
+    - SDWebImage
+    - SVProgressHUD
+    - YLGIFImage
+  - MJRefresh (3.1.12)
+  - MLLabel (1.10.3)
+  - ReactiveCocoa (2.5):
+    - ReactiveCocoa/UI (= 2.5)
+  - ReactiveCocoa/Core (2.5):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.5)
+  - ReactiveCocoa/UI (2.5):
+    - ReactiveCocoa/Core
+  - SDCycleScrollView (1.66):
+    - SDWebImage (~> 4.0.0)
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
+  - SVProgressHUD (2.1.2)
+  - TZImagePickerController (1.7.9)
+  - WHCategories (0.08)
+  - XHWaterfallFlowLayout (1.0.0)
+  - YLGIFImage (0.11)
+
+DEPENDENCIES:
+  - AFNetworking
+  - CYLTabBarController
+  - DZNEmptyDataSet
+  - IQKeyboardManager
+  - LBXScan/LBXNative
+  - LBXScan/UI
+  - LCActionSheet
+  - Masonry
+  - MJExtension
+  - MJPhotoBrowser
+  - MJRefresh
+  - MLLabel
+  - ReactiveCocoa (~> 2.5)
+  - SDCycleScrollView
+  - SDWebImage
+  - SVProgressHUD
+  - TZImagePickerController
+  - WHCategories
+  - XHWaterfallFlowLayout
+  - YLGIFImage
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  CYLTabBarController: 2de9a4c26f50d33574398becf8e7b0aaed794240
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  IQKeyboardManager: 322c7405df3eb5f7e50dede32ea937bf3d4364e0
+  LBXScan: 458f4b7a6688504a1415dc4a0f9822100e099f66
+  LCActionSheet: 5a71fdd0daee922ee44fed386dd4b3f36490275d
+  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  MJExtension: 5932755f451458eefa24239358817f8d291240c7
+  MJPhotoBrowser: b98b04d0e3b6a999feb44df68adec413af446809
+  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  MLLabel: 3760fb38aeac53b212409b634bc4aa4bf39ab628
+  ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
+  SDCycleScrollView: e3ade90e9b3159bec04330b208fbfd81c3f3b671
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
+  TZImagePickerController: 0a8ff228d287ebdd7d485e8c42a2a932894f1fba
+  WHCategories: 2d6f8ca5efe229842422cec68cd348bd20ced9a2
+  XHWaterfallFlowLayout: 07d24301c20c4404d63969eec7de5c0ade8b187c
+  YLGIFImage: c0ae132fe80e5282b2762a97d14e23ba71a748ae
+
+PODFILE CHECKSUM: 983ac3f62fd5ed83d7441aee94d2d6065a5e1634
+
+COCOAPODS: 1.1.1
