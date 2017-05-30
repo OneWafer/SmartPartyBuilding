@@ -7,9 +7,12 @@
 //
 
 #import <Masonry.h>
+#import <SVProgressHUD.h>
 #import <ReactiveCocoa.h>
 #import "OWLoginVC.h"
 #import "OWRegisterVC.h"
+#import "AppDelegate.h"
+#import "OWNetworking.h"
 
 @interface OWLoginVC ()<UITextFieldDelegate>
 
@@ -46,6 +49,11 @@
     
     [self setupNavi];
     [self setupInputView];
+    
+    wh_weakSelf(self);
+    [self.view wh_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+        [weakself.view endEditing:YES];
+    }];
 }
 
 
@@ -54,7 +62,7 @@
     wh_weakSelf(self);
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem wh_itemWithType:WHItemTypeRight norTitle:@"注册" font:15.0f norColor:[UIColor whiteColor] highColor:[UIColor whiteColor] offset:0 actionHandler:^(UIButton *sender) {
         OWRegisterVC *registerVC = [[OWRegisterVC alloc] init];
-        [self.navigationController pushViewController:registerVC animated:YES];
+        [weakself.navigationController pushViewController:registerVC animated:YES];
     }];
 }
 
@@ -65,21 +73,44 @@
 //    }];
     
     RACSignal *loginSignal = [RACSignal combineLatest:@[self.actTF.rac_textSignal,self.pwdTF.rac_textSignal] reduce:^id(NSString *account,NSString *pwd){
-        return @(account.length == 11 && pwd.length);
+        return @(account.length && pwd.length);
     }];
     
     RAC(self.loginBtn, enabled) = loginSignal;
-    
+    wh_weakSelf(self);
     [self.loginBtn wh_addActionHandler:^(UIButton *sender) {
-        wh_Log(@"---点击了登录");
+        [weakself Login];
     }];
     
     [self.remeberBtn wh_addActionHandler:^(UIButton *sender) {
         wh_Log(@"---点击了记住密码");
+        sender.selected = !sender.selected;
     }];
     
     [self.forgetBtn wh_addActionHandler:^(UIButton *sender) {
         wh_Log(@"---点击了忘记密码");
+    }];
+}
+
+- (void)Login
+{
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [SVProgressHUD showWithStatus:@"正在登录..."];
+    
+    NSDictionary *par = @{
+                          @"username" : self.actTF.text,
+                          @"password" : self.pwdTF.text,
+                          @"deviceNumber" : @"aaaaaaaaaaaaaaaaaaaaaaaaa"
+                          };
+    [OWNetworking GET:wh_appendingStr(wh_host, @"mobile/login") parameters:par success:^(id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] == 200) {
+            [SVProgressHUD showSuccessWithStatus:@"登录成功!"];
+            [app tabBar];
+        }else{
+            [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
+        }
+    } failure:^(NSError * _Nonnull error) {
+        [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
     }];
 }
 
@@ -211,9 +242,9 @@
         [btn setTitle:@"记住用户名" forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btn setImage:wh_imageNamed(@"") forState:UIControlStateNormal];
-        [btn setImage:wh_imageNamed(@"") forState:UIControlStateSelected];
-        [btn wh_setImagePosition:WHImagePositionLeft spacing:10];
+        [btn setImage:wh_imageNamed(@"office_cmd_radio") forState:UIControlStateNormal];
+        [btn setImage:wh_imageNamed(@"office_cmd_radio_slt") forState:UIControlStateSelected];
+        [btn wh_setImagePosition:WHImagePositionLeft spacing:5];
         [self.inputView addSubview:btn];
         
         [btn makeConstraints:^(MASConstraintMaker *make) {

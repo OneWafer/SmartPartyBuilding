@@ -10,6 +10,8 @@
 
 @interface OWTool : NSObject
 
++ (void)SVProgressHUD;
+
 +(NSString *) md5:(NSString *) str;
 
 +(NSString *) preettyTime:(long long) ts;

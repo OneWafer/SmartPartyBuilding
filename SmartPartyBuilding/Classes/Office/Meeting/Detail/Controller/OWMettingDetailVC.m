@@ -70,20 +70,30 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    if (section == 0) {
+        return 5;
+    }else if (section == 1){
+        return 1;
+    }else if (section == 2){
+        return 1+1;
+    }else{
+        return 2+1;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
         return 25.0f;
+    }else if (indexPath.section == 1){
+        return 30.0f;
     }else{
-        if (indexPath.row < 2) {
+        if (indexPath.row == 0) {
             return 30.0f;
         }else{
             return 80.0f;
@@ -94,7 +104,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 10.0f;
+    return (section < 2) ? 10.0f : CGFLOAT_MIN;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -107,11 +117,11 @@
     if (indexPath.section == 0) {
         OWMeetingDetailCell *cell = [OWMeetingDetailCell cellWithTableView:tableView];
         return cell;
+    }else if (indexPath.section == 1){
+        OWHomeTitleCell *cell = [OWHomeTitleCell cellWithTableView:tableView];
+        return cell;
     }else{
-        if (indexPath.row == 0) {
-            OWHomeTitleCell *cell = [OWHomeTitleCell cellWithTableView:tableView];
-            return cell;
-        }else if (indexPath.row == 1){
+        if (indexPath.row == 0){
             OWMeetingDateCell *cell = [OWMeetingDateCell cellWithTableView:tableView];
             cell.title = @"今天";
             return cell;

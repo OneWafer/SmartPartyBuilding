@@ -13,6 +13,7 @@
 #import "OWNavigationController.h"
 #import "OWRegisterNavigationVC.h"
 #import "OWLoginVC.h"
+#import "OWTool.h"
 
 @interface AppDelegate ()
 
@@ -28,11 +29,10 @@
     self.window.backgroundColor = [UIColor whiteColor];
     
     [OWPlusBtn registerPlusButton];
-    OWTabBarControllerConfig *tabBarControllerConfig = [[OWTabBarControllerConfig alloc] init];
-    self.window.rootViewController = tabBarControllerConfig.tabBarController;
-//    self.window.rootViewController = [[OWRegisterNavigationVC alloc] initWithRootViewController:[[OWLoginVC alloc] init]];
-    [self.window makeKeyAndVisible];
     
+    self.window.rootViewController = [[OWRegisterNavigationVC alloc] initWithRootViewController:[[OWLoginVC alloc] init]];
+    [self.window makeKeyAndVisible];
+    [OWTool SVProgressHUD];
     return YES;
 }
 
@@ -47,6 +47,12 @@ static AFHTTPSessionManager *mgr;
         mgr = [AFHTTPSessionManager manager];
     });
     return mgr;
+}
+
+- (void)tabBar
+{
+    OWTabBarControllerConfig *tabBarControllerConfig = [[OWTabBarControllerConfig alloc] init];
+    self.window.rootViewController = tabBarControllerConfig.tabBarController;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

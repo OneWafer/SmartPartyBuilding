@@ -18,6 +18,7 @@
 @property (nonatomic, weak) UIView *bottomView;
 @property (nonatomic, weak) UIButton *deleteBtn;
 @property (nonatomic, weak) UIButton *confirmBtn;
+@property (nonatomic, weak) UIButton *allSltBtn;
 
 @end
 
@@ -41,6 +42,11 @@
     
     [self.deleteBtn wh_addActionHandler:^(UIButton *sender) {
         wh_Log(@"---点击了删除");
+    }];
+    
+    [self.allSltBtn wh_addActionHandler:^(UIButton *sender) {
+        sender.selected = !sender.selected;
+        wh_Log(@"点击了全选");
     }];
 }
 
@@ -69,7 +75,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 10.0f;
+    return (section < 2) ? 10.0f : CGFLOAT_MIN;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -86,6 +92,9 @@
         return cell;
     }else{
         OWCommodityFallCell *cell = [OWCommodityFallCell cellWithTableView:tableView];
+        cell.block = ^(){
+            wh_Log(@"点击了添加");
+        };
         return cell;
     }
 }
@@ -161,5 +170,26 @@
         _deleteBtn = btn;
     }
     return _deleteBtn;
+}
+
+
+- (UIButton *)allSltBtn
+{
+    if (!_allSltBtn) {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setTitle:@"全选" forState:UIControlStateNormal];
+        btn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+        [btn setTitleColor:wh_norFontColor forState:UIControlStateNormal];
+        [btn setImage:wh_imageNamed(@"office_cmd_radio") forState:UIControlStateNormal];
+        [btn setImage:wh_imageNamed(@"office_cmd_radio_slt") forState:UIControlStateSelected];
+        [btn wh_setImagePosition:WHImagePositionLeft spacing:5];
+        [self.bottomView addSubview:btn];
+        [btn makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self.bottomView);
+            make.left.equalTo(15);
+        }];
+        _allSltBtn = btn;
+    }
+    return _allSltBtn;
 }
 @end

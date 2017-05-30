@@ -48,7 +48,7 @@ static NSString *const identifier = @"OWCommodityCartCell";
     if (self)
     {
         [self.sltBtn wh_addActionHandler:^(UIButton *sender) {
-            
+            sender.selected = !sender.selected;
         }];
         
         [self.titleImgView sd_setImageWithURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496635915&di=184dc5d94ebe166a437c412364e8818b&imgtype=jpg&er=1&src=http%3A%2F%2Fruanwenpic.b0.upaiyun.com%2Fueditor%2Fupyun%2F20170118%2F1484716972298812.png"] placeholderImage:wh_imageNamed(@"")];

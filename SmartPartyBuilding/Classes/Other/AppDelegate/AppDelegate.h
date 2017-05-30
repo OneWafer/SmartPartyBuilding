@@ -13,6 +13,8 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+- (void)tabBar;
+
 /** AFNetworking单利,防止内存泄漏 */
 - (AFHTTPSessionManager *)sharedHTTPSession;
 

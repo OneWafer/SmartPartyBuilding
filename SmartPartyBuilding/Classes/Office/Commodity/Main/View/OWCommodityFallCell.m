@@ -79,14 +79,10 @@ static NSString *const identifier = @"OWCommodityFallCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     OWCommodityItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemCellId forIndexPath:indexPath];
-//    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemCellId forIndexPath:indexPath];
-//    CGFloat red = (CGFloat)(arc4random() % 255)/255.0;
-//    CGFloat green = (CGFloat)(arc4random() % 255)/255.0;
-//    CGFloat blue = (CGFloat)(arc4random() % 255)/255.0;
-//    
-//    UIColor *color = [[UIColor alloc] initWithRed:red green:green blue:blue alpha:0.5];
-//    cell.backgroundColor = color;
-    
+    wh_weakSelf(self);
+    cell.block = ^(){
+        if (weakself.block) weakself.block();
+    };
     return cell;
 }
 

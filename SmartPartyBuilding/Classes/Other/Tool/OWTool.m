@@ -6,10 +6,23 @@
 //  Copyright © 2017年 王卫华. All rights reserved.
 //
 
+#import <SVProgressHUD.h>
 #import <CommonCrypto/CommonDigest.h>
 #import "OWTool.h"
 
 @implementation OWTool
+
++ (void)SVProgressHUD
+{
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+    [SVProgressHUD setBackgroundColor:[UIColor blackColor]];
+    [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
+    [SVProgressHUD setDefaultAnimationType:SVProgressHUDAnimationTypeFlat];
+    [SVProgressHUD setMinimumDismissTimeInterval:1.5];
+    [SVProgressHUD setMaxSupportedWindowLevel:2];
+    [SVProgressHUD setMinimumSize:CGSizeMake(110, 110)];
+}
 
 +(NSString *)md5:(NSString *)str
 {

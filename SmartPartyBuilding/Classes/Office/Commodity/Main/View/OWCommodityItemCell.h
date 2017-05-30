@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^OWCommodityItemCellBlock)();
+
 @interface OWCommodityItemCell : UICollectionViewCell
 
+@property (nonatomic, copy) OWCommodityItemCellBlock block;
 @end

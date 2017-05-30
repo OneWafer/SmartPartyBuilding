@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^OWCommodityFallCellBlock)();
+
 @interface OWCommodityFallCell : UITableViewCell
 
+@property (nonatomic, copy) OWCommodityFallCellBlock block;
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
 @end
