@@ -74,7 +74,7 @@ static NSString *const identifier = @"OWHomeActivityCell";
     if (!_titleLabel) {
         UILabel *label = [[UILabel alloc] init];
         label.textColor = [UIColor blackColor];
-        label.font = [UIFont systemFontOfSize:12];
+        label.font = [UIFont systemFontOfSize:13.0f];
         [self.contentView addSubview:label];
         
         [label makeConstraints:^(MASConstraintMaker *make) {

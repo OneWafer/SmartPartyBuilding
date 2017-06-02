@@ -10,6 +10,8 @@
 
 @interface OWHomeTitleCell : UITableViewCell
 
+@property (nonatomic, strong) NSDictionary *titleDic;
+
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
 @end

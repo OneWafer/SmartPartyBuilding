@@ -7,6 +7,7 @@
 //
 
 #import <Masonry.h>
+#import <FMDatabase.h>
 #import "OWMineVC.h"
 #import "OWUserInfoVC.h"
 #import "OWSettingVC.h"
@@ -29,12 +30,14 @@
     //设置背景透明图片
     [self.navigationController.navigationBar setValue:@0 forKeyPath:@"backgroundView.alpha"];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
     [self.navigationController.navigationBar setValue:@1 forKeyPath:@"backgroundView.alpha"];
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
 }
 
 - (void)viewDidLoad {
@@ -78,7 +81,7 @@
         [weakself.navigationController pushViewController:settingVC animated:YES];
     }];
     
-    UIBarButtonItem *messageItem = [UIBarButtonItem wh_itemWithType:WHItemTypeRight norImage:@"navi_message" highImage:@"navi_message" offset:0.0f actionHandler:^(UIButton *sender) {
+    UIBarButtonItem *messageItem = [UIBarButtonItem wh_itemWithType:WHItemTypeRight norImage:@"navi_me_message" highImage:@"navi_me_message" offset:0.0f actionHandler:^(UIButton *sender) {
         wh_Log(@"点击了消息按钮");
     }];
     

@@ -43,7 +43,7 @@
     return self;
 }
 
--(void) initView
+- (void)initView
 {
     CGFloat x, y, width, height;
     
@@ -79,7 +79,8 @@
     
     
 }
--(void)updateWithImages:(NSMutableArray *)images srcImages:(NSMutableArray *)srcImages oneImageWidth:(CGFloat)oneImageWidth oneImageHeight:(CGFloat)oneImageHeight
+
+- (void)updateWithImages:(NSMutableArray *)images srcImages:(NSMutableArray *)srcImages oneImageWidth:(CGFloat)oneImageWidth oneImageHeight:(CGFloat)oneImageHeight
 {
     
     self.images = images;

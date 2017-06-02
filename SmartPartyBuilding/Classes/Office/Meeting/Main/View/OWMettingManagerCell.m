@@ -9,6 +9,7 @@
 #import <Masonry.h>
 #import <UIImageView+WebCache.h>
 #import "OWMettingManagerCell.h"
+#import "OWCar.h"
 
 @interface OWMettingManagerCell ()
 
@@ -43,9 +44,7 @@ static NSString *const identifier = @"OWMettingManagerCell";
     
     if (self)
     {
-        [self.titleImgView sd_setImageWithURL:[NSURL URLWithString:@"https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1495261196&di=56aced13ab7e0100367f7915bdabb21f&src=http://pic.qiantucdn.com/58pic/17/90/31/55a7ec43230f2_1024.jpg"] placeholderImage:wh_imageNamed(@"")];
-        self.titleLabel.text = @"会议室A10-320";
-        self.detailLabel.text = @"可容纳180人";
+        
         self.statusLabel.text = @"使用中";
         self.statusLabel.textColor = [UIColor redColor];
         
@@ -54,6 +53,15 @@ static NSString *const identifier = @"OWMettingManagerCell";
     return self;
 }
 
+
+- (void)setCar:(OWCar *)car
+{
+    _car = car;
+    NSArray *urlList = [car.imgs componentsSeparatedByString:@","];
+    [self.titleImgView sd_setImageWithURL:[NSURL URLWithString:urlList[0]] placeholderImage:wh_imageNamed(@"")];
+    self.titleLabel.text = car.carNum;
+    self.detailLabel.text = car.introduce;
+}
 
 #pragma mark - ---------- Lazy ----------
 

@@ -255,7 +255,7 @@
 
 -(void) hideFooter
 {
-    NSLog(@"hide footer");
+    wh_Log(@"hide footer");
     
     [UIView animateWithDuration:0.5 animations:^{
         

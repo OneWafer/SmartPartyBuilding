@@ -36,7 +36,7 @@
     CGFloat const imgViewEdgeHeight   = imgViewEdgeWidth * 0.83;
     
     CGFloat const centerX = self.wh_width * 0.5;
-    CGFloat const centerY = self.wh_height * 0.55;
+    CGFloat const centerY = self.wh_height * 0.56;
     
     //imageView position 位置
     self.imageView.bounds = CGRectMake(0, 0, imgViewEdgeWidth, imgViewEdgeHeight);

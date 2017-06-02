@@ -12,8 +12,9 @@
 @interface OWHomeTitleCell ()
 
 @property (nonatomic, weak) UIImageView *bgImgView;
+@property (nonatomic, weak) UIImageView *titleImgView;
 @property (nonatomic, weak) UILabel *titleLabel;
-@property (nonatomic, weak) UILabel *moreLabel;
+@property (nonatomic, weak) UIButton *moreBtn;
 
 @end
 
@@ -42,10 +43,21 @@ static NSString *const identifier = @"OWHomeTitleCell";
     if (self)
     {
         self.bgImgView.image = wh_imageNamed(@"home_title");
-        self.titleLabel.text = @"我的支部";
-        self.moreLabel.text = @"更多";
     }
     return self;
+}
+
+- (void)setTitleDic:(NSDictionary *)titleDic
+{
+    _titleDic = titleDic;
+    self.titleImgView.image = wh_imageNamed(titleDic[@"image"]);
+    self.titleLabel.text = titleDic[@"title"];
+    wh_weakSelf(self);
+    if ([self.titleLabel.text isEqualToString:@"党建要闻"]) {
+        [self.moreBtn wh_addActionHandler:^(UIButton *sender) {
+            wh_Log(@"点击了更多按钮");
+        }];
+    }
 }
 
 
@@ -65,38 +77,58 @@ static NSString *const identifier = @"OWHomeTitleCell";
     return _bgImgView;
 }
 
+
+- (UIImageView *)titleImgView
+{
+    if (!_titleImgView) {
+        UIImageView *imgView = [[UIImageView alloc] init];
+        [self.contentView addSubview:imgView];
+        
+        [imgView makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self);
+            make.left.equalTo(self).offset(15);
+        }];
+        _titleImgView = imgView;
+    }
+    return _titleImgView;
+}
+
 - (UILabel *)titleLabel
 {
     if (!_titleLabel) {
         UILabel *label = [[UILabel alloc] init];
         label.textColor = [UIColor whiteColor];
-        label.font = [UIFont systemFontOfSize:14.0f];
+        label.font = [UIFont systemFontOfSize:15.0f];
         [self.contentView addSubview:label];
         
         [label makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self);
-            make.left.equalTo(self).offset(15);
+            make.left.equalTo(self.titleImgView.right).offset(10);
         }];
         _titleLabel = label;
     }
     return _titleLabel;
 }
 
-- (UILabel *)moreLabel
+
+- (UIButton *)moreBtn
 {
-    if (!_moreLabel) {
-        UILabel *label = [[UILabel alloc] init];
-        label.textColor = wh_norFontColor;
-        label.font = [UIFont systemFontOfSize:12.0f];
-        [self.contentView addSubview:label];
+    if (!_moreBtn) {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setTitle:@"更多" forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [btn setImage:wh_imageNamed(@"home_arrow_white") forState:UIControlStateNormal];
+        btn.titleLabel.font = [UIFont systemFontOfSize:12.0f];
+        [btn wh_setImagePosition:WHImagePositionRight spacing:0];
+        [self.contentView addSubview:btn];
         
-        [label makeConstraints:^(MASConstraintMaker *make) {
+        [btn makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self);
             make.right.equalTo(self).offset(-15);
         }];
-        _moreLabel = label;
+        _moreBtn = btn;
     }
-    return _moreLabel;
+    return _moreBtn;
 }
 
 @end

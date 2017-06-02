@@ -10,6 +10,7 @@
 #import "OWMineOptionCell.h"
 #import "OWMettingManagerVC.h"
 #import "OWCommodityVC.h"
+#import "OWCarManagerVC.h"
 
 @interface OWOfficeVC ()
 
@@ -87,6 +88,9 @@
         }else if (indexPath.row == 1){
             OWCommodityVC *cdVC = [[OWCommodityVC alloc] init];
             [self.navigationController pushViewController:cdVC animated:YES];
+        }else{
+            OWCarManagerVC *carVC = [[OWCarManagerVC alloc] init];
+            [self.navigationController pushViewController:carVC animated:YES];
         }
     }
 }

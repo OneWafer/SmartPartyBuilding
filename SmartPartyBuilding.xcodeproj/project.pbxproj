@@ -96,6 +96,9 @@
 		53F0ECBE1ECD9EF6005ED86A /* OWVideoCaptureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F0ECBD1ECD9EF6005ED86A /* OWVideoCaptureVC.m */; };
 		53F179901ECDEED5000F33F9 /* Expression.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53F1798F1ECDEED5000F33F9 /* Expression.plist */; };
 		53F179921ECDF282000F33F9 /* ClippedExpression.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53F179911ECDF282000F33F9 /* ClippedExpression.bundle */; };
+		53F4DEF01EDEFAF2005B8B8D /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F4DEEF1EDEFAF2005B8B8D /* libsqlite3.0.tbd */; };
+		53F4DEF31EDF00F8005B8B8D /* OWCarManagerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F4DEF21EDF00F8005B8B8D /* OWCarManagerVC.m */; };
+		53F4DEF61EDF0519005B8B8D /* OWCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F4DEF51EDF0519005B8B8D /* OWCar.m */; };
 		E098A01EDCB6869918CC4B8E /* libPods-SmartPartyBuilding.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F317DC5FBE500EC7445125B /* libPods-SmartPartyBuilding.a */; };
 /* End PBXBuildFile section */
 
@@ -296,6 +299,11 @@
 		53F0ECBD1ECD9EF6005ED86A /* OWVideoCaptureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWVideoCaptureVC.m; sourceTree = "<group>"; };
 		53F1798F1ECDEED5000F33F9 /* Expression.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expression.plist; sourceTree = "<group>"; };
 		53F179911ECDF282000F33F9 /* ClippedExpression.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ClippedExpression.bundle; sourceTree = "<group>"; };
+		53F4DEEF1EDEFAF2005B8B8D /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		53F4DEF11EDF00F8005B8B8D /* OWCarManagerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWCarManagerVC.h; sourceTree = "<group>"; };
+		53F4DEF21EDF00F8005B8B8D /* OWCarManagerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWCarManagerVC.m; sourceTree = "<group>"; };
+		53F4DEF41EDF0519005B8B8D /* OWCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWCar.h; sourceTree = "<group>"; };
+		53F4DEF51EDF0519005B8B8D /* OWCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWCar.m; sourceTree = "<group>"; };
 		57AC62ECACE1AC29287C2F1F /* Pods-SmartPartyBuilding.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartPartyBuilding.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartPartyBuilding/Pods-SmartPartyBuilding.release.xcconfig"; sourceTree = "<group>"; };
 		6F317DC5FBE500EC7445125B /* libPods-SmartPartyBuilding.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SmartPartyBuilding.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F216B0EA70FFBC5A36E138AF /* Pods-SmartPartyBuilding.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartPartyBuilding.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartPartyBuilding/Pods-SmartPartyBuilding.debug.xcconfig"; sourceTree = "<group>"; };
@@ -306,6 +314,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53F4DEF01EDEFAF2005B8B8D /* libsqlite3.0.tbd in Frameworks */,
 				E098A01EDCB6869918CC4B8E /* libPods-SmartPartyBuilding.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,6 +339,7 @@
 		32A2F32F89F26BAD1AB2EE5C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				53F4DEEF1EDEFAF2005B8B8D /* libsqlite3.0.tbd */,
 				6F317DC5FBE500EC7445125B /* libPods-SmartPartyBuilding.a */,
 			);
 			name = Frameworks;
@@ -338,8 +348,8 @@
 		5308C07B1ED00C0700662D34 /* Car */ = {
 			isa = PBXGroup;
 			children = (
-				5308C07C1ED00C0700662D34 /* Detail */,
 				5308C0801ED00C0700662D34 /* Main */,
+				5308C07C1ED00C0700662D34 /* Detail */,
 				5308C0841ED00C0700662D34 /* Order */,
 			);
 			path = Car;
@@ -389,6 +399,8 @@
 		5308C0811ED00C0700662D34 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				53F4DEF11EDF00F8005B8B8D /* OWCarManagerVC.h */,
+				53F4DEF21EDF00F8005B8B8D /* OWCarManagerVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -396,6 +408,8 @@
 		5308C0821ED00C0700662D34 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				53F4DEF41EDF0519005B8B8D /* OWCar.h */,
+				53F4DEF51EDF0519005B8B8D /* OWCar.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1894,6 +1908,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53F4DEF61EDF0519005B8B8D /* OWCar.m in Sources */,
 				53E593271ECAC89600D21A75 /* OWSettingCell.m in Sources */,
 				530915F91ED71B7200031F9B /* OWScanPermissions.m in Sources */,
 				53E5932A1ECAE29F00D21A75 /* OWDiscoveryPhotoCell.m in Sources */,
@@ -1931,6 +1946,7 @@
 				53F0ECB61ECD862C005ED86A /* OWImagePreviewVC.m in Sources */,
 				5308C0A51ED0770300662D34 /* OWMeetingDateCell.m in Sources */,
 				53E076F01ECC922F00A06AE0 /* OWTool.m in Sources */,
+				53F4DEF31EDF00F8005B8B8D /* OWCarManagerVC.m in Sources */,
 				53F0ECBE1ECD9EF6005ED86A /* OWVideoCaptureVC.m in Sources */,
 				5308C09C1ED00F4400662D34 /* OWMettingManagerCell.m in Sources */,
 				53D125201EC8A5A90073A185 /* OWVerticalBtn.m in Sources */,

@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class OWCar;
 @interface OWMettingManagerCell : UITableViewCell
 
+@property (nonatomic, strong) OWCar *car;
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
 @end

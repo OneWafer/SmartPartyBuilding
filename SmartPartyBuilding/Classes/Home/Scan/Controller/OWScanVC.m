@@ -134,7 +134,7 @@
     //经测试，可以同时识别2个二维码，不能同时识别二维码和条形码
 //    for (LBXScanResult *result in array) {
 //    
-//        NSLog(@"scanResult:%@",result.strScanned);
+//        wh_Log(@"scanResult:%@",result.strScanned);
 //    }
     
     LBXScanResult *scanResult = array[0];
@@ -241,7 +241,7 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    NSLog(@"cancel");
+    wh_Log(@"cancel");
     
     [picker dismissViewControllerAnimated:YES completion:nil];
 }

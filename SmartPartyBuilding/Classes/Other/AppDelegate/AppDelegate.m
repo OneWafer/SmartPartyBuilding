@@ -30,7 +30,8 @@
     
     [OWPlusBtn registerPlusButton];
     
-    self.window.rootViewController = [[OWRegisterNavigationVC alloc] initWithRootViewController:[[OWLoginVC alloc] init]];
+    [OWTool getUserAct] ? [self tabBar] : [self login];
+//    [self tabBar];
     [self.window makeKeyAndVisible];
     [OWTool SVProgressHUD];
     return YES;
@@ -53,6 +54,11 @@ static AFHTTPSessionManager *mgr;
 {
     OWTabBarControllerConfig *tabBarControllerConfig = [[OWTabBarControllerConfig alloc] init];
     self.window.rootViewController = tabBarControllerConfig.tabBarController;
+}
+
+- (void)login
+{
+    self.window.rootViewController = [[OWRegisterNavigationVC alloc] initWithRootViewController:[[OWLoginVC alloc] init]];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -13,6 +13,7 @@
 #import "OWRegisterVC.h"
 #import "AppDelegate.h"
 #import "OWNetworking.h"
+#import "OWTool.h"
 
 @interface OWLoginVC ()<UITextFieldDelegate>
 
@@ -34,13 +35,8 @@
     [super viewWillAppear:animated];
     //设置背景透明图片
     [self.navigationController.navigationBar setValue:@0 forKeyPath:@"backgroundView.alpha"];
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
 }
-
-//- (void)viewDidDisappear:(BOOL)animated
-//{
-//    [super viewDidDisappear:animated];
-//    [self.navigationController.navigationBar setValue:@1 forKeyPath:@"backgroundView.alpha"];
-//}
 
 
 - (void)viewDidLoad {
@@ -103,7 +99,9 @@
                           @"deviceNumber" : @"aaaaaaaaaaaaaaaaaaaaaaaaa"
                           };
     [OWNetworking GET:wh_appendingStr(wh_host, @"mobile/login") parameters:par success:^(id  _Nullable responseObject) {
+        wh_Log(@"--%@",responseObject);
         if ([responseObject[@"code"] intValue] == 200) {
+            if (self.remeberBtn.selected) [OWTool setUserAct:par];
             [SVProgressHUD showSuccessWithStatus:@"登录成功!"];
             [app tabBar];
         }else{
@@ -113,6 +111,7 @@
         [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
     }];
 }
+
 
 #pragma mark - ---------- Lazy ----------
 
@@ -242,9 +241,10 @@
         [btn setTitle:@"记住用户名" forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btn setImage:wh_imageNamed(@"office_cmd_radio") forState:UIControlStateNormal];
-        [btn setImage:wh_imageNamed(@"office_cmd_radio_slt") forState:UIControlStateSelected];
+        [btn setImage:wh_imageNamed(@"login_remember") forState:UIControlStateNormal];
+        [btn setImage:wh_imageNamed(@"login_remember_slt") forState:UIControlStateSelected];
         [btn wh_setImagePosition:WHImagePositionLeft spacing:5];
+        btn.selected = YES;
         [self.inputView addSubview:btn];
         
         [btn makeConstraints:^(MASConstraintMaker *make) {

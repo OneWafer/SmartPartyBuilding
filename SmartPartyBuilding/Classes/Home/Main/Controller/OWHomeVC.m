@@ -24,6 +24,7 @@
 
 @property (nonatomic, weak) SDCycleScrollView *banner;
 @property (nonatomic, strong) NSArray *funcTitleList;
+@property (nonatomic, strong) NSArray *sectionTitleList;
 
 @end
 
@@ -45,11 +46,25 @@
 - (void)setupTableView
 {
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
-//    self.tableView.backgroundColor = wh_RGB(244, 245, 246);
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    self.funcTitleList = @[@"通知公告", @"党员学习", @"组织活动",@"优秀党员", @"互动咨询", @"公文审批",@"投票选举", @"办公"];
+    self.funcTitleList = @[
+                           @{@"image":@"home_func_message",@"title":@"通知公告"},
+                           @{@"image":@"home_func_study",@"title":@"党员学习"},
+                           @{@"image":@"home_func_activity",@"title":@"组织活动"},
+                           @{@"image":@"home_func_member",@"title":@"优秀党员"},
+                           @{@"image":@"home_func_consult",@"title":@"互动咨询"},
+                           @{@"image":@"home_func_approve",@"title":@"公文审批"},
+                           @{@"image":@"home_func_election",@"title":@"投票选举"},
+                           @{@"image":@"home_func_office",@"title":@"办公"}
+                           ];
+
+    self.sectionTitleList = @[
+                              @{@"image":@"home_title_news",@"title":@"党建要闻"},
+                              @{@"image":@"home_title_life",@"title":@"党员生活"},
+                              @{@"image":@"home_title_activity",@"title":@"公开活动"}
+                              ];
 }
 
 - (void)setupNavi
@@ -63,7 +78,7 @@
         [weakself.navigationController pushViewController:scanVC animated:YES];
     }];
     
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem wh_itemWithType:WHItemTypeRight norImage:@"" highImage:@"" offset:0 actionHandler:^(UIButton *sender) {
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem wh_itemWithType:WHItemTypeRight norImage:@"navi_message" highImage:@"navi_message" offset:0 actionHandler:^(UIButton *sender) {
         wh_Log(@"---点击了消息");
     }];
 }
@@ -133,17 +148,17 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        return 140.0f;
+        return 160.0f;
     }else if (indexPath.section == 2 && indexPath.row == 1){
-        return wh_screenWidth * 0.7;
+        return wh_screenWidth * 0.8;
     }else{
-        return indexPath.row ? 50.0f : 30.0f;
+        return indexPath.row ? 50.0f : 40.0f;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 10.0f;
+    return (section == 0 || section == 3)? CGFLOAT_MIN : 10.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -153,18 +168,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *imgList = @[
-                         @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1494784669472&di=3f59d89526e0ceefb6187a4e32410e2d&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F47%2F45%2F55558PICaI3_1024.png",
-                         @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1494784710339&di=e160b4dcd8f10554b1e46d79047fcddd&imgtype=0&src=http%3A%2F%2Fpic.35pic.com%2Fnormal%2F00%2F00%2F00%2F4516838_104731063286_2.jpg",
-                         @"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=487686473,794182214&fm=23&gp=0.jpg",
-                         @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1494784734310&di=44ce408bba78eb7bdf4b0e928afa0515&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F51%2F31%2F02p58PICGNc_1024.png"];
-    NSDictionary *dic = @{
-                          @"title":self.funcTitleList,
-                          @"image":imgList
-                          };
     if (indexPath.section == 0) {
         OWFuncBtnsCell *cell = [OWFuncBtnsCell cellWithTableView:tableView];
-        cell.titleDic = dic;
+        cell.titleList = self.funcTitleList;
         wh_weakSelf(self);
         cell.funcBtnBlock = ^(NSInteger tag){
             [weakself funcBtnClick:tag];
@@ -176,6 +182,7 @@
     }else{
         if (indexPath.row == 0) {
             OWHomeTitleCell *cell = [OWHomeTitleCell cellWithTableView:tableView];
+            cell.titleDic = self.sectionTitleList[indexPath.section - 1];
             return cell;
         }else{
             OWHomeActivityCell *cell = [OWHomeActivityCell cellWithTableView:tableView];

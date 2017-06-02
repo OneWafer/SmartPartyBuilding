@@ -10,6 +10,8 @@
 #import <CommonCrypto/CommonDigest.h>
 #import "OWTool.h"
 
+NSString *const UserAct = @"userAct";
+
 @implementation OWTool
 
 + (void)SVProgressHUD
@@ -91,6 +93,21 @@
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:value / 1000];
     [dateformatter setDateFormat:format];
     return [dateformatter stringFromDate:date];
+}
+
+
+/** 存储已登录的账号 */
++ (void)setUserAct:(NSDictionary *)userAct
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setValue:userAct forKey:UserAct];
+    [userDefaults synchronize];
+}
+/** 取出已登录的账号 */
++ (NSDictionary *)getUserAct
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    return [userDefaults objectForKey:UserAct];
 }
 
 @end

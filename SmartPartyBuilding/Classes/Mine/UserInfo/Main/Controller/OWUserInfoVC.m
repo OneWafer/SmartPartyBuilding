@@ -6,12 +6,14 @@
 //  Copyright © 2017年 王卫华. All rights reserved.
 //
 
+#import <LCActionSheet.h>
 #import "OWUserInfoVC.h"
 #import "OWUserInfoCell.h"
 #import "OWUserInfoAvatarCell.h"
 
-@interface OWUserInfoVC ()
+@interface OWUserInfoVC ()<LCActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
+@property (nonatomic, strong) UIImagePickerController *imgPickerVC;
 @property (nonatomic, strong) NSArray *optionList;
 
 @end
@@ -86,5 +88,52 @@
 }
 
 
+#pragma mark - ---------- TableViewDataDelegate ----------
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            LCActionSheet *actionSheet = [LCActionSheet sheetWithTitle:nil cancelButtonTitle:@"取消" clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
+                if (buttonIndex == 1) { // 拍照
+                    self.imgPickerVC.allowsEditing = (indexPath.section == 0 && indexPath.row == 0);
+                    self.imgPickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+                    self.imgPickerVC.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+                    [self presentViewController:self.imgPickerVC animated:YES completion:nil];
+                }else if (buttonIndex == 2){ // 从相册选取
+                    self.imgPickerVC.allowsEditing = (indexPath.section == 0 && indexPath.row == 0);
+                    self.imgPickerVC.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+                    [self presentViewController:self.imgPickerVC animated:YES completion:nil];
+                }
+            } otherButtonTitleArray:@[@"拍摄",@"从相册选取"]];
+            [actionSheet show];
+        }
+    }
+}
+
+
+#pragma mark - ----------UIImagePickerControllerDelegate----------
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
+    if ([type isEqualToString:@"public.image"]) {
+        
+        
+    }
+}
+
+
+#pragma mark - ---------- Lazy ----------
+
+- (UIImagePickerController *)imgPickerVC
+{
+    if (!_imgPickerVC) {
+        _imgPickerVC = [[UIImagePickerController alloc] init];
+        _imgPickerVC.delegate = self;
+        _imgPickerVC.navigationBar.barTintColor = self.navigationController.navigationBar.barTintColor;
+        _imgPickerVC.navigationBar.tintColor = self.navigationController.navigationBar.tintColor;
+    }
+    return _imgPickerVC;
+}
 @end

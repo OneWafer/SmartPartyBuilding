@@ -12,7 +12,7 @@ typedef void(^OWFuncBtnsBlock)(NSInteger tag);
 
 @interface OWFuncBtnsCell : UITableViewCell
 
-@property (nonatomic, strong) NSDictionary *titleDic;
+@property (nonatomic, strong) NSArray *titleList;
 
 @property (nonatomic, copy) OWFuncBtnsBlock funcBtnBlock;
 + (instancetype)cellWithTableView:(UITableView *)tableView;

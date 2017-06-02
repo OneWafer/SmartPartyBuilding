@@ -7,7 +7,7 @@
 //
 
 #import <Masonry.h>
-#import <UIButton+WebCache.h>
+//#import <UIButton+WebCache.h>
 #import "OWFuncBtnsCell.h"
 #import "OWVerticalBtn.h"
 
@@ -43,7 +43,7 @@ static NSString *const identifier = @"OWFuncBtnsCell";
     
     if (self)
     {
-        self.font = 10.0f;
+        self.font = 12.0f;
     }
     return self;
 }
@@ -52,37 +52,37 @@ static NSString *const identifier = @"OWFuncBtnsCell";
 {
     [super layoutSubviews];
     
-    [self.btnList1 mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:60 leadSpacing:10 tailSpacing:10];
+    [self.btnList1 mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:60 leadSpacing:15 tailSpacing:15];
     [self.btnList1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self);
-        make.height.equalTo(self).multipliedBy(0.5);
+        make.height.equalTo(self).multipliedBy(0.45);
     }];
     
-    [self.btnList2 mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:60 leadSpacing:10 tailSpacing:10];
+    [self.btnList2 mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:60 leadSpacing:15 tailSpacing:15];
     [self.btnList2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self);
-        make.height.equalTo(self).multipliedBy(0.5);
+        make.top.equalTo(self.centerY);
+        make.height.equalTo(self).multipliedBy(0.45);
     }];
 }
 
-- (void)setTitleDic:(NSDictionary *)titleDic
+
+- (void)setTitleList:(NSArray *)titleList
 {
-    _titleDic = titleDic;
-    NSArray *titleList = titleDic[@"title"];
-    NSArray *imgList = titleDic[@"image"];
+    _titleList = titleList;
     [self.btnList1 wh_eachWithIndex:^(UIButton *obj, NSUInteger idx) {
-        [obj setTitle:titleList[idx] forState:UIControlStateNormal];
-        [obj sd_setImageWithURL:[NSURL URLWithString:imgList[idx]] forState:UIControlStateNormal placeholderImage:wh_imageNamed(@"")];
+        NSDictionary *titleDic = titleList[idx];
+        [obj setTitle:titleDic[@"title"] forState:UIControlStateNormal];
+        [obj setImage:wh_imageNamed(titleDic[@"image"]) forState:UIControlStateNormal];
         [obj sizeToFit];
     }];
     
     [self.btnList2 wh_eachWithIndex:^(UIButton *obj, NSUInteger idx) {
-        [obj setTitle:titleList[idx + 4] forState:UIControlStateNormal];
-        [obj sd_setImageWithURL:[NSURL URLWithString:imgList[idx]] forState:UIControlStateNormal placeholderImage:wh_imageNamed(@"")];
+        NSDictionary *titleDic = titleList[idx + 4];
+        [obj setTitle:titleDic[@"title"] forState:UIControlStateNormal];
+        [obj setImage:wh_imageNamed(titleDic[@"image"]) forState:UIControlStateNormal];
         [obj sizeToFit];
     }];
 }
-
 
 #pragma mark - ---------- Lazy ----------
 

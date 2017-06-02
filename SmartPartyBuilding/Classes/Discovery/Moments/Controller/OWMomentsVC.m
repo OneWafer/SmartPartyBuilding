@@ -30,10 +30,11 @@
 
 -(void) setHeader
 {
-    NSString *coverUrl = [NSString stringWithFormat:@"http://file-cdn.datafans.net/temp/12.jpg_%dx%d.jpeg", (int)self.coverWidth, (int)self.coverHeight];
+    NSString *coverUrl = @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496242912506&di=8f932d535e33580bc0f66f531bc803bf&imgtype=0&src=http%3A%2F%2Fupload.art.ifeng.com%2F2015%2F0811%2F1439260959533.jpg";
     [self setCover:coverUrl];
     
-    NSString *avatarUrl = [NSString stringWithFormat:@"http://file-cdn.datafans.net/avatar/1.jpeg_%dx%d.jpeg", (int)self.userAvatarSize, (int)self.userAvatarSize];
+//    NSString *avatarUrl = [NSString stringWithFormat:@"http://file-cdn.datafans.net/avatar/1.jpeg_%dx%d.jpeg", (int)self.userAvatarSize, (int)self.userAvatarSize];
+    NSString *avatarUrl = @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496243110313&di=65c0a56d98927400fe6f433e4573dd7b&imgtype=0&src=http%3A%2F%2Fmvimg2.meitudata.com%2F557536d18a78f6559.jpg";
     [self setUserAvatar:avatarUrl];
     
     [self setUserNick:@"Allen"];
@@ -48,13 +49,13 @@
     OWTextImageLineItem *textImageItem = [[OWTextImageLineItem alloc] init];
     textImageItem.itemId = 1;
     textImageItem.userId = 10086;
-    textImageItem.userAvatar = @"http://file-cdn.datafans.net/avatar/1.jpeg";
+    textImageItem.userAvatar = @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496243135497&di=4e7dede7f919e6b69b83f0047d9e85cd&imgtype=0&src=http%3A%2F%2Fmvimg1.meitudata.com%2F55e6d035533f38001.jpg";
     textImageItem.userNick = @"Allen";
-    textImageItem.title = @"";
+    textImageItem.title = @"---";
     textImageItem.text = @"你是我的小苹果 小苹果 我爱你 就像老鼠爱大米 18680551720 [亲亲]";
     
     NSMutableArray *srcImages = [NSMutableArray array];
-    [srcImages addObject:@"http://file-cdn.datafans.net/temp/11.jpg"];
+    [srcImages addObject:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496242795502&di=8bd736114a89ca692e86ceb16504bee8&imgtype=0&src=http%3A%2F%2Fvisboo.com%2Fimg%2Fnew%2F352604.jpg"];
     [srcImages addObject:@"http://file-cdn.datafans.net/temp/12.jpg"];
     [srcImages addObject:@"http://file-cdn.datafans.net/temp/13.jpg"];
     [srcImages addObject:@"http://file-cdn.datafans.net/temp/14.jpg"];
@@ -70,20 +71,20 @@
     
     
     NSMutableArray *thumbImages = [NSMutableArray array];
-    [thumbImages addObject:@"http://file-cdn.datafans.net/temp/11.jpg"];
-    [thumbImages addObject:@"http://file-cdn.datafans.net/temp/12.jpg_160x160.jpeg"];
-    [thumbImages addObject:@"http://file-cdn.datafans.net/temp/13.jpg_160x160.jpeg"];
-    [thumbImages addObject:@"http://file-cdn.datafans.net/temp/14.jpg_160x160.jpeg"];
-    [thumbImages addObject:@"http://file-cdn.datafans.net/temp/15.jpg_160x160.jpeg"];
-    [thumbImages addObject:@"http://file-cdn.datafans.net/temp/16.jpg_160x160.jpeg"];
-    [thumbImages addObject:@"http://file-cdn.datafans.net/temp/17.jpg_160x160.jpeg"];
-    [thumbImages addObject:@"http://file-cdn.datafans.net/temp/18.jpg_160x160.jpeg"];
-    [thumbImages addObject:@"http://file-cdn.datafans.net/temp/19.jpg_160x160.jpeg"];
+    [thumbImages addObject:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496242795502&di=8bd736114a89ca692e86ceb16504bee8&imgtype=0&src=http%3A%2F%2Fvisboo.com%2Fimg%2Fnew%2F352604.jpg"];
+    [thumbImages addObject:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496242795502&di=8bd736114a89ca692e86ceb16504bee8&imgtype=0&src=http%3A%2F%2Fvisboo.com%2Fimg%2Fnew%2F352604.jpg"];
+    [thumbImages addObject:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496242795502&di=8bd736114a89ca692e86ceb16504bee8&imgtype=0&src=http%3A%2F%2Fvisboo.com%2Fimg%2Fnew%2F352604.jpg"];
+    [thumbImages addObject:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496242795502&di=8bd736114a89ca692e86ceb16504bee8&imgtype=0&src=http%3A%2F%2Fvisboo.com%2Fimg%2Fnew%2F352604.jpg"];
+    [thumbImages addObject:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496242795502&di=8bd736114a89ca692e86ceb16504bee8&imgtype=0&src=http%3A%2F%2Fvisboo.com%2Fimg%2Fnew%2F352604.jpg"];
+    [thumbImages addObject:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496242795502&di=8bd736114a89ca692e86ceb16504bee8&imgtype=0&src=http%3A%2F%2Fvisboo.com%2Fimg%2Fnew%2F352604.jpg"];
+    [thumbImages addObject:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496242795502&di=8bd736114a89ca692e86ceb16504bee8&imgtype=0&src=http%3A%2F%2Fvisboo.com%2Fimg%2Fnew%2F352604.jpg"];
+    [thumbImages addObject:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496242795502&di=8bd736114a89ca692e86ceb16504bee8&imgtype=0&src=http%3A%2F%2Fvisboo.com%2Fimg%2Fnew%2F352604.jpg"];
+    [thumbImages addObject:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496242795502&di=8bd736114a89ca692e86ceb16504bee8&imgtype=0&src=http%3A%2F%2Fvisboo.com%2Fimg%2Fnew%2F352604.jpg"];
     textImageItem.thumbImages = thumbImages;
     
     
     NSMutableArray *thumbPreviewImages = [NSMutableArray array];
-    [thumbPreviewImages addObject:@"http://file-cdn.datafans.net/temp/11.jpg_600x600.jpeg"];
+    [thumbPreviewImages addObject:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496242795502&di=8bd736114a89ca692e86ceb16504bee8&imgtype=0&src=http%3A%2F%2Fvisboo.com%2Fimg%2Fnew%2F352604.jpg"];
     [thumbPreviewImages addObject:@"http://file-cdn.datafans.net/temp/12.jpg_600x600.jpeg"];
     [thumbPreviewImages addObject:@"http://file-cdn.datafans.net/temp/13.jpg_600x600.jpeg"];
     [thumbPreviewImages addObject:@"http://file-cdn.datafans.net/temp/14.jpg_600x600.jpeg"];

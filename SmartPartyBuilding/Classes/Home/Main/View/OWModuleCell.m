@@ -11,9 +11,10 @@
 
 @interface OWModuleCell ()
 
-@property (nonatomic, weak) UIButton *volunteerBtn;
-@property (nonatomic, weak) UIButton *donationBtn;
+@property (nonatomic, weak) UIView *volunteerView;
+@property (nonatomic, weak) UIView *donationView;
 @property (nonatomic, weak) UIButton *storeBtn;
+@property (nonatomic, weak) UIView *storeView;
 
 @end
 
@@ -41,19 +42,18 @@ static NSString *const identifier = @"OWModuleCell";
     
     if (self)
     {
-        [self.volunteerBtn setBackgroundColor:[UIColor grayColor]];
-        [self.donationBtn setBackgroundColor:[UIColor grayColor]];
+        self.backgroundColor = [UIColor clearColor];
         [self.storeBtn setBackgroundColor:[UIColor grayColor]];
         
-        [self.volunteerBtn wh_addActionHandler:^(UIButton *sender) {
+        [self.volunteerView wh_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
             wh_Log(@"点击了志愿大厅");
         }];
         
-        [self.donationBtn wh_addActionHandler:^(UIButton *sender) {
+        [self.donationView wh_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
             wh_Log(@"点击了爱心捐赠");
         }];
         
-        [self.storeBtn wh_addActionHandler:^(UIButton *sender) {
+        [self.storeView wh_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
             wh_Log(@"点击了积分商城");
         }];
     }
@@ -63,64 +63,113 @@ static NSString *const identifier = @"OWModuleCell";
 
 #pragma mark - ---------- Lazy ----------
 
-- (UIButton *)volunteerBtn
+- (UIView *)volunteerView
 {
-    if (!_volunteerBtn) {
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setTitle:@"志愿大厅" forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:13];
-        [btn setImage:wh_imageNamed(@"home_arrow_white") forState:UIControlStateNormal];
-        [btn wh_setImagePosition:WHImagePositionRight spacing:0];
-        [self.contentView addSubview:btn];
+    if (!_volunteerView) {
+        UIView *view = [[UIView alloc] init];
+        view.backgroundColor = [UIColor whiteColor];
+        [self.contentView addSubview:view];
         
-        [btn makeConstraints:^(MASConstraintMaker *make) {
+        [view makeConstraints:^(MASConstraintMaker *make) {
             make.left.top.equalTo(self).offset(10);
             make.width.equalTo((wh_screenWidth - 30)*0.5);
             make.height.equalTo((wh_screenWidth - 30)*0.45);
         }];
-        _volunteerBtn = btn;
-    }
-    return _volunteerBtn;
-}
-
-- (UIButton *)donationBtn
-{
-    if (!_donationBtn) {
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setTitle:@"爱心捐赠" forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:13];
-        [btn setImage:wh_imageNamed(@"home_arrow_white") forState:UIControlStateNormal];
-        [btn wh_setImagePosition:WHImagePositionRight spacing:0];
-        [self.contentView addSubview:btn];
         
-        [btn makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.volunteerBtn);
-            make.right.equalTo(self).offset(-10);
-            make.width.height.equalTo(self.volunteerBtn);
+        UIImageView *imgView = [[UIImageView alloc] initWithImage:wh_imageNamed(@"home_volunteer_img")];
+        [view addSubview:imgView];
+        [imgView makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(view);
+            make.centerY.equalTo(view).multipliedBy(0.8);
+            make.width.equalTo(view).multipliedBy(0.65);
+            make.height.equalTo(view).multipliedBy(0.635);
         }];
-        _donationBtn = btn;
+        
+        UIImageView *btn = [[UIImageView alloc] initWithImage:wh_imageNamed(@"home_volunteer_btn")];
+        [view addSubview:btn];
+        [btn makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(view);
+            make.centerY.equalTo(view).multipliedBy(1.7);
+            make.width.equalTo(view).multipliedBy(0.57);
+            make.height.equalTo(view).multipliedBy(0.166);
+        }];
+        
+        _volunteerView = view;
     }
-    return _donationBtn;
+    return _volunteerView;
 }
 
-- (UIButton *)storeBtn
+
+- (UIView *)donationView
 {
-    if (!_storeBtn) {
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setTitle:@"积分积分商城" forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:13];
-        [btn setImage:wh_imageNamed(@"home_arrow_white") forState:UIControlStateNormal];
-        [btn wh_setImagePosition:WHImagePositionRight spacing:0];
-        [self.contentView addSubview:btn];
+    if (!_donationView) {
+        UIView *view = [[UIView alloc] init];
+        view.backgroundColor = [UIColor whiteColor];
+        [self.contentView addSubview:view];
         
+        [view makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.volunteerView);
+            make.right.equalTo(self).offset(-10);
+            make.width.height.equalTo(self.volunteerView);
+        }];
+        
+        UIImageView *imgView = [[UIImageView alloc] initWithImage:wh_imageNamed(@"home_donation_img")];
+        [view addSubview:imgView];
+        [imgView makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(view);
+            make.centerY.equalTo(view).multipliedBy(0.8);
+            make.width.equalTo(view).multipliedBy(0.65);
+            make.height.equalTo(view).multipliedBy(0.686);
+        }];
+        
+        UIImageView *btn = [[UIImageView alloc] initWithImage:wh_imageNamed(@"home_donation_btn")];
+        [view addSubview:btn];
         [btn makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(view);
+            make.centerY.equalTo(view).multipliedBy(1.7);
+            make.width.equalTo(view).multipliedBy(0.57);
+            make.height.equalTo(view).multipliedBy(0.166);
+        }];
+        
+        _donationView = view;
+    }
+    return _donationView;
+}
+
+
+- (UIView *)storeView
+{
+    if (!_storeView) {
+        UIView *view = [[UIView alloc] init];
+        view.backgroundColor = [UIColor whiteColor];
+        [self.contentView addSubview:view];
+        
+        [view makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self).offset(10);
-            make.top.equalTo(self.volunteerBtn.bottom).offset(10);
+            make.top.equalTo(self.volunteerView.bottom).offset(10);
             make.right.bottom.equalTo(self).offset(-10);
         }];
-        _storeBtn = btn;
+        
+        UIImageView *imgView = [[UIImageView alloc] initWithImage:wh_imageNamed(@"home_store_img")];
+        [view addSubview:imgView];
+        [imgView makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(view).multipliedBy(0.85);
+            make.centerY.equalTo(view);
+            make.width.equalTo(view).multipliedBy(0.68);
+            make.height.equalTo(view).multipliedBy(0.78);
+        }];
+        
+        UIImageView *btn = [[UIImageView alloc] initWithImage:wh_imageNamed(@"home_store_btn")];
+        [view addSubview:btn];
+        [btn makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(view).multipliedBy(1.5);
+            make.centerY.equalTo(view).multipliedBy(1.4);
+            make.width.equalTo(view).multipliedBy(0.27);
+            make.height.equalTo(view).multipliedBy(0.23);
+        }];
+        
+        _storeView = view;
     }
-    return _storeBtn;
+    return _storeView;
 }
-
 @end

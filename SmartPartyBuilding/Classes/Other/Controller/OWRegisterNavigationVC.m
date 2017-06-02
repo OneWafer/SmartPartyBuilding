@@ -43,7 +43,7 @@
     if (self.childViewControllers.count > 0) {
         
         UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [backBtn setImage:wh_imageNamed(@"") forState:UIControlStateNormal];
+        [backBtn setImage:wh_imageNamed(@"navi_back_white") forState:UIControlStateNormal];
         [backBtn setTitle:@"返回" forState:UIControlStateNormal];
         [backBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         backBtn.titleLabel.font = [UIFont systemFontOfSize:16.0f];
