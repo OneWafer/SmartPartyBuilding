@@ -33,7 +33,7 @@
     
     AFHTTPSessionManager *mgr = [app sharedHTTPSession];
     mgr.requestSerializer.timeoutInterval = 15;
-    [mgr.requestSerializer setValue:@"2a591b3ee37a14912e0b1d0334eb73ba" forHTTPHeaderField:@"Authentication"];
+    [mgr.requestSerializer setValue:@"ec2f586e81b32d24412c68ec01ecd7b7" forHTTPHeaderField:@"Authentication"];
     
     [mgr GET:urlString parameters:parms progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (successBlock) successBlock(responseObject);

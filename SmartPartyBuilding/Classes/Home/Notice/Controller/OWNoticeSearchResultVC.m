@@ -7,7 +7,7 @@
 //
 
 #import "OWNoticeSearchResultVC.h"
-#import "OWHomeActivityCell.h"
+#import "OWHomeNoticeCell.h"
 
 @interface OWNoticeSearchResultVC ()
 
@@ -32,7 +32,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    OWHomeActivityCell *cell = [OWHomeActivityCell cellWithTableView:tableView];
+    OWHomeNoticeCell *cell = [OWHomeNoticeCell cellWithTableView:tableView];
     return cell;
 }
 

@@ -1,14 +1,14 @@
 //
-//  OWHomeActivityCell.h
+//  OWHomeHeadlineCell.h
 //  SmartPartyBuilding
 //
-//  Created by 王卫华 on 2017/5/15.
+//  Created by 王卫华 on 2017/6/4.
 //  Copyright © 2017年 王卫华. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface OWHomeActivityCell : UITableViewCell
+@interface OWHomeHeadlineCell : UITableViewCell
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 

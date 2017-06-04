@@ -1,15 +1,15 @@
 //
-//  OWHomeActivityCell.m
+//  OWHomeNoticeCell.m
 //  SmartPartyBuilding
 //
-//  Created by 王卫华 on 2017/5/15.
+//  Created by 王卫华 on 2017/6/4.
 //  Copyright © 2017年 王卫华. All rights reserved.
 //
 
 #import <Masonry.h>
-#import "OWHomeActivityCell.h"
+#import "OWHomeNoticeCell.h"
 
-@interface OWHomeActivityCell ()
+@interface OWHomeNoticeCell ()
 
 @property (nonatomic, weak) UIImageView *hotImgView;
 @property (nonatomic, weak) UILabel *titleLabel;
@@ -19,14 +19,14 @@
 
 @end
 
-@implementation OWHomeActivityCell
+@implementation OWHomeNoticeCell
 
-static NSString *const identifier = @"OWHomeActivityCell";
+static NSString *const identifier = @"OWHomeNoticeCell";
 + (instancetype)cellWithTableView:(UITableView *)tableView
 {
-    OWHomeActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    OWHomeNoticeCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
-        cell = [[OWHomeActivityCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[OWHomeNoticeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return cell;
@@ -127,7 +127,6 @@ static NSString *const identifier = @"OWHomeActivityCell";
 {
     if (!_btmLineView) {
         UIView *view = [[UIView alloc] init];
-//        view.backgroundColor = wh_lineColor;
         [self.contentView addSubview:view];
         
         [view makeConstraints:^(MASConstraintMaker *make) {

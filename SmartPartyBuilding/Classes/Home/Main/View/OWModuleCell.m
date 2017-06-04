@@ -11,10 +11,9 @@
 
 @interface OWModuleCell ()
 
-@property (nonatomic, weak) UIView *volunteerView;
 @property (nonatomic, weak) UIView *donationView;
-@property (nonatomic, weak) UIButton *storeBtn;
 @property (nonatomic, weak) UIView *storeView;
+@property (nonatomic, weak) UIView *lineView;
 
 @end
 
@@ -42,12 +41,6 @@ static NSString *const identifier = @"OWModuleCell";
     
     if (self)
     {
-        self.backgroundColor = [UIColor clearColor];
-        [self.storeBtn setBackgroundColor:[UIColor grayColor]];
-        
-        [self.volunteerView wh_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
-            wh_Log(@"点击了志愿大厅");
-        }];
         
         [self.donationView wh_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
             wh_Log(@"点击了爱心捐赠");
@@ -56,6 +49,7 @@ static NSString *const identifier = @"OWModuleCell";
         [self.storeView wh_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
             wh_Log(@"点击了积分商城");
         }];
+        self.lineView.backgroundColor = wh_lineColor;
     }
     return self;
 }
@@ -63,41 +57,41 @@ static NSString *const identifier = @"OWModuleCell";
 
 #pragma mark - ---------- Lazy ----------
 
-- (UIView *)volunteerView
-{
-    if (!_volunteerView) {
-        UIView *view = [[UIView alloc] init];
-        view.backgroundColor = [UIColor whiteColor];
-        [self.contentView addSubview:view];
-        
-        [view makeConstraints:^(MASConstraintMaker *make) {
-            make.left.top.equalTo(self).offset(10);
-            make.width.equalTo((wh_screenWidth - 30)*0.5);
-            make.height.equalTo((wh_screenWidth - 30)*0.45);
-        }];
-        
-        UIImageView *imgView = [[UIImageView alloc] initWithImage:wh_imageNamed(@"home_volunteer_img")];
-        [view addSubview:imgView];
-        [imgView makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(view);
-            make.centerY.equalTo(view).multipliedBy(0.8);
-            make.width.equalTo(view).multipliedBy(0.65);
-            make.height.equalTo(view).multipliedBy(0.635);
-        }];
-        
-        UIImageView *btn = [[UIImageView alloc] initWithImage:wh_imageNamed(@"home_volunteer_btn")];
-        [view addSubview:btn];
-        [btn makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(view);
-            make.centerY.equalTo(view).multipliedBy(1.7);
-            make.width.equalTo(view).multipliedBy(0.57);
-            make.height.equalTo(view).multipliedBy(0.166);
-        }];
-        
-        _volunteerView = view;
-    }
-    return _volunteerView;
-}
+//- (UIView *)volunteerView
+//{
+//    if (!_volunteerView) {
+//        UIView *view = [[UIView alloc] init];
+//        view.backgroundColor = [UIColor whiteColor];
+//        [self.contentView addSubview:view];
+//        
+//        [view makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.top.equalTo(self).offset(10);
+//            make.width.equalTo((wh_screenWidth - 30)*0.5);
+//            make.height.equalTo((wh_screenWidth - 30)*0.45);
+//        }];
+//        
+//        UIImageView *imgView = [[UIImageView alloc] initWithImage:wh_imageNamed(@"home_volunteer_img")];
+//        [view addSubview:imgView];
+//        [imgView makeConstraints:^(MASConstraintMaker *make) {
+//            make.centerX.equalTo(view);
+//            make.centerY.equalTo(view).multipliedBy(0.8);
+//            make.width.equalTo(view).multipliedBy(0.65);
+//            make.height.equalTo(view).multipliedBy(0.635);
+//        }];
+//        
+//        UIImageView *btn = [[UIImageView alloc] initWithImage:wh_imageNamed(@"home_volunteer_btn")];
+//        [view addSubview:btn];
+//        [btn makeConstraints:^(MASConstraintMaker *make) {
+//            make.centerX.equalTo(view);
+//            make.centerY.equalTo(view).multipliedBy(1.7);
+//            make.width.equalTo(view).multipliedBy(0.57);
+//            make.height.equalTo(view).multipliedBy(0.166);
+//        }];
+//        
+//        _volunteerView = view;
+//    }
+//    return _volunteerView;
+//}
 
 
 - (UIView *)donationView
@@ -108,9 +102,8 @@ static NSString *const identifier = @"OWModuleCell";
         [self.contentView addSubview:view];
         
         [view makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.volunteerView);
-            make.right.equalTo(self).offset(-10);
-            make.width.height.equalTo(self.volunteerView);
+            make.top.left.bottom.equalTo(self);
+            make.width.equalTo(self).multipliedBy(0.5);
         }];
         
         UIImageView *imgView = [[UIImageView alloc] initWithImage:wh_imageNamed(@"home_donation_img")];
@@ -118,17 +111,13 @@ static NSString *const identifier = @"OWModuleCell";
         [imgView makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(view);
             make.centerY.equalTo(view).multipliedBy(0.8);
-            make.width.equalTo(view).multipliedBy(0.65);
-            make.height.equalTo(view).multipliedBy(0.686);
         }];
         
         UIImageView *btn = [[UIImageView alloc] initWithImage:wh_imageNamed(@"home_donation_btn")];
         [view addSubview:btn];
         [btn makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(view);
-            make.centerY.equalTo(view).multipliedBy(1.7);
-            make.width.equalTo(view).multipliedBy(0.57);
-            make.height.equalTo(view).multipliedBy(0.166);
+            make.centerY.equalTo(view).multipliedBy(1.7);;
         }];
         
         _donationView = view;
@@ -145,31 +134,42 @@ static NSString *const identifier = @"OWModuleCell";
         [self.contentView addSubview:view];
         
         [view makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self).offset(10);
-            make.top.equalTo(self.volunteerView.bottom).offset(10);
-            make.right.bottom.equalTo(self).offset(-10);
+            make.top.right.bottom.equalTo(self);
+            make.width.equalTo(self).multipliedBy(0.5);
         }];
         
         UIImageView *imgView = [[UIImageView alloc] initWithImage:wh_imageNamed(@"home_store_img")];
         [view addSubview:imgView];
         [imgView makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(view).multipliedBy(0.85);
-            make.centerY.equalTo(view);
-            make.width.equalTo(view).multipliedBy(0.68);
-            make.height.equalTo(view).multipliedBy(0.78);
+            make.centerX.equalTo(view);
+            make.centerY.equalTo(view).multipliedBy(0.8);
         }];
         
         UIImageView *btn = [[UIImageView alloc] initWithImage:wh_imageNamed(@"home_store_btn")];
         [view addSubview:btn];
         [btn makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(view).multipliedBy(1.5);
-            make.centerY.equalTo(view).multipliedBy(1.4);
-            make.width.equalTo(view).multipliedBy(0.27);
-            make.height.equalTo(view).multipliedBy(0.23);
+            make.centerX.equalTo(view);
+            make.centerY.equalTo(view).multipliedBy(1.7);;
         }];
         
         _storeView = view;
     }
     return _storeView;
 }
+
+- (UIView *)lineView
+{
+    if (!_lineView) {
+        UIView *view = [[UIView alloc] init];
+        [self.contentView addSubview:view];
+        [view makeConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(self);
+            make.width.equalTo(0.5);
+            make.height.equalTo(self).multipliedBy(0.8);
+        }];
+        _lineView = view;
+    }
+    return _lineView;
+}
+
 @end

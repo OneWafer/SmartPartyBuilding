@@ -22,11 +22,11 @@
 - (NSArray *)viewControllers
 {
     OWNavigationController *homeVC = [[OWNavigationController alloc] initWithRootViewController:[[OWHomeVC alloc] init]];
-    OWNavigationController *storeVC = [[OWNavigationController alloc] initWithRootViewController:[[OWOfficeVC alloc] init]];
+    OWNavigationController *officeVC = [[OWNavigationController alloc] initWithRootViewController:[[OWOfficeVC alloc] init]];
     OWNavigationController *discoveryVC = [[OWNavigationController alloc] initWithRootViewController:[[OWDiscoveryVC alloc] init]];
     OWNavigationController *mineVC = [[OWNavigationController alloc] initWithRootViewController:[[OWMineVC alloc] init]];
     
-    NSArray *list = @[homeVC, storeVC, discoveryVC, mineVC];
+    NSArray *list = @[homeVC, officeVC, discoveryVC, mineVC];
     
     return list;
 }
