@@ -11,6 +11,7 @@
 #import <SVProgressHUD.h>
 #import "OWCarManagerVC.h"
 #import "OWMettingManagerCell.h"
+#import "OWCarDetailVC.h"
 #import "OWNetworking.h"
 #import "OWCar.h"
 
@@ -96,8 +97,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    OWMettingDetailVC *detailVC = [[OWMettingDetailVC alloc] init];
-//    [self.navigationController pushViewController:detailVC animated:YES];
+    OWCarDetailVC *detailVC = [[OWCarDetailVC alloc] init];
+    detailVC.car = self.carList[indexPath.section];
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 @end

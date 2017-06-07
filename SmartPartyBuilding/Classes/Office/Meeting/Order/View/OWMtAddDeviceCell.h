@@ -10,6 +10,8 @@
 
 @interface OWMtAddDeviceCell : UITableViewCell
 
+@property (nonatomic, copy) NSString *title;
+
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
 @end

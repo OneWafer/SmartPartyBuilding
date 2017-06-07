@@ -102,6 +102,7 @@
         wh_Log(@"--%@",responseObject);
         if ([responseObject[@"code"] intValue] == 200) {
             if (self.remeberBtn.selected) [OWTool setUserAct:par];
+            [OWTool setToken:responseObject[@"data"]];
             [SVProgressHUD showSuccessWithStatus:@"登录成功!"];
             [app tabBar];
         }else{

@@ -10,6 +10,7 @@
 
 @interface OWHomeHeadlineCell : UITableViewCell
 
+@property (nonatomic, strong) NSArray *newsList;
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
 @end

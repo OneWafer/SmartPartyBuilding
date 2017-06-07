@@ -34,11 +34,11 @@
     self.tableView.showsVerticalScrollIndicator = NO;
     
     self.optionList = @[
-                        @{@"image" : @"btn", @"title" : @"光影", @"content" : @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1495015108912&di=b42b24848b13a000b9d1539e8e395250&imgtype=0&src=http%3A%2F%2Fimg3.duitang.com%2Fuploads%2Fitem%2F201609%2F11%2F20160911103417_KRZJM.thumb.224_0.jpeg"},
-                        @{@"image" : @"btn", @"title" : @"困难党员", @"content" : @"加入"},
-                        @{@"image" : @"btn", @"title" : @"老党员", @"content" : @"加入"},
-                        @{@"image" : @"btn", @"title" : @"志愿者", @"content" : @"加入"},
-                        @{@"image" : @"btn", @"title" : @"积分兑换", @"content" : @""}
+                        @{@"image" : @"discovery_moments", @"title" : @"光影", @"content" : @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1495015108912&di=b42b24848b13a000b9d1539e8e395250&imgtype=0&src=http%3A%2F%2Fimg3.duitang.com%2Fuploads%2Fitem%2F201609%2F11%2F20160911103417_KRZJM.thumb.224_0.jpeg"},
+                        @{@"image" : @"discovery_difficult", @"title" : @"困难党员", @"content" : @"加入"},
+                        @{@"image" : @"discovery_old", @"title" : @"老党员", @"content" : @"加入"},
+                        @{@"image" : @"discovery_donation", @"title" : @"志愿者", @"content" : @"加入"},
+                        @{@"image" : @"discovery_score", @"title" : @"积分兑换", @"content" : @""}
                         ];
     
 }

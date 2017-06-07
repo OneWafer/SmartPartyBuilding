@@ -9,6 +9,7 @@
 #import <Masonry.h>
 #import <SDCycleScrollView.h>
 #import "OWHomeHeadlineCell.h"
+#import "OWNews.h"
 
 @interface OWHomeHeadlineCell ()<SDCycleScrollViewDelegate>
 
@@ -45,18 +46,21 @@ static NSString *const identifier = @"OWHomeHeadlineCell";
     
     if (self)
     {
-        NSArray *list = @[
-                          @"中国共产党是中国工人阶级的先锋队",
-                          @"马克思列宁主义揭示了人类社会历史发展的规律",
-                          @"以毛泽东同志为主要代表的中国共产党人"
-                          ];
-        self.headlineView.titlesGroup = list;
-        
         [self.moreBtn wh_addActionHandler:^(UIButton *sender) {
             wh_Log(@"点击了更多");
         }];
     }
     return self;
+}
+
+- (void)setNewsList:(NSArray *)newsList
+{
+    _newsList = newsList;
+    NSMutableArray *titleList = [NSMutableArray array];
+    [newsList wh_each:^(OWNews *obj) {
+        [titleList addObject:obj.title];
+    }];
+    self.headlineView.titlesGroup = [titleList mutableCopy];
 }
 
 
@@ -101,7 +105,7 @@ static NSString *const identifier = @"OWHomeHeadlineCell";
         UILabel *label = [[UILabel alloc] init];
         label.text = @"更多";
         label.textColor = wh_norFontColor;
-        label.font = [UIFont systemFontOfSize:15.0f];
+        label.font = [UIFont systemFontOfSize:14.0f];
         [self.contentView addSubview:label];
         
         [label makeConstraints:^(MASConstraintMaker *make) {
@@ -137,7 +141,7 @@ static NSString *const identifier = @"OWHomeHeadlineCell";
         SDCycleScrollView *view = [[SDCycleScrollView alloc] init];
         view.titleLabelBackgroundColor = [UIColor whiteColor];
         view.titleLabelTextColor = wh_norFontColor;
-        view.titleLabelTextFont = [UIFont systemFontOfSize:15.0f];
+        view.titleLabelTextFont = [UIFont systemFontOfSize:14.0f];
         view.delegate = self;
         view.scrollDirection = UICollectionViewScrollDirectionVertical;
         view.onlyDisplayText = YES;

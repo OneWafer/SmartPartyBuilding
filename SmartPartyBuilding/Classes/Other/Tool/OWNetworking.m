@@ -8,6 +8,7 @@
 
 #import "OWNetworking.h"
 #import "AppDelegate.h"
+#import "OWTool.h"
 
 @implementation OWNetworking
 
@@ -33,7 +34,7 @@
     
     AFHTTPSessionManager *mgr = [app sharedHTTPSession];
     mgr.requestSerializer.timeoutInterval = 15;
-    [mgr.requestSerializer setValue:@"ec2f586e81b32d24412c68ec01ecd7b7" forHTTPHeaderField:@"Authentication"];
+    [mgr.requestSerializer setValue:[OWTool getToken] forHTTPHeaderField:@"Authentication"];
     
     [mgr GET:urlString parameters:parms progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (successBlock) successBlock(responseObject);

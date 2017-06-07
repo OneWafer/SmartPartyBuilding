@@ -26,7 +26,7 @@
 + (void)initialize
 {
     UINavigationBar *naviBar = [UINavigationBar appearanceWhenContainedIn:self, nil];
-    
+    [naviBar setBackgroundImage:[UIImage wh_imgWithColor:wh_RGBA(255, 255, 255, 0.95)] forBarMetrics:(UIBarMetricsDefault)];
     // 只要是通过模型设置,都是通过富文本设置
     // 设置导航条标题
     NSMutableDictionary *attrs = [NSMutableDictionary dictionary];

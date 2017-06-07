@@ -20,8 +20,11 @@
 		530916061ED734F700031F9B /* OWHomeApprovalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 530916051ED734F700031F9B /* OWHomeApprovalCell.m */; };
 		530C8B371EDBEABA001B924E /* OWCommodityFallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 530C8B361EDBEABA001B924E /* OWCommodityFallCell.m */; };
 		530C8B3A1EDBF2A8001B924E /* OWCommodityItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 530C8B391EDBF2A8001B924E /* OWCommodityItemCell.m */; };
+		530F85C81EE58D8700254B60 /* OWCarDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 530F85C71EE58D8700254B60 /* OWCarDetailVC.m */; };
+		530F85CB1EE5A09000254B60 /* OWCarOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 530F85CA1EE5A09000254B60 /* OWCarOrderVC.m */; };
+		530F85CE1EE5A83000254B60 /* OWMtOrderDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 530F85CD1EE5A83000254B60 /* OWMtOrderDateCell.m */; };
+		530F85D11EE5AEB500254B60 /* OWMtDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 530F85D01EE5AEB500254B60 /* OWMtDatePickerView.m */; };
 		53193C5B1EC1F3AB00B98BA0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 53193C5A1EC1F3AB00B98BA0 /* main.m */; };
-		53193C611EC1F3AB00B98BA0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53193C601EC1F3AB00B98BA0 /* ViewController.m */; };
 		53193C661EC1F3AB00B98BA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53193C651EC1F3AB00B98BA0 /* Assets.xcassets */; };
 		53193C741EC1F3AB00B98BA0 /* SmartPartyBuildingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 53193C731EC1F3AB00B98BA0 /* SmartPartyBuildingTests.m */; };
 		53193C7F1EC1F3AB00B98BA0 /* SmartPartyBuildingUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 53193C7E1EC1F3AB00B98BA0 /* SmartPartyBuildingUITests.m */; };
@@ -40,6 +43,9 @@
 		538AA6A51EC886E600AB992A /* OWFuncBtnsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 538AA6A41EC886E600AB992A /* OWFuncBtnsCell.m */; };
 		5395ED081ED59B5D00AEB7FB /* OWRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5395ED071ED59B5D00AEB7FB /* OWRegisterVC.m */; };
 		5395ED0B1ED5AD6600AEB7FB /* OWRegisterNavigationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5395ED0A1ED5AD6600AEB7FB /* OWRegisterNavigationVC.m */; };
+		53A75A6B1EE8304700C5B9B3 /* OWBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A75A6A1EE8304700C5B9B3 /* OWBanner.m */; };
+		53A75A6E1EE84D9500C5B9B3 /* OWNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A75A6D1EE84D9500C5B9B3 /* OWNews.m */; };
+		53A75A711EE857A400C5B9B3 /* OWRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A75A701EE857A400C5B9B3 /* OWRefreshGifHeader.m */; };
 		53BFF93A1ED1BFEC00A30BBB /* OWMtOrderInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53BFF9391ED1BFEC00A30BBB /* OWMtOrderInputCell.m */; };
 		53BFF93D1ED1DB8400A30BBB /* OWMtSpecialNeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53BFF93C1ED1DB8400A30BBB /* OWMtSpecialNeedCell.m */; };
 		53BFF9401ED1E37300A30BBB /* OWMtAddDeviceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53BFF93F1ED1E37300A30BBB /* OWMtAddDeviceCell.m */; };
@@ -148,10 +154,16 @@
 		530C8B361EDBEABA001B924E /* OWCommodityFallCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWCommodityFallCell.m; sourceTree = "<group>"; };
 		530C8B381EDBF2A8001B924E /* OWCommodityItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWCommodityItemCell.h; sourceTree = "<group>"; };
 		530C8B391EDBF2A8001B924E /* OWCommodityItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWCommodityItemCell.m; sourceTree = "<group>"; };
+		530F85C61EE58D8700254B60 /* OWCarDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWCarDetailVC.h; sourceTree = "<group>"; };
+		530F85C71EE58D8700254B60 /* OWCarDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWCarDetailVC.m; sourceTree = "<group>"; };
+		530F85C91EE5A09000254B60 /* OWCarOrderVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWCarOrderVC.h; sourceTree = "<group>"; };
+		530F85CA1EE5A09000254B60 /* OWCarOrderVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWCarOrderVC.m; sourceTree = "<group>"; };
+		530F85CC1EE5A83000254B60 /* OWMtOrderDateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWMtOrderDateCell.h; sourceTree = "<group>"; };
+		530F85CD1EE5A83000254B60 /* OWMtOrderDateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWMtOrderDateCell.m; sourceTree = "<group>"; };
+		530F85CF1EE5AEB500254B60 /* OWMtDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWMtDatePickerView.h; sourceTree = "<group>"; };
+		530F85D01EE5AEB500254B60 /* OWMtDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWMtDatePickerView.m; sourceTree = "<group>"; };
 		53193C561EC1F3AB00B98BA0 /* SmartPartyBuilding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartPartyBuilding.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53193C5A1EC1F3AB00B98BA0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		53193C5F1EC1F3AB00B98BA0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		53193C601EC1F3AB00B98BA0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		53193C651EC1F3AB00B98BA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		53193C6A1EC1F3AB00B98BA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		53193C6F1EC1F3AB00B98BA0 /* SmartPartyBuildingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartPartyBuildingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +203,12 @@
 		5395ED071ED59B5D00AEB7FB /* OWRegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWRegisterVC.m; sourceTree = "<group>"; };
 		5395ED091ED5AD6600AEB7FB /* OWRegisterNavigationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWRegisterNavigationVC.h; sourceTree = "<group>"; };
 		5395ED0A1ED5AD6600AEB7FB /* OWRegisterNavigationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWRegisterNavigationVC.m; sourceTree = "<group>"; };
+		53A75A691EE8304700C5B9B3 /* OWBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWBanner.h; sourceTree = "<group>"; };
+		53A75A6A1EE8304700C5B9B3 /* OWBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWBanner.m; sourceTree = "<group>"; };
+		53A75A6C1EE84D9500C5B9B3 /* OWNews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWNews.h; sourceTree = "<group>"; };
+		53A75A6D1EE84D9500C5B9B3 /* OWNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWNews.m; sourceTree = "<group>"; };
+		53A75A6F1EE857A400C5B9B3 /* OWRefreshGifHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWRefreshGifHeader.h; sourceTree = "<group>"; };
+		53A75A701EE857A400C5B9B3 /* OWRefreshGifHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWRefreshGifHeader.m; sourceTree = "<group>"; };
 		53BFF9381ED1BFEC00A30BBB /* OWMtOrderInputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWMtOrderInputCell.h; sourceTree = "<group>"; };
 		53BFF9391ED1BFEC00A30BBB /* OWMtOrderInputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWMtOrderInputCell.m; sourceTree = "<group>"; };
 		53BFF93B1ED1DB8400A30BBB /* OWMtSpecialNeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWMtSpecialNeedCell.h; sourceTree = "<group>"; };
@@ -374,6 +392,8 @@
 		5308C07D1ED00C0700662D34 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				530F85C61EE58D8700254B60 /* OWCarDetailVC.h */,
+				530F85C71EE58D8700254B60 /* OWCarDetailVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -440,6 +460,8 @@
 		5308C0851ED00C0700662D34 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				530F85C91EE5A09000254B60 /* OWCarOrderVC.h */,
+				530F85CA1EE5A09000254B60 /* OWCarOrderVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -586,12 +608,16 @@
 		5308C0961ED00C0700662D34 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				530F85CC1EE5A83000254B60 /* OWMtOrderDateCell.h */,
+				530F85CD1EE5A83000254B60 /* OWMtOrderDateCell.m */,
 				53BFF9381ED1BFEC00A30BBB /* OWMtOrderInputCell.h */,
 				53BFF9391ED1BFEC00A30BBB /* OWMtOrderInputCell.m */,
 				53BFF93B1ED1DB8400A30BBB /* OWMtSpecialNeedCell.h */,
 				53BFF93C1ED1DB8400A30BBB /* OWMtSpecialNeedCell.m */,
 				53BFF93E1ED1E37300A30BBB /* OWMtAddDeviceCell.h */,
 				53BFF93F1ED1E37300A30BBB /* OWMtAddDeviceCell.m */,
+				530F85CF1EE5AEB500254B60 /* OWMtDatePickerView.h */,
+				530F85D01EE5AEB500254B60 /* OWMtDatePickerView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -695,8 +721,6 @@
 			isa = PBXGroup;
 			children = (
 				536CAAE11EC1FC6900678C9A /* Classes */,
-				53193C5F1EC1F3AB00B98BA0 /* ViewController.h */,
-				53193C601EC1F3AB00B98BA0 /* ViewController.m */,
 				53193C591EC1F3AB00B98BA0 /* Supporting Files */,
 			);
 			path = SmartPartyBuilding;
@@ -986,6 +1010,10 @@
 		538AA6841EC868A100AB992A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				53A75A691EE8304700C5B9B3 /* OWBanner.h */,
+				53A75A6A1EE8304700C5B9B3 /* OWBanner.m */,
+				53A75A6C1EE84D9500C5B9B3 /* OWNews.h */,
+				53A75A6D1EE84D9500C5B9B3 /* OWNews.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1061,6 +1089,8 @@
 			children = (
 				538AA6A01EC8719700AB992A /* OWPlusBtn.h */,
 				538AA6A11EC8719700AB992A /* OWPlusBtn.m */,
+				53A75A6F1EE857A400C5B9B3 /* OWRefreshGifHeader.h */,
+				53A75A701EE857A400C5B9B3 /* OWRefreshGifHeader.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1921,6 +1951,7 @@
 				53F4DEF61EDF0519005B8B8D /* OWCar.m in Sources */,
 				53E593271ECAC89600D21A75 /* OWSettingCell.m in Sources */,
 				530915F91ED71B7200031F9B /* OWScanPermissions.m in Sources */,
+				53A75A711EE857A400C5B9B3 /* OWRefreshGifHeader.m in Sources */,
 				53E5932A1ECAE29F00D21A75 /* OWDiscoveryPhotoCell.m in Sources */,
 				5308C09F1ED0197600662D34 /* OWMettingDetailVC.m in Sources */,
 				538AA67B1EC85C5900AB992A /* OWTabBarControllerConfig.m in Sources */,
@@ -1933,7 +1964,6 @@
 				5395ED081ED59B5D00AEB7FB /* OWRegisterVC.m in Sources */,
 				53F0ECAC1ECD862C005ED86A /* OWVideoLineItem.m in Sources */,
 				53F0ECA61ECD862C005ED86A /* OWImagesSendVC.m in Sources */,
-				53193C611EC1F3AB00B98BA0 /* ViewController.m in Sources */,
 				53F0ECA71ECD862C005ED86A /* OWPlainGridImageView.m in Sources */,
 				53F0ECBB1ECD8656005ED86A /* OWMomentsVC.m in Sources */,
 				537C0D471ED3D7F300F9C9B7 /* OWCommodityCartCell.m in Sources */,
@@ -1977,10 +2007,12 @@
 				538AA6A51EC886E600AB992A /* OWFuncBtnsCell.m in Sources */,
 				53F0ECA81ECD862C005ED86A /* OWLineCommentItem.m in Sources */,
 				53F0ECB81ECD862C005ED86A /* OWVideoLineCell.m in Sources */,
+				530F85C81EE58D8700254B60 /* OWCarDetailVC.m in Sources */,
 				53F0ECB41ECD862C005ED86A /* OWLinkClickLabel.m in Sources */,
 				53EBCCA41ECEEF2A00CBA695 /* OWUserMomentsVC.m in Sources */,
 				53F0ECB31ECD862C005ED86A /* OWLikeCommentView.m in Sources */,
 				53E5930D1ECA8DE000D21A75 /* OWUserInfoAvatarCell.m in Sources */,
+				53A75A6E1EE84D9500C5B9B3 /* OWNews.m in Sources */,
 				53F0ECAF1ECD862C005ED86A /* OWCommentInputView.m in Sources */,
 				53E792911ED476D900E64A3C /* OWHomeNoticeVC.m in Sources */,
 				538AA6A21EC8719700AB992A /* OWPlusBtn.m in Sources */,
@@ -1989,7 +2021,9 @@
 				5395ED0B1ED5AD6600AEB7FB /* OWRegisterNavigationVC.m in Sources */,
 				53EE83031ECF3F9A001ADB93 /* OWOfficeVC.m in Sources */,
 				530915F61ED6EDD900031F9B /* OWScanVC.m in Sources */,
+				530F85CE1EE5A83000254B60 /* OWMtOrderDateCell.m in Sources */,
 				5308C0A21ED043CD00662D34 /* OWMeetingDetailCell.m in Sources */,
+				530F85D11EE5AEB500254B60 /* OWMtDatePickerView.m in Sources */,
 				53D57D881EE3A85F008644D7 /* OWHomeHeadlineCell.m in Sources */,
 				536CAAEA1EC1FC6900678C9A /* AppDelegate.m in Sources */,
 				53E076CE1ECC689200A06AE0 /* MLLabel+Size.m in Sources */,
@@ -1997,6 +2031,7 @@
 				53DAA7AF1EC9D1BA00A3F8AE /* OWMineOptionCell.m in Sources */,
 				53EBCC981ECED64C00CBA695 /* OWTextImageUserLineItem.m in Sources */,
 				53F0ECAD1ECD862C005ED86A /* OWFaceManager.m in Sources */,
+				53A75A6B1EE8304700C5B9B3 /* OWBanner.m in Sources */,
 				53E593241ECAC87900D21A75 /* OWSettingVC.m in Sources */,
 				53EE82F81ECF217A001ADB93 /* OWModuleCell.m in Sources */,
 				53EBCC9E1ECED7B400CBA695 /* OWTextImageUserLineCell.m in Sources */,
@@ -2005,6 +2040,7 @@
 				53F0ECB21ECD862C005ED86A /* OWLikeCommentToolbar.m in Sources */,
 				53F0ECB71ECD862C005ED86A /* OWTextImageLineCell.m in Sources */,
 				53BFF9401ED1E37300A30BBB /* OWMtAddDeviceCell.m in Sources */,
+				530F85CB1EE5A09000254B60 /* OWCarOrderVC.m in Sources */,
 				53F0ECA51ECD862C005ED86A /* OWTimeLineVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

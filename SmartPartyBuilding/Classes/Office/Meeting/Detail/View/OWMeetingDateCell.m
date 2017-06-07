@@ -48,6 +48,7 @@ static NSString *const identifier = @"OWMeetingDateCell";
 {
     _title = title;
     self.dateLabel.text = title;
+    if ([title isEqualToString:@"今天"] || [title isEqualToString:@"昨天"]) self.dateLabel.textColor = wh_RGB(217, 17, 22);
 }
 
 #pragma mark - ---------- Lazy ----------
@@ -55,7 +56,7 @@ static NSString *const identifier = @"OWMeetingDateCell";
 {
     if (!_dateLabel) {
         UILabel *label = [[UILabel alloc] init];
-        label.textColor = wh_RGB(217, 17, 22);
+        label.textColor = wh_norFontColor;
         label.font = [UIFont systemFontOfSize:14];
         [self.contentView addSubview:label];
         

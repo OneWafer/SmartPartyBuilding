@@ -66,7 +66,6 @@ static NSString *const identifier = @"OWDiscoveryOptionCell";
         [imgView makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self);
             make.left.equalTo(self).offset(15);
-            make.width.height.equalTo(self.height).multipliedBy(0.7);
         }];
         _titleImgView = imgView;
     }

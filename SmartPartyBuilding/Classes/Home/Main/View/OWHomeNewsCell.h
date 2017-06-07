@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class OWNews;
 @interface OWHomeNewsCell : UITableViewCell
 
+@property (nonatomic, strong) OWNews *news;
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
 @end

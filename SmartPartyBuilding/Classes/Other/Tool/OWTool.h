@@ -17,9 +17,15 @@
 
 +(NSString *) preettyTime:(long long) ts;
 
+/** 存储token */
++ (void)setToken:(NSString *)token;
+/** 取出token */
++ (NSString *)getToken;
+
 /** 存储已登录的账号 */
 + (void)setUserAct:(NSDictionary *)userAct;
 /** 取出已登录的账号 */
 + (NSDictionary *)getUserAct;
+
 
 @end

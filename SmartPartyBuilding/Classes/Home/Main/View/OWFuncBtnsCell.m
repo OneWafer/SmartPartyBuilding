@@ -7,7 +7,7 @@
 //
 
 #import <Masonry.h>
-//#import <UIButton+WebCache.h>
+#import <UIButton+WebCache.h>
 #import "OWFuncBtnsCell.h"
 #import "OWVerticalBtn.h"
 
@@ -16,6 +16,8 @@
 @property (nonatomic, assign) CGFloat font;
 @property (nonatomic, strong) NSMutableArray *btnList1;
 @property (nonatomic, strong) NSMutableArray *btnList2;
+@property (nonatomic, strong) NSArray *titleList;
+@property (nonatomic, strong) NSArray *placeImgList;
 
 @end
 
@@ -44,6 +46,8 @@ static NSString *const identifier = @"OWFuncBtnsCell";
     if (self)
     {
         self.font = 12.0f;
+        self.titleList = @[@"通知公告",@"党员学习",@"组织活动",@"优秀党员",@"互动咨询",@"公文审批",@"投票选举",@"办公"];
+        self.placeImgList = @[@"home_func_message", @"home_func_study", @"home_func_activity", @"home_func_member", @"home_func_consult",@"home_func_approve", @"home_func_election", @"home_func_office"];
     }
     return self;
 }
@@ -66,23 +70,23 @@ static NSString *const identifier = @"OWFuncBtnsCell";
 }
 
 
-- (void)setTitleList:(NSArray *)titleList
+- (void)setImgList:(NSArray *)imgList
 {
-    _titleList = titleList;
+    _imgList = imgList;
+    
     [self.btnList1 wh_eachWithIndex:^(UIButton *obj, NSUInteger idx) {
-        NSDictionary *titleDic = titleList[idx];
-        [obj setTitle:titleDic[@"title"] forState:UIControlStateNormal];
-        [obj setImage:wh_imageNamed(titleDic[@"image"]) forState:UIControlStateNormal];
+        [obj setTitle:self.titleList[idx] forState:UIControlStateNormal];
+        [obj sd_setImageWithURL:[NSURL URLWithString:imgList[idx]] forState:UIControlStateNormal placeholderImage:wh_imageNamed(self.placeImgList[idx])];
         [obj sizeToFit];
     }];
     
     [self.btnList2 wh_eachWithIndex:^(UIButton *obj, NSUInteger idx) {
-        NSDictionary *titleDic = titleList[idx + 4];
-        [obj setTitle:titleDic[@"title"] forState:UIControlStateNormal];
-        [obj setImage:wh_imageNamed(titleDic[@"image"]) forState:UIControlStateNormal];
+        [obj setTitle:self.titleList[idx + 4] forState:UIControlStateNormal];
+        [obj sd_setImageWithURL:[NSURL URLWithString:imgList[idx + 4]] forState:UIControlStateNormal placeholderImage:wh_imageNamed(self.placeImgList[idx + 4])];
         [obj sizeToFit];
     }];
 }
+
 
 #pragma mark - ---------- Lazy ----------
 

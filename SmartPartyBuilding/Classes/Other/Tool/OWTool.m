@@ -11,6 +11,7 @@
 #import "OWTool.h"
 
 NSString *const UserAct = @"userAct";
+NSString *const Token = @"token";
 
 @implementation OWTool
 
@@ -93,6 +94,21 @@ NSString *const UserAct = @"userAct";
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:value / 1000];
     [dateformatter setDateFormat:format];
     return [dateformatter stringFromDate:date];
+}
+
+
+/** 存储token */
++ (void)setToken:(NSString *)token
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setValue:token forKey:Token];
+    [userDefaults synchronize];
+}
+/** 取出token */
++ (NSString *)getToken
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    return [userDefaults objectForKey:Token];
 }
 
 

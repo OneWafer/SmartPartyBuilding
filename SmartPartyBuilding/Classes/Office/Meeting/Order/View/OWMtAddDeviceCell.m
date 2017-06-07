@@ -40,11 +40,16 @@ static NSString *const identifier = @"OWMtAddDeviceCell";
     if (self)
     {
         self.backgroundColor = [UIColor clearColor];
-        [self.addBtn wh_setImagePosition:WHImagePositionRight spacing:5];
     }
     return self;
 }
 
+- (void)setTitle:(NSString *)title
+{
+    _title = title;
+    [self.addBtn setTitle:title forState:UIControlStateNormal];
+    [self.addBtn wh_setImagePosition:WHImagePositionRight spacing:5];
+}
 
 #pragma mark - ---------- Lazy ----------
 
@@ -53,7 +58,6 @@ static NSString *const identifier = @"OWMtAddDeviceCell";
     if (!_addBtn) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setBackgroundColor:[UIColor whiteColor]];
-        [btn setTitle:@"添加设施" forState:UIControlStateNormal];
         [btn setTitleColor:wh_norFontColor forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont systemFontOfSize:12];
         [btn setImage:wh_imageNamed(@"office_add") forState:UIControlStateNormal];
