@@ -7,12 +7,13 @@
 //
 
 #import <Masonry.h>
+#import <UIImageView+WebCache.h>
 #import "OWMineHeaderView.h"
+#import "OWTool.h"
 
 @interface OWMineHeaderView ()
 
 @property (nonatomic, weak) UIImageView *bgImgView;
-@property (nonatomic, weak) UIImageView *headImgView;
 @property (nonatomic, weak) UILabel *nameLabel;
 @property (nonatomic, weak) UILabel *telLabel;
 @property (nonatomic, weak) UIButton *manageBtn;
@@ -25,14 +26,19 @@
 {
     if ([super initWithFrame:frame]) {
         
+        NSDictionary *userInfo = [OWTool getUserInfo];
         self.bgImgView.image = [UIImage wh_imgWithColor:[UIColor redColor]];
         self.headImgView.image = wh_imageNamed(@"btn1");
-        self.nameLabel.text = @"张三丰";
-        self.telLabel.text = @"18712345678";
+        self.nameLabel.text = userInfo[@"staffName"] ?: @"";
+        self.telLabel.text = userInfo[@"phoneNumber"] ?: @"";
+        wh_weakSelf(self);
         [self.manageBtn wh_addActionHandler:^(UIButton *sender) {
-            if (self.headerBlock) self.headerBlock();
+            if (weakself.headerBlock) weakself.headerBlock(11);
         }];
         
+        [self.headImgView wh_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+            if (weakself.headerBlock) weakself.headerBlock(12);
+        }];
         
     }
     return self;
@@ -61,6 +67,7 @@
 {
     if (!_headImgView) {
         UIImageView *imgView = [[UIImageView alloc] init];
+        imgView.userInteractionEnabled = YES;
         [self addSubview:imgView];
         
         [imgView makeConstraints:^(MASConstraintMaker *make) {

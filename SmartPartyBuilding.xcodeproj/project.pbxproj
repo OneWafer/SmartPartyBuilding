@@ -18,6 +18,8 @@
 		530916001ED7349900031F9B /* OWHomeApprovalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 530915FF1ED7349900031F9B /* OWHomeApprovalVC.m */; };
 		530916031ED734CD00031F9B /* OWApprovalSearchResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 530916021ED734CD00031F9B /* OWApprovalSearchResultVC.m */; };
 		530916061ED734F700031F9B /* OWHomeApprovalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 530916051ED734F700031F9B /* OWHomeApprovalCell.m */; };
+		530A23BA1EEB0D8B0018CE78 /* OWMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 530A23B91EEB0D8B0018CE78 /* OWMessage.m */; };
+		530A23BD1EEB13110018CE78 /* OWMeeting.m in Sources */ = {isa = PBXBuildFile; fileRef = 530A23BC1EEB13110018CE78 /* OWMeeting.m */; };
 		530C8B371EDBEABA001B924E /* OWCommodityFallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 530C8B361EDBEABA001B924E /* OWCommodityFallCell.m */; };
 		530C8B3A1EDBF2A8001B924E /* OWCommodityItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 530C8B391EDBF2A8001B924E /* OWCommodityItemCell.m */; };
 		530F85C81EE58D8700254B60 /* OWCarDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 530F85C71EE58D8700254B60 /* OWCarDetailVC.m */; };
@@ -68,6 +70,7 @@
 		53E792911ED476D900E64A3C /* OWHomeNoticeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E792901ED476D900E64A3C /* OWHomeNoticeVC.m */; };
 		53E792941ED479F600E64A3C /* OWNoticeSearchResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E792931ED479F600E64A3C /* OWNoticeSearchResultVC.m */; };
 		53EAA9EA1EC2A48000D330D6 /* OWNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EAA9E91EC2A48000D330D6 /* OWNetworking.m */; };
+		53EB760B1EE995FF00DFDC4F /* OWCarOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EB760A1EE995FF00DFDC4F /* OWCarOrder.m */; };
 		53EBCC921ECED49000CBA695 /* OWUserTimeLineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EBCC911ECED49000CBA695 /* OWUserTimeLineVC.m */; };
 		53EBCC951ECED4E900CBA695 /* OWBaseUserLineItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EBCC941ECED4E900CBA695 /* OWBaseUserLineItem.m */; };
 		53EBCC981ECED64C00CBA695 /* OWTextImageUserLineItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EBCC971ECED64C00CBA695 /* OWTextImageUserLineItem.m */; };
@@ -150,6 +153,10 @@
 		530916021ED734CD00031F9B /* OWApprovalSearchResultVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWApprovalSearchResultVC.m; sourceTree = "<group>"; };
 		530916041ED734F700031F9B /* OWHomeApprovalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWHomeApprovalCell.h; sourceTree = "<group>"; };
 		530916051ED734F700031F9B /* OWHomeApprovalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWHomeApprovalCell.m; sourceTree = "<group>"; };
+		530A23B81EEB0D8B0018CE78 /* OWMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWMessage.h; sourceTree = "<group>"; };
+		530A23B91EEB0D8B0018CE78 /* OWMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWMessage.m; sourceTree = "<group>"; };
+		530A23BB1EEB13110018CE78 /* OWMeeting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWMeeting.h; sourceTree = "<group>"; };
+		530A23BC1EEB13110018CE78 /* OWMeeting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWMeeting.m; sourceTree = "<group>"; };
 		530C8B351EDBEABA001B924E /* OWCommodityFallCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWCommodityFallCell.h; sourceTree = "<group>"; };
 		530C8B361EDBEABA001B924E /* OWCommodityFallCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWCommodityFallCell.m; sourceTree = "<group>"; };
 		530C8B381EDBF2A8001B924E /* OWCommodityItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWCommodityItemCell.h; sourceTree = "<group>"; };
@@ -253,6 +260,8 @@
 		53E792931ED479F600E64A3C /* OWNoticeSearchResultVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWNoticeSearchResultVC.m; sourceTree = "<group>"; };
 		53EAA9E81EC2A48000D330D6 /* OWNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWNetworking.h; sourceTree = "<group>"; };
 		53EAA9E91EC2A48000D330D6 /* OWNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWNetworking.m; sourceTree = "<group>"; };
+		53EB76091EE995FF00DFDC4F /* OWCarOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWCarOrder.h; sourceTree = "<group>"; };
+		53EB760A1EE995FF00DFDC4F /* OWCarOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWCarOrder.m; sourceTree = "<group>"; };
 		53EBCC901ECED49000CBA695 /* OWUserTimeLineVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWUserTimeLineVC.h; sourceTree = "<group>"; };
 		53EBCC911ECED49000CBA695 /* OWUserTimeLineVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWUserTimeLineVC.m; sourceTree = "<group>"; };
 		53EBCC931ECED4E900CBA695 /* OWBaseUserLineItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWBaseUserLineItem.h; sourceTree = "<group>"; };
@@ -401,6 +410,8 @@
 		5308C07E1ED00C0700662D34 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				53EB76091EE995FF00DFDC4F /* OWCarOrder.h */,
+				53EB760A1EE995FF00DFDC4F /* OWCarOrder.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -566,6 +577,8 @@
 		5308C0911ED00C0700662D34 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				530A23BB1EEB13110018CE78 /* OWMeeting.h */,
+				530A23BC1EEB13110018CE78 /* OWMeeting.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1472,6 +1485,8 @@
 		53E7928D1ED476B200E64A3C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				530A23B81EEB0D8B0018CE78 /* OWMessage.h */,
+				530A23B91EEB0D8B0018CE78 /* OWMessage.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1965,6 +1980,7 @@
 				53F0ECAC1ECD862C005ED86A /* OWVideoLineItem.m in Sources */,
 				53F0ECA61ECD862C005ED86A /* OWImagesSendVC.m in Sources */,
 				53F0ECA71ECD862C005ED86A /* OWPlainGridImageView.m in Sources */,
+				530A23BA1EEB0D8B0018CE78 /* OWMessage.m in Sources */,
 				53F0ECBB1ECD8656005ED86A /* OWMomentsVC.m in Sources */,
 				537C0D471ED3D7F300F9C9B7 /* OWCommodityCartCell.m in Sources */,
 				53EAA9EA1EC2A48000D330D6 /* OWNetworking.m in Sources */,
@@ -2036,12 +2052,14 @@
 				53EE82F81ECF217A001ADB93 /* OWModuleCell.m in Sources */,
 				53EBCC9E1ECED7B400CBA695 /* OWTextImageUserLineCell.m in Sources */,
 				536CAAF41EC2023E00678C9A /* OWConstant.m in Sources */,
+				530A23BD1EEB13110018CE78 /* OWMeeting.m in Sources */,
 				538AA6981EC8692600AB992A /* OWDiscoveryVC.m in Sources */,
 				53F0ECB21ECD862C005ED86A /* OWLikeCommentToolbar.m in Sources */,
 				53F0ECB71ECD862C005ED86A /* OWTextImageLineCell.m in Sources */,
 				53BFF9401ED1E37300A30BBB /* OWMtAddDeviceCell.m in Sources */,
 				530F85CB1EE5A09000254B60 /* OWCarOrderVC.m in Sources */,
 				53F0ECA51ECD862C005ED86A /* OWTimeLineVC.m in Sources */,
+				53EB760B1EE995FF00DFDC4F /* OWCarOrder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

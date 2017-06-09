@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^OWMineHeaderBlock)();
+typedef void(^OWMineHeaderBlock)(NSInteger tag);
 
 @interface OWMineHeaderView : UIView
 
 @property (nonatomic, copy) OWMineHeaderBlock headerBlock;
+@property (nonatomic, weak) UIImageView *headImgView;
 
 @end

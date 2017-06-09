@@ -38,5 +38,8 @@
 @property (nonatomic, assign) int createUserId;
 /** 状态 */
 @property (nonatomic, assign) int status;
+/** 图片url */
+@property (nonatomic, copy) NSString *url;
+
 
 @end

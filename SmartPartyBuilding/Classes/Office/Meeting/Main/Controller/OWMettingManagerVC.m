@@ -6,11 +6,17 @@
 //  Copyright © 2017年 王卫华. All rights reserved.
 //
 
+#import <MJExtension.h>
+#import <SVProgressHUD.h>
 #import "OWMettingManagerVC.h"
 #import "OWMettingManagerCell.h"
 #import "OWMettingDetailVC.h"
-
+#import "OWNetworking.h"
+#import "OWRefreshGifHeader.h"
+#import "OWMeeting.h"
 @interface OWMettingManagerVC ()
+
+@property (nonatomic, strong) NSMutableArray *meetList;
 
 @end
 
@@ -22,16 +28,47 @@
     self.navigationItem.title = @"会议室管理";
     
     [self setupTableView];
+    [self setupRefresh];
 }
 
 /** 设置tableview */
 - (void)setupTableView
 {
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
-    //    self.tableView.backgroundColor = wh_RGB(244, 245, 246);
     self.tableView.showsVerticalScrollIndicator = NO;
-    //    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.rowHeight = 100.0f;
+    self.meetList = [NSMutableArray array];
+}
+
+- (void)setupRefresh
+{
+    wh_weakSelf(self);
+    self.tableView.mj_header = [OWRefreshGifHeader headerWithRefreshingBlock:^{
+        [weakself dataRequest];
+    }];
+    [self.tableView.mj_header beginRefreshing];
+}
+
+- (void)dataRequest
+{
+    NSDictionary *par = @{
+                          @"page":@"1",
+                          @"rows":@"20"
+                          };
+    [OWNetworking HGET:wh_appendingStr(wh_host, @"mobile/meetingRoom/list") parameters:par success:^(id  _Nullable responseObject) {
+        wh_Log(@"---%@",responseObject);
+        if ([responseObject[@"code"] intValue] == 200) {
+            self.meetList = [OWMeeting mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+            wh_Log(@"%@",self.meetList);
+            [self.tableView reloadData];
+        }else{
+            [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
+        }
+        [self.tableView.mj_header endRefreshing];
+    } failure:^(NSError * _Nonnull error) {
+        [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
+        [self.tableView.mj_header endRefreshing];
+    }];
 }
 
 
@@ -39,7 +76,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return self.meetList.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

@@ -27,5 +27,10 @@
 /** 取出已登录的账号 */
 + (NSDictionary *)getUserAct;
 
+/** 存储用户信息 */
++ (void)setUserInfo:(NSDictionary *)userInfo;
+/** 取出用户信息 */
++ (NSDictionary *)getUserInfo;
+
 
 @end

@@ -12,6 +12,7 @@
 
 NSString *const UserAct = @"userAct";
 NSString *const Token = @"token";
+NSString *const UserInfo = @"userInfo";
 
 @implementation OWTool
 
@@ -125,5 +126,21 @@ NSString *const Token = @"token";
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     return [userDefaults objectForKey:UserAct];
 }
+
+
+/** 存储用户信息 */
++ (void)setUserInfo:(NSDictionary *)userInfo
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setValue:userInfo forKey:UserInfo];
+    [userDefaults synchronize];
+}
+/** 取出用户信息 */
++ (NSDictionary *)getUserInfo
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    return [userDefaults objectForKey:UserInfo];
+}
+
 
 @end

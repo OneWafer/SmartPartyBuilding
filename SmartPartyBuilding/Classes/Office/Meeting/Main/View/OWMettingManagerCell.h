@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 @class OWCar;
+@class OWMeeting;
 @interface OWMettingManagerCell : UITableViewCell
 
 @property (nonatomic, strong) OWCar *car;
+@property (nonatomic, strong) OWMeeting *meet;
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "OWNoticeSearchResultVC.h"
 #import "OWHomeNoticeCell.h"
+#import "OWMessage.h"
 
 @interface OWNoticeSearchResultVC ()
 
@@ -19,6 +20,7 @@
     [super viewDidLoad];
     
     
+    self.tableView.separatorStyle = NO;
 }
 
 
@@ -33,6 +35,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     OWHomeNoticeCell *cell = [OWHomeNoticeCell cellWithTableView:tableView];
+    cell.message = self.resultList[indexPath.row];
     return cell;
 }
 

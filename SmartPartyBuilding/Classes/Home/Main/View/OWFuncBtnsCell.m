@@ -17,7 +17,7 @@
 @property (nonatomic, strong) NSMutableArray *btnList1;
 @property (nonatomic, strong) NSMutableArray *btnList2;
 @property (nonatomic, strong) NSArray *titleList;
-@property (nonatomic, strong) NSArray *placeImgList;
+//@property (nonatomic, strong) NSArray *placeImgList;
 
 @end
 
@@ -47,7 +47,7 @@ static NSString *const identifier = @"OWFuncBtnsCell";
     {
         self.font = 12.0f;
         self.titleList = @[@"通知公告",@"党员学习",@"组织活动",@"优秀党员",@"互动咨询",@"公文审批",@"投票选举",@"办公"];
-        self.placeImgList = @[@"home_func_message", @"home_func_study", @"home_func_activity", @"home_func_member", @"home_func_consult",@"home_func_approve", @"home_func_election", @"home_func_office"];
+//        self.placeImgList = @[@"home_func_message", @"home_func_study", @"home_func_activity", @"home_func_member", @"home_func_consult",@"home_func_approve", @"home_func_election", @"home_func_office"];
     }
     return self;
 }
@@ -76,13 +76,13 @@ static NSString *const identifier = @"OWFuncBtnsCell";
     
     [self.btnList1 wh_eachWithIndex:^(UIButton *obj, NSUInteger idx) {
         [obj setTitle:self.titleList[idx] forState:UIControlStateNormal];
-        [obj sd_setImageWithURL:[NSURL URLWithString:imgList[idx]] forState:UIControlStateNormal placeholderImage:wh_imageNamed(self.placeImgList[idx])];
+        [obj sd_setImageWithURL:[NSURL URLWithString:imgList[idx]] forState:UIControlStateNormal placeholderImage:wh_imageNamed(@"home_func_place")];
         [obj sizeToFit];
     }];
     
     [self.btnList2 wh_eachWithIndex:^(UIButton *obj, NSUInteger idx) {
         [obj setTitle:self.titleList[idx + 4] forState:UIControlStateNormal];
-        [obj sd_setImageWithURL:[NSURL URLWithString:imgList[idx + 4]] forState:UIControlStateNormal placeholderImage:wh_imageNamed(self.placeImgList[idx + 4])];
+        [obj sd_setImageWithURL:[NSURL URLWithString:imgList[idx + 4]] forState:UIControlStateNormal placeholderImage:wh_imageNamed(@"home_func_place")];
         [obj sizeToFit];
     }];
 }

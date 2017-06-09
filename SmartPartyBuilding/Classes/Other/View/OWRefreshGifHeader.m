@@ -33,8 +33,10 @@
     // 设置正在刷新状态的动画图片
     [self setImages:refreshingImages forState:MJRefreshStateRefreshing];
     
-    //隐藏时间
+    // 隐藏时间
     self.lastUpdatedTimeLabel.hidden = YES;
+    // 自动调节透明度
+    self.automaticallyChangeAlpha = YES;
     //隐藏状态
 //    self.stateLabel.hidden = YES;
 }

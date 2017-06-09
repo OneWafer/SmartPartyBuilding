@@ -6,14 +6,19 @@
 //  Copyright © 2017年 王卫华. All rights reserved.
 //
 
+#import <MJExtension.h>
+#import <SVProgressHUD.h>
 #import "OWHomeNoticeVC.h"
 #import "OWNoticeSearchResultVC.h"
 #import "OWHomeNoticeCell.h"
+#import "OWNetworking.h"
+#import "OWMessage.h"
 
 @interface OWHomeNoticeVC ()<UISearchBarDelegate,UISearchResultsUpdating>
 
 @property(nonatomic,strong) UISearchController *searchVC;
 @property(nonatomic,strong) OWNoticeSearchResultVC *resultVC;
+@property (nonatomic, strong) NSArray *messageList;
 
 @end
 
@@ -23,8 +28,10 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"通知公告";
+    self.tableView.separatorStyle = NO;
     
     [self setupSearchBar];
+    [self dataRequest];
 }
 
 - (void)setupSearchBar
@@ -42,17 +49,36 @@
 }
 
 
+- (void)dataRequest
+{
+    [SVProgressHUD showWithStatus:@"正在加载..."];
+    [OWNetworking HGET:wh_appendingStr(wh_host, @"mobile/message/getMessages") parameters:nil success:^(id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] == 200) {
+            wh_Log(@"---%@",responseObject);
+            self.messageList = [OWMessage mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+            [self.tableView reloadData];
+            [SVProgressHUD dismiss];
+        }else{
+            [SVProgressHUD showInfoWithStatus:responseObject[@"message"]];
+        }
+    } failure:^(NSError * _Nonnull error) {
+        [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
+    }];
+}
+
+
 #pragma mark - ---------- TableViewDataSource ----------
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.messageList.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     OWHomeNoticeCell *cell = [OWHomeNoticeCell cellWithTableView:tableView];
+    cell.message = self.messageList[indexPath.row];
     return cell;
 }
 
@@ -70,17 +96,16 @@
 /**实现更新代理*/
 -(void)updateSearchResultsForSearchController:(UISearchController *)searchController
 {
-    //获取scope被选中的下标
-    NSInteger selectedType=searchController.searchBar.selectedScopeButtonIndex;
     //获取到用户输入的数据
     NSString *searchText=searchController.searchBar.text;
+    wh_Log(@"------%@",searchText);
     NSMutableArray *resultList=[NSMutableArray array];
-//    for (Product *p in self.allProducts) {
-//        NSRange range=[p.name rangeOfString:searchText];
-//        if (range.length>0 && p.type==selectedType) {
-//            [searchResult addObject:p];
-//        }
-//    }
+    for (OWMessage *m in self.messageList) {
+        NSRange range=[m.title rangeOfString:searchText];
+        if (range.length>0) {
+            [resultList addObject:m];
+        }
+    }
     self.resultVC.resultList=resultList;
     
     /**通知结果ViewController进行更新*/

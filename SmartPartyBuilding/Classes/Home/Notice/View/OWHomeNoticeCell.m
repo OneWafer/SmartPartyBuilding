@@ -8,6 +8,7 @@
 
 #import <Masonry.h>
 #import "OWHomeNoticeCell.h"
+#import "OWMessage.h"
 
 @interface OWHomeNoticeCell ()
 
@@ -43,12 +44,19 @@ static NSString *const identifier = @"OWHomeNoticeCell";
     
     if (self)
     {
-        self.titleLabel.text = @"庆祝开发区登山活动圆满结束!!";
-        self.timeLabel.text = @"刚刚";
         self.btmLineView.backgroundColor = wh_lineColor;
     }
     return self;
 }
+
+
+- (void)setMessage:(OWMessage *)message
+{
+    _message = message;
+    self.titleLabel.text = message.title;
+    self.timeLabel.text = message.createTime;
+}
+
 
 
 #pragma mark - ---------- Lazy ----------

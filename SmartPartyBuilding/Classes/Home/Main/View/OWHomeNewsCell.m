@@ -45,10 +45,7 @@ static NSString *const identifier = @"OWHomeNewsCell";
     
     if (self)
     {
-        [self.titleImgView sd_setImageWithURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496562563540&di=952c9499373376ab1d43a0b7fc6812b5&imgtype=0&src=http%3A%2F%2Fpic2.ooopic.com%2F12%2F54%2F06%2F44bOOOPICfe_1024.jpg"] placeholderImage:wh_imageNamed(@"")];
-        
         self.statusImgView.image = wh_imageNamed(@"home_news_new");
-        
         self.lineView.backgroundColor = wh_lineColor;
     }
     return self;
@@ -58,6 +55,7 @@ static NSString *const identifier = @"OWHomeNewsCell";
 - (void)setNews:(OWNews *)news
 {
     _news = news;
+    [self.titleImgView sd_setImageWithURL:[NSURL URLWithString:news.url] placeholderImage:wh_imageNamed(@"home_news_place")];
     self.titleLabel.text = news.title;
     self.timeLabel.text = news.releaseTime;
 }

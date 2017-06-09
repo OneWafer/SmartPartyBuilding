@@ -9,6 +9,7 @@
 #import <Masonry.h>
 #import <UIImageView+WebCache.h>
 #import "OWMettingManagerCell.h"
+#import "OWMeeting.h"
 #import "OWCar.h"
 
 @interface OWMettingManagerCell ()
@@ -61,6 +62,15 @@ static NSString *const identifier = @"OWMettingManagerCell";
     [self.titleImgView sd_setImageWithURL:[NSURL URLWithString:urlList[0]] placeholderImage:wh_imageNamed(@"")];
     self.titleLabel.text = car.carNum;
     self.detailLabel.text = car.introduce;
+}
+
+- (void)setMeet:(OWMeeting *)meet
+{
+    _meet = meet;
+    NSArray *urlList = [meet.imgs componentsSeparatedByString:@","];
+    [self.titleImgView sd_setImageWithURL:[NSURL URLWithString:urlList[0]] placeholderImage:wh_imageNamed(@"")];
+    self.titleLabel.text = meet.name;
+    self.detailLabel.text = meet.introduce;
 }
 
 #pragma mark - ---------- Lazy ----------

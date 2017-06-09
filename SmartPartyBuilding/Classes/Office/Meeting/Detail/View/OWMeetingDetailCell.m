@@ -13,6 +13,7 @@
 
 @property (nonatomic, weak) UILabel *titleLabel;
 @property (nonatomic, weak) UILabel *contentLabel;
+@property (nonatomic, weak) UIButton *telBtn;
 
 @end
 
@@ -40,11 +41,26 @@ static NSString *const identifier = @"OWMeetingDetailCell";
     
     if (self)
     {
-        self.titleLabel.text = @"会议室名称 : ";
-        self.contentLabel.text = @"第二阶梯室";
+        
     }
     return self;
 }
+
+
+- (void)setDetailDic:(NSDictionary *)detailDic
+{
+    _detailDic = detailDic;
+    self.titleLabel.text = detailDic[@"title"];
+    if ([detailDic[@"title"] isEqualToString:@"联系电话 :"]) {
+        [self.telBtn setTitle:detailDic[@"content"] forState:UIControlStateNormal];
+        [self.telBtn wh_addActionHandler:^(UIButton *sender) {
+            wh_Log(@"-----");
+        }];
+    }else{
+        self.contentLabel.text = detailDic[@"content"];
+    }
+}
+
 
 #pragma mark - ---------- Lazy ----------
 
@@ -71,7 +87,7 @@ static NSString *const identifier = @"OWMeetingDetailCell";
     if (!_contentLabel) {
         UILabel *label = [[UILabel alloc] init];
         label.textColor = wh_norFontColor;
-        label.font = [UIFont systemFontOfSize:15];
+        label.font = [UIFont systemFontOfSize:15.0f];
         [self.contentView addSubview:label];
         
         [label makeConstraints:^(MASConstraintMaker *make) {
@@ -81,6 +97,23 @@ static NSString *const identifier = @"OWMeetingDetailCell";
         _contentLabel = label;
     }
     return _contentLabel;
+}
+
+- (UIButton *)telBtn
+{
+    if (!_telBtn) {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setTitleColor:wh_RGB(9, 131, 216) forState:UIControlStateNormal];
+        btn.titleLabel.font = [UIFont systemFontOfSize:15.0f];
+        [self.contentView addSubview:btn];
+        
+        [btn makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self);
+            make.left.equalTo(self.titleLabel.right).offset(10);
+        }];
+        _telBtn = btn;
+    }
+    return _telBtn;
 }
 
 @end

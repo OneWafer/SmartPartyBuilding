@@ -10,6 +10,7 @@
 #import "OWUserInfoVC.h"
 #import "OWUserInfoCell.h"
 #import "OWUserInfoAvatarCell.h"
+#import "OWTool.h"
 
 @interface OWUserInfoVC ()<LCActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -39,12 +40,13 @@
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     self.tableView.showsVerticalScrollIndicator = NO;
     
+    NSDictionary *userInfo = [OWTool getUserInfo];
     self.optionList = @[
-                        @{@"title" : @"头像", @"content" : @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1495013878561&di=dd51021a1b7cd2a0efa281056ac961fa&imgtype=0&src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201603%2F04%2F20160304174443_42UTn.thumb.224_0.jpeg"},
-                        @{@"title" : @"名字", @"content" : @"张三丰"},
-                        @{@"title" : @"性别", @"content" : @"男"},
-                        @{@"title" : @"个性签名", @"content" : @"我爱学习，学习使我快乐!"},
-                        @{@"title" : @"我的地址", @"content" : @"江苏省无锡市"},
+                        @{@"title" : @"头像", @"content" : userInfo[@"avatar"] ?: @""},
+                        @{@"title" : @"名字", @"content" : userInfo[@"staffName"] ?: @""},
+                        @{@"title" : @"性别", @"content" : [userInfo[@"staffName"] intValue] ? @"男": @"女"},
+                        @{@"title" : @"个性签名", @"content" : userInfo[@"avatar"] ?: @""},
+                        @{@"title" : @"我的地址", @"content" : userInfo[@"address"] ?: @""},
                         ];
 }
 

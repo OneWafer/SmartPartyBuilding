@@ -13,6 +13,7 @@
 #import "OWNavigationController.h"
 #import "OWRegisterNavigationVC.h"
 #import "OWLoginVC.h"
+#import "OWNetworking.h"
 #import "OWTool.h"
 
 @interface AppDelegate ()
@@ -33,6 +34,7 @@
     [OWTool getUserAct] ? [self tabBar] : [self login];
 //    [self tabBar];
     [self.window makeKeyAndVisible];
+    [self getUserInfo];
     [OWTool SVProgressHUD];
     return YES;
 }
@@ -60,6 +62,25 @@ static AFHTTPSessionManager *mgr;
 {
     self.window.rootViewController = [[OWRegisterNavigationVC alloc] initWithRootViewController:[[OWLoginVC alloc] init]];
 }
+
+
+- (void)getUserInfo
+{
+    [OWNetworking HGET:wh_appendingStr(wh_host, @"mobile/staff/get") parameters:nil success:^(id  _Nullable responseObject) {
+        wh_Log(@"---%@",responseObject);
+        if ([responseObject[@"code"] intValue] == 200) {
+            NSDictionary *dataDic = responseObject[@"data"];
+            NSDictionary *userInfoDic = [dataDic wh_map:^id(id key, id obj) {
+                if ([obj isEqual:[NSNull null]]) obj = @"";
+                return obj;
+            }];
+            [OWTool setUserInfo:userInfoDic];
+        }
+    } failure:^(NSError * _Nonnull error) {
+        
+    }];
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

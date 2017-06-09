@@ -10,6 +10,7 @@
 
 @interface OWMeetingDetailCell : UITableViewCell
 
+@property (nonatomic, strong) NSDictionary *detailDic;
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
 @end

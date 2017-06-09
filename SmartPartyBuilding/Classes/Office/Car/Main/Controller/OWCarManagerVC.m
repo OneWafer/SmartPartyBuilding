@@ -6,18 +6,19 @@
 //  Copyright © 2017年 王卫华. All rights reserved.
 //
 
-#import <MJRefresh.h>
 #import <MJExtension.h>
 #import <SVProgressHUD.h>
 #import "OWCarManagerVC.h"
 #import "OWMettingManagerCell.h"
 #import "OWCarDetailVC.h"
 #import "OWNetworking.h"
+#import "OWRefreshGifHeader.h"
 #import "OWCar.h"
 
 @interface OWCarManagerVC ()
 
 @property (nonatomic, strong) NSMutableArray *carList;
+
 @end
 
 @implementation OWCarManagerVC
@@ -28,7 +29,7 @@
     self.navigationItem.title = @"车辆管理";
     
     [self setupTableView];
-    [self dataRequest];
+    [self setupRefresh];
 }
 
 
@@ -39,6 +40,15 @@
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.rowHeight = 100.0f;
     self.carList = [NSMutableArray array];
+}
+
+- (void)setupRefresh
+{
+    wh_weakSelf(self);
+    self.tableView.mj_header = [OWRefreshGifHeader headerWithRefreshingBlock:^{
+        [weakself dataRequest];
+    }];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)dataRequest
@@ -56,9 +66,10 @@
         }else{
             [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
         }
+        [self.tableView.mj_header endRefreshing];
     } failure:^(NSError * _Nonnull error) {
         [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
-        wh_Log(@"---%@",error);
+        [self.tableView.mj_header endRefreshing];
     }];
 }
 

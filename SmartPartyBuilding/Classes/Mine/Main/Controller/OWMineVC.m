@@ -59,7 +59,7 @@
     self.headerView = [[OWMineHeaderView alloc] initWithFrame:CGRectMake(0, 0, wh_screenWidth, 120)];
     self.tableView.tableHeaderView = self.headerView;
     wh_weakSelf(self);
-    self.headerView.headerBlock = ^(){
+    self.headerView.headerBlock = ^(NSInteger tag){
         OWUserInfoVC *userInfoVC = [[OWUserInfoVC alloc] init];
         [weakself.navigationController pushViewController:userInfoVC animated:YES];
     };

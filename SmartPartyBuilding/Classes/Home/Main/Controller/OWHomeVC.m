@@ -61,6 +61,7 @@
     
     [self setupTableView];
     [self setupNavi];
+    [self setupBanner];
     [self setupRefresh];
     
 }
@@ -78,6 +79,7 @@
                               @{@"image":@"home_title_news",@"title":@"党建要闻"}
                               ];
 }
+
 
 - (void)setupNavi
 {
@@ -128,6 +130,7 @@
                 
             }else{
                 [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
+                [self.tableView.mj_header endRefreshing];
             }
         } failure:^(NSError * _Nonnull error) {
             [self.tableView.mj_header endRefreshing];
@@ -153,6 +156,7 @@
                 
             }else{
                 [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
+                [self.tableView.mj_header endRefreshing];
             }
         } failure:^(NSError * _Nonnull error) {
             [self.tableView.mj_header endRefreshing];
@@ -176,6 +180,7 @@
                 
             }else{
                 [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
+                [self.tableView.mj_header endRefreshing];
             }
         } failure:^(NSError * _Nonnull error) {
             [self.tableView.mj_header endRefreshing];
@@ -193,13 +198,14 @@
                               @"programaId":@"6"
                               };
         [OWNetworking HGET:wh_appendingStr(wh_host, @"mobile/news/getNews") parameters:par success:^(id  _Nullable responseObject) {
-            wh_Log(@"--%@",responseObject);
+//            wh_Log(@"--%@",responseObject);
             if ([responseObject[@"code"] intValue] == 200) {
                 self.newsList = [OWNews mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
                 [subscriber sendNext:self.newsList];
                 
             }else{
                 [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
+                [self.tableView.mj_header endRefreshing];
             }
         } failure:^(NSError * _Nonnull error) {
             [self.tableView.mj_header endRefreshing];
@@ -226,7 +232,7 @@
     }];
     self.banner.imageURLStringsGroup = banImgList;
     [self.tableView reloadData];
-//    NSLog(@"更新UI-----:%@  %@",bannerList,funcImgList);
+    NSLog(@"更新UI-----:%@",bannerList);
 }
 
 - (LBXScanViewStyle *)scanStyle
@@ -262,10 +268,7 @@
 /** 设置轮播图 */
 - (void)setupBanner
 {
-    NSArray *imagesURLStrings = @[
-                                  @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496489725660&di=ce1be01e531b3591244230cd1c5f8641&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F13%2F85%2F93%2F18f58PIC4tg_1024.jpg"
-                                  ];
-    self.banner.imageURLStringsGroup = imagesURLStrings;
+    self.banner.imageURLStringsGroup = @[];
 }
 
 
@@ -384,16 +387,17 @@
 - (SDCycleScrollView *)banner
 {
     if (!_banner) {
-        SDCycleScrollView *banner = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, wh_screenWidth, 160) delegate:self placeholderImage:wh_imageNamed(@"")];
+        SDCycleScrollView *banner = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, wh_screenWidth, 0.488*wh_screenWidth) delegate:self placeholderImage:wh_imageNamed(@"")];
         banner.currentPageDotColor = [UIColor redColor];
         banner.autoScrollTimeInterval = 3.0f;
+        banner.placeholderImage = wh_imageNamed(@"home_banner_place");
         self.tableView.tableHeaderView = banner;
         _banner = banner;
     }
     return _banner;
 }
 
-- (UIImageView *)searchView
+- (UIView *)searchView
 {
     if (!_searchView) {
         self.searchView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, wh_screenWidth * 0.69, 28)];

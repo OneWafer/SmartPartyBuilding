@@ -7,7 +7,6 @@
 //
 
 #import <MJPhoto.h>
-#import <MJRefresh.h>
 #import <MJExtension.h>
 #import <MJPhotoBrowser.h>
 #import <SDCycleScrollView.h>
@@ -17,12 +16,16 @@
 #import "OWMeetingDateCell.h"
 #import "OWMeetingOrderCell.h"
 #import "OWCarOrderVC.h"
+#import "OWRefreshGifHeader.h"
+#import "OWNetworking.h"
 #import "OWCar.h"
 
 @interface OWCarDetailVC ()<SDCycleScrollViewDelegate>
 
 @property (nonatomic, weak) SDCycleScrollView *banner;
 @property (nonatomic, strong) NSArray *bannerList;
+@property (nonatomic, strong) NSArray *detailList;
+
 
 @end
 
@@ -36,6 +39,7 @@
     [self setupTableView];
     [self setupNavi];
     [self setupBanner];
+    [self setupRefresh];
 }
 
 /** 设置tableview */
@@ -45,6 +49,14 @@
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    self.detailList = @[
+                        @{@"title":@"型号 :",@"content":@""},
+                        @{@"title":@"容纳人员 :",@"content":self.car.displacement ?: @""},
+                        @{@"title":@"排量 :",@"content":self.car.capacity ?: @""},
+                        @{@"title":@"牌照 :",@"content":self.car.carNum ?: @""},
+                        @{@"title":@"司机 :",@"content":self.car.driver ?: @""},
+                        @{@"title":@"联系电话 :",@"content":self.car.phone ?: @""}
+                        ];
 }
 
 - (void)setupNavi
@@ -62,6 +74,41 @@
     self.bannerList = [self.car.imgs componentsSeparatedByString:@","];
     self.banner.imageURLStringsGroup = self.bannerList;
 }
+
+
+- (void)setupRefresh
+{
+    wh_weakSelf(self);
+    self.tableView.mj_header = [OWRefreshGifHeader headerWithRefreshingBlock:^{
+        [weakself dataRequest];
+    }];
+    [self.tableView.mj_header beginRefreshing];
+}
+
+
+- (void)dataRequest
+{
+    NSDictionary *par = @{
+                          @"page":@"1",
+                          @"rows":@"20",
+                          @"startTime":@"2017-06-5 00:00:00",
+                          @"endTime":@"2017-06-5 00:00:00"
+                          };
+    [OWNetworking HGET:wh_appendingStr(wh_host, @"mobile/carOrder/allApply") parameters:par success:^(id  _Nullable responseObject) {
+        wh_Log(@"---%@",responseObject);
+        if ([responseObject[@"code"] intValue] == 200) {
+            
+            [self.tableView reloadData];
+        }else{
+            [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
+        }
+        [self.tableView.mj_header endRefreshing];
+    } failure:^(NSError * _Nonnull error) {
+        [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
+        [self.tableView.mj_header endRefreshing];
+    }];
+}
+
 
 #pragma mark - ---------- TableViewDataSource ----------
 
@@ -113,9 +160,11 @@
 {
     if (indexPath.section == 0) {
         OWMeetingDetailCell *cell = [OWMeetingDetailCell cellWithTableView:tableView];
+        cell.detailDic = self.detailList[indexPath.row];
         return cell;
     }else if (indexPath.section == 1){
         OWHomeTitleCell *cell = [OWHomeTitleCell cellWithTableView:tableView];
+        cell.titleDic = @{@"image":@"",@"title":@"预约列表"};
         return cell;
     }else{
         if (indexPath.row == 0){
