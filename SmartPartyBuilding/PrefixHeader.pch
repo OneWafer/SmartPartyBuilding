@@ -24,7 +24,7 @@
 /** 主要字体颜色 */
 #define wh_norFontColor wh_RGB(43, 43, 43)
 /** 分割线颜色 */
-#define wh_lineColor wh_RGB(221, 221, 221)
+#define wh_lineColor wh_RGB(211, 211, 211)
 
 #define HighLightTextColor [UIColor colorWithRed:92/255.0 green:140/255.0 blue:193/255.0 alpha:1.0]
 

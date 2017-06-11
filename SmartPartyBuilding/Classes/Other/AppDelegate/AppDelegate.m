@@ -11,7 +11,7 @@
 #import "OWPlusBtn.h"
 #import "OWTabBarControllerConfig.h"
 #import "OWNavigationController.h"
-#import "OWRegisterNavigationVC.h"
+//#import "OWRegisterNavigationVC.h"
 #import "OWLoginVC.h"
 #import "OWNetworking.h"
 #import "OWTool.h"
@@ -32,9 +32,7 @@
     [OWPlusBtn registerPlusButton];
     
     [OWTool getUserAct] ? [self tabBar] : [self login];
-//    [self tabBar];
     [self.window makeKeyAndVisible];
-    [self getUserInfo];
     [OWTool SVProgressHUD];
     return YES;
 }
@@ -54,13 +52,17 @@ static AFHTTPSessionManager *mgr;
 
 - (void)tabBar
 {
+    [self getUserInfo];
     OWTabBarControllerConfig *tabBarControllerConfig = [[OWTabBarControllerConfig alloc] init];
     self.window.rootViewController = tabBarControllerConfig.tabBarController;
 }
 
 - (void)login
 {
-    self.window.rootViewController = [[OWRegisterNavigationVC alloc] initWithRootViewController:[[OWLoginVC alloc] init]];
+    [OWTool setToken:nil];
+    [OWTool setUserAct:nil];
+    [OWTool setUserInfo:nil];
+    self.window.rootViewController = [[OWNavigationController alloc] initWithRootViewController:[[OWLoginVC alloc] init]];
 }
 
 

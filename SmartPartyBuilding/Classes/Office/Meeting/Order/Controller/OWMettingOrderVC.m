@@ -11,8 +11,12 @@
 #import "OWMtOrderInputCell.h"
 #import "OWMtSpecialNeedCell.h"
 #import "OWMtAddDeviceCell.h"
+#import "OWMtOrderDateCell.h"
+#import "OWMtDatePickerView.h"
+
 @interface OWMettingOrderVC ()
 
+@property (nonatomic, weak) OWMtDatePickerView *dateView;
 @property (nonatomic, strong) NSArray *titleList;
 
 @end
@@ -85,9 +89,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    wh_weakSelf(self);
     if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 4) {
         OWMeetingDateCell *cell = [OWMeetingDateCell cellWithTableView:tableView];
         cell.title = self.titleList[indexPath.row/2];
+        return cell;
+    }else if (indexPath.row == 1){
+        OWMtOrderDateCell *cell = [OWMtOrderDateCell cellWithTableView:tableView];
+        __weak OWMtOrderDateCell *weakCell = cell;
+        cell.block = ^(NSInteger tag){
+            [weakself datePick:weakCell Tag:tag];
+        };
         return cell;
     }else if (indexPath.row == 3 || indexPath.row == 5){
         OWMtOrderInputCell *cell = [OWMtOrderInputCell cellWithTableView:tableView];
@@ -96,17 +108,38 @@
     }else if (indexPath.row == 6){
         OWMtSpecialNeedCell *cell = [OWMtSpecialNeedCell cellWithTableView:tableView];
         return cell;
-    }else if (indexPath.row == 7){
-        OWMtAddDeviceCell *cell = [OWMtAddDeviceCell cellWithTableView:tableView];
-        return cell;
     }else{
-        OWMeetingDateCell *cell = [OWMeetingDateCell cellWithTableView:tableView];
-        cell.title = @"时间";
+        OWMtAddDeviceCell *cell = [OWMtAddDeviceCell cellWithTableView:tableView];
         return cell;
     }
     
 }
 
+- (void)datePick:(OWMtOrderDateCell *)cell Tag:(NSInteger)tag
+{
+    wh_weakSelf(self);
+    weakself.dateView.blcok = ^(NSDate *date){
+        if (tag == 11) {
+            cell.startLabel.text = [date wh_getDateStringWithFormat:@"yyyy-MM-dd HH:mm"];
+        }else{
+            cell.endLabel.text = [date wh_getDateStringWithFormat:@"yyyy-MM-dd HH:mm"];
+        }
+    };
+    [weakself.dateView fadeIn];
+}
 
+
+#pragma mark - ---------- Lazy ----------
+
+- (OWMtDatePickerView *)dateView
+{
+    if (!_dateView) {
+        OWMtDatePickerView *view = [[OWMtDatePickerView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        view.chooseTimeLabel.text = @"请选择时间";
+        [self.view addSubview:view];
+        _dateView = view;
+    }
+    return _dateView;
+}
 
 @end

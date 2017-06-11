@@ -91,8 +91,8 @@
     NSDictionary *par = @{
                           @"page":@"1",
                           @"rows":@"20",
-                          @"startTime":@"2017-06-5 00:00:00",
-                          @"endTime":@"2017-06-5 00:00:00"
+//                          @"startTime":@"2017-06-5 00:00:00",
+//                          @"endTime":@"2017-06-5 00:00:00"
                           };
     [OWNetworking HGET:wh_appendingStr(wh_host, @"mobile/carOrder/allApply") parameters:par success:^(id  _Nullable responseObject) {
         wh_Log(@"---%@",responseObject);
@@ -228,10 +228,11 @@
 - (SDCycleScrollView *)banner
 {
     if (!_banner) {
-        SDCycleScrollView *banner = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, wh_screenWidth, 160) delegate:self placeholderImage:wh_imageNamed(@"")];
+        SDCycleScrollView *banner = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, wh_screenWidth, 0.488*wh_screenWidth) delegate:self placeholderImage:wh_imageNamed(@"")];
         banner.currentPageDotColor = [UIColor redColor];
         banner.autoScroll = NO;;
         banner.pageControlStyle = SDCycleScrollViewPageContolStyleNone;
+        banner.placeholderImage = wh_imageNamed(@"home_banner_place");
         self.tableView.tableHeaderView = banner;
         _banner = banner;
     }

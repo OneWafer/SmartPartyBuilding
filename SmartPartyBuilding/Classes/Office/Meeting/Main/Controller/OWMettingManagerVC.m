@@ -97,6 +97,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     OWMettingManagerCell *cell = [OWMettingManagerCell cellWithTableView:tableView];
+    cell.meet = self.meetList[indexPath.section];
     return cell;
 }
 
@@ -106,6 +107,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     OWMettingDetailVC *detailVC = [[OWMettingDetailVC alloc] init];
+    detailVC.meet = self.meetList[indexPath.section];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 

@@ -17,11 +17,13 @@
 #import "OWMeetingDateCell.h"
 #import "OWMeetingOrderCell.h"
 #import "OWMettingOrderVC.h"
+#import "OWMeeting.h"
 
 @interface OWMettingDetailVC ()<SDCycleScrollViewDelegate>
 
 @property (nonatomic, weak) SDCycleScrollView *banner;
 @property (nonatomic, strong) NSArray *bannerList;
+@property (nonatomic, strong) NSArray *detailList;
 
 @end
 
@@ -46,6 +48,13 @@
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    self.detailList = @[
+                        @{@"title":@"会议室名称 :",@"content":self.meet.name},
+                        @{@"title":@"容纳人员 :",@"content":[NSString stringWithFormat:@"%d人",self.meet.capacity ?: 0]},
+                        @{@"title":@"位置 :",@"content":self.meet.location ?: @""},
+                        @{@"title":@"管理员 :",@"content":self.meet.manager ?: @""},
+                        @{@"title":@"联系电话 :",@"content":self.meet.phone ?: @""}
+                        ];
 }
 
 - (void)setupNavi
@@ -60,11 +69,7 @@
 /** 设置轮播图 */
 - (void)setupBanner
 {
-    self.bannerList = @[
-                                  @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1494773023703&di=dedf33f0672ac0d49a242695e22d5fcd&imgtype=0&src=http%3A%2F%2Fimg05.tooopen.com%2Fimages%2F20141121%2Fsy_75486386736.jpg",
-                                  @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1494772943184&di=0bcdd782ea3c423d854b3917800a794f&imgtype=0&src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farchive%2F15e28feda126018d913a0d46ea44b2c315c3f8b3.jpg",
-                                  @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1494772966253&di=644adb45cd9618006be8ce42a8ff804e&imgtype=0&src=http%3A%2F%2Fwww.neeu.com%2Fuploads%2Fimages%2F2016%2F10%2F14%2F1476430713738.jpg"
-                                  ];
+    self.bannerList = [self.meet.imgs componentsSeparatedByString:@","];
     self.banner.imageURLStringsGroup = self.bannerList;
 }
 
@@ -118,9 +123,11 @@
 {
     if (indexPath.section == 0) {
         OWMeetingDetailCell *cell = [OWMeetingDetailCell cellWithTableView:tableView];
+        cell.detailDic = self.detailList[indexPath.row];
         return cell;
     }else if (indexPath.section == 1){
         OWHomeTitleCell *cell = [OWHomeTitleCell cellWithTableView:tableView];
+        cell.titleDic = @{@"image":@"",@"title":@"预约列表"};
         return cell;
     }else{
         if (indexPath.row == 0){
@@ -184,10 +191,11 @@
 - (SDCycleScrollView *)banner
 {
     if (!_banner) {
-        SDCycleScrollView *banner = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, wh_screenWidth, 160) delegate:self placeholderImage:wh_imageNamed(@"")];
+        SDCycleScrollView *banner = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, wh_screenWidth, 0.488*wh_screenWidth) delegate:self placeholderImage:wh_imageNamed(@"")];
         banner.currentPageDotColor = [UIColor redColor];
         banner.autoScroll = NO;;
         banner.pageControlStyle = SDCycleScrollViewPageContolStyleNone;
+        banner.placeholderImage = wh_imageNamed(@"home_banner_place");
         self.tableView.tableHeaderView = banner;
         _banner = banner;
     }

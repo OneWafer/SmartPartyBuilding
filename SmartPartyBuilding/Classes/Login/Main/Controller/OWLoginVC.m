@@ -17,13 +17,12 @@
 
 @interface OWLoginVC ()<UITextFieldDelegate>
 
-@property (nonatomic, weak) UIImageView *bgImgView;
 @property (nonatomic, weak) UIImageView *logoImgView;
 @property (nonatomic, weak) UIView *inputView;
 @property (nonatomic, weak) UITextField *actTF;
 @property (nonatomic, weak) UITextField *pwdTF;
 @property (nonatomic, weak) UIButton *loginBtn;
-@property (nonatomic, weak) UIButton *remeberBtn;
+@property (nonatomic, weak) UIButton *registerBtn;
 @property (nonatomic, weak) UIButton *forgetBtn;
 
 @end
@@ -35,15 +34,12 @@
     [super viewWillAppear:animated];
     //设置背景透明图片
     [self.navigationController.navigationBar setValue:@0 forKeyPath:@"backgroundView.alpha"];
-    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    [self setupNavi];
     [self setupInputView];
     
     wh_weakSelf(self);
@@ -52,15 +48,6 @@
     }];
 }
 
-
-- (void)setupNavi
-{
-    wh_weakSelf(self);
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem wh_itemWithType:WHItemTypeRight norTitle:@"注册" font:15.0f norColor:[UIColor whiteColor] highColor:[UIColor whiteColor] offset:0 actionHandler:^(UIButton *sender) {
-        OWRegisterVC *registerVC = [[OWRegisterVC alloc] init];
-        [weakself.navigationController pushViewController:registerVC animated:YES];
-    }];
-}
 
 - (void)setupInputView
 {
@@ -78,9 +65,9 @@
         [weakself Login];
     }];
     
-    [self.remeberBtn wh_addActionHandler:^(UIButton *sender) {
-        wh_Log(@"---点击了记住密码");
-        sender.selected = !sender.selected;
+    [self.registerBtn wh_addActionHandler:^(UIButton *sender) {
+        OWRegisterVC *registerVC = [[OWRegisterVC alloc] init];
+        [self.navigationController pushViewController:registerVC animated:YES];
     }];
     
     [self.forgetBtn wh_addActionHandler:^(UIButton *sender) {
@@ -101,7 +88,6 @@
     [OWNetworking GET:wh_appendingStr(wh_host, @"mobile/login") parameters:par success:^(id  _Nullable responseObject) {
         wh_Log(@"--%@",responseObject);
         if ([responseObject[@"code"] intValue] == 200) {
-            if (self.remeberBtn.selected) [OWTool setUserAct:par];
             [OWTool setToken:responseObject[@"data"]];
             [SVProgressHUD showSuccessWithStatus:@"登录成功!"];
             [app tabBar];
@@ -116,24 +102,9 @@
 
 #pragma mark - ---------- Lazy ----------
 
-- (UIImageView *)bgImgView
-{
-    if (!_bgImgView) {
-        UIImageView *imgView = [[UIImageView alloc] init];
-        [self.view addSubview:imgView];
-        
-        [imgView makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.view);
-        }];
-        _bgImgView = imgView;
-    }
-    return _bgImgView;
-}
-
 - (UIImageView *)logoImgView
 {
     if (!_logoImgView) {
-        self.bgImgView.image = [UIImage wh_imgWithColor:[UIColor redColor]];
         UIImageView *imgView = [[UIImageView alloc] initWithImage:wh_imageNamed(@"login_logo")];
         [self.view addSubview:imgView];
         
@@ -151,14 +122,14 @@
     if (!_inputView) {
         self.logoImgView.image = wh_imageNamed(@"login_logo");
         UIView *view = [[UIView alloc] init];
-        view.backgroundColor = [UIColor clearColor];
         
         [self.view addSubview:view];
         
         [view makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.width.equalTo(self.view);
-            make.height.equalTo(250);
+            make.centerX.equalTo(self.view);
             make.centerY.equalTo(self.view).multipliedBy(1.1);
+            make.width.equalTo(self.view).multipliedBy(0.75);
+            make.height.equalTo(250);
         }];
         _inputView = view;
     }
@@ -169,22 +140,36 @@
 - (UITextField *)actTF
 {
     if (!_actTF) {
+        
+        UIImageView *actImgView = [[UIImageView alloc] initWithImage:wh_imageNamed(@"login_act")];
+        [self.inputView addSubview:actImgView];
+        [actImgView makeConstraints:^(MASConstraintMaker *make) {
+            make.top.left.equalTo(self.inputView);;
+            make.width.equalTo(19.5);
+        }];
+        
         UITextField *tf = [[UITextField alloc] init];
-        tf.placeholder = @"账号/密码";
-        tf.font = [UIFont systemFontOfSize:14.0f];
+        tf.placeholder = @"请输入手机号";
+        tf.font = [UIFont systemFontOfSize:14.5f];
         tf.tintColor = wh_RGB(109, 109, 109);
-        tf.backgroundColor = [UIColor whiteColor];
-        tf.layer.borderColor = wh_RGB(169, 169, 169).CGColor;
-        tf.layer.borderWidth = 0.5;
-        tf.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 0)];
-        tf.leftViewMode = UITextFieldViewModeAlways;
         [self.inputView addSubview:tf];
         
         [tf makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.top.equalTo(self.inputView);
-            make.width.equalTo(self.inputView).multipliedBy(0.8);
-            make.height.equalTo(45);
+            make.centerY.equalTo(actImgView);
+            make.left.equalTo(actImgView.right).offset(15);
+            make.right.equalTo(self.inputView);
+            make.height.equalTo(actImgView);
         }];
+        
+        UIView *lineView = [[UIView alloc] init];
+        lineView.backgroundColor = wh_lineColor;
+        [self.inputView addSubview:lineView];
+        [lineView makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(tf);
+            make.top.equalTo(tf.bottom).offset(5);
+            make.height.equalTo(0.7);
+        }];
+        
         _actTF = tf;
     }
     return _actTF;
@@ -193,21 +178,35 @@
 - (UITextField *)pwdTF
 {
     if (!_pwdTF) {
+        
+        UIImageView *pwdImgView = [[UIImageView alloc] initWithImage:wh_imageNamed(@"login_pwd")];
+        [self.inputView addSubview:pwdImgView];
+        [pwdImgView makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.inputView);
+            make.top.equalTo(self.actTF.bottom).offset(30);
+            make.width.equalTo(19.5);
+        }];
+        
         UITextField *tf = [[UITextField alloc] init];
         tf.placeholder = @"密码";
-        tf.font = [UIFont systemFontOfSize:14.0f];
+        tf.font = [UIFont systemFontOfSize:14.5f];
         tf.tintColor = wh_RGB(109, 109, 109);
-        tf.backgroundColor = [UIColor whiteColor];
-        tf.layer.borderColor = wh_RGB(169, 169, 169).CGColor;
-        tf.layer.borderWidth = 0.5;
-        tf.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 0)];
-        tf.leftViewMode = UITextFieldViewModeAlways;
         [self.inputView addSubview:tf];
         
         [tf makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.width.height.equalTo(self.actTF);
-            make.top.equalTo(self.actTF.bottom).offset(20);
+            make.left.width.height.equalTo(self.actTF);
+            make.centerY.equalTo(pwdImgView);
         }];
+        
+        UIView *lineView = [[UIView alloc] init];
+        lineView.backgroundColor = wh_lineColor;
+        [self.inputView addSubview:lineView];
+        [lineView makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(tf);
+            make.top.equalTo(tf.bottom).offset(5);
+            make.height.equalTo(0.7);
+        }];
+        
         _pwdTF = tf;
     }
     return _pwdTF;
@@ -218,43 +217,40 @@
 {
     if (!_loginBtn) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setTitle:@"登录" forState:UIControlStateNormal];
-        [btn setTitleColor:wh_RGB(217, 17, 22) forState:UIControlStateNormal];
-        [btn setTitleColor:wh_RGB(169, 169, 169) forState:UIControlStateDisabled];
-        btn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
-        [btn setBackgroundColor:[UIColor whiteColor]];
+        [btn setTitle:@"立即登录" forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        btn.titleLabel.font = [UIFont systemFontOfSize:14.5f];
+        [btn setBackgroundColor:wh_RGB(215, 7, 7)];
         [self.inputView addSubview:btn];
-        btn.layer.cornerRadius = 3;
+        btn.layer.cornerRadius = 4;
         
         [btn makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.width.height.equalTo(self.actTF);
-            make.top.equalTo(self.pwdTF.bottom).offset(20);
+            make.centerX.width.equalTo(self.inputView);
+            make.top.equalTo(self.pwdTF.bottom).offset(45);
+            make.height.equalTo(43);
         }];
         _loginBtn = btn;
     }
     return _loginBtn;
 }
 
-- (UIButton *)remeberBtn
+
+- (UIButton *)registerBtn
 {
-    if (!_remeberBtn) {
+    if (!_registerBtn) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setTitle:@"记住用户名" forState:UIControlStateNormal];
+        [btn setTitle:@"立即注册" forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
-        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btn setImage:wh_imageNamed(@"login_remember") forState:UIControlStateNormal];
-        [btn setImage:wh_imageNamed(@"login_remember_slt") forState:UIControlStateSelected];
-        [btn wh_setImagePosition:WHImagePositionLeft spacing:5];
-        btn.selected = YES;
+        [btn setTitleColor:wh_RGB(29, 184, 235) forState:UIControlStateNormal];
         [self.inputView addSubview:btn];
         
         [btn makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.actTF.left);
+            make.left.equalTo(self.inputView);
             make.top.equalTo(self.loginBtn.bottom).offset(20);
         }];
-        _remeberBtn = btn;
+        _registerBtn = btn;
     }
-    return _remeberBtn;
+    return _registerBtn;
 }
 
 - (UIButton *)forgetBtn
@@ -262,13 +258,13 @@
     if (!_forgetBtn) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setTitle:@"忘记密码" forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
-        [btn setTitleColor:wh_RGB(30, 209, 253) forState:UIControlStateNormal];
+        btn.titleLabel.font = [UIFont systemFontOfSize:14.5f];
+        [btn setTitleColor:wh_RGB(101, 101, 101) forState:UIControlStateNormal];
         [self.inputView addSubview:btn];
         
         [btn makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self.actTF.right);
-            make.centerY.equalTo(self.remeberBtn);
+            make.centerY.equalTo(self.registerBtn);
         }];
         _forgetBtn = btn;
     }

@@ -13,6 +13,9 @@
 #import "OWSettingVC.h"
 #import "OWMineHeaderView.h"
 #import "OWMineOptionCell.h"
+#import "AppDelegate.h"
+#import "OWTool.h"
+#import "OWPartyFeeVC.h"
 
 @interface OWMineVC ()
 
@@ -91,8 +94,13 @@
 /** 设置退出登录按钮 */
 - (void)setupLogoutBtn
 {
+    wh_weakSelf(self);
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [self.logoutBtn wh_addActionHandler:^(UIButton *sender) {
-        wh_Log(@"点击了退出登录");
+        [UIAlertView wh_alertWithTitle:@"提示" message:@"确定退出登录吗?" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] CallBackBlock:^(NSInteger buttonIndex) {
+            if (buttonIndex == 0) return;
+            [app login];
+        }];
     }];
 }
 
@@ -133,6 +141,18 @@
     
 }
 
+
+#pragma mark - ---------- TableViewDelegate ----------
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        
+    }else{
+        OWPartyFeeVC *pfVC = [[OWPartyFeeVC alloc] init];
+        [self.navigationController pushViewController:pfVC animated:YES];
+    }
+}
 
 #pragma mark - ---------- Lazy ----------
 

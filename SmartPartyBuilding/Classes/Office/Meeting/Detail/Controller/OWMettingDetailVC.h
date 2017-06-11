@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class OWMeeting;
 @interface OWMettingDetailVC : UITableViewController
 
+@property (nonatomic, strong) OWMeeting *meet;
 @end

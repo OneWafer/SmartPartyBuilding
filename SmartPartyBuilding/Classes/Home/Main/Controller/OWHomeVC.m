@@ -198,7 +198,7 @@
                               @"programaId":@"6"
                               };
         [OWNetworking HGET:wh_appendingStr(wh_host, @"mobile/news/getNews") parameters:par success:^(id  _Nullable responseObject) {
-//            wh_Log(@"--%@",responseObject);
+            wh_Log(@"--%@",responseObject);
             if ([responseObject[@"code"] intValue] == 200) {
                 self.newsList = [OWNews mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
                 [subscriber sendNext:self.newsList];
@@ -349,7 +349,7 @@
         OWHomeApprovalVC *approval = [[OWHomeApprovalVC alloc] init];
         [weakself.navigationController pushViewController:approval animated:YES];
     }else if (tag == 1008){
-        weakself.tabBarController.selectedIndex = 1;
+        
     }
 }
 

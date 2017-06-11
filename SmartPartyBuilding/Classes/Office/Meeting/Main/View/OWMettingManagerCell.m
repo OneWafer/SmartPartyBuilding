@@ -59,7 +59,7 @@ static NSString *const identifier = @"OWMettingManagerCell";
 {
     _car = car;
     NSArray *urlList = [car.imgs componentsSeparatedByString:@","];
-    [self.titleImgView sd_setImageWithURL:[NSURL URLWithString:urlList[0]] placeholderImage:wh_imageNamed(@"")];
+    [self.titleImgView sd_setImageWithURL:[NSURL URLWithString:urlList[0]] placeholderImage:wh_imageNamed(@"home_news_place")];
     self.titleLabel.text = car.carNum;
     self.detailLabel.text = car.introduce;
 }
@@ -68,7 +68,7 @@ static NSString *const identifier = @"OWMettingManagerCell";
 {
     _meet = meet;
     NSArray *urlList = [meet.imgs componentsSeparatedByString:@","];
-    [self.titleImgView sd_setImageWithURL:[NSURL URLWithString:urlList[0]] placeholderImage:wh_imageNamed(@"")];
+    [self.titleImgView sd_setImageWithURL:[NSURL URLWithString:urlList[0]] placeholderImage:wh_imageNamed(@"home_news_place")];
     self.titleLabel.text = meet.name;
     self.detailLabel.text = meet.introduce;
 }

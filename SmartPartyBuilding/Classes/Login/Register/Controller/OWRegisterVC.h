@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OWRegisterVC : UIViewController
+@interface OWRegisterVC : UITableViewController
 
 @end
