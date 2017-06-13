@@ -1,38 +1,38 @@
 //
-//  OWCarOrder.h
+//  OWMeetOrder.h
 //  SmartPartyBuilding
 //
-//  Created by 王卫华 on 2017/6/8.
+//  Created by 王卫华 on 2017/6/13.
 //  Copyright © 2017年 王卫华. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface OWCarOrder : NSObject
+@interface OWMeetOrder : NSObject
 
-/** 随车用品 */
-@property (nonatomic, copy) NSString *articles;
-/** 车牌id */
-@property (nonatomic, assign) int carId;
-/** 车牌号 */
-@property (nonatomic, copy) NSString *carNum;
+/** 会议室名称 */
+@property (nonatomic, copy) NSString *name;
+/** 会议内容 */
+@property (nonatomic, copy) NSString *content;
+/** 设施 */
+@property (nonatomic, copy) NSString *facility;
 /** 结束时间 */
 @property (nonatomic, copy) NSString *endTime;
 /** id */
 @property (nonatomic, assign) int id;
+/** 会议室id */
+@property (nonatomic, assign) int roomId;
 /**  */
 @property (nonatomic, assign) NSInteger isAgree;
 /**  */
 @property (nonatomic, assign) int partyBranchId;
-/** 随车人员 */
+/** 参会人员 */
 @property (nonatomic, copy) NSString *people;
 /** 手机号 */
 @property (nonatomic, copy) NSString *phoneNumber;
-/** 车辆用途 */
-@property (nonatomic, copy) NSString *purpose;
 /** 备注信息 */
 @property (nonatomic, copy) NSString *remark;
-/** 答复 */
+/** 回复 */
 @property (nonatomic, copy) NSString *reply;
 /** 管理人员id */
 @property (nonatomic, assign) int staffId;

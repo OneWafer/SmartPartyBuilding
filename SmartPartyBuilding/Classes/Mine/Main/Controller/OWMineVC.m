@@ -7,7 +7,7 @@
 //
 
 #import <Masonry.h>
-#import <FMDatabase.h>
+#import <LCActionSheet.h>
 #import "OWMineVC.h"
 #import "OWUserInfoVC.h"
 #import "OWSettingVC.h"
@@ -17,9 +17,10 @@
 #import "OWTool.h"
 #import "OWPartyFeeVC.h"
 
-@interface OWMineVC ()
+@interface OWMineVC ()<LCActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, strong) OWMineHeaderView *headerView;
+@property (nonatomic, strong) UIImagePickerController *imgPickerVC;
 @property (nonatomic, strong) NSArray *optionList;
 @property (nonatomic, weak) UIButton *logoutBtn;
 
@@ -58,13 +59,18 @@
 {
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     self.tableView.showsVerticalScrollIndicator = NO;
+    self.tableView.scrollEnabled = NO;
     
-    self.headerView = [[OWMineHeaderView alloc] initWithFrame:CGRectMake(0, 0, wh_screenWidth, 120)];
+    self.headerView = [[OWMineHeaderView alloc] initWithFrame:CGRectMake(0, 0, wh_screenWidth, 150)];
     self.tableView.tableHeaderView = self.headerView;
     wh_weakSelf(self);
     self.headerView.headerBlock = ^(NSInteger tag){
-        OWUserInfoVC *userInfoVC = [[OWUserInfoVC alloc] init];
-        [weakself.navigationController pushViewController:userInfoVC animated:YES];
+        if (tag == 11) {
+            OWUserInfoVC *userInfoVC = [[OWUserInfoVC alloc] init];
+            [weakself.navigationController pushViewController:userInfoVC animated:YES];
+        }else{
+            [weakself takePhoto];
+        }
     };
     
     self.optionList = @[
@@ -94,7 +100,7 @@
 /** 设置退出登录按钮 */
 - (void)setupLogoutBtn
 {
-    wh_weakSelf(self);
+//    wh_weakSelf(self);
     AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [self.logoutBtn wh_addActionHandler:^(UIButton *sender) {
         [UIAlertView wh_alertWithTitle:@"提示" message:@"确定退出登录吗?" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] CallBackBlock:^(NSInteger buttonIndex) {
@@ -102,6 +108,32 @@
             [app login];
         }];
     }];
+}
+
+- (void)takePhoto
+{
+    wh_weakSelf(self);
+    LCActionSheet *actionSheet = [LCActionSheet sheetWithTitle:nil cancelButtonTitle:@"取消" clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
+        
+        if (buttonIndex == 0) return;
+        weakself.imgPickerVC.allowsEditing = YES;
+        weakself.imgPickerVC.sourceType = (buttonIndex == 1) ? UIImagePickerControllerSourceTypeCamera : UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+        if (buttonIndex == 1) weakself.imgPickerVC.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+        [weakself presentViewController:self.imgPickerVC animated:YES completion:nil];
+        
+    } otherButtonTitleArray:@[@"拍摄",@"从相册选取"]];
+    [actionSheet show];
+}
+
+#pragma mark - ----------UIImagePickerControllerDelegate----------
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
+    if ([type isEqualToString:@"public.image"]) {
+        
+        
+    }
 }
 
 
@@ -156,6 +188,18 @@
 
 #pragma mark - ---------- Lazy ----------
 
+- (UIImagePickerController *)imgPickerVC
+{
+    if (!_imgPickerVC) {
+        _imgPickerVC = [[UIImagePickerController alloc] init];
+        _imgPickerVC.delegate = self;
+        _imgPickerVC.navigationBar.barTintColor = self.navigationController.navigationBar.barTintColor;
+        _imgPickerVC.navigationBar.tintColor = self.navigationController.navigationBar.tintColor;
+    }
+    return _imgPickerVC;
+}
+
+
 - (UIButton *)logoutBtn
 {
     if (!_logoutBtn) {
@@ -163,19 +207,20 @@
         [btn setTitle:@"退出登录" forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont systemFontOfSize:12];
-        [btn setBackgroundColor:wh_RGB(214, 17, 23)];
+        [btn setBackgroundColor:wh_RGB(217, 16, 21)];
         [self.tableView addSubview:btn];
         
         [btn makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.view);
-            make.top.equalTo(self.tableView).offset(350);
+            make.top.equalTo(self.tableView).offset(385);
             make.width.equalTo(self.view).multipliedBy(0.8);
-            make.height.equalTo(40);
+            make.height.equalTo(45);
         }];
-        btn.layer.cornerRadius = 3;
+        btn.layer.cornerRadius = 4;
         _logoutBtn = btn;
     }
     return _logoutBtn;
 }
+
 
 @end

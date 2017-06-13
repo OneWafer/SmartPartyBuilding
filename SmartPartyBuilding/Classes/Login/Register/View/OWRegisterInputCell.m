@@ -9,6 +9,7 @@
 #import <Masonry.h>
 #import <ReactiveCocoa.h>
 #import "OWRegisterInputCell.h"
+#import "OWRegister.h"
 
 @interface OWRegisterInputCell ()
 
@@ -49,13 +50,32 @@ static NSString *const identifier = @"OWRegisterInputCell";
 }
 
 
-- (void)setTitleDic:(NSDictionary *)titleDic
+- (void)setRegist:(OWRegister *)regist
 {
-    _titleDic = titleDic;
-    if ([titleDic[@"image"] length]) self.titleImgView.image = wh_imageNamed(titleDic[@"image"]);
-    self.inputTF.placeholder = titleDic[@"place"];
+    _regist = regist;
+    wh_weakSelf(self);
+    if (regist.image.length) self.titleImgView.image = wh_imageNamed(regist.image);
+    self.inputTF.placeholder = regist.place;
     
-    if ([titleDic[@"place"] isEqualToString:@"请输入手机号"]) {
+    // 修改键盘样式
+    if ([regist.place isEqualToString:@"请输入手机号"] || [regist.place isEqualToString:@"请输入验证码"]) {
+        self.inputTF.keyboardType = UIKeyboardTypeNumberPad;
+    }else if ([regist.place isEqualToString:@"请输入密码"] || [regist.place isEqualToString:@"再次输入密码"]){
+        self.inputTF.keyboardType = UIKeyboardTypeASCIICapable;
+    }else if ([regist.place isEqualToString:@"请输入身份证号(选填)"]){
+        self.inputTF.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+    }
+    
+    // 监听输入
+    [self.inputTF.rac_textSignal subscribeNext:^(id x) {
+        self.regist.content = x;
+    }];
+    
+    if ([regist.place isEqualToString:@"请输入手机号"]) {
+        
+        [[self.inputTF rac_textSignal] subscribeNext:^(NSString *x) {
+            if (x.length > 11) weakself.inputTF.text = [x substringToIndex:11];
+        }];
         
         [self.inputTF remakeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.titleImgView);
@@ -63,10 +83,9 @@ static NSString *const identifier = @"OWRegisterInputCell";
             make.right.equalTo(self).offset(-80);
         }];
         
-        
         [self.verBtn wh_addActionHandler:^(UIButton *sender) {
             [sender wh_startTime:60 title:@"重新发送" waitTittle:@""];
-            wh_Log(@"---点击了发送验证码");
+            if (weakself.block) weakself.block();
         }];
     }
 }

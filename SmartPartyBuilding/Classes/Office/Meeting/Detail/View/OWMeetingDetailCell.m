@@ -69,7 +69,7 @@ static NSString *const identifier = @"OWMeetingDetailCell";
     if (!_titleLabel) {
         UILabel *label = [[UILabel alloc] init];
         label.textColor = wh_norFontColor;
-        label.font = [UIFont systemFontOfSize:15];
+        label.font = [UIFont systemFontOfSize:14.5f];
         [self.contentView addSubview:label];
         
         [label makeConstraints:^(MASConstraintMaker *make) {
@@ -87,7 +87,7 @@ static NSString *const identifier = @"OWMeetingDetailCell";
     if (!_contentLabel) {
         UILabel *label = [[UILabel alloc] init];
         label.textColor = wh_norFontColor;
-        label.font = [UIFont systemFontOfSize:15.0f];
+        label.font = [UIFont systemFontOfSize:14.5f];
         [self.contentView addSubview:label];
         
         [label makeConstraints:^(MASConstraintMaker *make) {
@@ -104,7 +104,7 @@ static NSString *const identifier = @"OWMeetingDetailCell";
     if (!_telBtn) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setTitleColor:wh_RGB(9, 131, 216) forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:15.0f];
+        btn.titleLabel.font = [UIFont systemFontOfSize:14.5f];
         [self.contentView addSubview:btn];
         
         [btn makeConstraints:^(MASConstraintMaker *make) {

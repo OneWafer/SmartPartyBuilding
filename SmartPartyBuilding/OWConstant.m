@@ -10,6 +10,6 @@
 
 @implementation OWConstant
 
-NSString const *wh_host = @"http://106.14.204.197/";
+NSString const *wh_host = @"http://106.14.171.197/";
 
 @end

@@ -8,6 +8,8 @@
 
 #import <Masonry.h>
 #import "OWMeetingOrderCell.h"
+#import "OWCarOrder.h"
+#import "OWMeetOrder.h"
 
 @interface OWMeetingOrderCell ()
 
@@ -46,13 +48,26 @@ static NSString *const identifier = @"OWMeetingOrderCell";
         self.backgroundColor = [UIColor clearColor];
         self.verLineView.backgroundColor = wh_lineColor;
         self.bgView.backgroundColor = [UIColor whiteColor];
-        self.timeLabel.text = @"12:00 - 16:30";
-        self.contentLabel.text = @"会议内容 : 去宝华山见客户要很晚回来";
-        self.descLabel.text = @"会议描述 : 张二二、张一二、张五、李四";
     }
     return self;
 }
 
+
+- (void)setCarOrder:(OWCarOrder *)carOrder
+{
+    _carOrder = carOrder;
+    self.timeLabel.text = [NSString stringWithFormat:@"%@ - %@",[carOrder.startTime substringWithRange:NSMakeRange(11, 5)], [carOrder.startTime substringWithRange:NSMakeRange(11, 5)]];
+    self.contentLabel.text = [NSString stringWithFormat:@"车辆用途 : %@",carOrder.purpose ?: @""];
+    self.descLabel.text = [NSString stringWithFormat:@"随车人员 : %@",carOrder.people ?: @""];
+}
+
+- (void)setMeetOrder:(OWMeetOrder *)meetOrder
+{
+    _meetOrder = meetOrder;
+    self.timeLabel.text = [NSString stringWithFormat:@"%@ - %@",[meetOrder.startTime substringWithRange:NSMakeRange(11, 5)], [meetOrder.startTime substringWithRange:NSMakeRange(11, 5)]];
+    self.contentLabel.text = [NSString stringWithFormat:@"会议内容 : %@",meetOrder.content ?: @""];
+    self.descLabel.text = [NSString stringWithFormat:@"参会人员 : %@",meetOrder.people ?: @""];
+}
 
 #pragma mark - ---------- Lazy ----------
 

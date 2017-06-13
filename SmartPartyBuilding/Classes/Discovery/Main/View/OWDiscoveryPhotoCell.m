@@ -78,7 +78,7 @@ static NSString *const identifier = @"OWDiscoveryPhotoCell";
     if (!_titleLabel) {
         UILabel *label = [[UILabel alloc] init];
         label.textColor = [UIColor blackColor];
-        label.font = [UIFont systemFontOfSize:12];
+        label.font = [UIFont systemFontOfSize:14.5f];
         [self.contentView addSubview:label];
         
         [label makeConstraints:^(MASConstraintMaker *make) {

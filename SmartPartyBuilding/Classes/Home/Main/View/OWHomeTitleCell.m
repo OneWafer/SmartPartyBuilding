@@ -50,7 +50,14 @@ static NSString *const identifier = @"OWHomeTitleCell";
 - (void)setTitleDic:(NSDictionary *)titleDic
 {
     _titleDic = titleDic;
-    self.titleImgView.image = wh_imageNamed(titleDic[@"image"]);
+    if ([titleDic[@"image"] length]) {
+        self.titleImgView.image = wh_imageNamed(titleDic[@"image"]);
+    }else{
+        [self.titleLabel remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self);
+            make.left.equalTo(self).offset(15);
+        }];
+    }
     self.titleLabel.text = titleDic[@"title"];
     wh_weakSelf(self);
     if ([self.titleLabel.text isEqualToString:@"党建要闻"]) {

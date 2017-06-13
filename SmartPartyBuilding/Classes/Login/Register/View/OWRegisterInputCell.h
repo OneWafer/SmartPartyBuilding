@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@class OWRegister;
+typedef void(^OWRegisterVerBtnBlock)();
 
 @interface OWRegisterInputCell : UITableViewCell
 
-@property (nonatomic, strong) NSDictionary *titleDic;
+@property (nonatomic, strong) OWRegister *regist;
+@property (nonatomic, copy) OWRegisterVerBtnBlock block;
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
 @end

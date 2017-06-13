@@ -11,6 +11,7 @@
 #import <ReactiveCocoa.h>
 #import "OWLoginVC.h"
 #import "OWRegisterVC.h"
+#import "OWForgetVC.h"
 #import "AppDelegate.h"
 #import "OWNetworking.h"
 #import "OWTool.h"
@@ -51,27 +52,28 @@
 
 - (void)setupInputView
 {
-//    [[self.actTF rac_textSignal] subscribeNext:^(NSString *x) {
-//        if (x.length > 11) self.actTF.text = [x substringToIndex:11];
-//    }];
+    wh_weakSelf(self);
+    [[self.actTF rac_textSignal] subscribeNext:^(NSString *x) {
+        if (x.length > 11) weakself.actTF.text = [x substringToIndex:11];
+    }];
     
     RACSignal *loginSignal = [RACSignal combineLatest:@[self.actTF.rac_textSignal,self.pwdTF.rac_textSignal] reduce:^id(NSString *account,NSString *pwd){
         return @(account.length && pwd.length);
     }];
     
     RAC(self.loginBtn, enabled) = loginSignal;
-    wh_weakSelf(self);
     [self.loginBtn wh_addActionHandler:^(UIButton *sender) {
         [weakself Login];
     }];
     
     [self.registerBtn wh_addActionHandler:^(UIButton *sender) {
         OWRegisterVC *registerVC = [[OWRegisterVC alloc] init];
-        [self.navigationController pushViewController:registerVC animated:YES];
+        [weakself.navigationController pushViewController:registerVC animated:YES];
     }];
     
     [self.forgetBtn wh_addActionHandler:^(UIButton *sender) {
-        wh_Log(@"---点击了忘记密码");
+        OWForgetVC *forgetVC = [[OWForgetVC alloc] init];
+        [weakself.navigationController pushViewController:forgetVC animated:YES];
     }];
 }
 
@@ -150,6 +152,7 @@
         
         UITextField *tf = [[UITextField alloc] init];
         tf.placeholder = @"请输入手机号";
+//        tf.keyboardType = UIKeyboardTypeNumberPad;
         tf.font = [UIFont systemFontOfSize:14.5f];
         tf.tintColor = wh_RGB(109, 109, 109);
         [self.inputView addSubview:tf];
@@ -189,6 +192,7 @@
         
         UITextField *tf = [[UITextField alloc] init];
         tf.placeholder = @"密码";
+        tf.keyboardType = UIKeyboardTypeASCIICapable;
         tf.font = [UIFont systemFontOfSize:14.5f];
         tf.tintColor = wh_RGB(109, 109, 109);
         [self.inputView addSubview:tf];
@@ -240,7 +244,7 @@
     if (!_registerBtn) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setTitle:@"立即注册" forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+        btn.titleLabel.font = [UIFont systemFontOfSize:14.5f];
         [btn setTitleColor:wh_RGB(29, 184, 235) forState:UIControlStateNormal];
         [self.inputView addSubview:btn];
         

@@ -96,17 +96,15 @@
 {
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
+            wh_weakSelf(self);
             LCActionSheet *actionSheet = [LCActionSheet sheetWithTitle:nil cancelButtonTitle:@"取消" clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
-                if (buttonIndex == 1) { // 拍照
-                    self.imgPickerVC.allowsEditing = (indexPath.section == 0 && indexPath.row == 0);
-                    self.imgPickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
-                    self.imgPickerVC.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
-                    [self presentViewController:self.imgPickerVC animated:YES completion:nil];
-                }else if (buttonIndex == 2){ // 从相册选取
-                    self.imgPickerVC.allowsEditing = (indexPath.section == 0 && indexPath.row == 0);
-                    self.imgPickerVC.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-                    [self presentViewController:self.imgPickerVC animated:YES completion:nil];
-                }
+                
+                if (buttonIndex == 0) return;
+                weakself.imgPickerVC.allowsEditing = YES;
+                weakself.imgPickerVC.sourceType = (buttonIndex == 1) ? UIImagePickerControllerSourceTypeCamera : UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+                if (buttonIndex == 1) weakself.imgPickerVC.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+                [weakself presentViewController:self.imgPickerVC animated:YES completion:nil];
+                
             } otherButtonTitleArray:@[@"拍摄",@"从相册选取"]];
             [actionSheet show];
         }

@@ -73,7 +73,7 @@
         [imgView makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self).multipliedBy(1.1);
             make.left.equalTo(self).offset(15);
-            make.width.height.equalTo(50);
+            make.width.height.equalTo(65);
         }];
         _headImgView = imgView;
     }
@@ -86,7 +86,7 @@
     if (!_nameLabel) {
         UILabel *label = [[UILabel alloc] init];
         label.textColor = [UIColor whiteColor];
-        label.font = [UIFont systemFontOfSize:10];
+        label.font = [UIFont systemFontOfSize:15.0f];
         [self addSubview:label];
         
         [label makeConstraints:^(MASConstraintMaker *make) {
@@ -104,7 +104,7 @@
     if (!_telLabel) {
         UILabel *label = [[UILabel alloc] init];
         label.textColor = [UIColor whiteColor];
-        label.font = [UIFont systemFontOfSize:10];
+        label.font = [UIFont systemFontOfSize:15.0f];
         [self addSubview:label];
         
         [label makeConstraints:^(MASConstraintMaker *make) {
@@ -123,7 +123,7 @@
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btn setTitle:@"资料管理" forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:12];
+        btn.titleLabel.font = [UIFont systemFontOfSize:14.5f];
         [btn setImage:wh_imageNamed(@"mine_arrow_white") forState:UIControlStateNormal];
         [btn wh_setImagePosition:WHImagePositionRight spacing:0];
         [self addSubview:btn];

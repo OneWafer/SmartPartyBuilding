@@ -31,7 +31,7 @@
     
     [OWPlusBtn registerPlusButton];
     
-    [OWTool getUserAct] ? [self tabBar] : [self login];
+    [OWTool getUserInfo] ? [self tabBar] : [self login];
     [self.window makeKeyAndVisible];
     [OWTool SVProgressHUD];
     return YES;

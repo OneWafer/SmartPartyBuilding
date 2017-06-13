@@ -10,4 +10,6 @@
 
 @interface OWRegisterPickerCell : UITableViewCell
 
++ (instancetype)cellWithTableView:(UITableView *)tableView;
+
 @end

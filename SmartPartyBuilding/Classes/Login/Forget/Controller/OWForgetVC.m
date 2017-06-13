@@ -1,32 +1,28 @@
 //
-//  OWRegisterVC.m
+//  OWForgetVC.m
 //  SmartPartyBuilding
 //
-//  Created by 王卫华 on 2017/5/24.
+//  Created by 王卫华 on 2017/6/13.
 //  Copyright © 2017年 王卫华. All rights reserved.
 //
 
-//#import <Masonry.h>
-//#import <ReactiveCocoa.h>
 #import <MJExtension.h>
-#import "OWRegisterVC.h"
+#import "OWForgetVC.h"
 #import "OWRegisterInputCell.h"
-#import "OWRegisterPickerCell.h"
 #import "OWRegister.h"
 
-@interface OWRegisterVC ()
+@interface OWForgetVC ()
 
 @property (nonatomic, strong) NSArray *registerList;
 
 @end
 
-@implementation OWRegisterVC
-
+@implementation OWForgetVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"注册";
+    self.navigationItem.title = @"忘记密码";
     
     wh_weakSelf(self);
     [self.tableView wh_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
@@ -36,6 +32,7 @@
     [self setupNavi];
     [self setupTableView];
 }
+
 
 - (void)setupNavi
 {
@@ -52,10 +49,7 @@
                       @{@"image":@"login_act", @"place":@"请输入手机号"},
                       @{@"image":@"login_ver", @"place":@"请输入验证码"},
                       @{@"image":@"login_pwd", @"place":@"请输入密码"},
-                      @{@"image":@"", @"place":@"再次输入密码"},
-                      @{@"image":@"login_name", @"place":@"请输入姓名/昵称"},
-                      @{@"image":@"login_id", @"place":@"请输入身份证号(选填)"},
-                      @{@"sex":@"", @"duty":@"", @"organize":@""}
+                      @{@"image":@"", @"place":@"再次输入密码"}
                       ];
     self.registerList = [OWRegister mj_objectArrayWithKeyValuesArray:list];
 }
@@ -67,7 +61,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return (indexPath.row < 6) ? 50.0f : 120.0f;
+    return 50.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -87,19 +81,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row < 6) {
-        OWRegisterInputCell *cell = [OWRegisterInputCell cellWithTableView:tableView];
-        cell.regist = self.registerList[indexPath.row];
-        return cell;
-    }else{
-        OWRegisterPickerCell *cell = [OWRegisterPickerCell cellWithTableView:tableView];
-        return cell;
-    }
+    OWRegisterInputCell *cell = [OWRegisterInputCell cellWithTableView:tableView];
+    cell.regist = self.registerList[indexPath.row];
+    return cell;
     
 }
-
-#pragma mark - ---------- Lazy ----------
-
-
 
 @end

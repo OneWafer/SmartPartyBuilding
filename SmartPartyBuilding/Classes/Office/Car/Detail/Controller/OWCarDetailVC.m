@@ -17,6 +17,8 @@
 #import "OWMeetingOrderCell.h"
 #import "OWCarOrderVC.h"
 #import "OWRefreshGifHeader.h"
+#import "OWCarOrder.h"
+#import "OWCarOrderDate.h"
 #import "OWNetworking.h"
 #import "OWCar.h"
 
@@ -25,7 +27,7 @@
 @property (nonatomic, weak) SDCycleScrollView *banner;
 @property (nonatomic, strong) NSArray *bannerList;
 @property (nonatomic, strong) NSArray *detailList;
-
+@property (nonatomic, strong) NSMutableArray *orderlList;
 
 @end
 
@@ -57,6 +59,8 @@
                         @{@"title":@"司机 :",@"content":self.car.driver ?: @""},
                         @{@"title":@"联系电话 :",@"content":self.car.phone ?: @""}
                         ];
+
+    self.orderlList = [NSMutableArray array];
 }
 
 - (void)setupNavi
@@ -90,14 +94,23 @@
 {
     NSDictionary *par = @{
                           @"page":@"1",
-                          @"rows":@"20",
-//                          @"startTime":@"2017-06-5 00:00:00",
-//                          @"endTime":@"2017-06-5 00:00:00"
+                          @"rows":@"20"
                           };
     [OWNetworking HGET:wh_appendingStr(wh_host, @"mobile/carOrder/allApply") parameters:par success:^(id  _Nullable responseObject) {
-        wh_Log(@"---%@",responseObject);
+        
         if ([responseObject[@"code"] intValue] == 200) {
+            NSDictionary *dataDic = responseObject[@"data"];
+            NSMutableArray *mutableList = [NSMutableArray array];
+            [dataDic wh_each:^(id key, id obj) {
+                NSDictionary *dic = @{
+                                      @"date":key,
+                                      @"orders":obj
+                                      };
+                [mutableList addObject:dic];
+                
+            }];
             
+            self.orderlList = [OWCarOrderDate mj_objectArrayWithKeyValuesArray:mutableList];
             [self.tableView reloadData];
         }else{
             [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
@@ -114,7 +127,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return self.orderlList.count + 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -123,10 +136,9 @@
         return 6;
     }else if (section == 1){
         return 1;
-    }else if (section == 2){
-        return 1+1;
     }else{
-        return 2+1;
+        OWCarOrderDate *date = self.orderlList[section - 2];
+        return date.orders.count + 1;
     }
 }
 
@@ -167,12 +179,15 @@
         cell.titleDic = @{@"image":@"",@"title":@"预约列表"};
         return cell;
     }else{
+        OWCarOrderDate *date = self.orderlList[indexPath.section - 2];
+        
         if (indexPath.row == 0){
             OWMeetingDateCell *cell = [OWMeetingDateCell cellWithTableView:tableView];
-            cell.title = @"今天";
+            cell.title = date.date;
             return cell;
         }else{
             OWMeetingOrderCell *cell = [OWMeetingOrderCell cellWithTableView:tableView];
+            cell.carOrder = date.orders[indexPath.row - 1];
             return cell;
         }
         

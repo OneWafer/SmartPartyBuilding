@@ -18,12 +18,17 @@
 #import "OWMeetingOrderCell.h"
 #import "OWMettingOrderVC.h"
 #import "OWMeeting.h"
+#import "OWRefreshGifHeader.h"
+#import "OWNetworking.h"
+#import "OWMeetOrder.h"
+#import "OWMeetOrderDate.h"
 
 @interface OWMettingDetailVC ()<SDCycleScrollViewDelegate>
 
 @property (nonatomic, weak) SDCycleScrollView *banner;
 @property (nonatomic, strong) NSArray *bannerList;
 @property (nonatomic, strong) NSArray *detailList;
+@property (nonatomic, strong) NSMutableArray *orderlList;
 
 @end
 
@@ -37,6 +42,7 @@
     [self setupTableView];
     [self setupNavi];
     [self setupBanner];
+    [self setupRefresh];
 }
 
 
@@ -66,6 +72,49 @@
     }];
 }
 
+
+- (void)setupRefresh
+{
+    wh_weakSelf(self);
+    self.tableView.mj_header = [OWRefreshGifHeader headerWithRefreshingBlock:^{
+        [weakself dataRequest];
+    }];
+    [self.tableView.mj_header beginRefreshing];
+}
+
+
+- (void)dataRequest
+{
+    NSDictionary *par = @{
+                          @"page":@"1",
+                          @"rows":@"20"
+                          };
+    [OWNetworking HGET:wh_appendingStr(wh_host, @"mobile/meetingRoomOrder/allApply") parameters:par success:^(id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] == 200) {
+            NSDictionary *dataDic = responseObject[@"data"];
+            NSMutableArray *mutableList = [NSMutableArray array];
+            [dataDic wh_each:^(id key, id obj) {
+                NSDictionary *dic = @{
+                                      @"date":key,
+                                      @"orders":obj
+                                      };
+                [mutableList addObject:dic];
+                
+            }];
+            self.orderlList = [OWMeetOrderDate mj_objectArrayWithKeyValuesArray:mutableList];
+            wh_Log(@"---%@",self.orderlList);
+            [self.tableView reloadData];
+        }else{
+            [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
+        }
+        [self.tableView.mj_header endRefreshing];
+    } failure:^(NSError * _Nonnull error) {
+        [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
+        [self.tableView.mj_header endRefreshing];
+    }];
+}
+
+
 /** 设置轮播图 */
 - (void)setupBanner
 {
@@ -77,7 +126,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return self.orderlList.count + 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -86,10 +135,13 @@
         return 5;
     }else if (section == 1){
         return 1;
-    }else if (section == 2){
-        return 1+1;
     }else{
-        return 2+1;
+        if (self.orderlList.count) {
+            OWMeetOrderDate *date = self.orderlList[section - 2];
+            return date.orders.count + 1;
+        }else{
+            return 1;
+        }
     }
 }
 
@@ -130,12 +182,16 @@
         cell.titleDic = @{@"image":@"",@"title":@"预约列表"};
         return cell;
     }else{
+        
+        OWMeetOrderDate *date = self.orderlList[indexPath.section - 2];
+        
         if (indexPath.row == 0){
             OWMeetingDateCell *cell = [OWMeetingDateCell cellWithTableView:tableView];
-            cell.title = @"今天";
+            cell.title = date.date;
             return cell;
         }else{
             OWMeetingOrderCell *cell = [OWMeetingOrderCell cellWithTableView:tableView];
+            cell.meetOrder = date.orders[indexPath.row - 1];
             return cell;
         }
         

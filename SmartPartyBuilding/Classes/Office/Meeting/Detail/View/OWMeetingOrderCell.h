@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class OWCarOrder;
+@class OWMeetOrder;
 @interface OWMeetingOrderCell : UITableViewCell
 
+@property (nonatomic, strong) OWCarOrder *carOrder;
+@property (nonatomic, strong) OWMeetOrder *meetOrder;
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
 @end
