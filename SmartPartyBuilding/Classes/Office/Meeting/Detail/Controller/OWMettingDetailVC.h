@@ -11,4 +11,5 @@
 @interface OWMettingDetailVC : UITableViewController
 
 @property (nonatomic, strong) OWMeeting *meet;
+
 @end

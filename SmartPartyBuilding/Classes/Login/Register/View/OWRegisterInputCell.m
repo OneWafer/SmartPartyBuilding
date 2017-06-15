@@ -68,7 +68,7 @@ static NSString *const identifier = @"OWRegisterInputCell";
     
     // 监听输入
     [self.inputTF.rac_textSignal subscribeNext:^(id x) {
-        self.regist.content = x;
+        weakself.regist.content = x;
     }];
     
     if ([regist.place isEqualToString:@"请输入手机号"]) {
@@ -113,7 +113,7 @@ static NSString *const identifier = @"OWRegisterInputCell";
     if (!_inputTF) {
         UITextField *tf = [[UITextField alloc] init];
         tf.font = [UIFont systemFontOfSize:14.5f];
-        tf.tintColor = wh_RGB(109, 109, 109);
+        tf.tintColor = wh_norFontColor;
         [self.contentView addSubview:tf];
         
         [tf makeConstraints:^(MASConstraintMaker *make) {

@@ -30,7 +30,6 @@
 + (void)HGET:(NSString *)urlString parameters:(NSDictionary *)parms success:(void (^)(id _Nullable))successBlock failure:(void (^)(NSError * _Nonnull))failureBlock
 {
     AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-//    NSDictionary *userInfo = [QTTool getUserInfo];
     
     AFHTTPSessionManager *mgr = [app sharedHTTPSession];
     mgr.requestSerializer.timeoutInterval = 15;
@@ -61,11 +60,10 @@
 + (void)HPOST:(NSString *)urlString parameters:(NSDictionary *)parms success:(void (^)(id _Nullable))successBlock failure:(void (^)(NSError * _Nonnull))failureBlock
 {
     AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-//    NSDictionary *userInfo = [QTTool getUserInfo];
     
     AFHTTPSessionManager *mgr = [app sharedHTTPSession];
     mgr.requestSerializer.timeoutInterval = 15;
-//    [mgr.requestSerializer setValue:userInfo[@"token"] forHTTPHeaderField:@"Authentication"];
+    [mgr.requestSerializer setValue:[OWTool getToken] forHTTPHeaderField:@"Authentication"];
     
     [mgr POST:urlString parameters:parms progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (successBlock) successBlock(responseObject);
@@ -97,11 +95,9 @@
 {
     AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-//    NSDictionary *userInfo = [QTTool getUserInfo];
-    
     AFHTTPSessionManager *mgr = [app sharedHTTPSession];
     mgr.requestSerializer.timeoutInterval = 15;
-//    [mgr.requestSerializer setValue:userInfo[@"token"] forHTTPHeaderField:@"Authentication"];
+    [mgr.requestSerializer setValue:[OWTool getToken] forHTTPHeaderField:@"Authentication"];
     
     
     [mgr POST:urlString parameters:parms constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {

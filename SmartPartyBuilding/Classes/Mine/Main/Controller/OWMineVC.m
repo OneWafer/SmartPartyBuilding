@@ -206,8 +206,8 @@
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setTitle:@"退出登录" forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:12];
-        [btn setBackgroundColor:wh_RGB(217, 16, 21)];
+        btn.titleLabel.font = [UIFont systemFontOfSize:15.0f];
+        [btn setBackgroundColor:wh_themeColor];
         [self.tableView addSubview:btn];
         
         [btn makeConstraints:^(MASConstraintMaker *make) {

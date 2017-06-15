@@ -68,6 +68,7 @@
     wh_weakSelf(self);
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem wh_itemWithType:WHItemTypeRight norTitle:@"预约" font:14 norColor:wh_RGB(9, 131, 216) highColor:[UIColor blueColor] offset:0 actionHandler:^(UIButton *sender) {
         OWCarOrderVC *orderVC = [[OWCarOrderVC alloc] init];
+        orderVC.car = self.car;
         [weakself.navigationController pushViewController:orderVC animated:YES];
     }];
 }

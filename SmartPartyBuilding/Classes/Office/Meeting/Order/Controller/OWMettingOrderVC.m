@@ -6,6 +6,7 @@
 //  Copyright © 2017年 王卫华. All rights reserved.
 //
 
+#import <SVProgressHUD.h>
 #import "OWMettingOrderVC.h"
 #import "OWMeetingDateCell.h"
 #import "OWMtOrderInputCell.h"
@@ -13,11 +14,15 @@
 #import "OWMtAddDeviceCell.h"
 #import "OWMtOrderDateCell.h"
 #import "OWMtDatePickerView.h"
+#import "OWMeeting.h"
+#import "OWNetworking.h"
 
 @interface OWMettingOrderVC ()
 
 @property (nonatomic, weak) OWMtDatePickerView *dateView;
 @property (nonatomic, strong) NSArray *titleList;
+@property (nonatomic, copy) NSString *startTime;
+@property (nonatomic, copy) NSString *endTime;
 
 @end
 
@@ -28,6 +33,8 @@
     
     self.navigationItem.title = @"预约";
     
+    [self dataRequest];
+    [self setupNavi];
     [self setupTableView];
 }
 
@@ -36,28 +43,73 @@
 - (void)setupTableView
 {
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
-    //    self.tableView.backgroundColor = wh_RGB(244, 245, 246);
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
     self.titleList = @[@"时间", @"会议内容", @"会议描述/主要参会人员"];
+    self.startTime = [NSDate wh_getCurrentTimeWithFormat:@"yyyy-MM-dd HH:mm:ss"];
+    self.endTime = [NSDate wh_getCurrentTimeWithFormat:@"yyyy-MM-dd HH:mm:ss"];
 }
 
 - (void)setupNavi
 {
     wh_weakSelf(self);
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem wh_itemWithType:WHItemTypeRight norTitle:@"完成" font:14 norColor:wh_RGB(9, 131, 216) highColor:[UIColor blueColor] offset:0 actionHandler:^(UIButton *sender) {
-        wh_Log(@"---点击了完成");
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem wh_itemWithType:WHItemTypeRight norTitle:@"确认" font:15.0f norColor:wh_RGB(9, 131, 216) highColor:[UIColor blueColor] offset:0 actionHandler:^(UIButton *sender) {
+        [weakself dataSubmit];
+    }];
+}
+
+- (void)dataRequest
+{
+    NSDictionary *par = @{
+                          @"type":@(1),
+                          @"page":@"1",
+                          @"rows":@"20"
+                          };
+    [OWNetworking HGET:wh_appendingStr(wh_host, @"mobile/roomFacility/list") parameters:par success:^(id  _Nullable responseObject) {
+        wh_Log(@"----%@",responseObject);
+        if ([responseObject[@"code"] intValue] == 200) {
+            
+        }else{
+            [SVProgressHUD showInfoWithStatus:responseObject[@"message"]];
+        }
+    } failure:^(NSError * _Nonnull error) {
+        [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
+        wh_Log(@"---%@",error);
+    }];
+}
+
+- (void)dataSubmit
+{
+    UITextView *contentTV = [self.view viewWithTag:1004];
+    UITextView *peopleTV = [self.view viewWithTag:1006];
+    NSDictionary *par = @{
+                          @"roomId":@(self.meet.id),
+                          @"startTime":self.startTime,
+                          @"endTime":self.endTime,
+                          @"content":contentTV.text,
+                          @"people":peopleTV.text,
+                          @"facility":@"电脑一台*4",
+                          @"remark":@""
+                          };
+    wh_Log(@"---%@",par);
+    [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/meetingRoomOrder/apply") parameters:par success:^(id  _Nullable responseObject) {
+        wh_Log(@"----%@",responseObject);
+        if ([responseObject[@"code"] intValue] == 200) {
+            [SVProgressHUD showSuccessWithStatus:@"预约成功!"];
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            [SVProgressHUD showInfoWithStatus:responseObject[@"message"]];
+        }
+    } failure:^(NSError * _Nonnull error) {
+        [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
+        wh_Log(@"---%@",error);
     }];
 }
 
 
 #pragma mark - ---------- TableViewDataSource ----------
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//    return 0;
-//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -71,7 +123,7 @@
     }else if (indexPath.row == 3 || indexPath.row == 5){
         return 100.0f;
     }else if (indexPath.row == 6 || indexPath.row == 7){
-        return 60.0f;
+        return 70.0f;
     }else{
         return 50.0f;
     }
@@ -104,12 +156,14 @@
     }else if (indexPath.row == 3 || indexPath.row == 5){
         OWMtOrderInputCell *cell = [OWMtOrderInputCell cellWithTableView:tableView];
         cell.placeStr = (indexPath.row == 3) ? @"输入内容" : @"描述";
+        cell.inputView.tag = indexPath.row + 1001;
         return cell;
     }else if (indexPath.row == 6){
         OWMtSpecialNeedCell *cell = [OWMtSpecialNeedCell cellWithTableView:tableView];
         return cell;
     }else{
         OWMtAddDeviceCell *cell = [OWMtAddDeviceCell cellWithTableView:tableView];
+        cell.title = @"添加设施";
         return cell;
     }
     
@@ -121,8 +175,10 @@
     weakself.dateView.blcok = ^(NSDate *date){
         if (tag == 11) {
             cell.startLabel.text = [date wh_getDateStringWithFormat:@"yyyy-MM-dd HH:mm"];
+            self.startTime = [date wh_getDateStringWithFormat:@"yyyy-MM-dd HH:mm:ss"];
         }else{
             cell.endLabel.text = [date wh_getDateStringWithFormat:@"yyyy-MM-dd HH:mm"];
+            self.endTime = [date wh_getDateStringWithFormat:@"yyyy-MM-dd HH:mm:ss"];
         }
     };
     [weakself.dateView fadeIn];

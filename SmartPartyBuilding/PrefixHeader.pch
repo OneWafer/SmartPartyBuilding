@@ -19,7 +19,7 @@
 #define MAS_SHORTHAND_GLOBALS
 
 /** 主题色 */
-#define wh_themeColor wh_RGB(0, 0, 0)
+#define wh_themeColor wh_RGB(217, 16, 21)
 
 /** 主要字体颜色 */
 #define wh_norFontColor wh_RGB(43, 43, 43)

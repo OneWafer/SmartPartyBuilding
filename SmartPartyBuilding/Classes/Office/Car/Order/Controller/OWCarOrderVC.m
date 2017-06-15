@@ -7,17 +7,22 @@
 //
 
 #import <Masonry.h>
+#import <SVProgressHUD.h>
 #import "OWCarOrderVC.h"
 #import "OWMeetingDateCell.h"
 #import "OWMtOrderDateCell.h"
 #import "OWMtOrderInputCell.h"
 #import "OWMtAddDeviceCell.h"
 #import "OWMtDatePickerView.h"
+#import "OWNetworking.h"
+#import "OWCar.h"
 
 @interface OWCarOrderVC ()
 
 @property (nonatomic, weak) OWMtDatePickerView *dateView;
 @property (nonatomic, strong) NSArray *titleList;
+@property (nonatomic, copy) NSString *startTime;
+@property (nonatomic, copy) NSString *endTime;
 
 @end
 
@@ -28,6 +33,7 @@
     
     self.navigationItem.title = @"预约";
     
+    [self setupNavi];
     [self setupTableView];
 }
 
@@ -40,23 +46,47 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.titleList = @[@"时间", @"车辆用途", @"随车人员"];
+    self.startTime = [NSDate wh_getCurrentTimeWithFormat:@"yyyy-MM-dd HH:mm:ss"];
+    self.endTime = [NSDate wh_getCurrentTimeWithFormat:@"yyyy-MM-dd HH:mm:ss"];
 }
 
 - (void)setupNavi
 {
     wh_weakSelf(self);
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem wh_itemWithType:WHItemTypeRight norTitle:@"完成" font:14 norColor:wh_RGB(9, 131, 216) highColor:[UIColor blueColor] offset:0 actionHandler:^(UIButton *sender) {
-        wh_Log(@"---点击了完成");
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem wh_itemWithType:WHItemTypeRight norTitle:@"确认" font:15.0f norColor:wh_RGB(9, 131, 216) highColor:[UIColor blueColor] offset:0 actionHandler:^(UIButton *sender) {
+        [weakself dataSubmit];
     }];
 }
 
+- (void)dataSubmit
+{
+    UITextView *purposeTV = [self.view viewWithTag:1004];
+    UITextView *peopleTV = [self.view viewWithTag:1006];
+    NSDictionary *par = @{
+                          @"carId":@(self.car.id),
+                          @"startTime":self.startTime,
+                          @"endTime":self.endTime,
+                          @"purpose":purposeTV.text,
+                          @"people":peopleTV.text,
+                          @"articles":@"电脑一台*4",
+                          @"remark":@""
+                          };
+    wh_Log(@"---%@",par);
+    [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/carOrder/apply") parameters:par success:^(id  _Nullable responseObject) {
+        wh_Log(@"----%@",responseObject);
+        if ([responseObject[@"code"] intValue] == 200) {
+            [SVProgressHUD showSuccessWithStatus:@"预约成功!"];
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            [SVProgressHUD showInfoWithStatus:responseObject[@"message"]];
+        }
+    } failure:^(NSError * _Nonnull error) {
+        [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
+        wh_Log(@"---%@",error);
+    }];
+}
 
 #pragma mark - ---------- TableViewDataSource ----------
-
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//    return 0;
-//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -103,6 +133,7 @@
     }else if (indexPath.row == 3 || indexPath.row == 5){
         OWMtOrderInputCell *cell = [OWMtOrderInputCell cellWithTableView:tableView];
         cell.placeStr = (indexPath.row == 3) ? @"输入内容" : @"描述";
+        cell.inputView.tag = indexPath.row + 1001;
         return cell;
     }else{
         OWMtAddDeviceCell *cell = [OWMtAddDeviceCell cellWithTableView:tableView];
@@ -119,8 +150,10 @@
     weakself.dateView.blcok = ^(NSDate *date){
         if (tag == 11) {
             cell.startLabel.text = [date wh_getDateStringWithFormat:@"yyyy-MM-dd HH:mm"];
+            self.startTime = [date wh_getDateStringWithFormat:@"yyyy-MM-dd HH:mm:ss"];
         }else{
             cell.endLabel.text = [date wh_getDateStringWithFormat:@"yyyy-MM-dd HH:mm"];
+            self.endTime = [date wh_getDateStringWithFormat:@"yyyy-MM-dd HH:mm:ss"];
         }
     };
     [weakself.dateView fadeIn];

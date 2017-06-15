@@ -10,6 +10,9 @@
 #import "OWDiscoveryPhotoCell.h"
 #import "OWDiscoveryOptionCell.h"
 #import "OWMomentsVC.h"
+#import "OWDisDifPartyVC.h"
+#import "OWDisOldPartyVC.h"
+#import "OWDisVolVC.h"
 
 @interface OWDiscoveryVC ()
 
@@ -90,8 +93,24 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    OWMomentsVC *momentsVC = [[OWMomentsVC alloc] init];
-    [self.navigationController pushViewController:momentsVC animated:YES];
+    if (indexPath.section == 0) {
+        OWMomentsVC *momentsVC = [[OWMomentsVC alloc] init];
+        [self.navigationController pushViewController:momentsVC animated:YES];
+    }else if (indexPath.section == 1){
+        if (indexPath.row == 0) {
+            OWDisDifPartyVC *difPartyVC = [[OWDisDifPartyVC alloc] init];
+            [self.navigationController pushViewController:difPartyVC animated:YES];
+        }else{
+            OWDisOldPartyVC *oldPartyVC = [[OWDisOldPartyVC alloc] init];
+            [self.navigationController pushViewController:oldPartyVC animated:YES];
+        }
+    }else if (indexPath.section == 2){
+        OWDisVolVC *volVC = [[OWDisVolVC alloc] init];
+        [self.navigationController pushViewController:volVC animated:YES];
+    }else{
+        
+    }
+    
 }
 
 @end

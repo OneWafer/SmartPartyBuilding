@@ -115,8 +115,6 @@ static NSString *const identifier = @"OWRegisterPickerCell";
         [btn setTitle:@"请选择组织支部" forState:UIControlStateNormal];
         [btn setTitleColor:wh_norFontColor forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont systemFontOfSize:14.5f];
-        [btn setImage:wh_imageNamed(@"login_down") forState:UIControlStateNormal];
-        [btn wh_setImagePosition:WHImagePositionRight spacing:10];
         [btn setBackgroundColor:[UIColor whiteColor]];
         btn.layer.borderColor = wh_RGB(169, 169, 169).CGColor;
         btn.layer.borderWidth = 0.5;
@@ -126,6 +124,14 @@ static NSString *const identifier = @"OWRegisterPickerCell";
             make.left.equalTo(self.sexBtn);
             make.top.equalTo(self.dutyBtn.bottom).offset(15);
         }];
+        
+        UIImageView *imgView = [[UIImageView alloc] initWithImage:wh_imageNamed(@"login_arrow_right")];
+        [self.contentView addSubview:imgView];
+        [imgView makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(btn);
+            make.right.equalTo(btn).offset(-10);
+        }];
+        
         _organizeBtn = btn;
     }
     return _organizeBtn;

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class OWCar;
 
 @interface OWCarOrderVC : UITableViewController
+
+@property (nonatomic, strong) OWCar *car;
 
 @end

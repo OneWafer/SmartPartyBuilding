@@ -154,7 +154,7 @@
         tf.placeholder = @"请输入手机号";
 //        tf.keyboardType = UIKeyboardTypeNumberPad;
         tf.font = [UIFont systemFontOfSize:14.5f];
-        tf.tintColor = wh_RGB(109, 109, 109);
+        tf.tintColor = wh_norFontColor;
         [self.inputView addSubview:tf];
         
         [tf makeConstraints:^(MASConstraintMaker *make) {
@@ -194,7 +194,7 @@
         tf.placeholder = @"密码";
         tf.keyboardType = UIKeyboardTypeASCIICapable;
         tf.font = [UIFont systemFontOfSize:14.5f];
-        tf.tintColor = wh_RGB(109, 109, 109);
+        tf.tintColor = wh_norFontColor;
         [self.inputView addSubview:tf];
         
         [tf makeConstraints:^(MASConstraintMaker *make) {
@@ -244,7 +244,7 @@
     if (!_registerBtn) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setTitle:@"立即注册" forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:14.5f];
+        btn.titleLabel.font = [UIFont systemFontOfSize:15.0f];
         [btn setTitleColor:wh_RGB(29, 184, 235) forState:UIControlStateNormal];
         [self.inputView addSubview:btn];
         

@@ -1,29 +1,30 @@
 //
-//  OWMtOrderInputCell.m
+//  OWDisInputViewCell.m
 //  SmartPartyBuilding
 //
-//  Created by 王卫华 on 2017/5/21.
+//  Created by 王卫华 on 2017/6/15.
 //  Copyright © 2017年 王卫华. All rights reserved.
 //
 
 #import <Masonry.h>
 #import <ReactiveCocoa.h>
-#import "OWMtOrderInputCell.h"
+#import "OWDisInputViewCell.h"
+#import "OWDisInput.h"
 
-@interface OWMtOrderInputCell ()
+@interface OWDisInputViewCell ()
 
 @property (nonatomic, weak) UILabel *placeLabel;
-
+@property (nonatomic, weak) UIView *lineView;
 @end
 
-@implementation OWMtOrderInputCell
+@implementation OWDisInputViewCell
 
-static NSString *const identifier = @"OWMtOrderInputCell";
+static NSString *const identifier = @"OWDisInputViewCell";
 + (instancetype)cellWithTableView:(UITableView *)tableView
 {
-    OWMtOrderInputCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    OWDisInputViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
-        cell = [[OWMtOrderInputCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[OWDisInputViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return cell;
@@ -40,22 +41,22 @@ static NSString *const identifier = @"OWMtOrderInputCell";
     
     if (self)
     {
-        self.backgroundColor = [UIColor clearColor];
+        self.lineView.backgroundColor = wh_lineColor;
     }
     return self;
 }
 
-- (void)setPlaceStr:(NSString *)placeStr
+
+- (void)setInput:(OWDisInput *)input
 {
-    _placeStr = placeStr;
-    self.placeLabel.text = placeStr;
+    _input = input;
+    self.placeLabel.text = input.place;
     wh_weakSelf(self);
     [self.inputView.rac_textSignal subscribeNext:^(NSString *x) {
+        weakself.input.content = x;
         weakself.placeLabel.hidden = x.length;
     }];
 }
-
-
 
 #pragma mark - ---------- Lazy ----------
 
@@ -64,13 +65,12 @@ static NSString *const identifier = @"OWMtOrderInputCell";
 {
     if (!_inputView) {
         UITextView *tv = [[UITextView alloc] init];
-        tv.backgroundColor = [UIColor whiteColor];
-        tv.font = [UIFont systemFontOfSize:12.0f];
+        tv.font = [UIFont systemFontOfSize:14.5f];
         [self.contentView addSubview:tv];
         
         [tv makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self).offset(15);
-            make.right.equalTo(self).offset(-15);
+            make.left.equalTo(self).offset(12);
+            make.right.equalTo(self).offset(-12);
             make.top.bottom.equalTo(self);
         }];
         _inputView = tv;
@@ -82,8 +82,8 @@ static NSString *const identifier = @"OWMtOrderInputCell";
 {
     if (!_placeLabel) {
         UILabel *label = [[UILabel alloc] init];
-        label.textColor = wh_RGB(169, 169, 169);
-        label.font = [UIFont systemFontOfSize:12.0f];
+        label.textColor = wh_RGB(199, 199, 199);
+        label.font = [UIFont systemFontOfSize:14.5f];
         [self.inputView addSubview:label];
         
         [label makeConstraints:^(MASConstraintMaker *make) {
@@ -94,5 +94,21 @@ static NSString *const identifier = @"OWMtOrderInputCell";
     }
     return _placeLabel;
 }
+
+- (UIView *)lineView
+{
+    if (!_lineView) {
+        UIView *view = [[UIView alloc] init];
+        [self.contentView addSubview:view];
+        
+        [view makeConstraints:^(MASConstraintMaker *make) {
+            make.left.bottom.right.equalTo(self);
+            make.height.equalTo(0.5);
+        }];
+        _lineView = view;
+    }
+    return _lineView;
+}
+
 
 @end

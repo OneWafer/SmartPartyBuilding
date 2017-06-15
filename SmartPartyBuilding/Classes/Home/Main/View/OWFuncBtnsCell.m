@@ -46,7 +46,7 @@ static NSString *const identifier = @"OWFuncBtnsCell";
     if (self)
     {
         self.font = 12.0f;
-        self.titleList = @[@"通知公告",@"党员学习",@"组织活动",@"优秀党员",@"互动咨询",@"公文审批",@"投票选举",@"专题讨论"];
+        self.titleList = @[@"通知公告",@"党费缴纳",@"组织活动",@"优秀党员",@"互动咨询",@"志愿大厅",@"问卷调查",@"专题讨论"];
 //        self.placeImgList = @[@"home_func_message", @"home_func_study", @"home_func_activity", @"home_func_member", @"home_func_consult",@"home_func_approve", @"home_func_election", @"home_func_office"];
     }
     return self;
