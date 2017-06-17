@@ -1,13 +1,13 @@
 //
-//  OWEdgeLabel.h
+//  OWQuestionnaireVC.h
 //  SmartPartyBuilding
 //
-//  Created by 王卫华 on 2017/6/10.
+//  Created by 王卫华 on 2017/6/16.
 //  Copyright © 2017年 王卫华. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface OWEdgeLabel : UILabel
+@interface OWQuestionnaireVC : UITableViewController
 
 @end

@@ -78,7 +78,7 @@
     [self addSubview:contentView];
     self.contentView = contentView;
     
-    self.dateView=[[UIView alloc] initWithFrame:CGRectMake(W(30), 64, wh_screenWidth-W(60), H(550))];
+    self.dateView=[[UIView alloc] initWithFrame:CGRectMake(W(30), H(240), wh_screenWidth-W(60), H(550))];
     self.dateView.backgroundColor=[UIColor whiteColor];
     self.dateView.layer.cornerRadius=8;
     [self.dateView.layer setMasksToBounds:YES];

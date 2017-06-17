@@ -192,7 +192,7 @@
     if (!_dateView) {
         OWMtDatePickerView *view = [[OWMtDatePickerView alloc] initWithFrame:[UIScreen mainScreen].bounds];
         view.chooseTimeLabel.text = @"请选择时间";
-        [self.view addSubview:view];
+        [self.view.window addSubview:view];
         _dateView = view;
     }
     return _dateView;

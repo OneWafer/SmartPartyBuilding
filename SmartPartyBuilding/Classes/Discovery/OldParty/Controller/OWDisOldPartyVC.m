@@ -14,6 +14,8 @@
 #import "OWDisInputViewCell.h"
 #import "OWDisInput.h"
 #import "OWNetworking.h"
+#import "OWPicker.h"
+#import "OWTool.h"
 
 @interface OWDisOldPartyVC ()
 
@@ -40,8 +42,9 @@
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.separatorStyle = NO;
     
+    NSDictionary *userInfo = [OWTool getUserInfo];
     NSArray *arr = @[
-                     @{@"place":@"党员姓名", @"content":@""},
+                     @{@"place":@"党员姓名", @"content":userInfo[@"staffName"] ?: @""},
                      @{@"place":@"出生年月", @"content":@""},
                      @{@"place":@"入党日期", @"content":@""},
                      @{@"place":@"优秀事迹", @"content":@""},
@@ -137,7 +140,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    wh_Log(@"点击了----%ld",(long)indexPath.row);
+    if (indexPath.row == 1 || indexPath.row == 2) {
+        OWPicker *picker = [OWPicker pickDateForView:self.view.window initialDate:[NSDate date] selectedBlock:^BOOL(BOOL isCancel, NSDate *date) {
+            if (isCancel) return YES;
+            OWDisInputCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+            cell.inputTF.text = [date wh_getDateStringWithFormat:@"yyyy-MM-dd"];
+            cell.input.content = [date wh_getDateStringWithFormat:@"yyyy-MM-dd"];
+            return YES;
+        }];
+        [picker show:YES];
+    }
 }
 
 

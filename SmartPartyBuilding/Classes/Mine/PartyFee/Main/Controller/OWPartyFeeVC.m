@@ -8,12 +8,12 @@
 
 #import <Masonry.h>
 #import "OWPartyFeeVC.h"
-#import "OWEdgeLabel.h"
+#import "OWPartyFeeDescCell.h"
+#import "OWPartyFeeConfCell.h"
 
-@interface OWPartyFeeVC ()<UITextViewDelegate>
+@interface OWPartyFeeVC ()
 
-@property (nonatomic, weak) OWEdgeLabel *descLabel;
-@property (nonatomic, weak) UIButton *sltBtn;
+@property (nonatomic, weak) UIButton *submitBtn;
 
 @end
 
@@ -22,73 +22,92 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"党费缴纳";
-    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    self.automaticallyAdjustsScrollViewInsets=NO;
     
-    [self setupNavi];
-    self.descLabel.text = @"党员目前缴费解释:\n如果您是开发区支部党员，目前党内职务为干事，月缴党费为50.0元。可以在一下列表选择党费缴纳月份，目前系统支持最大6个月，最小1个月。您一次多缴纳数月，则在后续党费费缴纳过程中不会受到系统推送消息和短消息，在您多缴纳月份扣除结束后，您将在最后一次需缴纳前收到短信及app内消息。祝您生活愉快，党感谢您对革命事业的支持!";
+    [self setupTableView];
+    [self setupSubmitBtn];
     
-    [self.sltBtn wh_addActionHandler:^(UIButton *sender) {
-        wh_Log(@"---点击了选择月份");
+}
+
+/** 设置tableview */
+- (void)setupTableView
+{
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
+    self.tableView.showsVerticalScrollIndicator = NO;
+    self.tableView.separatorStyle = NO;
+    
+}
+
+- (void)setupSubmitBtn
+{
+    wh_weakSelf(self);
+    [self.submitBtn wh_addActionHandler:^(UIButton *sender) {
+        [weakself dataSubmit];
     }];
 }
 
-- (void)setupNavi
+- (void)dataSubmit
 {
-    wh_weakSelf(self);
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem wh_itemWithType:WHItemTypeRight norTitle:@"缴费" font:14.5f norColor:wh_RGB(9, 131, 216) highColor:[UIColor blueColor] offset:0 actionHandler:^(UIButton *sender) {
-        wh_Log(@"---点击了缴费");
-    }];
+    
+}
+
+
+#pragma mark - ---------- TableViewDataSource ----------
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 2;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 10.0f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return CGFLOAT_MIN;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return indexPath.row ? 70.0f : 250.0f;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        OWPartyFeeDescCell *cell = [OWPartyFeeDescCell cellWithTableView:tableView];
+        return cell;
+    }else{
+        OWPartyFeeConfCell *cell = [OWPartyFeeConfCell cellWithTableView:tableView];
+        return cell;
+    }
 }
 
 
 #pragma mark - ---------- Lazy ----------
 
-- (UILabel *)descLabel
+- (UIButton *)submitBtn
 {
-    if (!_descLabel) {
-        OWEdgeLabel *label = [[OWEdgeLabel alloc] init];
-        label.backgroundColor = [UIColor whiteColor];
-        label.font = [UIFont systemFontOfSize:14.5f];
-        label.layer.borderColor = wh_lineColor.CGColor;
-        label.numberOfLines = 0;
-        label.layer.borderWidth = 0.5;
-        [self.view addSubview:label];
-        
-        [label makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.view).offset(15);
-            make.top.equalTo(self.view).offset(79);
-            make.right.equalTo(self.view).offset(-15);
-        }];
-        _descLabel = label;
-    }
-    return _descLabel;
-}
-
-
-- (UIButton *)sltBtn
-{
-    if (!_sltBtn) {
+    if (!_submitBtn) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setBackgroundColor:[UIColor whiteColor]];
-        [btn setTitle:@"请选择缴费月数" forState:UIControlStateNormal];
-        [btn setTitleColor:wh_norFontColor forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:13.0f];
-        [btn setImage:wh_imageNamed(@"office_down") forState:UIControlStateNormal];
-        [self.view addSubview:btn];
+        [btn setTitle:@"缴费" forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        btn.titleLabel.font = [UIFont systemFontOfSize:15.0f];
+        [btn setBackgroundColor:wh_themeColor];
+        [self.tableView addSubview:btn];
         
         [btn makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(self.descLabel);
-            make.top.equalTo(self.descLabel.bottom).offset(10);
+            make.centerX.equalTo(self.view);
+            make.top.equalTo(self.tableView).offset(400);
+            make.width.equalTo(self.view).multipliedBy(0.8);
             make.height.equalTo(45);
         }];
-        
-        btn.layer.borderWidth = 0.5;
-        btn.layer.borderColor = wh_lineColor.CGColor;
-        [btn wh_setImagePosition:WHImagePositionRight spacing:5];
-        _sltBtn = btn;
+        btn.layer.cornerRadius = 4;
+        _submitBtn = btn;
     }
-    return _sltBtn;
+    return _submitBtn;
 }
 
 @end

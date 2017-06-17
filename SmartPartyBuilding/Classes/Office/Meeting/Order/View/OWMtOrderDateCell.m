@@ -84,7 +84,7 @@ static NSString *const identifier = @"OWMtOrderDateCell";
         titleLabel.font = [UIFont systemFontOfSize:14.0f];
         [view addSubview:titleLabel];
         [titleLabel makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(view).offset(15);
+            make.centerX.equalTo(view);
             make.centerY.equalTo(view).multipliedBy(0.6);
         }];
         _startView = view;
@@ -101,7 +101,7 @@ static NSString *const identifier = @"OWMtOrderDateCell";
         [self.startView addSubview:label];
         
         [label makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.startView).offset(15);
+            make.centerX.equalTo(self.startView);
             make.centerY.equalTo(self.startView).multipliedBy(1.4);
         }];
         _startLabel = label;
@@ -130,7 +130,7 @@ static NSString *const identifier = @"OWMtOrderDateCell";
         titleLabel.font = [UIFont systemFontOfSize:14.0f];
         [view addSubview:titleLabel];
         [titleLabel makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(view).offset(15);
+            make.centerX.equalTo(view);
             make.centerY.equalTo(view).multipliedBy(0.6);
         }];
         _endView = view;
@@ -148,7 +148,7 @@ static NSString *const identifier = @"OWMtOrderDateCell";
         [self.endView addSubview:label];
         
         [label makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.endView).offset(15);
+            make.centerX.equalTo(self.endView);
             make.centerY.equalTo(self.endView).multipliedBy(1.4);
         }];
         _endLabel = label;

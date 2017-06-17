@@ -53,13 +53,13 @@ static NSString *const identifier = @"OWDisInputCell";
     _input = input;
     wh_weakSelf(self);
     self.inputTF.placeholder = input.place;
-    
+    self.inputTF.text = input.content;
     // 监听输入
     [self.inputTF.rac_textSignal subscribeNext:^(id x) {
         weakself.input.content = x;
     }];
     
-    self.inputTF.userInteractionEnabled = !([input.place isEqualToString:@"出生年月"] || [input.place isEqualToString:@"入党日期"] || [input.place isEqualToString:@"困难类型"] || [input.place isEqualToString:@"文化程度"] || [input.place isEqualToString:@"可提供服务时间"]);
+    self.inputTF.userInteractionEnabled = !([input.place isEqualToString:@"出生年月"] || [input.place isEqualToString:@"入党日期"] || [input.place isEqualToString:@"困难类型"] || [input.place isEqualToString:@"享受低保"] || [input.place isEqualToString:@"享受抚恤"] || [input.place isEqualToString:@"文化程度"] || [input.place isEqualToString:@"可提供服务时间"]);
     
 }
 

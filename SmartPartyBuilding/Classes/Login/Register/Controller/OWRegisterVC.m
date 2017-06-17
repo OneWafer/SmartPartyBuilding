@@ -14,10 +14,12 @@
 #import "OWRegisterPickerCell.h"
 #import "OWRegister.h"
 #import "OWNetworking.h"
+#import "OWBranch.h"
 
 @interface OWRegisterVC ()
 
 @property (nonatomic, strong) NSArray *registerList;
+@property (nonatomic, strong) NSArray *branchList;
 @property (nonatomic, copy) NSString *verCode;
 
 @end
@@ -69,9 +71,9 @@
 - (void)dataRequest
 {
     [OWNetworking GET:wh_appendingStr(wh_host, @"mobile/branchInfo/listAll") parameters:nil success:^(id  _Nullable responseObject) {
-        wh_Log(@"---%@",responseObject);
         if ([responseObject[@"code"] intValue] == 200) {
-            wh_Log(@"---%@",responseObject[@"data"]);
+            self.branchList = [OWBranch mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+            wh_Log(@"---%d",[self.branchList[0] id]);
         }else{
             [SVProgressHUD showInfoWithStatus:responseObject[@"message"]];
         }
@@ -125,7 +127,7 @@
                                       @"identityId":r6.content,
                                       @"sex":@(0),
                                       @"partyPosition":@"阿拉啦",
-                                      @"partyBranchId":@"南京支部"
+                                      @"partyBranchId":@(1)
                                       };
                 wh_Log(@"---%@",par);
                 [OWNetworking POST:wh_appendingStr(wh_host, @"mobile/register") parameters:par success:^(id  _Nullable responseObject) {

@@ -112,7 +112,7 @@
         
         [imgView makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.view);
-            make.centerY.equalTo(self.view).multipliedBy(0.45);
+            make.centerY.equalTo(self.view).multipliedBy(0.43);
         }];
         _logoImgView = imgView;
     }
@@ -129,7 +129,7 @@
         
         [view makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.view);
-            make.centerY.equalTo(self.view).multipliedBy(1.1);
+            make.centerY.equalTo(self.view).multipliedBy(1.12);
             make.width.equalTo(self.view).multipliedBy(0.75);
             make.height.equalTo(250);
         }];
@@ -152,7 +152,7 @@
         
         UITextField *tf = [[UITextField alloc] init];
         tf.placeholder = @"请输入手机号";
-//        tf.keyboardType = UIKeyboardTypeNumberPad;
+        tf.keyboardType = UIKeyboardTypeNumberPad;
         tf.font = [UIFont systemFontOfSize:14.5f];
         tf.tintColor = wh_norFontColor;
         [self.inputView addSubview:tf];

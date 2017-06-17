@@ -8,6 +8,7 @@
 
 #import <Masonry.h>
 #import <LCActionSheet.h>
+#import <SVProgressHUD.h>
 #import "OWMineVC.h"
 #import "OWUserInfoVC.h"
 #import "OWSettingVC.h"
@@ -16,6 +17,7 @@
 #import "AppDelegate.h"
 #import "OWTool.h"
 #import "OWPartyFeeVC.h"
+#import "OWNetworking.h"
 
 @interface OWMineVC ()<LCActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -77,7 +79,8 @@
                         @{@"image" : @"mine_collection", @"title" : @"收藏"},
                         @{@"image" : @"mine_comment", @"title" : @"评论"},
                         @{@"image" : @"mine_release", @"title" : @"发布"},
-                        @{@"image" : @"mine_pay", @"title" : @"党费缴纳"}
+                        @{@"image" : @"mine_pay", @"title" : @"党费缴纳"},
+                        @{@"image" : @"mine_signIn", @"title" : @"签到"}
                         ];
 }
 
@@ -125,6 +128,24 @@
     [actionSheet show];
 }
 
+- (void)signIn
+{
+    [SVProgressHUD showWithStatus:@"正在打卡..."];
+    [OWNetworking HGET:wh_appendingStr(wh_host, @"mobile/staff/userSign") parameters:nil success:^(id  _Nullable responseObject) {
+        wh_Log(@"---%@",responseObject);
+        if ([responseObject[@"code"] intValue] == 200) {
+            
+            [SVProgressHUD showSuccessWithStatus:@"签到成功!"];
+        }else{
+            [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
+        }
+    } failure:^(NSError * _Nonnull error) {
+        [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
+        wh_Log(@"---%@",error);
+    }];
+}
+
+
 #pragma mark - ----------UIImagePickerControllerDelegate----------
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
@@ -146,7 +167,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section? 1 : 3;
+    return section? 2 : 3;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -181,8 +202,13 @@
     if (indexPath.section == 0) {
         
     }else{
-        OWPartyFeeVC *pfVC = [[OWPartyFeeVC alloc] init];
-        [self.navigationController pushViewController:pfVC animated:YES];
+        if (indexPath.row == 0) {
+            OWPartyFeeVC *pfVC = [[OWPartyFeeVC alloc] init];
+            [self.navigationController pushViewController:pfVC animated:YES];
+        }else{
+            [self signIn];
+        }
+        
     }
 }
 
@@ -212,7 +238,7 @@
         
         [btn makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.view);
-            make.top.equalTo(self.tableView).offset(385);
+            make.top.equalTo(self.tableView).offset(430);
             make.width.equalTo(self.view).multipliedBy(0.8);
             make.height.equalTo(45);
         }];

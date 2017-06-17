@@ -21,6 +21,8 @@
 #import "OWModuleCell.h"
 #import "OWHomeNoticeVC.h"
 #import "OWHomeApprovalVC.h"
+#import "OWExcPartyMemberVC.h"
+#import "OWQuestionnaireVC.h"
 #import "OWScanVC.h"
 #import "OWBanner.h"
 #import "OWNews.h"
@@ -345,9 +347,15 @@
     if (tag == 1001) {
         OWHomeNoticeVC *noticeVC = [[OWHomeNoticeVC alloc] init];
         [weakself.navigationController pushViewController:noticeVC animated:YES];
+    }else if (tag == 1004){
+        OWExcPartyMemberVC *excPartyMember = [[OWExcPartyMemberVC alloc] init];
+        [weakself.navigationController pushViewController:excPartyMember animated:YES];
     }else if (tag == 1006){
         OWHomeApprovalVC *approval = [[OWHomeApprovalVC alloc] init];
         [weakself.navigationController pushViewController:approval animated:YES];
+    }else if (tag == 1007){
+        OWQuestionnaireVC *questVC = [[OWQuestionnaireVC alloc] init];
+        [weakself.navigationController pushViewController:questVC animated:YES];
     }else if (tag == 1008){
         
     }
