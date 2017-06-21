@@ -150,6 +150,8 @@
         }];
         [picker show:YES];
     }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 
@@ -161,7 +163,7 @@
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setTitle:@"提交申请" forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:15.0f];
+        btn.titleLabel.font = [UIFont systemFontOfSize:15.5f];
         [btn setBackgroundColor:wh_themeColor];
         [self.tableView addSubview:btn];
         

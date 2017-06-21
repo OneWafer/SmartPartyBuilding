@@ -17,10 +17,10 @@
 /** 内容 */
 @property (nonatomic, copy) NSString *content;
 /** 性别 */
-@property (nonatomic, copy) NSString *sex;
+@property (nonatomic, assign) int sex;
 /** 职务 */
 @property (nonatomic, copy) NSString *duty;
 /** 组织支部 */
-@property (nonatomic, copy) NSString *organize;
+@property (nonatomic, assign) int organize;
 
 @end

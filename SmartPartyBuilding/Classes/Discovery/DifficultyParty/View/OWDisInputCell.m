@@ -26,7 +26,6 @@ static NSString *const identifier = @"OWDisInputCell";
     OWDisInputCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
         cell = [[OWDisInputCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return cell;
 }

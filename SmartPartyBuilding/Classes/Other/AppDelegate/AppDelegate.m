@@ -34,6 +34,9 @@
     [OWTool getUserInfo] ? [self tabBar] : [self login];
     [self.window makeKeyAndVisible];
     [OWTool SVProgressHUD];
+    
+    /** 延长启动页停留时间 */
+    [NSThread sleepForTimeInterval:2];
     return YES;
 }
 

@@ -27,6 +27,7 @@
 		530F85CB1EE5A09000254B60 /* OWCarOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 530F85CA1EE5A09000254B60 /* OWCarOrderVC.m */; };
 		530F85CE1EE5A83000254B60 /* OWMtOrderDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 530F85CD1EE5A83000254B60 /* OWMtOrderDateCell.m */; };
 		530F85D11EE5AEB500254B60 /* OWMtDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 530F85D01EE5AEB500254B60 /* OWMtDatePickerView.m */; };
+		5314D9181EF7F52F00946D67 /* OWChineseSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 5314D9171EF7F52F00946D67 /* OWChineseSort.m */; };
 		53193C5B1EC1F3AB00B98BA0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 53193C5A1EC1F3AB00B98BA0 /* main.m */; };
 		53193C661EC1F3AB00B98BA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53193C651EC1F3AB00B98BA0 /* Assets.xcassets */; };
 		53193C741EC1F3AB00B98BA0 /* SmartPartyBuildingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 53193C731EC1F3AB00B98BA0 /* SmartPartyBuildingTests.m */; };
@@ -64,6 +65,13 @@
 		53D57D881EE3A85F008644D7 /* OWHomeHeadlineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D57D871EE3A85F008644D7 /* OWHomeHeadlineCell.m */; };
 		53D57D8B1EE3C56F008644D7 /* OWHomeNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D57D8A1EE3C56F008644D7 /* OWHomeNewsCell.m */; };
 		53D57D8E1EE3D10A008644D7 /* OWHomeNoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D57D8D1EE3D10A008644D7 /* OWHomeNoticeCell.m */; };
+		53D7EC811EFAA89D004BB7D5 /* OWItemDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D7EC801EFAA89D004BB7D5 /* OWItemDetailsVC.m */; };
+		53D7EC841EFAA8E2004BB7D5 /* OWItemHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D7EC831EFAA8E2004BB7D5 /* OWItemHeaderCell.m */; };
+		53D7EC871EFAA8F5004BB7D5 /* OWItemTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D7EC861EFAA8F5004BB7D5 /* OWItemTitleCell.m */; };
+		53D7EC8A1EFAA904004BB7D5 /* OWItemPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D7EC891EFAA904004BB7D5 /* OWItemPhotoCell.m */; };
+		53D7EC8D1EFAB721004BB7D5 /* OWStoreOrderDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D7EC8C1EFAB721004BB7D5 /* OWStoreOrderDetailVC.m */; };
+		53D7EC901EFABC4A004BB7D5 /* OWOrderDetailInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D7EC8F1EFABC4A004BB7D5 /* OWOrderDetailInfoCell.m */; };
+		53D7EC931EFABC6E004BB7D5 /* OWOrderDetailPriceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D7EC921EFABC6E004BB7D5 /* OWOrderDetailPriceCell.m */; };
 		53DAA7AF1EC9D1BA00A3F8AE /* OWMineOptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DAA7AE1EC9D1BA00A3F8AE /* OWMineOptionCell.m */; };
 		53DAA7B21EC9DA2B00A3F8AE /* OWMineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DAA7B11EC9DA2B00A3F8AE /* OWMineHeaderView.m */; };
 		53E076CE1ECC689200A06AE0 /* MLLabel+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E076CD1ECC689200A06AE0 /* MLLabel+Size.m */; };
@@ -100,6 +108,18 @@
 		53EBF1851EF4B8A40012CD3D /* OWQuestionnaireVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EBF1821EF4B8A40012CD3D /* OWQuestionnaireVC.m */; };
 		53EBF1881EF4CC890012CD3D /* OWPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EBF1871EF4CC890012CD3D /* OWPicker.m */; };
 		53EBF18B1EF4CCB10012CD3D /* OWExtracter.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EBF18A1EF4CCB10012CD3D /* OWExtracter.m */; };
+		53EBF18E1EF50FE80012CD3D /* OWLoginBranchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EBF18D1EF50FE80012CD3D /* OWLoginBranchVC.m */; };
+		53EBF1911EF5115E0012CD3D /* OWLoginBranchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EBF1901EF5115E0012CD3D /* OWLoginBranchCell.m */; };
+		53EBF1941EF517270012CD3D /* OWBranchSearchResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EBF1931EF517270012CD3D /* OWBranchSearchResultVC.m */; };
+		53EBF1971EF533400012CD3D /* OWQuestionnaire.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EBF1961EF533400012CD3D /* OWQuestionnaire.m */; };
+		53EBF19A1EF5365B0012CD3D /* OWQuestionnaireCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EBF1991EF5365B0012CD3D /* OWQuestionnaireCell.m */; };
+		53EBF1A11EF53AC60012CD3D /* OWQuestionDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EBF1A01EF53AC60012CD3D /* OWQuestionDetailVC.m */; };
+		53EBF1A41EF5401F0012CD3D /* OWQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EBF1A31EF5401F0012CD3D /* OWQuestion.m */; };
+		53EBF1A71EF5406B0012CD3D /* OWQuestionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EBF1A61EF5406B0012CD3D /* OWQuestionItem.m */; };
+		53EBF1AA1EF54FED0012CD3D /* OWQuestionTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EBF1A91EF54FED0012CD3D /* OWQuestionTitleCell.m */; };
+		53EBF1AD1EF550110012CD3D /* OWQuestionItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EBF1AC1EF550110012CD3D /* OWQuestionItemCell.m */; };
+		53EE00811EF6A98200C76D5C /* OWQuestionSubmitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EE00801EF6A98200C76D5C /* OWQuestionSubmitCell.m */; };
+		53EE00841EF6BB6000C76D5C /* OWSubmitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EE00831EF6BB6000C76D5C /* OWSubmitCell.m */; };
 		53EE82F81ECF217A001ADB93 /* OWModuleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EE82F71ECF217A001ADB93 /* OWModuleCell.m */; };
 		53EE83031ECF3F9A001ADB93 /* OWOfficeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EE83021ECF3F9A001ADB93 /* OWOfficeVC.m */; };
 		53F0ECA21ECD862C005ED86A /* OWVideoDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F0EC691ECD862C005ED86A /* OWVideoDecoder.m */; };
@@ -134,6 +154,8 @@
 		53F4DEF01EDEFAF2005B8B8D /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F4DEEF1EDEFAF2005B8B8D /* libsqlite3.0.tbd */; };
 		53F4DEF31EDF00F8005B8B8D /* OWCarManagerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F4DEF21EDF00F8005B8B8D /* OWCarManagerVC.m */; };
 		53F4DEF61EDF0519005B8B8D /* OWCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F4DEF51EDF0519005B8B8D /* OWCar.m */; };
+		53F8C3411EF9519D00507AF2 /* OWStoreVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F8C3401EF9519D00507AF2 /* OWStoreVC.m */; };
+		53F8C3441EF9540500507AF2 /* OWStoreItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F8C3431EF9540500507AF2 /* OWStoreItemCell.m */; };
 		E098A01EDCB6869918CC4B8E /* libPods-SmartPartyBuilding.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F317DC5FBE500EC7445125B /* libPods-SmartPartyBuilding.a */; };
 /* End PBXBuildFile section */
 
@@ -195,6 +217,8 @@
 		530F85CD1EE5A83000254B60 /* OWMtOrderDateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWMtOrderDateCell.m; sourceTree = "<group>"; };
 		530F85CF1EE5AEB500254B60 /* OWMtDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWMtDatePickerView.h; sourceTree = "<group>"; };
 		530F85D01EE5AEB500254B60 /* OWMtDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWMtDatePickerView.m; sourceTree = "<group>"; };
+		5314D9161EF7F52F00946D67 /* OWChineseSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWChineseSort.h; sourceTree = "<group>"; };
+		5314D9171EF7F52F00946D67 /* OWChineseSort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWChineseSort.m; sourceTree = "<group>"; };
 		53193C561EC1F3AB00B98BA0 /* SmartPartyBuilding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartPartyBuilding.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53193C5A1EC1F3AB00B98BA0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		53193C651EC1F3AB00B98BA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -272,6 +296,20 @@
 		53D57D8A1EE3C56F008644D7 /* OWHomeNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWHomeNewsCell.m; sourceTree = "<group>"; };
 		53D57D8C1EE3D10A008644D7 /* OWHomeNoticeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWHomeNoticeCell.h; sourceTree = "<group>"; };
 		53D57D8D1EE3D10A008644D7 /* OWHomeNoticeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWHomeNoticeCell.m; sourceTree = "<group>"; };
+		53D7EC7F1EFAA89D004BB7D5 /* OWItemDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWItemDetailsVC.h; sourceTree = "<group>"; };
+		53D7EC801EFAA89D004BB7D5 /* OWItemDetailsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWItemDetailsVC.m; sourceTree = "<group>"; };
+		53D7EC821EFAA8E2004BB7D5 /* OWItemHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWItemHeaderCell.h; sourceTree = "<group>"; };
+		53D7EC831EFAA8E2004BB7D5 /* OWItemHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWItemHeaderCell.m; sourceTree = "<group>"; };
+		53D7EC851EFAA8F5004BB7D5 /* OWItemTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWItemTitleCell.h; sourceTree = "<group>"; };
+		53D7EC861EFAA8F5004BB7D5 /* OWItemTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWItemTitleCell.m; sourceTree = "<group>"; };
+		53D7EC881EFAA904004BB7D5 /* OWItemPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWItemPhotoCell.h; sourceTree = "<group>"; };
+		53D7EC891EFAA904004BB7D5 /* OWItemPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWItemPhotoCell.m; sourceTree = "<group>"; };
+		53D7EC8B1EFAB721004BB7D5 /* OWStoreOrderDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWStoreOrderDetailVC.h; sourceTree = "<group>"; };
+		53D7EC8C1EFAB721004BB7D5 /* OWStoreOrderDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWStoreOrderDetailVC.m; sourceTree = "<group>"; };
+		53D7EC8E1EFABC4A004BB7D5 /* OWOrderDetailInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWOrderDetailInfoCell.h; sourceTree = "<group>"; };
+		53D7EC8F1EFABC4A004BB7D5 /* OWOrderDetailInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWOrderDetailInfoCell.m; sourceTree = "<group>"; };
+		53D7EC911EFABC6E004BB7D5 /* OWOrderDetailPriceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWOrderDetailPriceCell.h; sourceTree = "<group>"; };
+		53D7EC921EFABC6E004BB7D5 /* OWOrderDetailPriceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWOrderDetailPriceCell.m; sourceTree = "<group>"; };
 		53DAA7AD1EC9D1BA00A3F8AE /* OWMineOptionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWMineOptionCell.h; sourceTree = "<group>"; };
 		53DAA7AE1EC9D1BA00A3F8AE /* OWMineOptionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWMineOptionCell.m; sourceTree = "<group>"; };
 		53DAA7B01EC9DA2B00A3F8AE /* OWMineHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWMineHeaderView.h; sourceTree = "<group>"; };
@@ -344,6 +382,30 @@
 		53EBF1871EF4CC890012CD3D /* OWPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWPicker.m; sourceTree = "<group>"; };
 		53EBF1891EF4CCB10012CD3D /* OWExtracter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWExtracter.h; sourceTree = "<group>"; };
 		53EBF18A1EF4CCB10012CD3D /* OWExtracter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWExtracter.m; sourceTree = "<group>"; };
+		53EBF18C1EF50FE80012CD3D /* OWLoginBranchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWLoginBranchVC.h; sourceTree = "<group>"; };
+		53EBF18D1EF50FE80012CD3D /* OWLoginBranchVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWLoginBranchVC.m; sourceTree = "<group>"; };
+		53EBF18F1EF5115E0012CD3D /* OWLoginBranchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWLoginBranchCell.h; sourceTree = "<group>"; };
+		53EBF1901EF5115E0012CD3D /* OWLoginBranchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWLoginBranchCell.m; sourceTree = "<group>"; };
+		53EBF1921EF517270012CD3D /* OWBranchSearchResultVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWBranchSearchResultVC.h; sourceTree = "<group>"; };
+		53EBF1931EF517270012CD3D /* OWBranchSearchResultVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWBranchSearchResultVC.m; sourceTree = "<group>"; };
+		53EBF1951EF533400012CD3D /* OWQuestionnaire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWQuestionnaire.h; sourceTree = "<group>"; };
+		53EBF1961EF533400012CD3D /* OWQuestionnaire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWQuestionnaire.m; sourceTree = "<group>"; };
+		53EBF1981EF5365B0012CD3D /* OWQuestionnaireCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWQuestionnaireCell.h; sourceTree = "<group>"; };
+		53EBF1991EF5365B0012CD3D /* OWQuestionnaireCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWQuestionnaireCell.m; sourceTree = "<group>"; };
+		53EBF19F1EF53AC60012CD3D /* OWQuestionDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWQuestionDetailVC.h; sourceTree = "<group>"; };
+		53EBF1A01EF53AC60012CD3D /* OWQuestionDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWQuestionDetailVC.m; sourceTree = "<group>"; };
+		53EBF1A21EF5401F0012CD3D /* OWQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWQuestion.h; sourceTree = "<group>"; };
+		53EBF1A31EF5401F0012CD3D /* OWQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWQuestion.m; sourceTree = "<group>"; };
+		53EBF1A51EF5406B0012CD3D /* OWQuestionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWQuestionItem.h; sourceTree = "<group>"; };
+		53EBF1A61EF5406B0012CD3D /* OWQuestionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWQuestionItem.m; sourceTree = "<group>"; };
+		53EBF1A81EF54FED0012CD3D /* OWQuestionTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWQuestionTitleCell.h; sourceTree = "<group>"; };
+		53EBF1A91EF54FED0012CD3D /* OWQuestionTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWQuestionTitleCell.m; sourceTree = "<group>"; };
+		53EBF1AB1EF550110012CD3D /* OWQuestionItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWQuestionItemCell.h; sourceTree = "<group>"; };
+		53EBF1AC1EF550110012CD3D /* OWQuestionItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWQuestionItemCell.m; sourceTree = "<group>"; };
+		53EE007F1EF6A98200C76D5C /* OWQuestionSubmitCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWQuestionSubmitCell.h; sourceTree = "<group>"; };
+		53EE00801EF6A98200C76D5C /* OWQuestionSubmitCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWQuestionSubmitCell.m; sourceTree = "<group>"; };
+		53EE00821EF6BB6000C76D5C /* OWSubmitCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWSubmitCell.h; sourceTree = "<group>"; };
+		53EE00831EF6BB6000C76D5C /* OWSubmitCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWSubmitCell.m; sourceTree = "<group>"; };
 		53EE82F61ECF217A001ADB93 /* OWModuleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWModuleCell.h; sourceTree = "<group>"; };
 		53EE82F71ECF217A001ADB93 /* OWModuleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWModuleCell.m; sourceTree = "<group>"; };
 		53EE83011ECF3F9A001ADB93 /* OWOfficeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWOfficeVC.h; sourceTree = "<group>"; };
@@ -409,6 +471,10 @@
 		53F4DEF21EDF00F8005B8B8D /* OWCarManagerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWCarManagerVC.m; sourceTree = "<group>"; };
 		53F4DEF41EDF0519005B8B8D /* OWCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWCar.h; sourceTree = "<group>"; };
 		53F4DEF51EDF0519005B8B8D /* OWCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWCar.m; sourceTree = "<group>"; };
+		53F8C33F1EF9519D00507AF2 /* OWStoreVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWStoreVC.h; sourceTree = "<group>"; };
+		53F8C3401EF9519D00507AF2 /* OWStoreVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWStoreVC.m; sourceTree = "<group>"; };
+		53F8C3421EF9540500507AF2 /* OWStoreItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWStoreItemCell.h; sourceTree = "<group>"; };
+		53F8C3431EF9540500507AF2 /* OWStoreItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWStoreItemCell.m; sourceTree = "<group>"; };
 		57AC62ECACE1AC29287C2F1F /* Pods-SmartPartyBuilding.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartPartyBuilding.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartPartyBuilding/Pods-SmartPartyBuilding.release.xcconfig"; sourceTree = "<group>"; };
 		6F317DC5FBE500EC7445125B /* libPods-SmartPartyBuilding.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SmartPartyBuilding.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F216B0EA70FFBC5A36E138AF /* Pods-SmartPartyBuilding.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartPartyBuilding.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartPartyBuilding/Pods-SmartPartyBuilding.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1008,6 +1074,7 @@
 			isa = PBXGroup;
 			children = (
 				538AA6811EC868A100AB992A /* Home */,
+				53F8C3371EF9509F00507AF2 /* Store */,
 				53EE82F91ECF3F0D001ADB93 /* Office */,
 				538AA67C1EC868A100AB992A /* Discovery */,
 				538AA6861EC868A100AB992A /* Mine */,
@@ -1068,6 +1135,8 @@
 				53EAA9E91EC2A48000D330D6 /* OWNetworking.m */,
 				53E076EE1ECC922F00A06AE0 /* OWTool.h */,
 				53E076EF1ECC922F00A06AE0 /* OWTool.m */,
+				5314D9161EF7F52F00946D67 /* OWChineseSort.h */,
+				5314D9171EF7F52F00946D67 /* OWChineseSort.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -1159,6 +1228,10 @@
 			children = (
 				5395ED061ED59B5D00AEB7FB /* OWRegisterVC.h */,
 				5395ED071ED59B5D00AEB7FB /* OWRegisterVC.m */,
+				53EBF18C1EF50FE80012CD3D /* OWLoginBranchVC.h */,
+				53EBF18D1EF50FE80012CD3D /* OWLoginBranchVC.m */,
+				53EBF1921EF517270012CD3D /* OWBranchSearchResultVC.h */,
+				53EBF1931EF517270012CD3D /* OWBranchSearchResultVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1181,6 +1254,8 @@
 				53F4AB4D1EED91E2003E75C3 /* OWRegisterInputCell.m */,
 				53F4AB4F1EEDA782003E75C3 /* OWRegisterPickerCell.h */,
 				53F4AB501EEDA782003E75C3 /* OWRegisterPickerCell.m */,
+				53EBF18F1EF5115E0012CD3D /* OWLoginBranchCell.h */,
+				53EBF1901EF5115E0012CD3D /* OWLoginBranchCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1340,6 +1415,8 @@
 				53DAA7B11EC9DA2B00A3F8AE /* OWMineHeaderView.m */,
 				53DAA7AD1EC9D1BA00A3F8AE /* OWMineOptionCell.h */,
 				53DAA7AE1EC9D1BA00A3F8AE /* OWMineOptionCell.m */,
+				53EE00821EF6BB6000C76D5C /* OWSubmitCell.h */,
+				53EE00831EF6BB6000C76D5C /* OWSubmitCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1351,6 +1428,82 @@
 				538AA6A11EC8719700AB992A /* OWPlusBtn.m */,
 				53A75A6F1EE857A400C5B9B3 /* OWRefreshGifHeader.h */,
 				53A75A701EE857A400C5B9B3 /* OWRefreshGifHeader.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		53D7EC771EFAA841004BB7D5 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				53D7EC781EFAA841004BB7D5 /* Controller */,
+				53D7EC791EFAA841004BB7D5 /* Model */,
+				53D7EC7A1EFAA841004BB7D5 /* View */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		53D7EC781EFAA841004BB7D5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				53D7EC7F1EFAA89D004BB7D5 /* OWItemDetailsVC.h */,
+				53D7EC801EFAA89D004BB7D5 /* OWItemDetailsVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		53D7EC791EFAA841004BB7D5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		53D7EC7A1EFAA841004BB7D5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				53D7EC821EFAA8E2004BB7D5 /* OWItemHeaderCell.h */,
+				53D7EC831EFAA8E2004BB7D5 /* OWItemHeaderCell.m */,
+				53D7EC851EFAA8F5004BB7D5 /* OWItemTitleCell.h */,
+				53D7EC861EFAA8F5004BB7D5 /* OWItemTitleCell.m */,
+				53D7EC881EFAA904004BB7D5 /* OWItemPhotoCell.h */,
+				53D7EC891EFAA904004BB7D5 /* OWItemPhotoCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		53D7EC7B1EFAA841004BB7D5 /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				53D7EC7C1EFAA841004BB7D5 /* Controller */,
+				53D7EC7D1EFAA841004BB7D5 /* Model */,
+				53D7EC7E1EFAA841004BB7D5 /* View */,
+			);
+			path = Order;
+			sourceTree = "<group>";
+		};
+		53D7EC7C1EFAA841004BB7D5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				53D7EC8B1EFAB721004BB7D5 /* OWStoreOrderDetailVC.h */,
+				53D7EC8C1EFAB721004BB7D5 /* OWStoreOrderDetailVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		53D7EC7D1EFAA841004BB7D5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		53D7EC7E1EFAA841004BB7D5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				53D7EC8E1EFABC4A004BB7D5 /* OWOrderDetailInfoCell.h */,
+				53D7EC8F1EFABC4A004BB7D5 /* OWOrderDetailInfoCell.m */,
+				53D7EC911EFABC6E004BB7D5 /* OWOrderDetailPriceCell.h */,
+				53D7EC921EFABC6E004BB7D5 /* OWOrderDetailPriceCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1864,6 +2017,7 @@
 			isa = PBXGroup;
 			children = (
 				53EBF17F1EF4B8A40012CD3D /* Main */,
+				53EBF19B1EF53AAA0012CD3D /* Detail */,
 			);
 			path = Questionnaire;
 			sourceTree = "<group>";
@@ -1890,6 +2044,8 @@
 		53EBF1831EF4B8A40012CD3D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				53EBF1951EF533400012CD3D /* OWQuestionnaire.h */,
+				53EBF1961EF533400012CD3D /* OWQuestionnaire.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1897,6 +2053,51 @@
 		53EBF1841EF4B8A40012CD3D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				53EBF1981EF5365B0012CD3D /* OWQuestionnaireCell.h */,
+				53EBF1991EF5365B0012CD3D /* OWQuestionnaireCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		53EBF19B1EF53AAA0012CD3D /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				53EBF19C1EF53AAA0012CD3D /* Controller */,
+				53EBF19D1EF53AAA0012CD3D /* Model */,
+				53EBF19E1EF53AAA0012CD3D /* View */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		53EBF19C1EF53AAA0012CD3D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				53EBF19F1EF53AC60012CD3D /* OWQuestionDetailVC.h */,
+				53EBF1A01EF53AC60012CD3D /* OWQuestionDetailVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		53EBF19D1EF53AAA0012CD3D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				53EBF1A21EF5401F0012CD3D /* OWQuestion.h */,
+				53EBF1A31EF5401F0012CD3D /* OWQuestion.m */,
+				53EBF1A51EF5406B0012CD3D /* OWQuestionItem.h */,
+				53EBF1A61EF5406B0012CD3D /* OWQuestionItem.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		53EBF19E1EF53AAA0012CD3D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				53EBF1A81EF54FED0012CD3D /* OWQuestionTitleCell.h */,
+				53EBF1A91EF54FED0012CD3D /* OWQuestionTitleCell.m */,
+				53EBF1AB1EF550110012CD3D /* OWQuestionItemCell.h */,
+				53EBF1AC1EF550110012CD3D /* OWQuestionItemCell.m */,
+				53EE007F1EF6A98200C76D5C /* OWQuestionSubmitCell.h */,
+				53EE00801EF6A98200C76D5C /* OWQuestionSubmitCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2128,6 +2329,51 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		53F8C3371EF9509F00507AF2 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				53F8C3381EF9509F00507AF2 /* Main */,
+				53D7EC771EFAA841004BB7D5 /* Detail */,
+				53D7EC7B1EFAA841004BB7D5 /* Order */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		53F8C3381EF9509F00507AF2 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				53F8C3391EF9509F00507AF2 /* Controller */,
+				53F8C33A1EF9509F00507AF2 /* Model */,
+				53F8C33B1EF9509F00507AF2 /* View */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		53F8C3391EF9509F00507AF2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				53F8C33F1EF9519D00507AF2 /* OWStoreVC.h */,
+				53F8C3401EF9519D00507AF2 /* OWStoreVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		53F8C33A1EF9509F00507AF2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		53F8C33B1EF9509F00507AF2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				53F8C3421EF9540500507AF2 /* OWStoreItemCell.h */,
+				53F8C3431EF9540500507AF2 /* OWStoreItemCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		AF4C061A3EF87857E0B8AC1C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -2330,6 +2576,7 @@
 				53EBF1851EF4B8A40012CD3D /* OWQuestionnaireVC.m in Sources */,
 				53E5932A1ECAE29F00D21A75 /* OWDiscoveryPhotoCell.m in Sources */,
 				5308C09F1ED0197600662D34 /* OWMettingDetailVC.m in Sources */,
+				53D7EC841EFAA8E2004BB7D5 /* OWItemHeaderCell.m in Sources */,
 				538AA67B1EC85C5900AB992A /* OWTabBarControllerConfig.m in Sources */,
 				53F0ECA41ECD862C005ED86A /* OWBaseTimeLineVC.m in Sources */,
 				53D57D8E1EE3D10A008644D7 /* OWHomeNoticeCell.m in Sources */,
@@ -2341,14 +2588,18 @@
 				53EBCCA11ECED86B00CBA695 /* OWUserLineCellManager.m in Sources */,
 				5395ED081ED59B5D00AEB7FB /* OWRegisterVC.m in Sources */,
 				53F0ECAC1ECD862C005ED86A /* OWVideoLineItem.m in Sources */,
+				53D7EC811EFAA89D004BB7D5 /* OWItemDetailsVC.m in Sources */,
 				53F0ECA61ECD862C005ED86A /* OWImagesSendVC.m in Sources */,
 				53454D391EF2A8B400915709 /* OWDisDifPartyVC.m in Sources */,
+				53F8C3411EF9519D00507AF2 /* OWStoreVC.m in Sources */,
 				53F0ECA71ECD862C005ED86A /* OWPlainGridImageView.m in Sources */,
 				530A23BA1EEB0D8B0018CE78 /* OWMessage.m in Sources */,
 				53F0ECBB1ECD8656005ED86A /* OWMomentsVC.m in Sources */,
 				537C0D471ED3D7F300F9C9B7 /* OWCommodityCartCell.m in Sources */,
+				53D7EC8A1EFAA904004BB7D5 /* OWItemPhotoCell.m in Sources */,
 				53EAA9EA1EC2A48000D330D6 /* OWNetworking.m in Sources */,
 				53C2A1771EF2D4E10078535B /* OWDisVolVC.m in Sources */,
+				53D7EC8D1EFAB721004BB7D5 /* OWStoreOrderDetailVC.m in Sources */,
 				53F0ECAB1ECD862C005ED86A /* OWTextImageLineItem.m in Sources */,
 				530916061ED734F700031F9B /* OWHomeApprovalCell.m in Sources */,
 				530916031ED734CD00031F9B /* OWApprovalSearchResultVC.m in Sources */,
@@ -2356,9 +2607,11 @@
 				53F0ECA31ECD862C005ED86A /* OWVideoPlayVC.m in Sources */,
 				53E5932D1ECAE67E00D21A75 /* OWDiscoveryOptionCell.m in Sources */,
 				538AA69E1EC8699600AB992A /* OWMineVC.m in Sources */,
+				53EBF1971EF533400012CD3D /* OWQuestionnaire.m in Sources */,
 				53F0ECB01ECD862C005ED86A /* OWGridImageView.m in Sources */,
 				53454D3C1EF2A91B00915709 /* OWDisInputCell.m in Sources */,
 				53E792941ED479F600E64A3C /* OWNoticeSearchResultVC.m in Sources */,
+				53EBF1A41EF5401F0012CD3D /* OWQuestion.m in Sources */,
 				53E593101ECA8F7100D21A75 /* OWUserInfoCell.m in Sources */,
 				5308C0991ED00F2300662D34 /* OWMettingManagerVC.m in Sources */,
 				53F0ECB11ECD862C005ED86A /* OWImageUnitView.m in Sources */,
@@ -2368,11 +2621,16 @@
 				53EBCC921ECED49000CBA695 /* OWUserTimeLineVC.m in Sources */,
 				536CAAED1EC1FCC500678C9A /* OWNavigationController.m in Sources */,
 				53EBCC9B1ECED6A400CBA695 /* OWBaseUserLineCell.m in Sources */,
+				53EE00811EF6A98200C76D5C /* OWQuestionSubmitCell.m in Sources */,
 				53E90BCF1EF3A8330087F35F /* OWPartyFeeDescCell.m in Sources */,
 				53F0ECB61ECD862C005ED86A /* OWImagePreviewVC.m in Sources */,
 				5308C0A51ED0770300662D34 /* OWMeetingDateCell.m in Sources */,
+				53EBF1A71EF5406B0012CD3D /* OWQuestionItem.m in Sources */,
 				53E076F01ECC922F00A06AE0 /* OWTool.m in Sources */,
+				53F8C3441EF9540500507AF2 /* OWStoreItemCell.m in Sources */,
+				53EE00841EF6BB6000C76D5C /* OWSubmitCell.m in Sources */,
 				53EBF1881EF4CC890012CD3D /* OWPicker.m in Sources */,
+				5314D9181EF7F52F00946D67 /* OWChineseSort.m in Sources */,
 				53EBF18B1EF4CCB10012CD3D /* OWExtracter.m in Sources */,
 				53F4DEF31EDF00F8005B8B8D /* OWCarManagerVC.m in Sources */,
 				53F0ECBE1ECD9EF6005ED86A /* OWVideoCaptureVC.m in Sources */,
@@ -2389,6 +2647,7 @@
 				53F4AB511EEDA782003E75C3 /* OWRegisterPickerCell.m in Sources */,
 				53BFF93D1ED1DB8400A30BBB /* OWMtSpecialNeedCell.m in Sources */,
 				53E90BE51EF3CF650087F35F /* OWEPMSearchResultVC.m in Sources */,
+				53D7EC931EFABC6E004BB7D5 /* OWOrderDetailPriceCell.m in Sources */,
 				530916001ED7349900031F9B /* OWHomeApprovalVC.m in Sources */,
 				538AA6921EC868FA00AB992A /* OWHomeVC.m in Sources */,
 				53F0ECA21ECD862C005ED86A /* OWVideoDecoder.m in Sources */,
@@ -2401,20 +2660,27 @@
 				53F0ECB81ECD862C005ED86A /* OWVideoLineCell.m in Sources */,
 				530F85C81EE58D8700254B60 /* OWCarDetailVC.m in Sources */,
 				53F0ECB41ECD862C005ED86A /* OWLinkClickLabel.m in Sources */,
+				53EBF1AD1EF550110012CD3D /* OWQuestionItemCell.m in Sources */,
 				53EBCCA41ECEEF2A00CBA695 /* OWUserMomentsVC.m in Sources */,
 				53F0ECB31ECD862C005ED86A /* OWLikeCommentView.m in Sources */,
 				53E5930D1ECA8DE000D21A75 /* OWUserInfoAvatarCell.m in Sources */,
 				53A75A6E1EE84D9500C5B9B3 /* OWNews.m in Sources */,
 				53F0ECAF1ECD862C005ED86A /* OWCommentInputView.m in Sources */,
 				53C2A1741EF2D3B80078535B /* OWDisOldPartyVC.m in Sources */,
+				53EBF18E1EF50FE80012CD3D /* OWLoginBranchVC.m in Sources */,
 				53E792911ED476D900E64A3C /* OWHomeNoticeVC.m in Sources */,
+				53D7EC901EFABC4A004BB7D5 /* OWOrderDetailInfoCell.m in Sources */,
 				538AA6A21EC8719700AB992A /* OWPlusBtn.m in Sources */,
 				53DAA7B21EC9DA2B00A3F8AE /* OWMineHeaderView.m in Sources */,
 				53F0ECAE1ECD862C005ED86A /* OWLineCellManager.m in Sources */,
+				53EBF1A11EF53AC60012CD3D /* OWQuestionDetailVC.m in Sources */,
 				5341F7741EEEB4DB002A6F8C /* OWRegister.m in Sources */,
 				5395ED0B1ED5AD6600AEB7FB /* OWRegisterNavigationVC.m in Sources */,
 				53EE83031ECF3F9A001ADB93 /* OWOfficeVC.m in Sources */,
+				53EBF19A1EF5365B0012CD3D /* OWQuestionnaireCell.m in Sources */,
+				53EBF1911EF5115E0012CD3D /* OWLoginBranchCell.m in Sources */,
 				530915F61ED6EDD900031F9B /* OWScanVC.m in Sources */,
+				53D7EC871EFAA8F5004BB7D5 /* OWItemTitleCell.m in Sources */,
 				530F85CE1EE5A83000254B60 /* OWMtOrderDateCell.m in Sources */,
 				5308C0A21ED043CD00662D34 /* OWMeetingDetailCell.m in Sources */,
 				530F85D11EE5AEB500254B60 /* OWMtDatePickerView.m in Sources */,
@@ -2438,7 +2704,9 @@
 				538AA6981EC8692600AB992A /* OWDiscoveryVC.m in Sources */,
 				53F0ECB21ECD862C005ED86A /* OWLikeCommentToolbar.m in Sources */,
 				53F0ECB71ECD862C005ED86A /* OWTextImageLineCell.m in Sources */,
+				53EBF1941EF517270012CD3D /* OWBranchSearchResultVC.m in Sources */,
 				53BFF9401ED1E37300A30BBB /* OWMtAddDeviceCell.m in Sources */,
+				53EBF1AA1EF54FED0012CD3D /* OWQuestionTitleCell.m in Sources */,
 				530F85CB1EE5A09000254B60 /* OWCarOrderVC.m in Sources */,
 				53E3ABD01EEFFF29008C1D9B /* OWMeetOrder.m in Sources */,
 				53E90BD21EF3B1D10087F35F /* OWPartyFeeConfCell.m in Sources */,

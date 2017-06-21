@@ -41,6 +41,9 @@
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.separatorStyle = NO;
+    CGFloat bottomEdge = 600.0f - wh_screenHeight;
+    if (bottomEdge <= 0) bottomEdge = 0;
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, bottomEdge, 0);
     
     NSDictionary *userInfo = [OWTool getUserInfo];
     NSArray *arr = @[
@@ -87,7 +90,7 @@
     
 //    wh_Log(@"---%@-%@-%@-%@-%@-%@-%@",tf1.text,tf2.text,tf3.text,tf4.text,tf5.text,tf6.text,tv.text);
     
-    [OWNetworking HPOST:wh_appendingStr(wh_host, @"") parameters:par success:^(id  _Nullable responseObject) {
+    [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/hardMemberApply/add") parameters:par success:^(id  _Nullable responseObject) {
         wh_Log(@"---%@",responseObject);
         if ([responseObject[@"code"] intValue] == 200) {
             
@@ -166,6 +169,8 @@
             return YES;
         }] show:YES];
     }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 
@@ -177,7 +182,7 @@
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setTitle:@"提交申请" forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:15.0f];
+        btn.titleLabel.font = [UIFont systemFontOfSize:15.5f];
         [btn setBackgroundColor:wh_themeColor];
         [self.tableView addSubview:btn];
         

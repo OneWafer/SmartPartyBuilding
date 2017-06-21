@@ -24,7 +24,6 @@ static NSString *const identifier = @"OWMineOptionCell";
     OWMineOptionCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
         cell = [[OWMineOptionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return cell;
 }
@@ -64,7 +63,6 @@ static NSString *const identifier = @"OWMineOptionCell";
         [imgView makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self);
             make.left.equalTo(self).offset(15);
-//            make.width.height.equalTo(self.height).multipliedBy(0.7);
         }];
         _titleImgView = imgView;
     }

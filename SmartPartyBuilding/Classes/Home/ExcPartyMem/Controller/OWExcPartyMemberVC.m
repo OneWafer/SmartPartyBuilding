@@ -58,7 +58,7 @@
             [self.tableView reloadData];
             [SVProgressHUD dismiss];
         }else{
-            [SVProgressHUD showInfoWithStatus:responseObject[@"message"]];
+            [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
         }
     } failure:^(NSError * _Nonnull error) {
         [SVProgressHUD showInfoWithStatus:@"请检查网络!"];

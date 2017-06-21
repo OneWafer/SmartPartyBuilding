@@ -10,11 +10,13 @@
 #import <ReactiveCocoa.h>
 #import <MJExtension.h>
 #import "OWRegisterVC.h"
+#import "OWLoginBranchVC.h"
 #import "OWRegisterInputCell.h"
 #import "OWRegisterPickerCell.h"
 #import "OWRegister.h"
 #import "OWNetworking.h"
 #import "OWBranch.h"
+#import "OWPicker.h"
 
 @interface OWRegisterVC ()
 
@@ -26,6 +28,12 @@
 
 @implementation OWRegisterVC
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    //设置背景透明图片
+    [self.navigationController.navigationBar setValue:@0 forKeyPath:@"backgroundView.alpha"];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -46,6 +54,7 @@
 {
     wh_weakSelf(self);
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem wh_itemWithType:WHItemTypeRight norTitle:@"提交" font:15.0f norColor:wh_RGB(9, 131, 216) highColor:[UIColor blueColor] offset:0 actionHandler:^(UIButton *sender) {
+        [weakself.view endEditing:YES];
         [weakself dataSubmit];
     }];
 }
@@ -53,7 +62,9 @@
 - (void)setupTableView
 {
     self.tableView.separatorStyle = NO;
-    self.tableView.scrollEnabled = NO;
+    CGFloat bottomEdge = 600.0f - wh_screenHeight;
+    if (bottomEdge <= 0) bottomEdge = 0;
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, bottomEdge, 0);
     NSArray *list = @[
                       @{@"image":@"login_act", @"place":@"请输入手机号", @"content":@""},
                       @{@"image":@"login_ver", @"place":@"请输入验证码", @"content":@""},
@@ -61,7 +72,7 @@
                       @{@"image":@"", @"place":@"再次输入密码", @"content":@""},
                       @{@"image":@"login_name", @"place":@"请输入姓名/昵称", @"content":@""},
                       @{@"image":@"login_id", @"place":@"请输入身份证号(选填)", @"content":@""},
-                      @{@"sex":@"", @"duty":@"", @"organize":@""}
+                      @{@"sex":@(0), @"duty":@"", @"organize":@(0)}
                       ];
     self.registerList = [OWRegister mj_objectArrayWithKeyValuesArray:list];
 }
@@ -75,7 +86,7 @@
             self.branchList = [OWBranch mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
             wh_Log(@"---%d",[self.branchList[0] id]);
         }else{
-            [SVProgressHUD showInfoWithStatus:responseObject[@"message"]];
+            [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
         }
     } failure:^(NSError * _Nonnull error) {
         [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
@@ -97,7 +108,7 @@
         if ([responseObject[@"code"] intValue] == 200) {
             self.verCode = responseObject[@"data"];
         }else{
-            [SVProgressHUD showInfoWithStatus:responseObject[@"message"]];
+            [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
         }
     } failure:^(NSError * _Nonnull error) {
         [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
@@ -115,19 +126,19 @@
     OWRegister *r4 = self.registerList[3];
     OWRegister *r5 = self.registerList[4];
     OWRegister *r6 = self.registerList[5];
+    OWRegister *r7 = self.registerList[6];
     if (r1.content.length && r2.content.length && r3.content.length && r4.content.length && r5.content.length && r6.content.length) {
-        if ([r2.content isEqualToString:self.verCode]) {
-            if ([r3.content isEqualToString:r4.content]) {
-                
+        if ([r3.content isEqualToString:r4.content]) {
+            if ([NSString wh_accurateVerifyIDCardNumber:r6.content]) {
                 NSDictionary *par = @{
                                       @"phoneNumber":r1.content,
                                       @"validCode":r2.content,
                                       @"password":r3.content,
                                       @"staffName":r5.content,
                                       @"identityId":r6.content,
-                                      @"sex":@(0),
+                                      @"sex":@(r7.sex),
                                       @"partyPosition":@"阿拉啦",
-                                      @"partyBranchId":@(1)
+                                      @"partyBranchId":@(r7.organize)
                                       };
                 wh_Log(@"---%@",par);
                 [OWNetworking POST:wh_appendingStr(wh_host, @"mobile/register") parameters:par success:^(id  _Nullable responseObject) {
@@ -136,18 +147,17 @@
                         [SVProgressHUD showSuccessWithStatus:@"注册成功!"];
                         [self.navigationController popViewControllerAnimated:YES];
                     }else{
-                        [SVProgressHUD showInfoWithStatus:responseObject[@"message"]];
+                        [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
                     }
                 } failure:^(NSError * _Nonnull error) {
                     [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
                     wh_Log(@"---%@",error);
                 }];
-                
             }else{
-                [SVProgressHUD showInfoWithStatus:@"密码输入不一致!"];
+                [SVProgressHUD showInfoWithStatus:@"请填写有效身份证号!"];
             }
         }else{
-            [SVProgressHUD showInfoWithStatus:@"验证码输入有误!"];
+            [SVProgressHUD showInfoWithStatus:@"密码输入不一致!"];
         }
     }else{
         [SVProgressHUD showInfoWithStatus:@"请填写完整信息!"];
@@ -185,16 +195,41 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    wh_weakSelf(self);
     if (indexPath.row < 6) {
         OWRegisterInputCell *cell = [OWRegisterInputCell cellWithTableView:tableView];
         cell.regist = self.registerList[indexPath.row];
-        wh_weakSelf(self);
         cell.block = ^(){
             [weakself getVerCode];
         };
         return cell;
     }else{
+        OWRegister *regist = self.registerList[indexPath.row];
         OWRegisterPickerCell *cell = [OWRegisterPickerCell cellWithTableView:tableView];
+        __weak OWRegisterPickerCell *weakCell = cell;
+        
+        cell.block = ^(NSInteger tag){
+            [weakself.view endEditing:YES];
+            if (tag == 11) {
+                
+            }else if (tag == 12){
+                NSArray *typeList = @[@"男",@"女"];
+                [[OWPicker pickLinearData:typeList forView:self.view.window selectedBlock:^BOOL(BOOL isCancel, NSArray<NSString *> *selectedTitles, NSArray<NSNumber *> *indexs) {
+                    if (isCancel) return YES;
+                    [weakCell.sexBtn setTitle:selectedTitles[0] forState:UIControlStateNormal];
+                    regist.sex = [selectedTitles[0] isEqualToString:@"男"] ? 0 : 1;
+                    return YES;
+                }] show:YES];
+            }else{
+                OWLoginBranchVC *branchVC = [[OWLoginBranchVC alloc] init];
+                branchVC.branchList = self.branchList;
+                branchVC.block = ^(OWBranch *branch){
+                    [weakCell.organizeBtn setTitle:branch.organizationName forState:UIControlStateNormal];
+                    regist.organize = branch.id;
+                };
+                [weakself.navigationController pushViewController:branchVC animated:YES];
+            }
+        };
         return cell;
     }
     

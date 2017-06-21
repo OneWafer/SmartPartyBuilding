@@ -6,14 +6,17 @@
 //  Copyright © 2017年 王卫华. All rights reserved.
 //
 
+#import <SVProgressHUD.h>
 #import <MJExtension.h>
 #import "OWForgetVC.h"
 #import "OWRegisterInputCell.h"
 #import "OWRegister.h"
+#import "OWNetworking.h"
 
 @interface OWForgetVC ()
 
 @property (nonatomic, strong) NSArray *registerList;
+//@property (nonatomic, copy) NSString *verCode;
 
 @end
 
@@ -36,8 +39,10 @@
 
 - (void)setupNavi
 {
+    wh_weakSelf(self);
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem wh_itemWithType:WHItemTypeRight norTitle:@"提交" font:15.0f norColor:wh_RGB(9, 131, 216) highColor:[UIColor blueColor] offset:0 actionHandler:^(UIButton *sender) {
-        wh_Log(@"---点击了注册");
+        [weakself.view endEditing:YES];
+        [weakself dataSubmit];
     }];
 }
 
@@ -53,6 +58,65 @@
                       ];
     self.registerList = [OWRegister mj_objectArrayWithKeyValuesArray:list];
 }
+
+/** 获取验证码 */
+- (void)getVerCode
+{
+    OWRegister *r = self.registerList[0];
+    NSDictionary *par = @{
+                          @"phoneNumber":r.content
+                          };
+    wh_Log(@"---%@",par);
+    [OWNetworking GET:wh_appendingStr(wh_host, @"mobile/validCode") parameters:par success:^(id  _Nullable responseObject) {
+        wh_Log(@"---%@",responseObject);
+        if ([responseObject[@"code"] intValue] == 200) {
+//            self.verCode = responseObject[@"data"];
+        }else{
+            [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
+        }
+    } failure:^(NSError * _Nonnull error) {
+        [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
+        wh_Log(@"---%@",error);
+        
+    }];
+}
+
+/** 提交注册 */
+- (void)dataSubmit
+{
+    OWRegister *r1 = self.registerList[0];
+    OWRegister *r2 = self.registerList[1];
+    OWRegister *r3 = self.registerList[2];
+    OWRegister *r4 = self.registerList[3];
+    if (r1.content.length && r2.content.length && r3.content.length && r4.content.length) {
+        if ([r3.content isEqualToString:r4.content]) {
+            NSDictionary *par = @{
+                                  @"phoneNumber":r1.content,
+                                  @"validCode":r2.content,
+                                  @"password":r3.content
+                                  };
+            wh_Log(@"---%@",par);
+            [OWNetworking POST:wh_appendingStr(wh_host, @"mobile/changePassword") parameters:par success:^(id  _Nullable responseObject) {
+                wh_Log(@"----%@",responseObject);
+                if ([responseObject[@"code"] intValue] == 200) {
+                    [SVProgressHUD showSuccessWithStatus:@"修改成功!"];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }else{
+                    [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
+                }
+            } failure:^(NSError * _Nonnull error) {
+                [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
+                wh_Log(@"---%@",error);
+            }];
+        }else{
+            [SVProgressHUD showInfoWithStatus:@"密码输入不一致!"];
+        }
+    }else{
+        [SVProgressHUD showInfoWithStatus:@"请填写完整信息!"];
+    }
+    
+}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -81,8 +145,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    wh_weakSelf(self);
     OWRegisterInputCell *cell = [OWRegisterInputCell cellWithTableView:tableView];
     cell.regist = self.registerList[indexPath.row];
+    cell.block = ^(){
+        [weakself getVerCode];
+    };
     return cell;
     
 }

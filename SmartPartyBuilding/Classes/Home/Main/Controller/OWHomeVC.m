@@ -47,6 +47,7 @@
     //设置背景透明图片
     [self.navigationController.navigationBar setValue:@0 forKeyPath:@"backgroundView.alpha"];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    if (self.tableView.contentOffset.y <= 0) self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -59,7 +60,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
     
     [self setupTableView];
     [self setupNavi];
@@ -146,7 +146,7 @@
     // 按钮皮肤请求
     RACSignal *funcRequest = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         [OWNetworking HGET:wh_appendingStr(wh_host, @"mobile/appset/getSkinVersion") parameters:nil success:^(id  _Nullable responseObject) {
-//            wh_Log(@"%@",responseObject);
+            wh_Log(@"%@",responseObject);
             if ([responseObject[@"code"] intValue] == 200) {
                 NSMutableArray *funcImgList = [NSMutableArray array];
                 for (int i = 0; i < 8; i ++) {
@@ -200,7 +200,7 @@
                               @"programaId":@"6"
                               };
         [OWNetworking HGET:wh_appendingStr(wh_host, @"mobile/news/getNews") parameters:par success:^(id  _Nullable responseObject) {
-            wh_Log(@"--%@",responseObject);
+//            wh_Log(@"--%@",responseObject);
             if ([responseObject[@"code"] intValue] == 200) {
                 self.newsList = [OWNews mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
                 [subscriber sendNext:self.newsList];
@@ -234,7 +234,7 @@
     }];
     self.banner.imageURLStringsGroup = banImgList;
     [self.tableView reloadData];
-    NSLog(@"更新UI-----:%@",bannerList);
+//    wh_Log(@"更新UI-----:%@",bannerList);
 }
 
 - (LBXScanViewStyle *)scanStyle
@@ -338,6 +338,13 @@
         }
     }
     
+}
+
+#pragma mark - ---------- TableViewDelegate ----------
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 /** 8个按钮的点击事件 */

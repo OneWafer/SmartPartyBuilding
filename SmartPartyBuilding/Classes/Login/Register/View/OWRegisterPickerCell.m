@@ -11,10 +11,6 @@
 
 @interface OWRegisterPickerCell ()
 
-@property (nonatomic, weak) UIButton *sexBtn;
-@property (nonatomic, weak) UIButton *organizeBtn;
-@property (nonatomic, weak) UIButton *dutyBtn;
-
 @end
 
 @implementation OWRegisterPickerCell
@@ -41,16 +37,17 @@ static NSString *const identifier = @"OWRegisterPickerCell";
     
     if (self)
     {
+        wh_weakSelf(self);
         [self.dutyBtn wh_addActionHandler:^(UIButton *sender) {
-            wh_Log(@"----点击了选择党内职务");
+            if (weakself.block) weakself.block(11);
         }];
         
         [self.sexBtn wh_addActionHandler:^(UIButton *sender) {
-            wh_Log(@"----点击选择了性别");
+            if (weakself.block) weakself.block(12);
         }];
         
         [self.organizeBtn wh_addActionHandler:^(UIButton *sender) {
-            wh_Log(@"----点击选择了组织支部");
+            if (weakself.block) weakself.block(13);
         }];
     }
     return self;
@@ -67,7 +64,7 @@ static NSString *const identifier = @"OWRegisterPickerCell";
         [btn setTitleColor:wh_norFontColor forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont systemFontOfSize:14.5f];
         [btn setImage:wh_imageNamed(@"login_down") forState:UIControlStateNormal];
-        [btn wh_setImagePosition:WHImagePositionRight spacing:10];
+        [btn wh_setImagePosition:WHImagePositionRight spacing:8];
         [btn setBackgroundColor:[UIColor whiteColor]];
         btn.layer.borderColor = wh_RGB(169, 169, 169).CGColor;
         btn.layer.borderWidth = 0.5;

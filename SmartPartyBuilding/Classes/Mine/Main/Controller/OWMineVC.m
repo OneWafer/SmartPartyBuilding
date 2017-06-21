@@ -61,7 +61,9 @@
 {
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     self.tableView.showsVerticalScrollIndicator = NO;
-    self.tableView.scrollEnabled = NO;
+    CGFloat bottomEdge = 667.0f - wh_screenHeight;
+    if (bottomEdge <= 0) bottomEdge = 0;
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, bottomEdge, 0);
     
     self.headerView = [[OWMineHeaderView alloc] initWithFrame:CGRectMake(0, 0, wh_screenWidth, 150)];
     self.tableView.tableHeaderView = self.headerView;
@@ -172,7 +174,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 45.0f;
+    return 47.0f;
 }
 
 
@@ -210,6 +212,8 @@
         }
         
     }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - ---------- Lazy ----------
@@ -232,7 +236,7 @@
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setTitle:@"退出登录" forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:15.0f];
+        btn.titleLabel.font = [UIFont systemFontOfSize:15.5f];
         [btn setBackgroundColor:wh_themeColor];
         [self.tableView addSubview:btn];
         

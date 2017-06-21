@@ -129,7 +129,7 @@
         
         [view makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.view);
-            make.centerY.equalTo(self.view).multipliedBy(1.12);
+            make.centerY.equalTo(self.view).multipliedBy((wh_screenHeight <= 481) ? 1.3 : 1.15);
             make.width.equalTo(self.view).multipliedBy(0.75);
             make.height.equalTo(250);
         }];
@@ -223,8 +223,8 @@
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setTitle:@"立即登录" forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:14.5f];
-        [btn setBackgroundColor:wh_RGB(215, 7, 7)];
+        btn.titleLabel.font = [UIFont systemFontOfSize:15.5f];
+        [btn setBackgroundColor:wh_themeColor];
         [self.inputView addSubview:btn];
         btn.layer.cornerRadius = 4;
         

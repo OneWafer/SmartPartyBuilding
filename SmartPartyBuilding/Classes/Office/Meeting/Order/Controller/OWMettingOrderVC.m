@@ -62,16 +62,16 @@
 - (void)dataRequest
 {
     NSDictionary *par = @{
-                          @"type":@(1),
+                          @"type":@(2),
                           @"page":@"1",
                           @"rows":@"20"
                           };
-    [OWNetworking HGET:wh_appendingStr(wh_host, @"mobile/roomFacility/list") parameters:par success:^(id  _Nullable responseObject) {
+    [OWNetworking HGET:wh_appendingStr(wh_host, @"mobile/facility/list") parameters:par success:^(id  _Nullable responseObject) {
         wh_Log(@"----%@",responseObject);
         if ([responseObject[@"code"] intValue] == 200) {
             
         }else{
-            [SVProgressHUD showInfoWithStatus:responseObject[@"message"]];
+            [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
         }
     } failure:^(NSError * _Nonnull error) {
         [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
@@ -99,7 +99,7 @@
             [SVProgressHUD showSuccessWithStatus:@"预约成功!"];
             [self.navigationController popViewControllerAnimated:YES];
         }else{
-            [SVProgressHUD showInfoWithStatus:responseObject[@"message"]];
+            [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
         }
     } failure:^(NSError * _Nonnull error) {
         [SVProgressHUD showInfoWithStatus:@"请检查网络!"];

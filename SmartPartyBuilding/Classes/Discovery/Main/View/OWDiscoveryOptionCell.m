@@ -25,7 +25,6 @@ static NSString *const identifier = @"OWDiscoveryOptionCell";
     OWDiscoveryOptionCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
         cell = [[OWDiscoveryOptionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return cell;
 }

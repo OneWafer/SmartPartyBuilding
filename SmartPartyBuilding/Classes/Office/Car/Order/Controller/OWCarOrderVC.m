@@ -78,7 +78,7 @@
             [SVProgressHUD showSuccessWithStatus:@"预约成功!"];
             [self.navigationController popViewControllerAnimated:YES];
         }else{
-            [SVProgressHUD showInfoWithStatus:responseObject[@"message"]];
+            [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
         }
     } failure:^(NSError * _Nonnull error) {
         [SVProgressHUD showInfoWithStatus:@"请检查网络!"];

@@ -29,7 +29,6 @@ static NSString *const identifier = @"OWHomeNewsCell";
     OWHomeNewsCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
         cell = [[OWHomeNewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return cell;
 }
