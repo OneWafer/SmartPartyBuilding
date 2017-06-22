@@ -192,6 +192,7 @@
         
         UITextField *tf = [[UITextField alloc] init];
         tf.placeholder = @"密码";
+        tf.secureTextEntry = YES;
         tf.keyboardType = UIKeyboardTypeASCIICapable;
         tf.font = [UIFont systemFontOfSize:14.5f];
         tf.tintColor = wh_norFontColor;

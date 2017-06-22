@@ -399,13 +399,13 @@
 
 
 #pragma mark - ---------- Lazy ----------
+
 - (SDCycleScrollView *)banner
 {
     if (!_banner) {
-        SDCycleScrollView *banner = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, wh_screenWidth, 0.488*wh_screenWidth) delegate:self placeholderImage:wh_imageNamed(@"")];
+        SDCycleScrollView *banner = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, wh_screenWidth, 0.488*wh_screenWidth) delegate:self placeholderImage:wh_imageNamed(@"home_banner_place")];
         banner.currentPageDotColor = [UIColor redColor];
         banner.autoScrollTimeInterval = 3.0f;
-        banner.placeholderImage = wh_imageNamed(@"home_banner_place");
         self.tableView.tableHeaderView = banner;
         _banner = banner;
     }

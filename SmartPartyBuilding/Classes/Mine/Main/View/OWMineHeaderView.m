@@ -28,7 +28,7 @@
         
         NSDictionary *userInfo = [OWTool getUserInfo];
         self.bgImgView.image = [UIImage wh_imgWithColor:[UIColor redColor]];
-        self.headImgView.image = wh_imageNamed(@"btn1");
+        [self.headImgView sd_setImageWithURL:[NSURL URLWithString:userInfo[@"avatar"] ?: @""] placeholderImage:wh_imageNamed(@"home_news_place")];
         self.nameLabel.text = userInfo[@"staffName"] ?: @"";
         self.telLabel.text = userInfo[@"phoneNumber"] ?: @"";
         wh_weakSelf(self);
@@ -75,6 +75,8 @@
             make.left.equalTo(self).offset(15);
             make.width.height.equalTo(65);
         }];
+        imgView.layer.cornerRadius = 32.5;
+        imgView.layer.masksToBounds = YES;
         _headImgView = imgView;
     }
     return _headImgView;

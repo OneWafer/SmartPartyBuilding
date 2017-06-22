@@ -13,7 +13,6 @@
 @interface OWUserInfoAvatarCell ()
 
 @property (nonatomic, weak) UILabel *titleLabel;
-@property (nonatomic, weak) UIImageView *avatarImgView;
 
 @end
 
@@ -51,7 +50,7 @@ static NSString *const identifier = @"OWUserInfoAvatarCell";
 {
     _optionDic = optionDic;
     self.titleLabel.text = optionDic[@"title"];
-    [self.avatarImgView sd_setImageWithURL:[NSURL URLWithString:optionDic[@"content"]] placeholderImage:wh_imageNamed(@"")];
+    [self.avatarImgView sd_setImageWithURL:[NSURL URLWithString:optionDic[@"content"]] placeholderImage:wh_imageNamed(@"home_news_place")];
     
 }
 

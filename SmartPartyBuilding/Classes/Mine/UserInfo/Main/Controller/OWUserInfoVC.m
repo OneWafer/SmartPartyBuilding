@@ -7,9 +7,11 @@
 //
 
 #import <LCActionSheet.h>
+#import <SVProgressHUD.h>
 #import "OWUserInfoVC.h"
 #import "OWUserInfoCell.h"
 #import "OWUserInfoAvatarCell.h"
+#import "OWNetworking.h"
 #import "OWTool.h"
 
 @interface OWUserInfoVC ()<LCActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
@@ -80,6 +82,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0 && indexPath.row == 0) {
         OWUserInfoAvatarCell *cell = [OWUserInfoAvatarCell cellWithTableView:tableView];
+        cell.tag = 1001 + indexPath.row;
         cell.optionDic = self.optionList[indexPath.row];
         return cell;
     }else{
@@ -118,8 +121,23 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
     if ([type isEqualToString:@"public.image"]) {
+        UIImage *img = [info objectForKey:UIImagePickerControllerEditedImage];
+        OWUserInfoAvatarCell *cell = [self.view viewWithTag:1001];
         
-        
+        [SVProgressHUD showWithStatus:@"正在上传..."];
+        [OWNetworking HPOST:wh_appendingStr(wh_host, @"") parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+            [formData appendPartWithFileData:UIImageJPEGRepresentation(img, 0.1) name:@"file" fileName:@"head.jpg" mimeType:@"image/jpg"];
+        } success:^(id  _Nullable responseObject) {
+            if ([responseObject[@"code"] intValue] == 200) {
+                cell.avatarImgView.image = img;
+                [SVProgressHUD showSuccessWithStatus:@"上传成功!"];
+            }else{
+                [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
+            }
+        } failure:^(NSError * _Nonnull error) {
+            [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
+            wh_Log(@"--%@",error);
+        }];
     }
 }
 

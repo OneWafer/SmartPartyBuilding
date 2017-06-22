@@ -9,6 +9,7 @@
 #import <Masonry.h>
 #import <UIImageView+WebCache.h>
 #import "OWStoreItemCell.h"
+#import "OWStoreItem.h"
 
 @interface OWStoreItemCell ()
 
@@ -27,12 +28,18 @@
         self.backgroundColor = [UIColor whiteColor];
         self.layer.borderColor = wh_lineColor.CGColor;
         self.layer.borderWidth = 0.5f;
-        [self.titleImgView sd_setImageWithURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1497979542492&di=ddbfe90f43e7d16c875170d9b888b04f&imgtype=0&src=http%3A%2F%2Fimg03.fn-mart.com%2FC%2Fitem%2F2016%2F0302%2F201603C020000277%2F_653249770_800x800_w1.jpg"] placeholderImage:wh_imageNamed(@"")];
-        self.titleLabel.text = @"心纯净，行至美的怡宝心纯净，行至美的怡宝";
-        self.remainLabel.text = @"剩余999瓶";
+        
         
     }
     return self;
+}
+
+- (void)setItem:(OWStoreItem *)item
+{
+    _item = item;
+    [self.titleImgView sd_setImageWithURL:[NSURL URLWithString:item.avatar] placeholderImage:wh_imageNamed(@"home_news_place")];
+    self.titleLabel.text = item.itemName;
+    self.remainLabel.text = [NSString stringWithFormat:@"剩余: %d",item.num];
 }
 
 
@@ -46,7 +53,7 @@
         
         [imgView makeConstraints:^(MASConstraintMaker *make) {
             make.left.top.right.equalTo(self);
-            make.height.equalTo(self).multipliedBy(0.73);
+            make.height.equalTo(self).multipliedBy(0.75);
         }];
         _titleImgView = imgView;
     }

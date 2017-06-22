@@ -11,7 +11,7 @@
 @interface OWUserInfoAvatarCell : UITableViewCell
 
 @property (nonatomic, strong) NSDictionary *optionDic;
-
+@property (nonatomic, weak) UIImageView *avatarImgView;
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
 @end

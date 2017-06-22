@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class OWStoreItem;
 @interface OWStoreItemCell : UICollectionViewCell
 
+@property (nonatomic, strong) OWStoreItem *item;
 @end

@@ -72,6 +72,9 @@
 		53D7EC8D1EFAB721004BB7D5 /* OWStoreOrderDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D7EC8C1EFAB721004BB7D5 /* OWStoreOrderDetailVC.m */; };
 		53D7EC901EFABC4A004BB7D5 /* OWOrderDetailInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D7EC8F1EFABC4A004BB7D5 /* OWOrderDetailInfoCell.m */; };
 		53D7EC931EFABC6E004BB7D5 /* OWOrderDetailPriceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D7EC921EFABC6E004BB7D5 /* OWOrderDetailPriceCell.m */; };
+		53D84FA71EFC046800D20585 /* OWStoreHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D84FA61EFC046800D20585 /* OWStoreHeaderView.m */; };
+		53D84FAA1EFC0C2F00D20585 /* OWStoreSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D84FA91EFC0C2F00D20585 /* OWStoreSectionHeaderView.m */; };
+		53D84FAD1EFC0ED500D20585 /* OWStoreItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D84FAC1EFC0ED500D20585 /* OWStoreItem.m */; };
 		53DAA7AF1EC9D1BA00A3F8AE /* OWMineOptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DAA7AE1EC9D1BA00A3F8AE /* OWMineOptionCell.m */; };
 		53DAA7B21EC9DA2B00A3F8AE /* OWMineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DAA7B11EC9DA2B00A3F8AE /* OWMineHeaderView.m */; };
 		53E076CE1ECC689200A06AE0 /* MLLabel+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E076CD1ECC689200A06AE0 /* MLLabel+Size.m */; };
@@ -310,6 +313,12 @@
 		53D7EC8F1EFABC4A004BB7D5 /* OWOrderDetailInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWOrderDetailInfoCell.m; sourceTree = "<group>"; };
 		53D7EC911EFABC6E004BB7D5 /* OWOrderDetailPriceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWOrderDetailPriceCell.h; sourceTree = "<group>"; };
 		53D7EC921EFABC6E004BB7D5 /* OWOrderDetailPriceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWOrderDetailPriceCell.m; sourceTree = "<group>"; };
+		53D84FA51EFC046800D20585 /* OWStoreHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWStoreHeaderView.h; sourceTree = "<group>"; };
+		53D84FA61EFC046800D20585 /* OWStoreHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWStoreHeaderView.m; sourceTree = "<group>"; };
+		53D84FA81EFC0C2F00D20585 /* OWStoreSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWStoreSectionHeaderView.h; sourceTree = "<group>"; };
+		53D84FA91EFC0C2F00D20585 /* OWStoreSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWStoreSectionHeaderView.m; sourceTree = "<group>"; };
+		53D84FAB1EFC0ED500D20585 /* OWStoreItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWStoreItem.h; sourceTree = "<group>"; };
+		53D84FAC1EFC0ED500D20585 /* OWStoreItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWStoreItem.m; sourceTree = "<group>"; };
 		53DAA7AD1EC9D1BA00A3F8AE /* OWMineOptionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWMineOptionCell.h; sourceTree = "<group>"; };
 		53DAA7AE1EC9D1BA00A3F8AE /* OWMineOptionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWMineOptionCell.m; sourceTree = "<group>"; };
 		53DAA7B01EC9DA2B00A3F8AE /* OWMineHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWMineHeaderView.h; sourceTree = "<group>"; };
@@ -2361,6 +2370,8 @@
 		53F8C33A1EF9509F00507AF2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				53D84FAB1EFC0ED500D20585 /* OWStoreItem.h */,
+				53D84FAC1EFC0ED500D20585 /* OWStoreItem.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2370,6 +2381,10 @@
 			children = (
 				53F8C3421EF9540500507AF2 /* OWStoreItemCell.h */,
 				53F8C3431EF9540500507AF2 /* OWStoreItemCell.m */,
+				53D84FA51EFC046800D20585 /* OWStoreHeaderView.h */,
+				53D84FA61EFC046800D20585 /* OWStoreHeaderView.m */,
+				53D84FA81EFC0C2F00D20585 /* OWStoreSectionHeaderView.h */,
+				53D84FA91EFC0C2F00D20585 /* OWStoreSectionHeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2590,12 +2605,14 @@
 				53F0ECAC1ECD862C005ED86A /* OWVideoLineItem.m in Sources */,
 				53D7EC811EFAA89D004BB7D5 /* OWItemDetailsVC.m in Sources */,
 				53F0ECA61ECD862C005ED86A /* OWImagesSendVC.m in Sources */,
+				53D84FA71EFC046800D20585 /* OWStoreHeaderView.m in Sources */,
 				53454D391EF2A8B400915709 /* OWDisDifPartyVC.m in Sources */,
 				53F8C3411EF9519D00507AF2 /* OWStoreVC.m in Sources */,
 				53F0ECA71ECD862C005ED86A /* OWPlainGridImageView.m in Sources */,
 				530A23BA1EEB0D8B0018CE78 /* OWMessage.m in Sources */,
 				53F0ECBB1ECD8656005ED86A /* OWMomentsVC.m in Sources */,
 				537C0D471ED3D7F300F9C9B7 /* OWCommodityCartCell.m in Sources */,
+				53D84FAA1EFC0C2F00D20585 /* OWStoreSectionHeaderView.m in Sources */,
 				53D7EC8A1EFAA904004BB7D5 /* OWItemPhotoCell.m in Sources */,
 				53EAA9EA1EC2A48000D330D6 /* OWNetworking.m in Sources */,
 				53C2A1771EF2D4E10078535B /* OWDisVolVC.m in Sources */,
@@ -2661,6 +2678,7 @@
 				530F85C81EE58D8700254B60 /* OWCarDetailVC.m in Sources */,
 				53F0ECB41ECD862C005ED86A /* OWLinkClickLabel.m in Sources */,
 				53EBF1AD1EF550110012CD3D /* OWQuestionItemCell.m in Sources */,
+				53D84FAD1EFC0ED500D20585 /* OWStoreItem.m in Sources */,
 				53EBCCA41ECEEF2A00CBA695 /* OWUserMomentsVC.m in Sources */,
 				53F0ECB31ECD862C005ED86A /* OWLikeCommentView.m in Sources */,
 				53E5930D1ECA8DE000D21A75 /* OWUserInfoAvatarCell.m in Sources */,
