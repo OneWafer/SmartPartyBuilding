@@ -22,6 +22,7 @@
 
 @property (nonatomic, strong) NSArray *registerList;
 @property (nonatomic, strong) NSArray *branchList;
+@property (nonatomic, strong) NSArray *dutyList;
 @property (nonatomic, copy) NSString *verCode;
 
 @end
@@ -84,7 +85,6 @@
     [OWNetworking GET:wh_appendingStr(wh_host, @"mobile/branchInfo/listAll") parameters:nil success:^(id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] == 200) {
             self.branchList = [OWBranch mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
-            wh_Log(@"---%d",[self.branchList[0] id]);
         }else{
             [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
         }
@@ -93,6 +93,22 @@
         wh_Log(@"---%@",error);
         
     }];
+    
+    [OWNetworking GET:wh_appendingStr(wh_host, @"mobile/listPartyPosition") parameters:nil success:^(id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] == 200) {
+            self.dutyList = [responseObject[@"data"] wh_map:^id(NSDictionary *obj) {
+                return obj[@"name"];
+            }];
+            wh_Log(@"---%@",self.dutyList);
+        }else{
+            [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
+        }
+    } failure:^(NSError * _Nonnull error) {
+        [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
+        wh_Log(@"---%@",error);
+        
+    }];
+    
 }
 
 /** 获取验证码 */
@@ -137,7 +153,7 @@
                                       @"staffName":r5.content,
                                       @"identityId":r6.content,
                                       @"sex":@(r7.sex),
-                                      @"partyPosition":@"阿拉啦",
+                                      @"partyPosition":r7.duty,
                                       @"partyBranchId":@(r7.organize)
                                       };
                 wh_Log(@"---%@",par);
@@ -211,12 +227,19 @@
         cell.block = ^(NSInteger tag){
             [weakself.view endEditing:YES];
             if (tag == 11) {
-                
+                [[OWPicker pickLinearData:self.dutyList forView:self.view.window selectedBlock:^BOOL(BOOL isCancel, NSArray<NSString *> *selectedTitles, NSArray<NSNumber *> *indexs) {
+                    if (isCancel) return YES;
+                    [weakCell.dutyBtn setTitle:selectedTitles[0] forState:UIControlStateNormal];
+                    [weakCell.dutyBtn wh_setImagePosition:WHImagePositionRight spacing:10];
+                    regist.duty = selectedTitles[0];
+                    return YES;
+                }] show:YES];
             }else if (tag == 12){
                 NSArray *typeList = @[@"男",@"女"];
                 [[OWPicker pickLinearData:typeList forView:self.view.window selectedBlock:^BOOL(BOOL isCancel, NSArray<NSString *> *selectedTitles, NSArray<NSNumber *> *indexs) {
                     if (isCancel) return YES;
                     [weakCell.sexBtn setTitle:selectedTitles[0] forState:UIControlStateNormal];
+                    [weakCell.sexBtn wh_setImagePosition:WHImagePositionRight spacing:8];
                     regist.sex = [selectedTitles[0] isEqualToString:@"男"] ? 0 : 1;
                     return YES;
                 }] show:YES];

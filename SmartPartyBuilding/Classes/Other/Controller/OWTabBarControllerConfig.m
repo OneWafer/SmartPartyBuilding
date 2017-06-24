@@ -9,6 +9,7 @@
 #import "OWTabBarControllerConfig.h"
 #import "OWNavigationController.h"
 #import "OWHomeVC.h"
+#import "OWStoreVC.h"
 #import "OWOfficeVC.h"
 #import "OWDiscoveryVC.h"
 #import "OWMineVC.h"
@@ -22,11 +23,12 @@
 - (NSArray *)viewControllers
 {
     OWNavigationController *homeVC = [[OWNavigationController alloc] initWithRootViewController:[[OWHomeVC alloc] init]];
-    OWNavigationController *officeVC = [[OWNavigationController alloc] initWithRootViewController:[[OWOfficeVC alloc] init]];
+//    OWNavigationController *officeVC = [[OWNavigationController alloc] initWithRootViewController:[[OWOfficeVC alloc] init]];
+    OWNavigationController *storeVC = [[OWNavigationController alloc] initWithRootViewController:[[OWStoreVC alloc] init]];
     OWNavigationController *discoveryVC = [[OWNavigationController alloc] initWithRootViewController:[[OWDiscoveryVC alloc] init]];
     OWNavigationController *mineVC = [[OWNavigationController alloc] initWithRootViewController:[[OWMineVC alloc] init]];
     
-    NSArray *list = @[homeVC, officeVC, discoveryVC, mineVC];
+    NSArray *list = @[homeVC, storeVC, discoveryVC, mineVC];
     
     return list;
 }
@@ -41,7 +43,7 @@
                                        };
     
     NSDictionary *storeItemAttributes = @{
-                                         CYLTabBarItemTitle : @"办公",
+                                         CYLTabBarItemTitle : @"商城",
                                          CYLTabBarItemImage : @"tab_store",
                                          CYLTabBarItemSelectedImage : @"tab_store_slt"
                                          };

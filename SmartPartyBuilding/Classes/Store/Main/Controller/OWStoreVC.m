@@ -197,8 +197,12 @@ static NSString *const headerId1 = @"headerId1";
 //UICollectionView被选中的时候调用
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%@",indexPath);
     OWItemDetailsVC *detailVC = [[OWItemDetailsVC alloc] init];
+    if (indexPath.section == 0) {
+        detailVC.item = self.hotList[indexPath.row];
+    }else{
+        detailVC.item = self.allList[indexPath.row];
+    }
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 

@@ -63,6 +63,7 @@
     
     RAC(self.loginBtn, enabled) = loginSignal;
     [self.loginBtn wh_addActionHandler:^(UIButton *sender) {
+        [weakself.view endEditing:YES];
         [weakself Login];
     }];
     

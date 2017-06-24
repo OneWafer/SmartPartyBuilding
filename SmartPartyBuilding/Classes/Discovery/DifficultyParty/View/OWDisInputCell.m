@@ -58,7 +58,7 @@ static NSString *const identifier = @"OWDisInputCell";
         weakself.input.content = x;
     }];
     
-    self.inputTF.userInteractionEnabled = !([input.place isEqualToString:@"出生年月"] || [input.place isEqualToString:@"入党日期"] || [input.place isEqualToString:@"困难类型"] || [input.place isEqualToString:@"享受低保"] || [input.place isEqualToString:@"享受抚恤"] || [input.place isEqualToString:@"文化程度"] || [input.place isEqualToString:@"可提供服务时间"]);
+    self.inputTF.userInteractionEnabled = !([input.place isEqualToString:@"出生年月"] || [input.place isEqualToString:@"入党日期"] || [input.place isEqualToString:@"困难类型"] || [input.place isEqualToString:@"是否享受低保"] || [input.place isEqualToString:@"是否享受抚恤"] || [input.place isEqualToString:@"文化程度"] || [input.place isEqualToString:@"可提供服务时间"]);
     
 }
 

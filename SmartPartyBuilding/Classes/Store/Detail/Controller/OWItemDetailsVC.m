@@ -9,8 +9,7 @@
 #import <Masonry.h>
 #import "OWItemDetailsVC.h"
 #import "OWItemHeaderCell.h"
-#import "OWItemTitleCell.h"
-#import "OWItemPhotoCell.h"
+#import "OWItemDetailCell.h"
 #import "OWStoreOrderDetailVC.h"
 
 @interface OWItemDetailsVC ()
@@ -44,7 +43,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section ? 3 : 1;
+    return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -62,7 +61,7 @@
     if (indexPath.section == 0) {
         return 200;
     }else{
-        return indexPath.row ? 200 : 100;
+        return wh_screenHeight - 200;
     }
 }
 
@@ -106,6 +105,7 @@
 {
     if (indexPath.section == 0) {
         OWItemHeaderCell *cell = [OWItemHeaderCell cellWithTableView:tableView];
+        cell.item = self.item;
         wh_weakSelf(self);
         cell.block = ^(){
             OWStoreOrderDetailVC *detailVC = [[OWStoreOrderDetailVC alloc] init];
@@ -113,13 +113,9 @@
         };
         return cell;
     }else{
-        if (indexPath.row == 0) {
-            OWItemTitleCell *cell = [OWItemTitleCell cellWithTableView:tableView];
-            return cell;
-        }else{
-            OWItemPhotoCell *cell = [OWItemPhotoCell cellWithTableView:tableView];
-            return cell;
-        }
+        OWItemDetailCell *cell = [OWItemDetailCell cellWithTableView:tableView];
+        cell.item = self.item;
+        return cell;
     }
 }
 

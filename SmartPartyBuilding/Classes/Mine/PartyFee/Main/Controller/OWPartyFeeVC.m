@@ -10,10 +10,12 @@
 #import "OWPartyFeeVC.h"
 #import "OWPartyFeeDescCell.h"
 #import "OWPartyFeeConfCell.h"
+#import "OWSubmitCell.h"
+#import "OWPicker.h"
 
 @interface OWPartyFeeVC ()
 
-@property (nonatomic, weak) UIButton *submitBtn;
+@property (nonatomic, assign) NSInteger month;
 
 @end
 
@@ -24,8 +26,6 @@
     self.navigationItem.title = @"党费缴纳";
     
     [self setupTableView];
-    [self setupSubmitBtn];
-    
 }
 
 /** 设置tableview */
@@ -34,18 +34,8 @@
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.separatorStyle = NO;
-    CGFloat bottomEdge = 600.0f - wh_screenHeight;
-    if (bottomEdge <= 0) bottomEdge = 0;
-    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, bottomEdge, 0);
 }
 
-- (void)setupSubmitBtn
-{
-    wh_weakSelf(self);
-    [self.submitBtn wh_addActionHandler:^(UIButton *sender) {
-        [weakself dataSubmit];
-    }];
-}
 
 - (void)dataSubmit
 {
@@ -58,7 +48,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return 3;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -73,16 +63,43 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return indexPath.row ? 70.0f : 250.0f;
+    if (indexPath.row == 0) {
+        return 250.0f;
+    }else if (indexPath.row == 1){
+        return 70.0f;
+    }else{
+        return 150.0f;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    wh_weakSelf(self);
     if (indexPath.row == 0) {
         OWPartyFeeDescCell *cell = [OWPartyFeeDescCell cellWithTableView:tableView];
+        __weak OWPartyFeeDescCell *weakCell = cell;
+        cell.block = ^(){
+            NSArray *typeList = @[@"1个月", @"2个月", @"3个月", @"4个月", @"5个月", @"6个月",];
+            [[OWPicker pickLinearData:typeList forView:self.view.window selectedBlock:^BOOL(BOOL isCancel, NSArray<NSString *> *selectedTitles, NSArray<NSNumber *> *indexs) {
+                if (isCancel) return YES;
+                [weakCell.sltBtn setTitle:selectedTitles[0] forState:UIControlStateNormal];
+                [weakCell.sltBtn wh_setImagePosition:WHImagePositionRight spacing:5];
+                self.month = [[indexs firstObject] integerValue] + 1;
+                [self.tableView reloadData];
+                return YES;
+            }] show:YES];
+        };
+        return cell;
+    }else if (indexPath.row == 1) {
+        OWPartyFeeConfCell *cell = [OWPartyFeeConfCell cellWithTableView:tableView];
+        cell.month = self.month;
         return cell;
     }else{
-        OWPartyFeeConfCell *cell = [OWPartyFeeConfCell cellWithTableView:tableView];
+        OWSubmitCell *cell = [OWSubmitCell cellWithTableView:tableView];
+        cell.title = @"提交申请";
+        cell.block = ^(){
+            [weakself dataSubmit];
+        };
         return cell;
     }
 }
@@ -90,26 +107,5 @@
 
 #pragma mark - ---------- Lazy ----------
 
-- (UIButton *)submitBtn
-{
-    if (!_submitBtn) {
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setTitle:@"缴费" forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:15.5f];
-        [btn setBackgroundColor:wh_themeColor];
-        [self.tableView addSubview:btn];
-        
-        [btn makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self.view);
-            make.top.equalTo(self.tableView).offset(400);
-            make.width.equalTo(self.view).multipliedBy(0.8);
-            make.height.equalTo(45);
-        }];
-        btn.layer.cornerRadius = 4;
-        _submitBtn = btn;
-    }
-    return _submitBtn;
-}
 
 @end

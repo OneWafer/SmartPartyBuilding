@@ -59,12 +59,12 @@ static NSString *const identifier = @"OWHomeTitleCell";
         }];
     }
     self.titleLabel.text = titleDic[@"title"];
-    wh_weakSelf(self);
-    if ([self.titleLabel.text isEqualToString:@"党建要闻"]) {
-        [self.moreBtn wh_addActionHandler:^(UIButton *sender) {
-            wh_Log(@"点击了更多按钮");
-        }];
-    }
+//    wh_weakSelf(self);
+//    if ([self.titleLabel.text isEqualToString:@"党建要闻"]) {
+//        [self.moreBtn wh_addActionHandler:^(UIButton *sender) {
+//            wh_Log(@"点击了更多按钮");
+//        }];
+//    }
 }
 
 

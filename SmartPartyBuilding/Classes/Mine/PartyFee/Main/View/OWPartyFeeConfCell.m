@@ -45,15 +45,28 @@ static NSString *const identifier = @"OWPartyFeeConfCell";
     if (self)
     {
         self.titleView.backgroundColor = [UIColor whiteColor];
-        self.startLabel.text = @"2017-05";
-        self.monthNumLabel.text = @"0";
-        self.moneyLabel.text = @"0.0";
-        self.nextLabel.text = @"2017-05";
+        
         self.lineView.backgroundColor = wh_lineColor;
     }
     return self;
 }
 
+
+- (void)setMonth:(NSInteger)month
+{
+    _month = month;
+    self.startLabel.text = [NSDate wh_getCurrentTimeWithFormat:@"yyyy-MM"];
+    self.monthNumLabel.text = [NSString stringWithFormat:@"%ld",(long)month];
+    self.moneyLabel.text = [NSString stringWithFormat:@"%.1f",month * 50.0f];;
+    self.nextLabel.text = @"2017-05";
+    
+    NSDate * currentDate = [NSDate date];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *adcomps = [[NSDateComponents alloc] init];
+    [adcomps setMonth:month];
+    NSDate *newdate = [calendar dateByAddingComponents:adcomps toDate:currentDate options:0];
+    self.nextLabel.text = [newdate wh_getDateStringWithFormat:@"yyyy-MM"];
+}
 
 #pragma mark - ---------- Lazy ----------
 

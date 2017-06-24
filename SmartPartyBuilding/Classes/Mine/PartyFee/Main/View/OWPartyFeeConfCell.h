@@ -10,6 +10,7 @@
 
 @interface OWPartyFeeConfCell : UITableViewCell
 
+@property (nonatomic, assign) NSInteger month;
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
 @end

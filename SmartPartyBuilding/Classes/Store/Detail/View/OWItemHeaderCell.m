@@ -9,6 +9,7 @@
 #import <Masonry.h>
 #import <UIImageView+WebCache.h>
 #import "OWItemHeaderCell.h"
+#import "OWStoreItem.h"
 
 @interface OWItemHeaderCell ()
 
@@ -44,16 +45,20 @@ static NSString *const identifier = @"OWItemHeaderCell";
     
     if (self)
     {
-        [self.titleImgView sd_setImageWithURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1498062786081&di=1dfd8109405f980e75cb1d28f7c0628f&imgtype=0&src=http%3A%2F%2Fwww.5888.tv%2FUpload_Map%2Fuploads%2F2015%2F11%2F2015-11-13-09-14-04-96937.jpg"] placeholderImage:wh_imageNamed(@"")];
-        self.titleLabel.text = @"心纯净，行至美的怡宝心纯净，行至美的怡宝";
-        self.priceLabel.text = @"999积分";
-        
         wh_weakSelf(self);
         [self.addBtn wh_addActionHandler:^(UIButton *sender) {
             if (weakself.block) weakself.block();
         }];
     }
     return self;
+}
+
+- (void)setItem:(OWStoreItem *)item
+{
+    _item = item;
+    [self.titleImgView sd_setImageWithURL:[NSURL URLWithString:item.avatar] placeholderImage:wh_imageNamed(@"home_banner_place")];
+    self.titleLabel.text = item.itemName;
+    self.priceLabel.text = [NSString stringWithFormat:@"%d积分",item.integral ?: 0];
 }
 
 

@@ -9,8 +9,7 @@
 #import "OWOfficeVC.h"
 #import "OWMineOptionCell.h"
 #import "OWMettingManagerVC.h"
-//#import "OWCommodityVC.h"
-#import "OWStoreVC.h"
+#import "OWCommodityVC.h"
 #import "OWCarManagerVC.h"
 
 @interface OWOfficeVC ()
@@ -87,10 +86,10 @@
             OWMettingManagerVC *mtVC = [[OWMettingManagerVC alloc] init];
             [self.navigationController pushViewController:mtVC animated:YES];
         }else if (indexPath.row == 1){
-//            OWCommodityVC *cdVC = [[OWCommodityVC alloc] init];
-//            [self.navigationController pushViewController:cdVC animated:YES];
-            OWStoreVC *storeVC = [[OWStoreVC alloc] init];
-            [self.navigationController pushViewController:storeVC animated:YES];
+            OWCommodityVC *cdVC = [[OWCommodityVC alloc] init];
+            [self.navigationController pushViewController:cdVC animated:YES];
+//            OWStoreVC *storeVC = [[OWStoreVC alloc] init];
+//            [self.navigationController pushViewController:storeVC animated:YES];
         }else{
             OWCarManagerVC *carVC = [[OWCarManagerVC alloc] init];
             [self.navigationController pushViewController:carVC animated:YES];

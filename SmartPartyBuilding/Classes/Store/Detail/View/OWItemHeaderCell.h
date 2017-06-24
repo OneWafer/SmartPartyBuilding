@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class OWStoreItem;
 typedef void(^OWItemHeaderCellBlock)();
 
 @interface OWItemHeaderCell : UITableViewCell
 
+@property (nonatomic, strong) OWStoreItem *item;
 @property (nonatomic, copy) OWItemHeaderCellBlock block;
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 

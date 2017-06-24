@@ -14,7 +14,6 @@
 
 @property (nonatomic, weak) UILabel *titleLabel;
 @property (nonatomic, weak) UILabel *descLabel;
-@property (nonatomic, weak) UIButton *sltBtn;
 @property (nonatomic, weak) UIView *lineView;
 
 @end
@@ -46,8 +45,9 @@ static NSString *const identifier = @"OWPartyFeeDescCell";
         self.titleLabel.text = @"缴费注释";
         self.descLabel.text = @"如果您是开发区支部党员，目前党内职务为干事，月缴党费为50.0元。可以在下列表选择党费缴纳月份，目前系统支持最大6个月，最小1个月。您一次多缴纳数月，则在后续党费费缴纳过程中不会受到系统推送消息和短消息，在您多缴纳月份扣除结束后，您将在最后一次需缴纳前收到短信及app内消息。祝您生活愉快，党感谢您对革命事业的支持!";
 //        self.descLabel.text = @"如果您是开发区支部党员，目前党内职务为干事，月缴党费为50.0元。可以在下列表选择党费缴纳月份";
+        wh_weakSelf(self);
         [self.sltBtn wh_addActionHandler:^(UIButton *sender) {
-            wh_Log(@"----点击了学分选择");
+            if (weakself.block) weakself.block();
         }];
         self.lineView.backgroundColor = wh_lineColor;
     }
@@ -96,7 +96,6 @@ static NSString *const identifier = @"OWPartyFeeDescCell";
 {
     if (!_sltBtn) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [btn setBackgroundColor:[UIColor whiteColor]];
         [btn setTitle:@"请选择缴费月数" forState:UIControlStateNormal];
         [btn setTitleColor:wh_norFontColor forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont systemFontOfSize:14.5f];

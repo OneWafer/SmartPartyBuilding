@@ -20,13 +20,15 @@
 #import "OWHomeNewsCell.h"
 #import "OWModuleCell.h"
 #import "OWHomeNoticeVC.h"
-#import "OWHomeApprovalVC.h"
+#import "OWPartyFeeVC.h"
+//#import "OWHomeApprovalVC.h"
 #import "OWExcPartyMemberVC.h"
 #import "OWQuestionnaireVC.h"
 #import "OWScanVC.h"
 #import "OWBanner.h"
 #import "OWNews.h"
 #import "OWRefreshGifHeader.h"
+#import "OWNewsDetailVC.h"
 
 @interface OWHomeVC ()<SDCycleScrollViewDelegate>
 
@@ -345,6 +347,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.section == 3) {
+        OWNewsDetailVC *newsVC = [[OWNewsDetailVC alloc] init];
+        newsVC.news = self.newsList[indexPath.row - 1];
+        [self.navigationController pushViewController:newsVC animated:YES];
+    }
 }
 
 /** 8个按钮的点击事件 */
@@ -354,12 +362,15 @@
     if (tag == 1001) {
         OWHomeNoticeVC *noticeVC = [[OWHomeNoticeVC alloc] init];
         [weakself.navigationController pushViewController:noticeVC animated:YES];
+    }else if (tag == 1002){
+        OWPartyFeeVC *partyFeeVC = [[OWPartyFeeVC alloc] init];
+        [weakself.navigationController pushViewController:partyFeeVC animated:YES];
     }else if (tag == 1004){
         OWExcPartyMemberVC *excPartyMember = [[OWExcPartyMemberVC alloc] init];
         [weakself.navigationController pushViewController:excPartyMember animated:YES];
     }else if (tag == 1006){
-        OWHomeApprovalVC *approval = [[OWHomeApprovalVC alloc] init];
-        [weakself.navigationController pushViewController:approval animated:YES];
+//        OWHomeApprovalVC *approval = [[OWHomeApprovalVC alloc] init];
+//        [weakself.navigationController pushViewController:approval animated:YES];
     }else if (tag == 1007){
         OWQuestionnaireVC *questVC = [[OWQuestionnaireVC alloc] init];
         [weakself.navigationController pushViewController:questVC animated:YES];

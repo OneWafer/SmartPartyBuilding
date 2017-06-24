@@ -12,6 +12,7 @@
 #import "OWDisDifPartyVC.h"
 #import "OWDisInputCell.h"
 #import "OWDisInputViewCell.h"
+#import "OWSubmitCell.h"
 #import "OWDisInput.h"
 #import "OWNetworking.h"
 #import "OWPicker.h"
@@ -20,7 +21,6 @@
 @interface OWDisDifPartyVC ()
 
 @property (nonatomic, strong) NSArray *inputList;
-@property (nonatomic, weak) UIButton *submitBtn;
 
 @end
 
@@ -32,7 +32,6 @@
     self.navigationItem.title = @"困难党员申请";
     
     [self setupTableView];
-    [self setupSubmitBtn];
 }
 
 /** 设置tableview */
@@ -41,9 +40,6 @@
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.separatorStyle = NO;
-    CGFloat bottomEdge = 600.0f - wh_screenHeight;
-    if (bottomEdge <= 0) bottomEdge = 0;
-    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, bottomEdge, 0);
     
     NSDictionary *userInfo = [OWTool getUserInfo];
     NSArray *arr = @[
@@ -51,21 +47,14 @@
                      @{@"place":@"出生年月", @"content":@""},
                      @{@"place":@"入党日期", @"content":@""},
                      @{@"place":@"困难类型", @"content":@""},
-                     @{@"place":@"享受低保", @"content":@""},
-                     @{@"place":@"享受抚恤", @"content":@""},
+                     @{@"place":@"是否享受低保", @"content":@""},
+                     @{@"place":@"是否享受抚恤", @"content":@""},
                      @{@"place":@"其他说明", @"content":@""}
                      ];
     
     self.inputList = [OWDisInput mj_objectArrayWithKeyValuesArray:arr];
 }
 
-- (void)setupSubmitBtn
-{
-    wh_weakSelf(self);
-    [self.submitBtn wh_addActionHandler:^(UIButton *sender) {
-        [weakself dataSubmit];
-    }];
-}
 
 - (void)dataSubmit
 {
@@ -111,7 +100,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.inputList.count;
+    return self.inputList.count + 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -126,7 +115,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return (indexPath.row < 6) ? 45.0f : 100.0f;
+    if (indexPath.row < 6) {
+        return 45.0f;
+    }else if (indexPath.row == 6){
+        return 100.0f;
+    }else{
+        return 150.0f;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -136,10 +131,18 @@
         cell.inputTF.tag = 1001 + indexPath.row;
         cell.input = self.inputList[indexPath.row];
         return cell;
-    }else{
+    }else if (indexPath.row == 6){
         OWDisInputViewCell *cell = [OWDisInputViewCell cellWithTableView:tableView];
         cell.inputView.tag = 1001 + indexPath.row;
         cell.input = self.inputList[indexPath.row];
+        return cell;
+    }else{
+        OWSubmitCell *cell = [OWSubmitCell cellWithTableView:tableView];
+        cell.title = @"提交申请";
+        wh_weakSelf(self);
+        cell.block = ^(){
+            [weakself dataSubmit];
+        };
         return cell;
     }
 }
@@ -176,27 +179,6 @@
 
 #pragma mark - ---------- Lazy ----------
 
-- (UIButton *)submitBtn
-{
-    if (!_submitBtn) {
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setTitle:@"提交申请" forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:15.5f];
-        [btn setBackgroundColor:wh_themeColor];
-        [self.tableView addSubview:btn];
-        
-        [btn makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self.view);
-            make.top.equalTo(self.tableView).offset(420);
-            make.width.equalTo(self.view).multipliedBy(0.8);
-            make.height.equalTo(45);
-        }];
-        btn.layer.cornerRadius = 4;
-        _submitBtn = btn;
-    }
-    return _submitBtn;
-}
 
 
 @end
