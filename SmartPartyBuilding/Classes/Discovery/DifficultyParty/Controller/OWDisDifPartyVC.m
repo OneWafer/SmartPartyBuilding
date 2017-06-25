@@ -163,7 +163,7 @@
         [picker show:YES];
     }else if (indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 5){
         
-        NSArray *typeList = @[@"类型1",@"类型2"];
+        NSArray *typeList = (indexPath.row == 3) ? @[@"家庭困难", @"年老体弱", @"离退休", @"下岗失业", @"其他"] : @[@"是", @"否"];
         [[OWPicker pickLinearData:typeList forView:self.view.window selectedBlock:^BOOL(BOOL isCancel, NSArray<NSString *> *selectedTitles, NSArray<NSNumber *> *indexs) {
             if (isCancel) return YES;
             OWDisInputCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];

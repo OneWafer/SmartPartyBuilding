@@ -23,7 +23,9 @@
 #import "OWPartyFeeVC.h"
 //#import "OWHomeApprovalVC.h"
 #import "OWExcPartyMemberVC.h"
+#import "OWVolunteerVC.h"
 #import "OWQuestionnaireVC.h"
+#import "OWDiscussionVC.h"
 #import "OWScanVC.h"
 #import "OWBanner.h"
 #import "OWNews.h"
@@ -348,7 +350,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.section == 3) {
+    if (indexPath.section == 3 && indexPath.row > 0) {
         OWNewsDetailVC *newsVC = [[OWNewsDetailVC alloc] init];
         newsVC.news = self.newsList[indexPath.row - 1];
         [self.navigationController pushViewController:newsVC animated:YES];
@@ -365,17 +367,24 @@
     }else if (tag == 1002){
         OWPartyFeeVC *partyFeeVC = [[OWPartyFeeVC alloc] init];
         [weakself.navigationController pushViewController:partyFeeVC animated:YES];
+    }else if (tag == 1003){
+//        OWPartyFeeVC *partyFeeVC = [[OWPartyFeeVC alloc] init];
+//        [weakself.navigationController pushViewController:partyFeeVC animated:YES];
     }else if (tag == 1004){
         OWExcPartyMemberVC *excPartyMember = [[OWExcPartyMemberVC alloc] init];
         [weakself.navigationController pushViewController:excPartyMember animated:YES];
+    }else if (tag == 1005){
+//        OWExcPartyMemberVC *excPartyMember = [[OWExcPartyMemberVC alloc] init];
+//        [weakself.navigationController pushViewController:excPartyMember animated:YES];
     }else if (tag == 1006){
-//        OWHomeApprovalVC *approval = [[OWHomeApprovalVC alloc] init];
-//        [weakself.navigationController pushViewController:approval animated:YES];
+        OWVolunteerVC *volunteer = [[OWVolunteerVC alloc] init];
+        [weakself.navigationController pushViewController:volunteer animated:YES];
     }else if (tag == 1007){
         OWQuestionnaireVC *questVC = [[OWQuestionnaireVC alloc] init];
         [weakself.navigationController pushViewController:questVC animated:YES];
     }else if (tag == 1008){
-        
+        OWDiscussionVC *discussionVC = [[OWDiscussionVC alloc] init];
+        [weakself.navigationController pushViewController:discussionVC animated:YES];
     }
 }
 

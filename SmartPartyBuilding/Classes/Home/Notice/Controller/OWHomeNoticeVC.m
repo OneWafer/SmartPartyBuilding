@@ -10,6 +10,7 @@
 #import <SVProgressHUD.h>
 #import "OWHomeNoticeVC.h"
 #import "OWNoticeSearchResultVC.h"
+#import "OWNoticeDetailVC.h"
 #import "OWHomeNoticeCell.h"
 #import "OWNetworking.h"
 #import "OWMessage.h"
@@ -74,6 +75,10 @@
     return self.messageList.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100.0f;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -87,7 +92,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    OWMessage *message = self.messageList[indexPath.row];
+    OWNoticeDetailVC *detailVC = [[OWNoticeDetailVC alloc] init];
+    detailVC.message = message;
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 

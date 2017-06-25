@@ -110,7 +110,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    OWBranch *branch = self.branchList[indexPath.row];
+    OWBranch *branch = self.letterResultArr[indexPath.section][indexPath.row];
     if (self.block) self.block(branch);
     [self.navigationController popViewControllerAnimated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

@@ -1,17 +1,17 @@
 //
-//  OWHomeNoticeCell.m
+//  OWVolunActCell.m
 //  SmartPartyBuilding
 //
-//  Created by 王卫华 on 2017/6/4.
+//  Created by 王卫华 on 2017/6/25.
 //  Copyright © 2017年 王卫华. All rights reserved.
 //
 
 #import <Masonry.h>
 #import <UIImageView+WebCache.h>
-#import "OWHomeNoticeCell.h"
-#import "OWMessage.h"
+#import "OWVolunActCell.h"
+#import "OWVolunAct.h"
 
-@interface OWHomeNoticeCell ()
+@interface OWVolunActCell ()
 
 @property (nonatomic, weak) UIImageView *titleImgView;
 @property (nonatomic, weak) UILabel *titleLabel;
@@ -21,14 +21,14 @@
 
 @end
 
-@implementation OWHomeNoticeCell
+@implementation OWVolunActCell
 
-static NSString *const identifier = @"OWHomeNoticeCell";
+static NSString *const identifier = @"OWVolunActCell";
 + (instancetype)cellWithTableView:(UITableView *)tableView
 {
-    OWHomeNoticeCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    OWVolunActCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
-        cell = [[OWHomeNoticeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[OWVolunActCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return cell;
@@ -51,16 +51,13 @@ static NSString *const identifier = @"OWHomeNoticeCell";
 }
 
 
-- (void)setMessage:(OWMessage *)message
+- (void)setAct:(OWVolunAct *)act
 {
-    _message = message;
-    [self.titleImgView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:wh_imageNamed(@"home_news_place")];
-    self.titleLabel.text = message.title;
-    self.timeLabel.text = message.createTime;
+    _act = act;
+    [self.titleImgView sd_setImageWithURL:[NSURL URLWithString:act.avatar] placeholderImage:wh_imageNamed(@"home_news_place")];
+    self.titleLabel.text = act.title;
+    self.timeLabel.text = act.publishTime;
 }
-
-
-
 
 #pragma mark - ---------- Lazy ----------
 
@@ -144,5 +141,4 @@ static NSString *const identifier = @"OWHomeNoticeCell";
     }
     return _lineView;
 }
-
 @end
