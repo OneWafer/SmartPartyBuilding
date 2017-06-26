@@ -154,7 +154,21 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
     if ([type isEqualToString:@"public.image"]) {
+        UIImage *img = [info objectForKey:UIImagePickerControllerEditedImage];
         
+        [SVProgressHUD showWithStatus:@"正在上传..."];
+        [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/staff/uploadAvatar") parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+            [formData appendPartWithFileData:UIImageJPEGRepresentation(img, 0.1) name:@"file" fileName:@"head.jpg" mimeType:@"image/jpg"];
+        } success:^(id  _Nullable responseObject) {
+            if ([responseObject[@"code"] intValue] == 200) {
+                self.headerView.headImgView.image = img;
+                [SVProgressHUD showSuccessWithStatus:@"上传成功!"];
+            }else{
+                [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
+            }
+        } failure:^(NSError * _Nonnull error) {
+            [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
+        }];
         
     }
 }

@@ -16,12 +16,12 @@
 #import "UIView+KeyBoardShowAndHidden.h"
 #import "OWNetworking.h"
 #import "OWMsgComment.h"
+#import "OWHomeCommentVC.h"
 
 @interface OWNoticeDetailVC ()<UIWebViewDelegate>
 
 @property (nonatomic, weak) UIWebView *messageView;
 @property (nonatomic, weak) OWInputFuncView *funcView;
-@property (nonatomic, strong) NSArray *commentList;
 
 @end
 
@@ -63,9 +63,11 @@
         }else if (tag == 11) {
             [weakself submitThumbup];
         }else if (tag == 12){
-            
+            [weakself submitCollection];
         }else{
-            
+            OWHomeCommentVC *commentVC = [[OWHomeCommentVC alloc] init];
+            commentVC.message = self.message;
+            [weakself.navigationController pushViewController:commentVC animated:YES];
         }
     };
 }
@@ -74,14 +76,12 @@
 {
     [SVProgressHUD showWithStatus:@"正在加载..."];
     NSDictionary *par = @{
-                          @"articleId":@(self.message.id),
-                          @"articleType":@(2)
+                          @"id":@(self.message.id),
+                          @"type":@(2)
                           };
-    [OWNetworking HGET:wh_appendingStr(wh_host, @"mobile/reply/replyList") parameters:par success:^(id  _Nullable responseObject) {
+    [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/reply/replyLikeAndMark") parameters:par success:^(id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] == 200) {
-            wh_Log(@"---%@",responseObject);
-            self.commentList = [OWMsgComment mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
-            self.funcView.count = self.commentList.count;
+            self.funcView.infoDic = responseObject[@"data"];
             [SVProgressHUD dismiss];
         }else{
             [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
@@ -103,6 +103,7 @@
         if ([responseObject[@"code"] intValue] == 200) {
             wh_Log(@"---%@",responseObject);
             self.funcView.inputView.text = @"";
+            [self dataRequest];
             [SVProgressHUD showSuccessWithStatus:@"评论成功!"];
         }else{
             [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
@@ -115,25 +116,82 @@
 
 - (void)submitThumbup
 {
-//    [SVProgressHUD showWithStatus:@"正在提交..."];
-    NSDictionary *par = @{
-                          @"praisedId":@(self.message.id),
-                          @"articleType":@(2),
-                          @"title":self.message.title,
-                          @"cover":@""
-                          };
-    [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/like/like") parameters:par success:^(id  _Nullable responseObject) {
-        if ([responseObject[@"code"] intValue] == 200) {
-            wh_Log(@"---%@",responseObject);
-//            [SVProgressHUD showSuccessWithStatus:@"评论成功!"];
-        }else{
-            [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
-        }
-    } failure:^(NSError * _Nonnull error) {
-        [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
-    }];
-    
+    if (self.funcView.thumbupBtn.selected) { // 取消点赞
+        NSDictionary *par = @{
+                              @"praisedId":@(self.message.id),
+                              @"type":@(2)
+                              };
+        wh_Log(@"--%@",par);
+        [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/like/unlike") parameters:par success:^(id  _Nullable responseObject) {
+            if ([responseObject[@"code"] intValue] == 200) {
+                wh_Log(@"---%@",responseObject);
+                self.funcView.thumbupBtn.selected = NO;
+            }else{
+                [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
+            }
+        } failure:^(NSError * _Nonnull error) {
+            [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
+//            wh_Log(@"---%@",error);
+        }];
+    }else{ // 点赞
+        NSDictionary *par = @{
+                              @"praisedId":@(self.message.id),
+                              @"type":@(2),
+                              @"title":self.message.title,
+                              @"cover":@""
+                              };
+        wh_Log(@"--%@",par);
+        [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/like/like") parameters:par success:^(id  _Nullable responseObject) {
+            if ([responseObject[@"code"] intValue] == 200) {
+                wh_Log(@"---%@",responseObject);
+                self.funcView.thumbupBtn.selected = YES;
+            }else{
+                [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
+            }
+        } failure:^(NSError * _Nonnull error) {
+            [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
+//            wh_Log(@"---%@",error);
+        }];
+    }
 }
+
+- (void)submitCollection
+{
+    if (self.funcView.collectionBtn.selected) { // 取消收藏
+        NSDictionary *par = @{
+                              @"markedId":@(self.message.id),
+                              @"type":@(2)
+                              };
+        [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/mark/unmark") parameters:par success:^(id  _Nullable responseObject) {
+            if ([responseObject[@"code"] intValue] == 200) {
+                wh_Log(@"---%@",responseObject);
+                self.funcView.collectionBtn.selected = NO;
+            }else{
+                [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
+            }
+        } failure:^(NSError * _Nonnull error) {
+            [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
+        }];
+    }else{// 收藏
+        NSDictionary *par = @{
+                              @"markedId":@(self.message.id),
+                              @"type":@(2),
+                              @"title":self.message.title,
+                              @"cover":@""
+                              };
+        [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/mark/mark") parameters:par success:^(id  _Nullable responseObject) {
+            if ([responseObject[@"code"] intValue] == 200) {
+                wh_Log(@"---%@",responseObject);
+                self.funcView.collectionBtn.selected = YES;
+            }else{
+                [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
+            }
+        } failure:^(NSError * _Nonnull error) {
+            [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
+        }];
+    }
+}
+
 
 
 #pragma mark - ---------- Lazy ----------

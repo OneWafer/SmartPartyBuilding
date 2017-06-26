@@ -169,7 +169,7 @@
         [picker show:YES];
     }else if (indexPath.row == 3 || indexPath.row == 7){
         
-        NSArray *typeList = (indexPath.row == 3) ? @[@"初中或以下", @"高中/中专", @"大专", @"大学", @"硕士及以上"] : @[@"周一~周五 全天", @"周一~周五 下班后", @"仅周六", @"周日  全天", @"节假日"];
+        NSArray *typeList = (indexPath.row == 3) ? @[@"小学", @"初中", @"中专", @"高中", @"大专", @"本科", @"硕士", @"博士"] : @[@"周一~周五 全天", @"周一~周五 下班后", @"仅周六", @"周日  全天", @"节假日"];
         [[OWPicker pickLinearData:typeList forView:self.view.window selectedBlock:^BOOL(BOOL isCancel, NSArray<NSString *> *selectedTitles, NSArray<NSNumber *> *indexs) {
             if (isCancel) return YES;
             OWDisInputCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];

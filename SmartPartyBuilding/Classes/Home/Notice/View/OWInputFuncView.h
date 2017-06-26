@@ -12,9 +12,11 @@ typedef void(^OWInputFuncViewBlock)(NSInteger tag);
 
 @interface OWInputFuncView : UIView
 
-@property (nonatomic, assign) NSInteger count;
+@property (nonatomic, strong) NSDictionary *infoDic;
 @property (nonatomic, copy) NSString *commentStr;
 @property (nonatomic, weak) UITextField *inputView;
+@property (nonatomic, weak) UIButton *collectionBtn;
+@property (nonatomic, weak) UIButton *thumbupBtn;
 @property (nonatomic, copy) OWInputFuncViewBlock block;
 
 @end

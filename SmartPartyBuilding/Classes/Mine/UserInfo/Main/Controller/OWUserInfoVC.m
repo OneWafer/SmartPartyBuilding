@@ -47,7 +47,7 @@
                         @{@"title" : @"头像", @"content" : userInfo[@"avatar"] ?: @""},
                         @{@"title" : @"名字", @"content" : userInfo[@"staffName"] ?: @""},
                         @{@"title" : @"性别", @"content" : [userInfo[@"staffName"] intValue] ? @"男": @"女"},
-                        @{@"title" : @"个性签名", @"content" : userInfo[@"avatar"] ?: @""},
+                        @{@"title" : @"个性签名", @"content" : userInfo[@""] ?: @""},
                         @{@"title" : @"我的地址", @"content" : userInfo[@"address"] ?: @""},
                         ];
 }
@@ -125,7 +125,7 @@
         OWUserInfoAvatarCell *cell = [self.view viewWithTag:1001];
         
         [SVProgressHUD showWithStatus:@"正在上传..."];
-        [OWNetworking HPOST:wh_appendingStr(wh_host, @"") parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/staff/uploadAvatar") parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
             [formData appendPartWithFileData:UIImageJPEGRepresentation(img, 0.1) name:@"file" fileName:@"head.jpg" mimeType:@"image/jpg"];
         } success:^(id  _Nullable responseObject) {
             if ([responseObject[@"code"] intValue] == 200) {

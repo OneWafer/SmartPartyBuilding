@@ -14,8 +14,6 @@
 @interface OWInputFuncView ()<UITextFieldDelegate>
 
 @property (nonatomic, weak) UIButton *commentBtn;
-@property (nonatomic, weak) UIButton *collectionBtn;
-@property (nonatomic, weak) UIButton *thumbupBtn;
 
 @end
 
@@ -32,13 +30,11 @@
         
         
         [self.thumbupBtn wh_addActionHandler:^(UIButton *sender) {
-            sender.selected = !sender.selected;
             wh_Log(@"点击了点赞");
             if (weakself.block) weakself.block(11);
         }];
         
         [self.collectionBtn wh_addActionHandler:^(UIButton *sender) {
-            sender.selected = !sender.selected;
             wh_Log(@"点击了收藏");
             if (weakself.block) weakself.block(12);
         }];
@@ -58,13 +54,19 @@
     return YES;
 }
 
-- (void)setCount:(NSInteger)count
+
+- (void)setInfoDic:(NSDictionary *)infoDic
 {
-    _count = count;
-    self.commentBtn.badgeValue = [NSString stringWithFormat:@"%ld",(long)count];
-    self.commentBtn.badgeBGColor = wh_RGB(28, 184, 235);
-    self.commentBtn.badgeOriginX = 24.0f;
-    self.commentBtn.badgeOriginY = 1.0f;
+    _infoDic = infoDic;
+    NSInteger replayNum = [infoDic[@"replyNum"] integerValue];
+    if (replayNum) {
+        self.commentBtn.badgeValue = [NSString stringWithFormat:@"%ld",(long)replayNum];
+        self.commentBtn.badgeBGColor = wh_RGB(28, 184, 235);
+        self.commentBtn.badgeOriginX = 24.0f;
+        self.commentBtn.badgeOriginY = 1.0f;
+    }
+    self.thumbupBtn.selected = [infoDic[@"isLiked"] integerValue];
+    self.collectionBtn.selected = [infoDic[@"isMarked"] integerValue];
 }
 
 #pragma mark - ---------- Lazy ----------
@@ -114,7 +116,7 @@
     if (!_collectionBtn) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setImage:wh_imageNamed(@"home_collection") forState:UIControlStateNormal];
-        [btn setImage:wh_imageNamed(@"home_collection_slt") forState:UIControlStateSelected];
+        [btn setImage:wh_imageNamed(@"mine_collection") forState:UIControlStateSelected];
         [self addSubview:btn];
         
         [btn makeConstraints:^(MASConstraintMaker *make) {
@@ -130,7 +132,7 @@
 {
     if (!_commentBtn) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setImage:wh_imageNamed(@"home_collection") forState:UIControlStateNormal];
+        [btn setImage:wh_imageNamed(@"mine_comment") forState:UIControlStateNormal];
         [self addSubview:btn];
         
         [btn makeConstraints:^(MASConstraintMaker *make) {

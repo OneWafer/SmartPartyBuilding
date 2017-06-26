@@ -13,6 +13,7 @@
 #import "OWNavigationController.h"
 //#import "OWRegisterNavigationVC.h"
 #import "OWLoginVC.h"
+#import "OWGuideView.h"
 #import "OWNetworking.h"
 #import "OWTool.h"
 
@@ -33,10 +34,11 @@
     
     [OWTool getUserInfo] ? [self tabBar] : [self login];
     [self.window makeKeyAndVisible];
+    [OWGuideView push];
     [OWTool SVProgressHUD];
     
     /** 延长启动页停留时间 */
-    [NSThread sleepForTimeInterval:2];
+    [NSThread sleepForTimeInterval:1];
     return YES;
 }
 
