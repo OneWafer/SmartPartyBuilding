@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '0D3A3BB66CF58E80C31981AAB67DC59C'
+               BlueprintIdentifier = 'D7E4C314CADD053BD426BF680D8172D8'
                BlueprintName = 'XHWaterfallFlowLayout'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libXHWaterfallFlowLayout.a'>

@@ -21,6 +21,7 @@
 #import "OWModuleCell.h"
 #import "OWHomeNoticeVC.h"
 #import "OWPartyFeeVC.h"
+#import "OWHomeActivityVC.h"
 //#import "OWHomeApprovalVC.h"
 #import "OWExcPartyMemberVC.h"
 #import "OWVolunteerVC.h"
@@ -49,16 +50,16 @@
 {
     [super viewWillAppear:animated];
     //设置背景透明图片
+    if (self.tableView.contentOffset.y <= 0) self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
     [self.navigationController.navigationBar setValue:@0 forKeyPath:@"backgroundView.alpha"];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    if (self.tableView.contentOffset.y <= 0) self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    [self.navigationController.navigationBar setValue:@1 forKeyPath:@"backgroundView.alpha"];
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
+    [self.navigationController.navigationBar setValue:@1 forKeyPath:@"backgroundView.alpha"];
 }
 
 
@@ -100,7 +101,8 @@
     }];
     
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem wh_itemWithType:WHItemTypeRight norImage:@"navi_home_message" highImage:@"navi_home_message" offset:0 actionHandler:^(UIButton *sender) {
-        wh_Log(@"---点击了消息");
+        OWHomeNoticeVC *noticeVC = [[OWHomeNoticeVC alloc] init];
+        [weakself.navigationController pushViewController:noticeVC animated:YES];
     }];
     
     [self.searchView wh_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
@@ -150,7 +152,7 @@
     // 按钮皮肤请求
     RACSignal *funcRequest = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         [OWNetworking HGET:wh_appendingStr(wh_host, @"mobile/appset/getSkinVersion") parameters:nil success:^(id  _Nullable responseObject) {
-            wh_Log(@"%@",responseObject);
+//            wh_Log(@"%@",responseObject);
             if ([responseObject[@"code"] intValue] == 200) {
                 NSMutableArray *funcImgList = [NSMutableArray array];
                 for (int i = 0; i < 8; i ++) {
@@ -196,7 +198,7 @@
     }];
     
     
-    // 党建快报请求
+    // 党建要闻请求
     RACSignal *newsRequest = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         NSDictionary *par = @{
                               @"page":@"1",
@@ -368,8 +370,8 @@
         OWPartyFeeVC *partyFeeVC = [[OWPartyFeeVC alloc] init];
         [weakself.navigationController pushViewController:partyFeeVC animated:YES];
     }else if (tag == 1003){
-//        OWPartyFeeVC *partyFeeVC = [[OWPartyFeeVC alloc] init];
-//        [weakself.navigationController pushViewController:partyFeeVC animated:YES];
+        OWHomeActivityVC *activityVC = [[OWHomeActivityVC alloc] init];
+        [weakself.navigationController pushViewController:activityVC animated:YES];
     }else if (tag == 1004){
         OWExcPartyMemberVC *excPartyMember = [[OWExcPartyMemberVC alloc] init];
         [weakself.navigationController pushViewController:excPartyMember animated:YES];

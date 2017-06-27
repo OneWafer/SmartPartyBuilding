@@ -73,7 +73,7 @@ static NSString *const identifier = @"OWHomeCommentCell";
             make.left.equalTo(self).offset(15);
             make.width.height.equalTo(self.height).multipliedBy(0.75);
         }];
-        imgView.layer.cornerRadius = 37.5;
+        imgView.layer.cornerRadius = 33.75;
         imgView.layer.masksToBounds = YES;
         _headImgView = imgView;
     }

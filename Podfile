@@ -23,6 +23,5 @@ pod 'YLGIFImage'
 pod 'LBXScan/LBXNative'
 pod 'LBXScan/UI'
 pod 'XHWaterfallFlowLayout'
-pod 'FMDB'
 
 end

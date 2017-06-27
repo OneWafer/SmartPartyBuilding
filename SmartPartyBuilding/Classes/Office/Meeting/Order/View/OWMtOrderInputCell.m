@@ -59,7 +59,6 @@ static NSString *const identifier = @"OWMtOrderInputCell";
 
 #pragma mark - ---------- Lazy ----------
 
-
 - (UIView *)inputView
 {
     if (!_inputView) {

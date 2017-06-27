@@ -24,7 +24,6 @@ static NSString *const identifier = @"OWUserInfoAvatarCell";
     OWUserInfoAvatarCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
         cell = [[OWUserInfoAvatarCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return cell;
 }

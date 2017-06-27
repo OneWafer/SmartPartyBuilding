@@ -16,9 +16,6 @@ PODS:
     - AFNetworking/NSURLSession
   - CYLTabBarController (1.10.0)
   - DZNEmptyDataSet (1.8.1)
-  - FMDB (2.6.2):
-    - FMDB/standard (= 2.6.2)
-  - FMDB/standard (2.6.2)
   - IQKeyboardManager (4.0.9)
   - LBXScan/LBXNative (2.0)
   - LBXScan/UI (2.0)
@@ -54,7 +51,6 @@ DEPENDENCIES:
   - AFNetworking
   - CYLTabBarController
   - DZNEmptyDataSet
-  - FMDB
   - IQKeyboardManager
   - LBXScan/LBXNative
   - LBXScan/UI
@@ -77,7 +73,6 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   CYLTabBarController: 2de9a4c26f50d33574398becf8e7b0aaed794240
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
-  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   IQKeyboardManager: 322c7405df3eb5f7e50dede32ea937bf3d4364e0
   LBXScan: 458f4b7a6688504a1415dc4a0f9822100e099f66
   LCActionSheet: 5a71fdd0daee922ee44fed386dd4b3f36490275d
@@ -95,6 +90,6 @@ SPEC CHECKSUMS:
   XHWaterfallFlowLayout: 07d24301c20c4404d63969eec7de5c0ade8b187c
   YLGIFImage: c0ae132fe80e5282b2762a97d14e23ba71a748ae
 
-PODFILE CHECKSUM: a4b31201bb02e842239b7f0e2e5ae9425ac7ecd4
+PODFILE CHECKSUM: 983ac3f62fd5ed83d7441aee94d2d6065a5e1634
 
 COCOAPODS: 1.1.1

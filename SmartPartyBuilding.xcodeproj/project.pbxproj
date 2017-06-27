@@ -26,6 +26,18 @@
 		530A23C51EEBDF880018CE78 /* OWPartyFeeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 530A23C41EEBDF880018CE78 /* OWPartyFeeVC.m */; };
 		530C8B371EDBEABA001B924E /* OWCommodityFallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 530C8B361EDBEABA001B924E /* OWCommodityFallCell.m */; };
 		530C8B3A1EDBF2A8001B924E /* OWCommodityItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 530C8B391EDBF2A8001B924E /* OWCommodityItemCell.m */; };
+		530DD07F1F027F7F003B507F /* OWSignatureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 530DD07E1F027F7F003B507F /* OWSignatureVC.m */; };
+		530DD0821F028075003B507F /* OWSignatureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 530DD0811F028075003B507F /* OWSignatureCell.m */; };
+		530DD0911F028E5E003B507F /* OWMineCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 530DD0901F028E5E003B507F /* OWMineCollectionVC.m */; };
+		530DD0941F028F95003B507F /* OWMineCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 530DD0931F028F95003B507F /* OWMineCollection.m */; };
+		530DD0971F028FE9003B507F /* OWMineCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 530DD0961F028FE9003B507F /* OWMineCollectionCell.m */; };
+		530DD09A1F0294FD003B507F /* OWMineCommentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 530DD0991F0294FD003B507F /* OWMineCommentVC.m */; };
+		530DD09D1F029B11003B507F /* OWThumbupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 530DD09C1F029B11003B507F /* OWThumbupVC.m */; };
+		530DD0A01F029B8B003B507F /* OWMineThumbup.m in Sources */ = {isa = PBXBuildFile; fileRef = 530DD09F1F029B8B003B507F /* OWMineThumbup.m */; };
+		530DD0A31F029ECD003B507F /* OWMineThumbupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 530DD0A21F029ECD003B507F /* OWMineThumbupCell.m */; };
+		530DD0AA1F02AAFA003B507F /* OWHomeActivityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 530DD0A91F02AAFA003B507F /* OWHomeActivityVC.m */; };
+		530DD0AD1F02AD62003B507F /* OWHomeActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 530DD0AC1F02AD62003B507F /* OWHomeActivity.m */; };
+		530DD0B01F02B193003B507F /* OWHomeActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 530DD0AF1F02B193003B507F /* OWHomeActivityCell.m */; };
 		530F85C81EE58D8700254B60 /* OWCarDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 530F85C71EE58D8700254B60 /* OWCarDetailVC.m */; };
 		530F85CB1EE5A09000254B60 /* OWCarOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 530F85CA1EE5A09000254B60 /* OWCarOrderVC.m */; };
 		530F85CE1EE5A83000254B60 /* OWMtOrderDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 530F85CD1EE5A83000254B60 /* OWMtOrderDateCell.m */; };
@@ -230,6 +242,30 @@
 		530C8B361EDBEABA001B924E /* OWCommodityFallCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWCommodityFallCell.m; sourceTree = "<group>"; };
 		530C8B381EDBF2A8001B924E /* OWCommodityItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWCommodityItemCell.h; sourceTree = "<group>"; };
 		530C8B391EDBF2A8001B924E /* OWCommodityItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWCommodityItemCell.m; sourceTree = "<group>"; };
+		530DD07D1F027F7F003B507F /* OWSignatureVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWSignatureVC.h; sourceTree = "<group>"; };
+		530DD07E1F027F7F003B507F /* OWSignatureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWSignatureVC.m; sourceTree = "<group>"; };
+		530DD0801F028075003B507F /* OWSignatureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWSignatureCell.h; sourceTree = "<group>"; };
+		530DD0811F028075003B507F /* OWSignatureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWSignatureCell.m; sourceTree = "<group>"; };
+		530DD08F1F028E5E003B507F /* OWMineCollectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWMineCollectionVC.h; sourceTree = "<group>"; };
+		530DD0901F028E5E003B507F /* OWMineCollectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWMineCollectionVC.m; sourceTree = "<group>"; };
+		530DD0921F028F95003B507F /* OWMineCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWMineCollection.h; sourceTree = "<group>"; };
+		530DD0931F028F95003B507F /* OWMineCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWMineCollection.m; sourceTree = "<group>"; };
+		530DD0951F028FE9003B507F /* OWMineCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWMineCollectionCell.h; sourceTree = "<group>"; };
+		530DD0961F028FE9003B507F /* OWMineCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWMineCollectionCell.m; sourceTree = "<group>"; };
+		530DD0981F0294FD003B507F /* OWMineCommentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWMineCommentVC.h; sourceTree = "<group>"; };
+		530DD0991F0294FD003B507F /* OWMineCommentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWMineCommentVC.m; sourceTree = "<group>"; };
+		530DD09B1F029B11003B507F /* OWThumbupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWThumbupVC.h; sourceTree = "<group>"; };
+		530DD09C1F029B11003B507F /* OWThumbupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWThumbupVC.m; sourceTree = "<group>"; };
+		530DD09E1F029B8B003B507F /* OWMineThumbup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWMineThumbup.h; sourceTree = "<group>"; };
+		530DD09F1F029B8B003B507F /* OWMineThumbup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWMineThumbup.m; sourceTree = "<group>"; };
+		530DD0A11F029ECD003B507F /* OWMineThumbupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWMineThumbupCell.h; sourceTree = "<group>"; };
+		530DD0A21F029ECD003B507F /* OWMineThumbupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWMineThumbupCell.m; sourceTree = "<group>"; };
+		530DD0A81F02AAFA003B507F /* OWHomeActivityVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWHomeActivityVC.h; sourceTree = "<group>"; };
+		530DD0A91F02AAFA003B507F /* OWHomeActivityVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWHomeActivityVC.m; sourceTree = "<group>"; };
+		530DD0AB1F02AD62003B507F /* OWHomeActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWHomeActivity.h; sourceTree = "<group>"; };
+		530DD0AC1F02AD62003B507F /* OWHomeActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWHomeActivity.m; sourceTree = "<group>"; };
+		530DD0AE1F02B193003B507F /* OWHomeActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWHomeActivityCell.h; sourceTree = "<group>"; };
+		530DD0AF1F02B193003B507F /* OWHomeActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWHomeActivityCell.m; sourceTree = "<group>"; };
 		530F85C61EE58D8700254B60 /* OWCarDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWCarDetailVC.h; sourceTree = "<group>"; };
 		530F85C71EE58D8700254B60 /* OWCarDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWCarDetailVC.m; sourceTree = "<group>"; };
 		530F85C91EE5A09000254B60 /* OWCarOrderVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWCarOrderVC.h; sourceTree = "<group>"; };
@@ -941,6 +977,150 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		530DD0831F028DC6003B507F /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				530DD0841F028DC6003B507F /* Controller */,
+				530DD0851F028DC6003B507F /* Model */,
+				530DD0861F028DC6003B507F /* View */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
+		530DD0841F028DC6003B507F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				530DD08F1F028E5E003B507F /* OWMineCollectionVC.h */,
+				530DD0901F028E5E003B507F /* OWMineCollectionVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		530DD0851F028DC6003B507F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				530DD0921F028F95003B507F /* OWMineCollection.h */,
+				530DD0931F028F95003B507F /* OWMineCollection.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		530DD0861F028DC6003B507F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				530DD0951F028FE9003B507F /* OWMineCollectionCell.h */,
+				530DD0961F028FE9003B507F /* OWMineCollectionCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		530DD0871F028DC6003B507F /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				530DD0881F028DC6003B507F /* Controller */,
+				530DD0891F028DC6003B507F /* Model */,
+				530DD08A1F028DC6003B507F /* View */,
+			);
+			path = Comment;
+			sourceTree = "<group>";
+		};
+		530DD0881F028DC6003B507F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				530DD0981F0294FD003B507F /* OWMineCommentVC.h */,
+				530DD0991F0294FD003B507F /* OWMineCommentVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		530DD0891F028DC6003B507F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		530DD08A1F028DC6003B507F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		530DD08B1F028DC6003B507F /* Thumbup */ = {
+			isa = PBXGroup;
+			children = (
+				530DD08C1F028DC6003B507F /* Controller */,
+				530DD08D1F028DC6003B507F /* Model */,
+				530DD08E1F028DC6003B507F /* View */,
+			);
+			path = Thumbup;
+			sourceTree = "<group>";
+		};
+		530DD08C1F028DC6003B507F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				530DD09B1F029B11003B507F /* OWThumbupVC.h */,
+				530DD09C1F029B11003B507F /* OWThumbupVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		530DD08D1F028DC6003B507F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				530DD09E1F029B8B003B507F /* OWMineThumbup.h */,
+				530DD09F1F029B8B003B507F /* OWMineThumbup.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		530DD08E1F028DC6003B507F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				530DD0A11F029ECD003B507F /* OWMineThumbupCell.h */,
+				530DD0A21F029ECD003B507F /* OWMineThumbupCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		530DD0A41F02AA0B003B507F /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				530DD0A51F02AA0B003B507F /* Controller */,
+				530DD0A61F02AA0B003B507F /* Model */,
+				530DD0A71F02AA0B003B507F /* View */,
+			);
+			path = Activity;
+			sourceTree = "<group>";
+		};
+		530DD0A51F02AA0B003B507F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				530DD0A81F02AAFA003B507F /* OWHomeActivityVC.h */,
+				530DD0A91F02AAFA003B507F /* OWHomeActivityVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		530DD0A61F02AA0B003B507F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				530DD0AB1F02AD62003B507F /* OWHomeActivity.h */,
+				530DD0AC1F02AD62003B507F /* OWHomeActivity.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		530DD0A71F02AA0B003B507F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				530DD0AE1F02B193003B507F /* OWHomeActivityCell.h */,
+				530DD0AF1F02B193003B507F /* OWHomeActivityCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		53193C4D1EC1F3AB00B98BA0 = {
 			isa = PBXGroup;
 			children = (
@@ -1392,8 +1572,9 @@
 			children = (
 				538AA6821EC868A100AB992A /* Main */,
 				530915F01ED6EDB600031F9B /* Scan */,
-				53E7928B1ED476B200E64A3C /* Notice */,
 				5335158E1EFD5D2900721967 /* News */,
+				53E7928B1ED476B200E64A3C /* Notice */,
+				530DD0A41F02AA0B003B507F /* Activity */,
 				53E90BD61EF3CA3C0087F35F /* ExcPartyMem */,
 				53FC40A51EFF7B3A00C793A9 /* Volunteer */,
 				53EBF1781EF409770012CD3D /* Questionnaire */,
@@ -1458,6 +1639,9 @@
 				538AA6871EC868A100AB992A /* Main */,
 				53E592EF1ECA8D4300D21A75 /* UserInfo */,
 				53E593111ECAC6B400D21A75 /* Setting */,
+				530DD0831F028DC6003B507F /* Collection */,
+				530DD0871F028DC6003B507F /* Comment */,
+				530DD08B1F028DC6003B507F /* Thumbup */,
 				530A23BE1EEBDF680018CE78 /* PartyFee */,
 			);
 			path = Mine;
@@ -1785,6 +1969,8 @@
 		53E593011ECA8D4300D21A75 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				530DD07D1F027F7F003B507F /* OWSignatureVC.h */,
+				530DD07E1F027F7F003B507F /* OWSignatureVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1799,6 +1985,8 @@
 		53E593031ECA8D4300D21A75 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				530DD0801F028075003B507F /* OWSignatureCell.h */,
+				530DD0811F028075003B507F /* OWSignatureCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2743,6 +2931,7 @@
 				53F4DEF61EDF0519005B8B8D /* OWCar.m in Sources */,
 				53E593271ECAC89600D21A75 /* OWSettingCell.m in Sources */,
 				530915F91ED71B7200031F9B /* OWScanPermissions.m in Sources */,
+				530DD07F1F027F7F003B507F /* OWSignatureVC.m in Sources */,
 				53A75A711EE857A400C5B9B3 /* OWRefreshGifHeader.m in Sources */,
 				53EBF1851EF4B8A40012CD3D /* OWQuestionnaireVC.m in Sources */,
 				53E5932A1ECAE29F00D21A75 /* OWDiscoveryPhotoCell.m in Sources */,
@@ -2757,11 +2946,13 @@
 				53E90BDF1EF3CB7E0087F35F /* OWExcPartyMemCell.m in Sources */,
 				53F0ECB51ECD862C005ED86A /* OWBaseLineCell.m in Sources */,
 				53FC40C11F0015B100C793A9 /* OWMsgComment.m in Sources */,
+				530DD0941F028F95003B507F /* OWMineCollection.m in Sources */,
 				53FC40B11EFF7C1200C793A9 /* OWVolunAct.m in Sources */,
 				537C0D521ED4078200F9C9B7 /* OWLoginVC.m in Sources */,
 				53EBCCA11ECED86B00CBA695 /* OWUserLineCellManager.m in Sources */,
 				5395ED081ED59B5D00AEB7FB /* OWRegisterVC.m in Sources */,
 				53F0ECAC1ECD862C005ED86A /* OWVideoLineItem.m in Sources */,
+				530DD09D1F029B11003B507F /* OWThumbupVC.m in Sources */,
 				53D7EC811EFAA89D004BB7D5 /* OWItemDetailsVC.m in Sources */,
 				53F0ECA61ECD862C005ED86A /* OWImagesSendVC.m in Sources */,
 				53D84FA71EFC046800D20585 /* OWStoreHeaderView.m in Sources */,
@@ -2775,6 +2966,7 @@
 				5301DCFD1F012F9700A0161A /* OWGuideView.m in Sources */,
 				53EAA9EA1EC2A48000D330D6 /* OWNetworking.m in Sources */,
 				53C2A1771EF2D4E10078535B /* OWDisVolVC.m in Sources */,
+				530DD0A31F029ECD003B507F /* OWMineThumbupCell.m in Sources */,
 				53D7EC8D1EFAB721004BB7D5 /* OWStoreOrderDetailVC.m in Sources */,
 				53F0ECAB1ECD862C005ED86A /* OWTextImageLineItem.m in Sources */,
 				530916061ED734F700031F9B /* OWHomeApprovalCell.m in Sources */,
@@ -2793,7 +2985,9 @@
 				53E593101ECA8F7100D21A75 /* OWUserInfoCell.m in Sources */,
 				5308C0991ED00F2300662D34 /* OWMettingManagerVC.m in Sources */,
 				53F0ECB11ECD862C005ED86A /* OWImageUnitView.m in Sources */,
+				530DD09A1F0294FD003B507F /* OWMineCommentVC.m in Sources */,
 				53FC40A41EFF784E00C793A9 /* OWNoticeDetailVC.m in Sources */,
+				530DD0A01F029B8B003B507F /* OWMineThumbup.m in Sources */,
 				53BFF93A1ED1BFEC00A30BBB /* OWMtOrderInputCell.m in Sources */,
 				53FC40AE1EFF7C0500C793A9 /* OWVolunActCell.m in Sources */,
 				53E3ABD31EEFFF41008C1D9B /* OWMeetOrderDate.m in Sources */,
@@ -2807,6 +3001,7 @@
 				53F0ECB61ECD862C005ED86A /* OWImagePreviewVC.m in Sources */,
 				5308C0A51ED0770300662D34 /* OWMeetingDateCell.m in Sources */,
 				53EBF1A71EF5406B0012CD3D /* OWQuestionItem.m in Sources */,
+				530DD0B01F02B193003B507F /* OWHomeActivityCell.m in Sources */,
 				53E076F01ECC922F00A06AE0 /* OWTool.m in Sources */,
 				53F8C3441EF9540500507AF2 /* OWStoreItemCell.m in Sources */,
 				53EE00841EF6BB6000C76D5C /* OWSubmitCell.m in Sources */,
@@ -2839,12 +3034,14 @@
 				5308C0A81ED07E7A00662D34 /* OWMeetingOrderCell.m in Sources */,
 				538AA6A51EC886E600AB992A /* OWFuncBtnsCell.m in Sources */,
 				53F0ECA81ECD862C005ED86A /* OWLineCommentItem.m in Sources */,
+				530DD0821F028075003B507F /* OWSignatureCell.m in Sources */,
 				53F0ECB81ECD862C005ED86A /* OWVideoLineCell.m in Sources */,
 				53FC40AB1EFF7B9900C793A9 /* OWVolunteerVC.m in Sources */,
 				530F85C81EE58D8700254B60 /* OWCarDetailVC.m in Sources */,
 				53F0ECB41ECD862C005ED86A /* OWLinkClickLabel.m in Sources */,
 				53EBF1AD1EF550110012CD3D /* OWQuestionItemCell.m in Sources */,
 				53D84FAD1EFC0ED500D20585 /* OWStoreItem.m in Sources */,
+				530DD0971F028FE9003B507F /* OWMineCollectionCell.m in Sources */,
 				53EBCCA41ECEEF2A00CBA695 /* OWUserMomentsVC.m in Sources */,
 				53FC40B81EFFE09B00C793A9 /* OWDiscussionVC.m in Sources */,
 				53FC40BB1EFFE9F200C793A9 /* UIView+KeyBoardShowAndHidden.m in Sources */,
@@ -2884,6 +3081,8 @@
 				53EBCC9E1ECED7B400CBA695 /* OWTextImageUserLineCell.m in Sources */,
 				5341F77A1EEECC2F002A6F8C /* OWCarOrderDate.m in Sources */,
 				536CAAF41EC2023E00678C9A /* OWConstant.m in Sources */,
+				530DD0911F028E5E003B507F /* OWMineCollectionVC.m in Sources */,
+				530DD0AD1F02AD62003B507F /* OWHomeActivity.m in Sources */,
 				530A23BD1EEB13110018CE78 /* OWMeeting.m in Sources */,
 				53454D421EF2B72500915709 /* OWDisInputViewCell.m in Sources */,
 				53E3ABDA1EF014BD008C1D9B /* OWForgetVC.m in Sources */,
@@ -2893,6 +3092,7 @@
 				53EBF1941EF517270012CD3D /* OWBranchSearchResultVC.m in Sources */,
 				53BFF9401ED1E37300A30BBB /* OWMtAddDeviceCell.m in Sources */,
 				53EBF1AA1EF54FED0012CD3D /* OWQuestionTitleCell.m in Sources */,
+				530DD0AA1F02AAFA003B507F /* OWHomeActivityVC.m in Sources */,
 				530F85CB1EE5A09000254B60 /* OWCarOrderVC.m in Sources */,
 				53E3ABD01EEFFF29008C1D9B /* OWMeetOrder.m in Sources */,
 				53E90BD21EF3B1D10087F35F /* OWPartyFeeConfCell.m in Sources */,
@@ -3038,6 +3238,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vitend.dj.kfq;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -3054,6 +3255,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vitend.dj.kfq;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

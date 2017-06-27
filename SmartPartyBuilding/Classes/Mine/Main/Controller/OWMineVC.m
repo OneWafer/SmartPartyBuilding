@@ -17,7 +17,11 @@
 #import "AppDelegate.h"
 #import "OWTool.h"
 #import "OWPartyFeeVC.h"
+#import "OWHomeNoticeVC.h"
 #import "OWNetworking.h"
+#import "OWMineCollectionVC.h"
+#import "OWMineCommentVC.h"
+#import "OWThumbupVC.h"
 
 @interface OWMineVC ()<LCActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -80,7 +84,7 @@
     self.optionList = @[
                         @{@"image" : @"mine_collection", @"title" : @"收藏"},
                         @{@"image" : @"mine_comment", @"title" : @"评论"},
-                        @{@"image" : @"mine_release", @"title" : @"发布"},
+                        @{@"image" : @"home_thumbup_slt", @"title" : @"点赞"},
                         @{@"image" : @"mine_pay", @"title" : @"党费缴纳"},
                         @{@"image" : @"mine_signIn", @"title" : @"签到"}
                         ];
@@ -96,7 +100,8 @@
     }];
     
     UIBarButtonItem *messageItem = [UIBarButtonItem wh_itemWithType:WHItemTypeRight norImage:@"navi_me_message" highImage:@"navi_me_message" offset:0.0f actionHandler:^(UIButton *sender) {
-        wh_Log(@"点击了消息按钮");
+        OWHomeNoticeVC *noticeVC = [[OWHomeNoticeVC alloc] init];
+        [weakself.navigationController pushViewController:noticeVC animated:YES];
     }];
     
     self.navigationItem.rightBarButtonItems = @[messageItem, setItem];
@@ -216,7 +221,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        
+        if (indexPath.row == 0) {
+            OWMineCollectionVC *collectionVC = [[OWMineCollectionVC alloc] init];
+            [self.navigationController pushViewController:collectionVC animated:YES];
+        }else if (indexPath.row == 1){
+            OWMineCommentVC *commentVC = [[OWMineCommentVC alloc] init];
+            [self.navigationController pushViewController:commentVC animated:YES];
+        }else if (indexPath.row == 2){
+            OWThumbupVC *thumbupVC = [[OWThumbupVC alloc] init];
+            [self.navigationController pushViewController:thumbupVC animated:YES];
+        }
     }else{
         if (indexPath.row == 0) {
             OWPartyFeeVC *pfVC = [[OWPartyFeeVC alloc] init];
