@@ -23,6 +23,7 @@
 {
     if ([super init]) {
         
+        self.backgroundColor = [UIColor whiteColor];
         wh_weakSelf(self);
         [self.inputView.rac_textSignal subscribeNext:^(id x) {
             self.commentStr = x;

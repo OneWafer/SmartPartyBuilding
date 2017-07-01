@@ -108,7 +108,7 @@
         OWDisVolVC *volVC = [[OWDisVolVC alloc] init];
         [self.navigationController pushViewController:volVC animated:YES];
     }else{
-        
+        self.tabBarController.selectedIndex = 1;
     }
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

@@ -89,7 +89,7 @@ static NSString *const identifier = @"OWHomeActivityCell";
     if (!_titleLabel) {
         UILabel *label = [[UILabel alloc] init];
         label.textColor = wh_norFontColor;
-        label.font = [UIFont systemFontOfSize:14.0f];
+        label.font = [UIFont systemFontOfSize:14.5f];
         label.numberOfLines = 2;
         [self.contentView addSubview:label];
         
@@ -108,7 +108,7 @@ static NSString *const identifier = @"OWHomeActivityCell";
     if (!_branchLabel) {
         UILabel *label = [[UILabel alloc] init];
         label.textColor = wh_RGB(149, 149, 149);
-        label.font = [UIFont systemFontOfSize:10.0f];
+        label.font = [UIFont systemFontOfSize:11.0f];
         [self.contentView addSubview:label];
         
         [label makeConstraints:^(MASConstraintMaker *make) {

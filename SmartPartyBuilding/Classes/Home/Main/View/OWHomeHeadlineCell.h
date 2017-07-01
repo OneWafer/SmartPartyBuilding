@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^OWHomeHeadlineCellBlock)(NSInteger tag);
+
 @interface OWHomeHeadlineCell : UITableViewCell
 
 @property (nonatomic, strong) NSArray *newsList;
+@property (nonatomic, copy) OWHomeHeadlineCellBlock block;
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
 @end

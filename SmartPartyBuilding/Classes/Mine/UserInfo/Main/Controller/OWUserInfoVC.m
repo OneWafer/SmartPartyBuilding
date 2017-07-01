@@ -47,8 +47,8 @@
     self.optionList = @[
                         @{@"title" : @"头像", @"content" : userInfo[@"avatar"] ?: @""},
                         @{@"title" : @"名字", @"content" : userInfo[@"staffName"] ?: @""},
-                        @{@"title" : @"性别", @"content" : [userInfo[@"staffName"] intValue] ? @"女": @"男"},
-                        @{@"title" : @"个性签名", @"content" : userInfo[@""] ?: @""},
+                        @{@"title" : @"性别", @"content" : [userInfo[@"sex"] intValue] ? @"女": @"男"},
+                        @{@"title" : @"个性签名", @"content" : userInfo[@"signature"] ?: @""},
                         @{@"title" : @"我的地址", @"content" : userInfo[@"address"] ?: @""},
                         ];
 }
@@ -114,14 +114,14 @@
             } otherButtonTitleArray:@[@"拍摄",@"从相册选取"]];
             [actionSheet show];
         }else if (indexPath.row == 2){
-            wh_weakSelf(self);
-            LCActionSheet *actionSheet = [LCActionSheet sheetWithTitle:@"选择性别" cancelButtonTitle:@"取消" clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
-                
-                if (buttonIndex == 0) return;
-                
-                
-            } otherButtonTitleArray:@[@"男",@"女"]];
-            [actionSheet show];
+//            wh_weakSelf(self);
+//            LCActionSheet *actionSheet = [LCActionSheet sheetWithTitle:@"选择性别" cancelButtonTitle:@"取消" clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
+//                
+//                if (buttonIndex == 0) return;
+//                
+//                
+//            } otherButtonTitleArray:@[@"男",@"女"]];
+//            [actionSheet show];
         }
     }else{
         if (indexPath.row == 0) {

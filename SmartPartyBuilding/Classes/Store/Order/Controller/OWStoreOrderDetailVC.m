@@ -6,10 +6,14 @@
 //  Copyright © 2017年 王卫华. All rights reserved.
 //
 
+#import <SVProgressHUD.h>
 #import "OWStoreOrderDetailVC.h"
 #import "OWOrderDetailInfoCell.h"
 #import "OWOrderDetailPriceCell.h"
 #import "OWSubmitCell.h"
+#import "OWStoreItem.h"
+#import "OWNetworking.h"
+#import "OWTool.h"
 
 @interface OWStoreOrderDetailVC ()
 
@@ -33,12 +37,36 @@
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.separatorStyle = NO;
-    
+    NSString *scoreStr = [NSString stringWithFormat:@"%d积分",self.item.integral ?: 0];
     self.priceList = @[
                        @{@"title":@"运费", @"content":@"包邮"},
-                       @{@"title":@"商品价格", @"content":@"999积分"},
-                       @{@"title":@"订单总额", @"content":@"999积分"}
+                       @{@"title":@"商品价格", @"content":scoreStr},
+                       @{@"title":@"订单总额", @"content":scoreStr}
                        ];
+}
+
+- (void)submitOrder
+{
+    [SVProgressHUD showWithStatus:@"正在提交..."];
+    NSDictionary *userInfo = [OWTool getUserInfo];
+    NSDictionary *par = @{
+                          @"itemId":@(self.item.id),
+                          @"num":@(1),
+                          @"name":userInfo[@"staffName"],
+                          @"phone":userInfo[@"phoneNumber"],
+                          @"address":userInfo[@"address"]
+                          };
+    [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/item/buy") parameters:par success:^(id  _Nullable responseObject) {
+        wh_Log(@"---%@",responseObject);
+        if ([responseObject[@"code"] intValue] == 200) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
+        }
+    } failure:^(NSError * _Nonnull error) {
+        [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
+        //            wh_Log(@"---%@",error);
+    }];
 }
 
 #pragma mark - ---------- TableViewDataSource ----------
@@ -77,8 +105,9 @@
     }else if (indexPath.row > 3){
         OWSubmitCell *cell = [OWSubmitCell cellWithTableView:tableView];
         cell.title = @"提交";
+        wh_weakSelf(self);
         cell.block = ^(){
-            wh_Log(@"---点击了提交");
+            [weakself submitOrder];
         };
         return cell;
     }else{

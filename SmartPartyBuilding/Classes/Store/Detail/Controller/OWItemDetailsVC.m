@@ -59,9 +59,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        return 200;
+        return 220;
     }else{
-        return wh_screenHeight - 200;
+        return wh_screenHeight - 220;
     }
 }
 
@@ -109,6 +109,7 @@
         wh_weakSelf(self);
         cell.block = ^(){
             OWStoreOrderDetailVC *detailVC = [[OWStoreOrderDetailVC alloc] init];
+            detailVC.item = weakself.item;
             [weakself.navigationController pushViewController:detailVC animated:YES];
         };
         return cell;

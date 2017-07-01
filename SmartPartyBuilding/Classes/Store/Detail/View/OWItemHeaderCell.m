@@ -72,7 +72,7 @@ static NSString *const identifier = @"OWItemHeaderCell";
         
         [imgView makeConstraints:^(MASConstraintMaker *make) {
             make.left.top.right.equalTo(self);
-            make.height.equalTo(self).multipliedBy(0.75);
+            make.height.equalTo(self).multipliedBy(0.8);
         }];
         _titleImgView = imgView;
     }
@@ -109,7 +109,7 @@ static NSString *const identifier = @"OWItemHeaderCell";
         [self.contentView addSubview:label];
         [label makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.titleLabel);
-            make.bottom.equalTo(self).offset(-7);
+            make.bottom.equalTo(self).offset(-5);
         }];
         _priceLabel = label;
     }
@@ -127,7 +127,7 @@ static NSString *const identifier = @"OWItemHeaderCell";
         [self.contentView addSubview:btn];
         [btn makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self).offset(-15);
-            make.centerY.equalTo(self).multipliedBy(1.75);
+            make.centerY.equalTo(self).multipliedBy(1.8);
             make.width.equalTo(68);
             make.height.equalTo(22);
         }];

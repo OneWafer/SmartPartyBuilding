@@ -32,5 +32,8 @@
 /** 取出用户信息 */
 + (NSDictionary *)getUserInfo;
 
+/** 处理html图片大小 */
++ (NSString *)filtrationHtml:(NSString *)contentHtml;
+
 
 @end

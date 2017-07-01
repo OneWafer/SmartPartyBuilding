@@ -143,9 +143,10 @@
     OWRegister *r5 = self.registerList[4];
     OWRegister *r6 = self.registerList[5];
     OWRegister *r7 = self.registerList[6];
-    if (r1.content.length && r2.content.length && r3.content.length && r4.content.length && r5.content.length && r6.content.length) {
+    wh_Log(@"---%@",r6.content);
+    if (r1.content.length && r2.content.length && r3.content.length && r4.content.length && r5.content.length && r7.duty.length && (r7.sex >= 0) && (r7.organize >= 0)) {
         if ([r3.content isEqualToString:r4.content]) {
-            if ([NSString wh_accurateVerifyIDCardNumber:r6.content]) {
+            if (!r6.content.length || (r6.content.length && [NSString wh_accurateVerifyIDCardNumber:r6.content])) {
                 NSDictionary *par = @{
                                       @"phoneNumber":r1.content,
                                       @"validCode":r2.content,
@@ -156,7 +157,6 @@
                                       @"partyPosition":r7.duty,
                                       @"partyBranchId":@(r7.organize)
                                       };
-                wh_Log(@"---%@",par);
                 [OWNetworking POST:wh_appendingStr(wh_host, @"mobile/register") parameters:par success:^(id  _Nullable responseObject) {
                     wh_Log(@"----%@",responseObject);
                     if ([responseObject[@"code"] intValue] == 200) {

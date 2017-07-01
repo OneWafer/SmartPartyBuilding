@@ -52,6 +52,7 @@ static NSString *const identifier = @"OWOrderDetailPriceCell";
     _priceDic = priceDic;
     self.titleLabel.text = priceDic[@"title"];
     self.contentLabel.text = priceDic[@"content"];
+    if ([self.titleLabel.text isEqualToString:@"订单总额"]) self.contentLabel.textColor = wh_themeColor;
 }
 
 #pragma mark - ---------- Lazy ----------

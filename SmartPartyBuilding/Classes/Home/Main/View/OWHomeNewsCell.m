@@ -44,7 +44,7 @@ static NSString *const identifier = @"OWHomeNewsCell";
     
     if (self)
     {
-        self.statusImgView.image = wh_imageNamed(@"home_news_new");
+//        self.statusImgView.image = wh_imageNamed(@"home_news_new");
         self.lineView.backgroundColor = wh_lineColor;
     }
     return self;

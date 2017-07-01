@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class OWStoreItem;
 @interface OWStoreOrderDetailVC : UITableViewController
+
+@property (nonatomic, strong) OWStoreItem *item;
 
 @end

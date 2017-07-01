@@ -57,23 +57,18 @@
 - (void)dataSubmit
 {
     [SVProgressHUD showWithStatus:@"正在提交..."];
-    UITextField *tf1 = [self.view viewWithTag:1001];
-    UITextField *tf2 = [self.view viewWithTag:1002];
-    UITextField *tf3 = [self.view viewWithTag:1003];
-    UITextField *tf4 = [self.view viewWithTag:1004];
-    UITextField *tv = [self.view viewWithTag:1005];
     
     NSDictionary *par = @{
-                          @"":tf1.text,
-                          @"":tf2.text,
-                          @"":tf3.text,
-                          @"":tf4.text,
-                          @"":tv.text
+//                          @"":tf1.text,
+                          @"birthday":[self.inputList[1] content],
+                          @"joinDate":[self.inputList[2] content],
+//                          @"":tf4.text,
+                          @"otherDesc":[self.inputList[4] content]
                           };
     
-//        wh_Log(@"---%@-%@-%@-%@-%@-%@-%@",tf1.text,tf2.text,tf3.text,tv.text);
+        wh_Log(@"---%@",par);
     
-    [OWNetworking HPOST:wh_appendingStr(wh_host, @"") parameters:par success:^(id  _Nullable responseObject) {
+    [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/hardMemberApply/add") parameters:par success:^(id  _Nullable responseObject) {
         wh_Log(@"---%@",responseObject);
         if ([responseObject[@"code"] intValue] == 200) {
             

@@ -71,7 +71,7 @@ static NSString *const identifier = @"OWHomeCommentCell";
         [imgView makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self);
             make.left.equalTo(self).offset(15);
-            make.width.height.equalTo(self.height).multipliedBy(0.75);
+            make.width.height.equalTo(self.height).multipliedBy(0.7);
         }];
         imgView.layer.cornerRadius = 33.75;
         imgView.layer.masksToBounds = YES;

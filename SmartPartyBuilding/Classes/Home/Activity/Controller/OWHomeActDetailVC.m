@@ -1,8 +1,8 @@
 //
-//  OWNoticeDetailVC.m
+//  OWHomeActDetailVC.m
 //  SmartPartyBuilding
 //
-//  Created by 王卫华 on 2017/6/25.
+//  Created by 王卫华 on 2017/7/1.
 //  Copyright © 2017年 王卫华. All rights reserved.
 //
 
@@ -10,23 +10,23 @@
 #import <MJExtension.h>
 #import <SVProgressHUD.h>
 #import <IQKeyboardManager.h>
-#import "OWNoticeDetailVC.h"
-#import "OWMessage.h"
+#import "OWHomeActDetailVC.h"
+#import "OWHomeActivity.h"
 #import "OWInputFuncView.h"
 #import "UIView+KeyBoardShowAndHidden.h"
 #import "OWNetworking.h"
 #import "OWMsgComment.h"
-#import "OWHomeCommentVC.h"
+#import "OWActivityCommentVC.h"
 #import "OWTool.h"
 
-@interface OWNoticeDetailVC ()<UIWebViewDelegate>
+@interface OWHomeActDetailVC ()<UIWebViewDelegate>
 
-@property (nonatomic, weak) UIWebView *messageView;
+@property (nonatomic, weak) UIWebView *activityView;
 @property (nonatomic, weak) OWInputFuncView *funcView;
 
 @end
 
-@implementation OWNoticeDetailVC
+@implementation OWHomeActDetailVC
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -45,8 +45,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"详情";
-    [self.messageView loadHTMLString:[OWTool filtrationHtml:self.message.newsContent] baseURL:nil];
+    self.navigationItem.title = self.activity.title;
+    [self.activityView loadHTMLString:[OWTool filtrationHtml:self.activity.detail] baseURL:nil];
     
     [self setupFuncView];
     [self dataRequest];
@@ -66,19 +66,20 @@
         }else if (tag == 12){
             [weakself submitCollection];
         }else{
-            OWHomeCommentVC *commentVC = [[OWHomeCommentVC alloc] init];
-            commentVC.message = self.message;
+            OWActivityCommentVC *commentVC = [[OWActivityCommentVC alloc] init];
+            commentVC.activity = self.activity;
             [weakself.navigationController pushViewController:commentVC animated:YES];
         }
     };
 }
 
+
 - (void)dataRequest
 {
     [SVProgressHUD showWithStatus:@"正在加载..."];
     NSDictionary *par = @{
-                          @"id":@(self.message.id),
-                          @"type":@(2)
+                          @"id":@(self.activity.id),
+                          @"type":@(7)
                           };
     [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/reply/replyLikeAndMark") parameters:par success:^(id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] == 200) {
@@ -97,8 +98,8 @@
     [SVProgressHUD showWithStatus:@"正在提交..."];
     NSDictionary *par = @{
                           @"content":self.funcView.commentStr,
-                          @"articleId":@(self.message.id),
-                          @"articleType":@(2)
+                          @"articleId":@(self.activity.id),
+                          @"articleType":@(7)
                           };
     [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/reply/reply") parameters:par success:^(id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] == 200) {
@@ -119,8 +120,8 @@
 {
     if (self.funcView.thumbupBtn.selected) { // 取消点赞
         NSDictionary *par = @{
-                              @"praisedId":@(self.message.id),
-                              @"type":@(2)
+                              @"praisedId":@(self.activity.id),
+                              @"type":@(7)
                               };
         wh_Log(@"--%@",par);
         [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/like/unlike") parameters:par success:^(id  _Nullable responseObject) {
@@ -132,14 +133,14 @@
             }
         } failure:^(NSError * _Nonnull error) {
             [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
-//            wh_Log(@"---%@",error);
+            //            wh_Log(@"---%@",error);
         }];
     }else{ // 点赞
         NSDictionary *par = @{
-                              @"praisedId":@(self.message.id),
-                              @"type":@(2),
-                              @"title":self.message.title,
-                              @"cover":@""
+                              @"praisedId":@(self.activity.id),
+                              @"type":@(7),
+                              @"title":self.activity.title,
+                              @"cover":self.activity.avatar
                               };
         wh_Log(@"--%@",par);
         [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/like/like") parameters:par success:^(id  _Nullable responseObject) {
@@ -151,7 +152,7 @@
             }
         } failure:^(NSError * _Nonnull error) {
             [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
-//            wh_Log(@"---%@",error);
+            //            wh_Log(@"---%@",error);
         }];
     }
 }
@@ -160,8 +161,8 @@
 {
     if (self.funcView.collectionBtn.selected) { // 取消收藏
         NSDictionary *par = @{
-                              @"markedId":@(self.message.id),
-                              @"type":@(2)
+                              @"markedId":@(self.activity.id),
+                              @"type":@(7)
                               };
         [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/mark/unmark") parameters:par success:^(id  _Nullable responseObject) {
             if ([responseObject[@"code"] intValue] == 200) {
@@ -175,9 +176,9 @@
         }];
     }else{// 收藏
         NSDictionary *par = @{
-                              @"markedId":@(self.message.id),
-                              @"type":@(2),
-                              @"title":self.message.title,
+                              @"markedId":@(self.activity.id),
+                              @"type":@(7),
+                              @"title":self.activity.title,
                               @"cover":@""
                               };
         [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/mark/mark") parameters:par success:^(id  _Nullable responseObject) {
@@ -197,9 +198,9 @@
 
 #pragma mark - ---------- Lazy ----------
 
-- (UIWebView *)messageView
+- (UIWebView *)activityView
 {
-    if (!_messageView) {
+    if (!_activityView) {
         UIWebView *view = [[UIWebView alloc] init];
         view.backgroundColor = [UIColor whiteColor];
         view.delegate = self;
@@ -208,9 +209,9 @@
         [view makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.view);
         }];
-        _messageView = view;
+        _activityView = view;
     }
-    return _messageView;
+    return _activityView;
 }
 
 - (OWInputFuncView *)funcView

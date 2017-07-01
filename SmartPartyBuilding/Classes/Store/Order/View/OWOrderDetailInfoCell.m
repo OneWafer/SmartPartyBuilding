@@ -8,6 +8,7 @@
 
 #import <Masonry.h>
 #import "OWOrderDetailInfoCell.h"
+#import "OWTool.h"
 
 @interface OWOrderDetailInfoCell ()
 
@@ -42,9 +43,10 @@ static NSString *const identifier = @"OWOrderDetailInfoCell";
     
     if (self)
     {
-        self.nameLabel.text = @"张老汉";
-        self.tellLabel.text = @"1391456789";
-        self.addrLabel.text = @"江苏省句容市 开元大酒店二楼";
+        NSDictionary *userInfo = [OWTool getUserInfo];
+        self.nameLabel.text = userInfo[@"staffName"] ?: @"";
+        self.tellLabel.text = userInfo[@"phoneNumber"] ?: @"";
+        self.addrLabel.text = [userInfo[@"address"] length] ? userInfo[@"address"] : @"江苏省 句容市";
         self.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
         self.lineView.backgroundColor = wh_lineColor;
     }

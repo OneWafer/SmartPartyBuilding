@@ -59,7 +59,7 @@ static NSString *const identifier = @"OWUserInfoCell";
 {
     if (!_titleLabel) {
         UILabel *label = [[UILabel alloc] init];
-        label.textColor = [UIColor blackColor];
+        label.textColor = wh_norFontColor;
         label.font = [UIFont systemFontOfSize:14.5f];
         [self.contentView addSubview:label];
         
@@ -76,13 +76,15 @@ static NSString *const identifier = @"OWUserInfoCell";
 {
     if (!_contentLabel) {
         UILabel *label = [[UILabel alloc] init];
-        label.textColor = [UIColor blackColor];
+        label.textColor = wh_RGB(109, 109, 109);
         label.font = [UIFont systemFontOfSize:14.0f];
+        label.textAlignment = NSTextAlignmentRight;
         [self.contentView addSubview:label];
         
         [label makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self);
             make.right.equalTo(self).offset(-35);
+            make.width.equalTo(self).multipliedBy(0.4);
         }];
         _contentLabel = label;
     }

@@ -23,7 +23,7 @@
 @interface OWStoreVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (strong, nonatomic) UICollectionView *collectionView;
-@property (nonatomic, strong) NSArray *hotList;
+//@property (nonatomic, strong) NSArray *hotList;
 @property (nonatomic, strong) NSArray *bannerList;
 @property (nonatomic, strong) NSArray *allList;
 @property (nonatomic, strong) OWStoreHeaderView *headerView;
@@ -97,7 +97,7 @@ static NSString *const headerId1 = @"headerId1";
     RACSignal *allRequest = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         
         [OWNetworking HGET:wh_appendingStr(wh_host, @"mobile/item/list") parameters:nil success:^(id  _Nullable responseObject) {
-            wh_Log(@"%@",responseObject);
+//            wh_Log(@"%@",responseObject);
             if ([responseObject[@"code"] intValue] == 200) {
                 self.allList = [OWStoreItem mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
                 [subscriber sendNext:self.allList];
@@ -126,7 +126,7 @@ static NSString *const headerId1 = @"headerId1";
     [self.collectionView.mj_header endRefreshing];
     
     self.bannerList = [OWBanner mj_objectArrayWithKeyValuesArray:hotDic[@"picList"]];
-    self.hotList = [OWStoreItem mj_objectArrayWithKeyValuesArray:hotDic[@"hotList"]];
+//    self.hotList = [OWStoreItem mj_objectArrayWithKeyValuesArray:hotDic[@"hotList"]];
     
     // 取出banner图片数组
     NSMutableArray *banImgList = [NSMutableArray array];
@@ -138,10 +138,7 @@ static NSString *const headerId1 = @"headerId1";
                                 @"banner":banImgList,
                                 @"score":hotDic[@"integral"]
                                 };
-    
-    [allList wh_each:^(OWStoreItem *obj) {
-        wh_Log(@"---%@--%d",obj.itemName, obj.num);
-    }];
+    wh_Log(@"---%@",self.headerView.infoDic);
     [self.collectionView reloadData];
 }
 
@@ -149,22 +146,22 @@ static NSString *const headerId1 = @"headerId1";
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return section ? self.allList.count : self.hotList.count;
+    return self.allList.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     OWStoreItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemCellId forIndexPath:indexPath];
-    if (indexPath.section == 0) {
-        cell.item = self.hotList[indexPath.row];
-    }else{
+//    if (indexPath.section == 0) {
+//        cell.item = self.hotList[indexPath.row];
+//    }else{
         cell.item = self.allList[indexPath.row];
-    }
+//    }
     return cell;
 }
 
@@ -178,13 +175,13 @@ static NSString *const headerId1 = @"headerId1";
 {
     if([kind isEqualToString:UICollectionElementKindSectionHeader])
     {
-        if (indexPath.section) {
-            OWStoreSectionHeaderView *headerView = [_collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:headerId1 forIndexPath:indexPath];
-            return headerView;
-        }else{
+//        if (indexPath.section) {
+//            OWStoreSectionHeaderView *headerView = [_collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:headerId1 forIndexPath:indexPath];
+//            return headerView;
+//        }else{
             self.headerView = [_collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:headerId0 forIndexPath:indexPath];
             return self.headerView;
-        }
+//        }
         
     }
     
@@ -198,11 +195,11 @@ static NSString *const headerId1 = @"headerId1";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     OWItemDetailsVC *detailVC = [[OWItemDetailsVC alloc] init];
-    if (indexPath.section == 0) {
-        detailVC.item = self.hotList[indexPath.row];
-    }else{
+//    if (indexPath.section == 0) {
+//        detailVC.item = self.hotList[indexPath.row];
+//    }else{
         detailVC.item = self.allList[indexPath.row];
-    }
+//    }
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
@@ -210,7 +207,7 @@ static NSString *const headerId1 = @"headerId1";
 #pragma mark - ---------- UICollectionViewDelegateFlowLayout ----------
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake((wh_screenWidth - 30 ) * 0.5, (wh_screenWidth - 30 ) * 0.7);
+    return CGSizeMake((wh_screenWidth - 30 ) * 0.5, (wh_screenWidth - 30 ) * 0.68);
 }
 
 // 设置每个cell上下左右相距

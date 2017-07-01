@@ -61,31 +61,31 @@
 - (void)dataSubmit
 {
     [SVProgressHUD showWithStatus:@"正在提交..."];
-    UITextField *tf1 = [self.view viewWithTag:1001];
-    UITextField *tf2 = [self.view viewWithTag:1002];
-    UITextField *tf3 = [self.view viewWithTag:1003];
-    UITextField *tf4 = [self.view viewWithTag:1004];
-    UITextField *tf5 = [self.view viewWithTag:1005];
-    UITextField *tf6 = [self.view viewWithTag:1006];
-    UITextField *tf7 = [self.view viewWithTag:1007];
-    UITextField *tf8 = [self.view viewWithTag:1008];
-    UITextField *tv = [self.view viewWithTag:1009];
+//    UITextField *tf1 = [self.view viewWithTag:1001];
+//    UITextField *tf2 = [self.view viewWithTag:1002];
+//    UITextField *tf3 = [self.view viewWithTag:1003];
+//    UITextField *tf4 = [self.view viewWithTag:1004];
+//    UITextField *tf5 = [self.view viewWithTag:1005];
+//    UITextField *tf6 = [self.view viewWithTag:1006];
+//    UITextField *tf7 = [self.view viewWithTag:1007];
+//    UITextField *tf8 = [self.view viewWithTag:1008];
+//    UITextField *tv = [self.view viewWithTag:1009];
     
     NSDictionary *par = @{
-                          @"":tf1.text,
-                          @"":tf2.text,
-                          @"":tf3.text,
-                          @"":tf4.text,
-                          @"":tf5.text,
-                          @"":tf6.text,
-                          @"":tf7.text,
-                          @"":tf8.text,
-                          @"":tv.text
+                          @"name":[self.inputList[0] content],
+//                          @"":tf2.text,
+                          @"phoneNumber":[self.inputList[2] content],
+//                          @"":tf4.text,
+//                          @"":tf5.text,
+                          @"specialty":[self.inputList[5] content],
+//                          @"":tf7.text,
+                          @"time":[self.inputList[7] content],
+//                          @"":tv.text
                           };
     
 //        wh_Log(@"---%@-%@-%@-%@-%@-%@-%@",tf1.text,tf2.text,tf3.text,tf4.text,tf5.text,tf6.text,tf7.text,tf8.text,tf6.text,tv.text);
     
-    [OWNetworking HPOST:wh_appendingStr(wh_host, @"") parameters:par success:^(id  _Nullable responseObject) {
+    [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/volunteer/apply") parameters:par success:^(id  _Nullable responseObject) {
         wh_Log(@"---%@",responseObject);
         if ([responseObject[@"code"] intValue] == 200) {
             

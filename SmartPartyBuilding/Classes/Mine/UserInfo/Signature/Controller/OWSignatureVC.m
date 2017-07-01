@@ -6,8 +6,10 @@
 //  Copyright © 2017年 王卫华. All rights reserved.
 //
 
+#import <SVProgressHUD.h>
 #import "OWSignatureVC.h"
 #import "OWSignatureCell.h"
+#import "OWNetworking.h"
 
 @interface OWSignatureVC ()
 
@@ -36,8 +38,31 @@
 {
     wh_weakSelf(self);
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem wh_itemWithType:WHItemTypeRight norTitle:@"完成" font:15.0f norColor:wh_RGB(9, 131, 216) highColor:[UIColor blueColor] offset:0 actionHandler:^(UIButton *sender) {
-        wh_Log(@"点击了完成");
-        [weakself.navigationController popViewControllerAnimated:YES];
+        
+        [weakself submitSignature];
+    }];
+}
+
+
+- (void)submitSignature
+{
+    __weak OWSignatureCell *cell = [self.view viewWithTag:1001];
+    [SVProgressHUD showWithStatus:@"正在提交..."];
+    NSDictionary *par = @{
+                          @"signature":cell.inputView.text
+                          };
+    [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/staff/update") parameters:par success:^(id  _Nullable responseObject) {
+        wh_Log(@"---%@",responseObject);
+        if ([responseObject[@"code"] intValue] == 200) {
+            
+            [SVProgressHUD showSuccessWithStatus:@"提交成功!"];
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
+        }
+    } failure:^(NSError * _Nonnull error) {
+        [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
+        wh_Log(@"---%@",error);
     }];
 }
 

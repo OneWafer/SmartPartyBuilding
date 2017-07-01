@@ -32,6 +32,7 @@
 #import "OWNews.h"
 #import "OWRefreshGifHeader.h"
 #import "OWNewsDetailVC.h"
+#import "OWHomeBulletinVC.h"
 
 @interface OWHomeVC ()<SDCycleScrollViewDelegate>
 
@@ -317,10 +318,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    wh_weakSelf(self);
     if (indexPath.section == 0) {
         OWFuncBtnsCell *cell = [OWFuncBtnsCell cellWithTableView:tableView];
         cell.imgList = self.funcImgList;
-        wh_weakSelf(self);
         cell.funcBtnBlock = ^(NSInteger tag){
             [weakself funcBtnClick:tag];
         };
@@ -328,9 +329,27 @@
     }else if (indexPath.section == 1){
         OWHomeHeadlineCell *cell = [OWHomeHeadlineCell cellWithTableView:tableView];
         cell.newsList = self.bulletinList;
+        cell.block = ^(NSInteger tag){
+            if (tag == 1011) {
+                OWHomeBulletinVC *bulletinVC = [[OWHomeBulletinVC alloc] init];
+                bulletinVC.bulletinList = self.bulletinList;
+                [weakself.navigationController pushViewController:bulletinVC animated:YES];
+            }else{
+                OWNewsDetailVC *newsVC = [[OWNewsDetailVC alloc] init];
+                newsVC.news = weakself.bulletinList[tag];
+                [weakself.navigationController pushViewController:newsVC animated:YES];
+            }
+        };
         return cell;
     }else if (indexPath.section == 2){
         OWModuleCell *cell = [OWModuleCell cellWithTableView:tableView];
+        cell.block = ^(NSInteger tag){
+            if (tag == 11) {
+                
+            }else{
+                self.tabBarController.selectedIndex = 1;
+            }
+        };
         return cell;
     }else{
         if (indexPath.row == 0) {

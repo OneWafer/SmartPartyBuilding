@@ -46,8 +46,9 @@ static NSString *const identifier = @"OWHomeHeadlineCell";
     
     if (self)
     {
+        wh_weakSelf(self);
         [self.moreBtn wh_addActionHandler:^(UIButton *sender) {
-            wh_Log(@"点击了更多");
+            if (weakself.block) weakself.block(1011);
         }];
     }
     return self;
@@ -63,6 +64,11 @@ static NSString *const identifier = @"OWHomeHeadlineCell";
     self.headlineView.titlesGroup = [titleList mutableCopy];
 }
 
+
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
+{
+    if (self.block) self.block(index);
+}
 
 #pragma mark - ---------- Lazy ----------
 
@@ -141,7 +147,7 @@ static NSString *const identifier = @"OWHomeHeadlineCell";
         SDCycleScrollView *view = [[SDCycleScrollView alloc] init];
         view.titleLabelBackgroundColor = [UIColor whiteColor];
         view.titleLabelTextColor = wh_norFontColor;
-        view.titleLabelTextFont = [UIFont systemFontOfSize:14.0f];
+        view.titleLabelTextFont = [UIFont systemFontOfSize:13.5f];
         view.delegate = self;
         view.scrollDirection = UICollectionViewScrollDirectionVertical;
         view.onlyDisplayText = YES;
@@ -165,7 +171,8 @@ static NSString *const identifier = @"OWHomeHeadlineCell";
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.contentView addSubview:btn];
         [btn makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
+            make.top.right.bottom.equalTo(self);
+            make.left.equalTo(self.lineView2);
         }];
         _moreBtn = btn;
     }

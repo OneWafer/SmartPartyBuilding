@@ -29,7 +29,7 @@
     if (self) {
         self.funcView.backgroundColor = [UIColor whiteColor];
         [self.exchangeBtn wh_addActionHandler:^(UIButton *sender) {
-            wh_Log(@"---点击了兑换");
+            wh_Log(@"---点击了兑换记录");
         }];
         self.titleView.backgroundColor = wh_RGB(241, 241, 241);
     }
@@ -40,7 +40,11 @@
 {
     _infoDic = infoDic;
     self.banner.imageURLStringsGroup = infoDic[@"banner"];
-    self.scoreLabel.text = [NSString stringWithFormat:@"积分: %@",infoDic[@"score"]];
+    
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"积分: %@",infoDic[@"score"]]];
+    [str addAttribute:NSForegroundColorAttributeName value:wh_RGB(28, 184, 235) range:NSMakeRange(4,str.length - 4)];
+    [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15.5f] range:NSMakeRange(4,str.length - 4)];
+    self.scoreLabel.attributedText = str;
 }
 
 #pragma mark - ---------- Lazy ----------
@@ -122,7 +126,7 @@
         }];
         
         UILabel *titleLabel = [[UILabel alloc] init];
-        titleLabel.text = @"热门兑换";
+        titleLabel.text = @"所有兑换";
         titleLabel.textColor = wh_norFontColor;
         titleLabel.font = [UIFont systemFontOfSize:14.5f];
         [view addSubview:titleLabel];

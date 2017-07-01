@@ -9,6 +9,7 @@
 #import <Masonry.h>
 #import <ReactiveCocoa.h>
 #import "OWSignatureCell.h"
+#import "OWTool.h"
 
 @interface OWSignatureCell ()
 
@@ -41,6 +42,7 @@ static NSString *const identifier = @"OWSignatureCell";
     if (self)
     {
         self.placeLabel.text = @"请输入个性签名";
+        self.inputView.text = [OWTool getUserInfo][@"signature"];
         wh_weakSelf(self);
         [self.inputView.rac_textSignal subscribeNext:^(NSString *x) {
             weakself.placeLabel.hidden = x.length;

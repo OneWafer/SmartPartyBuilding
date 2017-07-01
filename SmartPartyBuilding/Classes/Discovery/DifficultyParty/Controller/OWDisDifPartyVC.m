@@ -59,25 +59,18 @@
 - (void)dataSubmit
 {
     [SVProgressHUD showWithStatus:@"正在提交..."];
-    UITextField *tf1 = [self.view viewWithTag:1001];
-    UITextField *tf2 = [self.view viewWithTag:1002];
-    UITextField *tf3 = [self.view viewWithTag:1003];
-    UITextField *tf4 = [self.view viewWithTag:1004];
-    UITextField *tf5 = [self.view viewWithTag:1005];
-    UITextField *tf6 = [self.view viewWithTag:1006];
-    UITextField *tv = [self.view viewWithTag:1007];
     
     NSDictionary *par = @{
-                          @"":tf1.text,
-                          @"":tf2.text,
-                          @"":tf3.text,
-                          @"":tf4.text,
-                          @"":tf5.text,
-                          @"":tf6.text,
-                          @"":tv.text
+//                          @"":self.inputList[0],
+                          @"birthday":[self.inputList[1] content],
+                          @"joinDate":[self.inputList[2] content],
+                          @"hardType":@([[self.inputList[3] content] intValue]),
+                          @"isEnjoyMla":@([[self.inputList[4] content] intValue]),
+                          @"isEnjoySubsidy":@([[self.inputList[5] content] intValue]),
+                          @"otherDesc":[self.inputList[1] content]
                           };
     
-    wh_Log(@"---%@-%@-%@-%@-%@-%@-%@",tf1.text,tf2.text,tf3.text,tf4.text,tf5.text,tf6.text,tv.text);
+    wh_Log(@"---%@",par);
     
     [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/hardMemberApply/add") parameters:par success:^(id  _Nullable responseObject) {
         wh_Log(@"---%@",responseObject);
@@ -168,7 +161,13 @@
             if (isCancel) return YES;
             OWDisInputCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
             cell.inputTF.text = selectedTitles[0];
-            cell.input.content = selectedTitles[0];
+            if (indexPath.row == 3) {
+                [typeList wh_eachWithIndex:^(NSString *obj, NSUInteger idx) {
+                    if ([obj isEqualToString:selectedTitles[0]]) cell.input.content = [NSString stringWithFormat:@"%lu",(unsigned long)idx];
+                }];
+            }else{
+                cell.input.content = [selectedTitles[0] isEqualToString:@"是"] ? @"1" : @"0";
+            }
             return YES;
         }] show:YES];
     }

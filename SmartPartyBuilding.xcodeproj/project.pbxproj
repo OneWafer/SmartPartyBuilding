@@ -183,6 +183,10 @@
 		53FC40BE1EFFEAA200C793A9 /* OWInputFuncView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FC40BD1EFFEAA200C793A9 /* OWInputFuncView.m */; };
 		53FC40C11F0015B100C793A9 /* OWMsgComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FC40C01F0015B100C793A9 /* OWMsgComment.m */; };
 		53FC40C71F00195A00C793A9 /* UIButton+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FC40C61F00195A00C793A9 /* UIButton+Badge.m */; };
+		53FFC9C01F076EAD0012C73D /* OWNewsCommentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FFC9BF1F076EAD0012C73D /* OWNewsCommentVC.m */; };
+		53FFC9C91F07E6AE0012C73D /* OWHomeBulletinVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FFC9C81F07E6AE0012C73D /* OWHomeBulletinVC.m */; };
+		53FFC9CC1F07E8880012C73D /* OWHomeActDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FFC9CB1F07E8880012C73D /* OWHomeActDetailVC.m */; };
+		53FFC9CF1F07EC200012C73D /* OWActivityCommentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FFC9CE1F07EC200012C73D /* OWActivityCommentVC.m */; };
 		E098A01EDCB6869918CC4B8E /* libPods-SmartPartyBuilding.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F317DC5FBE500EC7445125B /* libPods-SmartPartyBuilding.a */; };
 /* End PBXBuildFile section */
 
@@ -556,6 +560,14 @@
 		53FC40C01F0015B100C793A9 /* OWMsgComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWMsgComment.m; sourceTree = "<group>"; };
 		53FC40C51F00195A00C793A9 /* UIButton+Badge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Badge.h"; sourceTree = "<group>"; };
 		53FC40C61F00195A00C793A9 /* UIButton+Badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Badge.m"; sourceTree = "<group>"; };
+		53FFC9BE1F076EAD0012C73D /* OWNewsCommentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWNewsCommentVC.h; sourceTree = "<group>"; };
+		53FFC9BF1F076EAD0012C73D /* OWNewsCommentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWNewsCommentVC.m; sourceTree = "<group>"; };
+		53FFC9C71F07E6AE0012C73D /* OWHomeBulletinVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWHomeBulletinVC.h; sourceTree = "<group>"; };
+		53FFC9C81F07E6AE0012C73D /* OWHomeBulletinVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWHomeBulletinVC.m; sourceTree = "<group>"; };
+		53FFC9CA1F07E8880012C73D /* OWHomeActDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWHomeActDetailVC.h; sourceTree = "<group>"; };
+		53FFC9CB1F07E8880012C73D /* OWHomeActDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWHomeActDetailVC.m; sourceTree = "<group>"; };
+		53FFC9CD1F07EC200012C73D /* OWActivityCommentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWActivityCommentVC.h; sourceTree = "<group>"; };
+		53FFC9CE1F07EC200012C73D /* OWActivityCommentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWActivityCommentVC.m; sourceTree = "<group>"; };
 		57AC62ECACE1AC29287C2F1F /* Pods-SmartPartyBuilding.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartPartyBuilding.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartPartyBuilding/Pods-SmartPartyBuilding.release.xcconfig"; sourceTree = "<group>"; };
 		6F317DC5FBE500EC7445125B /* libPods-SmartPartyBuilding.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SmartPartyBuilding.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F216B0EA70FFBC5A36E138AF /* Pods-SmartPartyBuilding.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartPartyBuilding.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartPartyBuilding/Pods-SmartPartyBuilding.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1099,6 +1111,10 @@
 			children = (
 				530DD0A81F02AAFA003B507F /* OWHomeActivityVC.h */,
 				530DD0A91F02AAFA003B507F /* OWHomeActivityVC.m */,
+				53FFC9CA1F07E8880012C73D /* OWHomeActDetailVC.h */,
+				53FFC9CB1F07E8880012C73D /* OWHomeActDetailVC.m */,
+				53FFC9CD1F07EC200012C73D /* OWActivityCommentVC.h */,
+				53FFC9CE1F07EC200012C73D /* OWActivityCommentVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1201,6 +1217,10 @@
 			children = (
 				533515921EFD5D6C00721967 /* OWNewsDetailVC.h */,
 				533515931EFD5D6C00721967 /* OWNewsDetailVC.m */,
+				53FFC9BE1F076EAD0012C73D /* OWNewsCommentVC.h */,
+				53FFC9BF1F076EAD0012C73D /* OWNewsCommentVC.m */,
+				53FFC9C71F07E6AE0012C73D /* OWHomeBulletinVC.h */,
+				53FFC9C81F07E6AE0012C73D /* OWHomeBulletinVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3013,6 +3033,7 @@
 				5308C09C1ED00F4400662D34 /* OWMettingManagerCell.m in Sources */,
 				533515941EFD5D6C00721967 /* OWNewsDetailVC.m in Sources */,
 				53F4AB4E1EED91E2003E75C3 /* OWRegisterInputCell.m in Sources */,
+				53FFC9CF1F07EC200012C73D /* OWActivityCommentVC.m in Sources */,
 				53D125201EC8A5A90073A185 /* OWVerticalBtn.m in Sources */,
 				53193C5B1EC1F3AB00B98BA0 /* main.m in Sources */,
 				532F68881ED13A0700E50A7F /* OWMettingOrderVC.m in Sources */,
@@ -3029,6 +3050,7 @@
 				538AA6921EC868FA00AB992A /* OWHomeVC.m in Sources */,
 				53F0ECA21ECD862C005ED86A /* OWVideoDecoder.m in Sources */,
 				53E5CC4C1EC9355D00845621 /* OWHomeTitleCell.m in Sources */,
+				53FFC9C91F07E6AE0012C73D /* OWHomeBulletinVC.m in Sources */,
 				53F0ECAA1ECD862C005ED86A /* OWBaseLineItem.m in Sources */,
 				53E90BDC1EF3CA620087F35F /* OWExcPartyMemberVC.m in Sources */,
 				5308C0A81ED07E7A00662D34 /* OWMeetingOrderCell.m in Sources */,
@@ -3049,6 +3071,7 @@
 				53E5930D1ECA8DE000D21A75 /* OWUserInfoAvatarCell.m in Sources */,
 				53A75A6E1EE84D9500C5B9B3 /* OWNews.m in Sources */,
 				53F0ECAF1ECD862C005ED86A /* OWCommentInputView.m in Sources */,
+				53FFC9CC1F07E8880012C73D /* OWHomeActDetailVC.m in Sources */,
 				53C2A1741EF2D3B80078535B /* OWDisOldPartyVC.m in Sources */,
 				53EBF18E1EF50FE80012CD3D /* OWLoginBranchVC.m in Sources */,
 				53E792911ED476D900E64A3C /* OWHomeNoticeVC.m in Sources */,
@@ -3057,6 +3080,7 @@
 				538AA6A21EC8719700AB992A /* OWPlusBtn.m in Sources */,
 				53DAA7B21EC9DA2B00A3F8AE /* OWMineHeaderView.m in Sources */,
 				53F0ECAE1ECD862C005ED86A /* OWLineCellManager.m in Sources */,
+				53FFC9C01F076EAD0012C73D /* OWNewsCommentVC.m in Sources */,
 				53EBF1A11EF53AC60012CD3D /* OWQuestionDetailVC.m in Sources */,
 				5341F7741EEEB4DB002A6F8C /* OWRegister.m in Sources */,
 				5395ED0B1ED5AD6600AEB7FB /* OWRegisterNavigationVC.m in Sources */,

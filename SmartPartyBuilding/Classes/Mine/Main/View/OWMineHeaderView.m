@@ -73,9 +73,9 @@
         [imgView makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self).multipliedBy(1.1);
             make.left.equalTo(self).offset(15);
-            make.width.height.equalTo(65);
+            make.width.height.equalTo(68);
         }];
-        imgView.layer.cornerRadius = 32.5;
+        imgView.layer.cornerRadius = 34;
         imgView.layer.masksToBounds = YES;
         _headImgView = imgView;
     }

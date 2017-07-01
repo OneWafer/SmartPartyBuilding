@@ -63,7 +63,7 @@
 
 - (void)submitAnswer
 {
-    [SVProgressHUD showWithStatus:@"正在提交"];
+    [SVProgressHUD showWithStatus:@"正在提交..."];
     
     NSArray *answerList = [self.questionList wh_map:^id(OWQuestion *obj) {
         OWQuestionItem *item = obj.items[obj.idx.row - 1];
@@ -79,7 +79,7 @@
     NSDictionary *par = @{
                           @"answer":answerList
                           };
-    wh_Log(@"---%@",answerList);
+    wh_Log(@"---%@",par);
     
     [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/exam/postAnswer") parameters:par success:^(id  _Nullable responseObject) {
         wh_Log(@"---%@",responseObject);

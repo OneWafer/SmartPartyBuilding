@@ -12,6 +12,7 @@
 #import "OWHomeActivity.h"
 #import "OWHomeActivityCell.h"
 #import "OWNetworking.h"
+#import "OWHomeActDetailVC.h"
 
 @interface OWHomeActivityVC ()
 
@@ -73,10 +74,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    OWMessage *message = self.messageList[indexPath.row];
-//    OWNoticeDetailVC *detailVC = [[OWNoticeDetailVC alloc] init];
-//    detailVC.message = message;
-//    [self.navigationController pushViewController:detailVC animated:YES];
+    OWHomeActivity *activity = self.activityList[indexPath.row];
+    OWHomeActDetailVC *detailVC = [[OWHomeActDetailVC alloc] init];
+    detailVC.activity = activity;
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 @end

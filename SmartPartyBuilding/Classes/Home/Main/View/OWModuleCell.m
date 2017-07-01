@@ -41,13 +41,13 @@ static NSString *const identifier = @"OWModuleCell";
     
     if (self)
     {
-        
+        wh_weakSelf(self);
         [self.donationView wh_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
-            wh_Log(@"点击了爱心捐赠");
+            if (weakself.block) weakself.block(11);
         }];
         
         [self.storeView wh_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
-            wh_Log(@"点击了积分商城");
+            if (weakself.block) weakself.block(12);
         }];
         self.lineView.backgroundColor = wh_lineColor;
     }

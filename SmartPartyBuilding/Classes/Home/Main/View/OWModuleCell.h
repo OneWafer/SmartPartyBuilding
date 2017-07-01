@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^OWModuleCellBlock)(NSInteger tag);
+
 @interface OWModuleCell : UITableViewCell
 
+@property (nonatomic, copy) OWModuleCellBlock block;
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
 @end
