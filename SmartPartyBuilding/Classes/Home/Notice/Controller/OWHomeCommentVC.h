@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-@class OWMessage;
+@class OWNotice;
 @interface OWHomeCommentVC : UITableViewController
 
-@property (nonatomic, strong) OWMessage *message;
+@property (nonatomic, strong) OWNotice *notice;
 
 @end

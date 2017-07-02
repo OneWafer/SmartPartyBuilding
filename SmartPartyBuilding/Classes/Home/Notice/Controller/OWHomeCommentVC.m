@@ -12,7 +12,7 @@
 #import "OWHomeCommentCell.h"
 #import "OWMsgComment.h"
 #import "OWNetworking.h"
-#import "OWMessage.h"
+#import "OWNotice.h"
 
 @interface OWHomeCommentVC ()
 
@@ -34,7 +34,7 @@
 {
     [SVProgressHUD showWithStatus:@"正在加载..."];
         NSDictionary *par = @{
-                              @"articleId":@(self.message.id),
+                              @"articleId":@(self.notice.id),
                               @"articleType":@(2)
                               };
         [OWNetworking HGET:wh_appendingStr(wh_host, @"mobile/reply/replyList") parameters:par success:^(id  _Nullable responseObject) {

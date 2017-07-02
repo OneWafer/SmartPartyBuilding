@@ -11,7 +11,7 @@
 #import <SVProgressHUD.h>
 #import <IQKeyboardManager.h>
 #import "OWNoticeDetailVC.h"
-#import "OWMessage.h"
+#import "OWNotice.h"
 #import "OWInputFuncView.h"
 #import "UIView+KeyBoardShowAndHidden.h"
 #import "OWNetworking.h"
@@ -21,7 +21,7 @@
 
 @interface OWNoticeDetailVC ()<UIWebViewDelegate>
 
-@property (nonatomic, weak) UIWebView *messageView;
+@property (nonatomic, weak) UIWebView *noticeView;
 @property (nonatomic, weak) OWInputFuncView *funcView;
 
 @end
@@ -46,7 +46,7 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"详情";
-    [self.messageView loadHTMLString:[OWTool filtrationHtml:self.message.newsContent] baseURL:nil];
+    [self.noticeView loadHTMLString:[OWTool filtrationHtml:self.notice.newsContent] baseURL:nil];
     
     [self setupFuncView];
     [self dataRequest];
@@ -67,7 +67,7 @@
             [weakself submitCollection];
         }else{
             OWHomeCommentVC *commentVC = [[OWHomeCommentVC alloc] init];
-            commentVC.message = self.message;
+            commentVC.notice = self.notice;
             [weakself.navigationController pushViewController:commentVC animated:YES];
         }
     };
@@ -77,7 +77,7 @@
 {
     [SVProgressHUD showWithStatus:@"正在加载..."];
     NSDictionary *par = @{
-                          @"id":@(self.message.id),
+                          @"id":@(self.notice.id),
                           @"type":@(2)
                           };
     [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/reply/replyLikeAndMark") parameters:par success:^(id  _Nullable responseObject) {
@@ -97,7 +97,7 @@
     [SVProgressHUD showWithStatus:@"正在提交..."];
     NSDictionary *par = @{
                           @"content":self.funcView.commentStr,
-                          @"articleId":@(self.message.id),
+                          @"articleId":@(self.notice.id),
                           @"articleType":@(2)
                           };
     [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/reply/reply") parameters:par success:^(id  _Nullable responseObject) {
@@ -119,7 +119,7 @@
 {
     if (self.funcView.thumbupBtn.selected) { // 取消点赞
         NSDictionary *par = @{
-                              @"praisedId":@(self.message.id),
+                              @"praisedId":@(self.notice.id),
                               @"type":@(2)
                               };
         wh_Log(@"--%@",par);
@@ -136,9 +136,9 @@
         }];
     }else{ // 点赞
         NSDictionary *par = @{
-                              @"praisedId":@(self.message.id),
+                              @"praisedId":@(self.notice.id),
                               @"type":@(2),
-                              @"title":self.message.title,
+                              @"title":self.notice.title,
                               @"cover":@""
                               };
         wh_Log(@"--%@",par);
@@ -160,7 +160,7 @@
 {
     if (self.funcView.collectionBtn.selected) { // 取消收藏
         NSDictionary *par = @{
-                              @"markedId":@(self.message.id),
+                              @"markedId":@(self.notice.id),
                               @"type":@(2)
                               };
         [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/mark/unmark") parameters:par success:^(id  _Nullable responseObject) {
@@ -175,9 +175,9 @@
         }];
     }else{// 收藏
         NSDictionary *par = @{
-                              @"markedId":@(self.message.id),
+                              @"markedId":@(self.notice.id),
                               @"type":@(2),
-                              @"title":self.message.title,
+                              @"title":self.notice.title,
                               @"cover":@""
                               };
         [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/mark/mark") parameters:par success:^(id  _Nullable responseObject) {
@@ -197,9 +197,9 @@
 
 #pragma mark - ---------- Lazy ----------
 
-- (UIWebView *)messageView
+- (UIWebView *)noticeView
 {
-    if (!_messageView) {
+    if (!_noticeView) {
         UIWebView *view = [[UIWebView alloc] init];
         view.backgroundColor = [UIColor whiteColor];
         view.delegate = self;
@@ -208,9 +208,9 @@
         [view makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.view);
         }];
-        _messageView = view;
+        _noticeView = view;
     }
-    return _messageView;
+    return _noticeView;
 }
 
 - (OWInputFuncView *)funcView

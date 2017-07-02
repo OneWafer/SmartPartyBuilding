@@ -62,7 +62,7 @@
     NSInteger replayNum = [infoDic[@"replyNum"] integerValue];
     if (replayNum) {
         self.commentBtn.badgeValue = [NSString stringWithFormat:@"%ld",(long)replayNum];
-        self.commentBtn.badgeBGColor = wh_RGB(28, 184, 235);
+        self.commentBtn.badgeBGColor = wh_RGB(28, 144, 255);
         self.commentBtn.badgeOriginX = 24.0f;
         self.commentBtn.badgeOriginY = 1.0f;
     }

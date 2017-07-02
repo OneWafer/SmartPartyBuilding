@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-@class OWMessage;
+@class OWNotice;
 @interface OWNoticeDetailVC : UIViewController
 
-@property (nonatomic, strong) OWMessage *message;
+@property (nonatomic, strong) OWNotice *notice;
 
 @end

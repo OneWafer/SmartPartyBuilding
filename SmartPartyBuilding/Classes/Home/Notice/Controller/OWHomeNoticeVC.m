@@ -13,13 +13,13 @@
 #import "OWNoticeDetailVC.h"
 #import "OWHomeNoticeCell.h"
 #import "OWNetworking.h"
-#import "OWMessage.h"
+#import "OWNotice.h"
 
 @interface OWHomeNoticeVC ()<UISearchBarDelegate,UISearchResultsUpdating>
 
 @property(nonatomic,strong) UISearchController *searchVC;
 @property(nonatomic,strong) OWNoticeSearchResultVC *resultVC;
-@property (nonatomic, strong) NSArray *messageList;
+@property (nonatomic, strong) NSArray *noticeList;
 
 @end
 
@@ -56,7 +56,7 @@
     [OWNetworking HGET:wh_appendingStr(wh_host, @"mobile/message/getMessages") parameters:nil success:^(id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue] == 200) {
             wh_Log(@"---%@",responseObject);
-            self.messageList = [OWMessage mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+            self.noticeList = [OWNotice mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
             [self.tableView reloadData];
             [SVProgressHUD dismiss];
         }else{
@@ -72,7 +72,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.messageList.count;
+    return self.noticeList.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -83,7 +83,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     OWHomeNoticeCell *cell = [OWHomeNoticeCell cellWithTableView:tableView];
-    cell.message = self.messageList[indexPath.row];
+    cell.notice = self.noticeList[indexPath.row];
     return cell;
 }
 
@@ -92,9 +92,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    OWMessage *message = self.messageList[indexPath.row];
+    OWNotice *notice = self.noticeList[indexPath.row];
     OWNoticeDetailVC *detailVC = [[OWNoticeDetailVC alloc] init];
-    detailVC.message = message;
+    detailVC.notice = notice;
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
@@ -108,10 +108,10 @@
     NSString *searchText=searchController.searchBar.text;
     wh_Log(@"------%@",searchText);
     NSMutableArray *resultList=[NSMutableArray array];
-    for (OWMessage *m in self.messageList) {
-        NSRange range=[m.title rangeOfString:searchText];
+    for (OWNotice *n in self.noticeList) {
+        NSRange range=[n.title rangeOfString:searchText];
         if (range.length>0) {
-            [resultList addObject:m];
+            [resultList addObject:n];
         }
     }
     self.resultVC.resultList=resultList;

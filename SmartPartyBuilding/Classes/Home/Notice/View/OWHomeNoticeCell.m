@@ -9,7 +9,7 @@
 #import <Masonry.h>
 #import <UIImageView+WebCache.h>
 #import "OWHomeNoticeCell.h"
-#import "OWMessage.h"
+#import "OWNotice.h"
 
 @interface OWHomeNoticeCell ()
 
@@ -51,15 +51,13 @@ static NSString *const identifier = @"OWHomeNoticeCell";
 }
 
 
-- (void)setMessage:(OWMessage *)message
+- (void)setNotice:(OWNotice *)notice
 {
-    _message = message;
+    _notice = notice;
     [self.titleImgView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:wh_imageNamed(@"home_news_place")];
-    self.titleLabel.text = message.title;
-    self.timeLabel.text = message.createTime;
+    self.titleLabel.text = notice.title;
+    self.timeLabel.text = notice.createTime;
 }
-
-
 
 
 #pragma mark - ---------- Lazy ----------

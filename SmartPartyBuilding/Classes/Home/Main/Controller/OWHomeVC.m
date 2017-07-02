@@ -33,6 +33,7 @@
 #import "OWRefreshGifHeader.h"
 #import "OWNewsDetailVC.h"
 #import "OWHomeBulletinVC.h"
+#import "OWHomeMessageVC.h"
 
 @interface OWHomeVC ()<SDCycleScrollViewDelegate>
 
@@ -102,8 +103,8 @@
     }];
     
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem wh_itemWithType:WHItemTypeRight norImage:@"navi_home_message" highImage:@"navi_home_message" offset:0 actionHandler:^(UIButton *sender) {
-        OWHomeNoticeVC *noticeVC = [[OWHomeNoticeVC alloc] init];
-        [weakself.navigationController pushViewController:noticeVC animated:YES];
+        OWHomeMessageVC *messageVC = [[OWHomeMessageVC alloc] init];
+        [weakself.navigationController pushViewController:messageVC animated:YES];
     }];
     
     [self.searchView wh_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {

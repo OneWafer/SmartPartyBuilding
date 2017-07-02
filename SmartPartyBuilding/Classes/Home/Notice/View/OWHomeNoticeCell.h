@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-@class OWMessage;
+@class OWNotice;
 @interface OWHomeNoticeCell : UITableViewCell
 
-@property (nonatomic, strong) OWMessage *message;
+@property (nonatomic, strong) OWNotice *notice;
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
 @end
