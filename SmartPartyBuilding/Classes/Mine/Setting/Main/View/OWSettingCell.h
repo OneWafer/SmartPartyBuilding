@@ -10,7 +10,8 @@
 
 @interface OWSettingCell : UITableViewCell
 
-@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSDictionary *titleDic;
+@property (nonatomic, weak) UILabel *contentLabel;
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
 @end

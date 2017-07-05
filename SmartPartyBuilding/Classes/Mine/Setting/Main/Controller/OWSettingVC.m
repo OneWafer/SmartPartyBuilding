@@ -6,11 +6,13 @@
 //  Copyright © 2017年 王卫华. All rights reserved.
 //
 
+#import <SVProgressHUD.h>
 #import "OWSettingVC.h"
 #import "OWSettingCell.h"
 
 @interface OWSettingVC ()
 
+@property (nonatomic, assign) NSInteger cacheSize;
 @property (nonatomic, strong) NSArray *optionList;
 
 @end
@@ -29,7 +31,7 @@
     self.navigationItem.title = @"设置";
     
     [self setupTableView];
-    
+    [self getCacheSize];
 }
 
 /** 设置tableview */
@@ -38,9 +40,24 @@
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     self.tableView.showsVerticalScrollIndicator = NO;
     
-    self.optionList = @[@"新消息通知", @"版本检测", @"关于"];
-    
 }
+
+- (void)getCacheSize
+{
+    wh_weakSelf(self);
+    [NSFileManager wh_getCacheSizeCompletion:^(NSInteger size) {
+        weakself.cacheSize = size;
+        
+        weakself.optionList = @[
+                            @{@"title":@"新消息通知", @"content":@""},
+                            @{@"title":@"清理缓存", @"content":[NSString stringWithFormat:@"%.1fMB",(self.cacheSize/1024/1024.0)]},
+                            @{@"title":@"关于", @"content":@""}
+                            ];
+        
+        [weakself.tableView reloadData];
+    }];
+}
+
 
 #pragma mark - ---------- TableViewDataSource ----------
 
@@ -67,8 +84,23 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     OWSettingCell *cell = [OWSettingCell cellWithTableView:tableView];
-    cell.title = self.optionList[indexPath.row];
+    cell.titleDic = self.optionList[indexPath.row];
     return cell;
+}
+
+
+#pragma mark - ---------- TableViewDelegate ----------
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 1) {
+        [SVProgressHUD showWithStatus:@"正在清理..."];
+        [NSFileManager wh_clearCache];
+        wh_weakSelf(self);
+        [SVProgressHUD dismissWithDelay:1.0 completion:^{
+            [weakself getCacheSize];
+        }];
+    }
 }
 
 @end

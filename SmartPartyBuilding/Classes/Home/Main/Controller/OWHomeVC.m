@@ -286,12 +286,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+//    return 4;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return (section >= 3) ? self.newsList.count + 1 : 1;
+//    return (section >= 3) ? self.newsList.count + 1 : 1;
+    return (section >= 2) ? self.newsList.count + 1 : 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -300,16 +302,19 @@
         return 160.0f;
     }else if (indexPath.section == 1){
         return 45;
-    }else if (indexPath.section == 2){
-        return 180.0f;
-    }else{
+    }
+//    else if (indexPath.section == 2){
+//        return 180.0f;
+//    }
+    else{
         return indexPath.row ? 100.0f : 40.0f;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return (section == 0 || section == 3)? CGFLOAT_MIN : 10.0f;
+//    return (section == 0 || section == 3)? CGFLOAT_MIN : 10.0f;
+    return (section == 0)? CGFLOAT_MIN : 10.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -342,17 +347,19 @@
             }
         };
         return cell;
-    }else if (indexPath.section == 2){
-        OWModuleCell *cell = [OWModuleCell cellWithTableView:tableView];
-        cell.block = ^(NSInteger tag){
-            if (tag == 11) {
-                
-            }else{
-                self.tabBarController.selectedIndex = 1;
-            }
-        };
-        return cell;
-    }else{
+    }
+//    else if (indexPath.section == 2){
+//        OWModuleCell *cell = [OWModuleCell cellWithTableView:tableView];
+//        cell.block = ^(NSInteger tag){
+//            if (tag == 11) {
+//                
+//            }else{
+//                self.tabBarController.selectedIndex = 1;
+//            }
+//        };
+//        return cell;
+//    }
+    else{
         if (indexPath.row == 0) {
             OWHomeTitleCell *cell = [OWHomeTitleCell cellWithTableView:tableView];
             cell.titleDic = self.sectionTitleList[0];

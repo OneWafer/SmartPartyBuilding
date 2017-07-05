@@ -45,11 +45,14 @@ static NSString *const identifier = @"OWSettingCell";
 }
 
 
-- (void)setTitle:(NSString *)title
+- (void)setTitleDic:(NSDictionary *)titleDic
 {
-    _title = title;
-    self.titleLabel.text = title;
+    _titleDic = titleDic;
+    self.titleLabel.text = titleDic[@"title"];
+    if ([self.titleLabel.text isEqualToString:@"清理缓存"]) self.contentLabel.text = titleDic[@"content"];
 }
+
+
 
 #pragma mark - ---------- Lazy ----------
 
@@ -57,7 +60,7 @@ static NSString *const identifier = @"OWSettingCell";
 {
     if (!_titleLabel) {
         UILabel *label = [[UILabel alloc] init];
-        label.textColor = [UIColor blackColor];
+        label.textColor = wh_norFontColor;
         label.font = [UIFont systemFontOfSize:14.5f];
         [self.contentView addSubview:label];
         
@@ -68,6 +71,23 @@ static NSString *const identifier = @"OWSettingCell";
         _titleLabel = label;
     }
     return _titleLabel;
+}
+
+- (UILabel *)contentLabel
+{
+    if (!_contentLabel) {
+        UILabel *label = [[UILabel alloc] init];
+        label.textColor = wh_RGB(109, 109, 109);
+        label.font = [UIFont systemFontOfSize:14.5f];
+        [self.contentView addSubview:label];
+        
+        [label makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self);
+            make.right.equalTo(self).offset(-35);
+        }];
+        _contentLabel = label;
+    }
+    return _contentLabel;
 }
 
 @end
