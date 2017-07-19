@@ -20,6 +20,7 @@
 @interface OWQuestionDetailVC ()
 
 @property (nonatomic, strong) NSArray *questionList;
+@property (nonatomic, assign) NSInteger sltCount;
 
 @end
 
@@ -64,6 +65,16 @@
 - (void)submitAnswer
 {
     [SVProgressHUD showWithStatus:@"正在提交..."];
+    
+    [self.questionList wh_apply:^(OWQuestion *obj) {
+        wh_Log(@"---%ld",(long)obj.idx.row);
+        if (obj.idx.row > 0) self.sltCount++;
+    }];
+    if (self.sltCount < self.questionList.count) {
+        
+        [SVProgressHUD showInfoWithStatus:@"答卷尚未完成!"];
+        return;
+    };
     
     NSArray *answerList = [self.questionList wh_map:^id(OWQuestion *obj) {
         OWQuestionItem *item = obj.items[obj.idx.row - 1];

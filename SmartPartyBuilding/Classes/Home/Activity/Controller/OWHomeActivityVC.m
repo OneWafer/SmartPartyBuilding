@@ -74,6 +74,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     OWHomeActivity *activity = self.activityList[indexPath.row];
     OWHomeActDetailVC *detailVC = [[OWHomeActDetailVC alloc] init];
     detailVC.activity = activity;

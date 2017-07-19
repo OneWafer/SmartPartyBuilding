@@ -12,6 +12,7 @@
 #import "OWNetworking.h"
 #import "OWMineThumbup.h"
 #import "OWMineThumbupCell.h"
+#import "OWThumbupDetailVC.h"
 
 @interface OWThumbupVC ()
 
@@ -72,9 +73,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     OWMineThumbup *thumbup = self.thumbupList[indexPath.row];
-    //    OWNoticeDetailVC *detailVC = [[OWNoticeDetailVC alloc] init];
-    //    detailVC.message = message;
-    //    [self.navigationController pushViewController:detailVC animated:YES];
+        OWThumbupDetailVC *detailVC = [[OWThumbupDetailVC alloc] init];
+        detailVC.thumbup = thumbup;
+        [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 @end

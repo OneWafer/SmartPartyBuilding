@@ -15,7 +15,7 @@
 #import "OWPlainGridImageView.h"
 #import "MLLabel+Size.h"
 
-#define ImageGridWidth [UIScreen mainScreen].bounds.size.width*0.7
+#define ImageGridWidth wh_screenWidth*0.7
 
 @interface OWImagesSendVC ()<OWPlainGridImageViewDelegate, TZImagePickerControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate>
 
@@ -170,15 +170,6 @@
         _placeholder.hidden = NO;
         
     }
-    //    if ([text isEqualToString:@"\n"]){
-    //        _mask.hidden = YES;
-    //        [_contentView resignFirstResponder];
-    //        if (range.location == 0)
-    //        {
-    //            _placeholder.hidden = NO;
-    //        }
-    //        return NO;
-    //    }
     
     return YES;
 }

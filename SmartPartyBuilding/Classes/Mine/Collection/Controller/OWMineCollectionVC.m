@@ -12,6 +12,7 @@
 #import "OWNetworking.h"
 #import "OWMineCollection.h"
 #import "OWMineCollectionCell.h"
+#import "OWMineCltDetailVC.h"
 
 @interface OWMineCollectionVC ()
 
@@ -73,9 +74,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     OWMineCollection *collection = self.collectionList[indexPath.row];
-//    OWNoticeDetailVC *detailVC = [[OWNoticeDetailVC alloc] init];
-//    detailVC.message = message;
-//    [self.navigationController pushViewController:detailVC animated:YES];
+    OWMineCltDetailVC *detailVC = [[OWMineCltDetailVC alloc] init];
+    detailVC.collection = collection;
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 @end

@@ -17,7 +17,7 @@
 #import "AppDelegate.h"
 #import "OWTool.h"
 #import "OWPartyFeeVC.h"
-#import "OWHomeNoticeVC.h"
+#import "OWHomeMessageVC.h"
 #import "OWNetworking.h"
 #import "OWMineCollectionVC.h"
 #import "OWMineCommentVC.h"
@@ -100,8 +100,8 @@
     }];
     
     UIBarButtonItem *messageItem = [UIBarButtonItem wh_itemWithType:WHItemTypeRight norImage:@"navi_me_message" highImage:@"navi_me_message" offset:0.0f actionHandler:^(UIButton *sender) {
-        OWHomeNoticeVC *noticeVC = [[OWHomeNoticeVC alloc] init];
-        [weakself.navigationController pushViewController:noticeVC animated:YES];
+        OWHomeMessageVC *messageVC = [[OWHomeMessageVC alloc] init];
+        [weakself.navigationController pushViewController:messageVC animated:YES];
     }];
     
     self.navigationItem.rightBarButtonItems = @[messageItem, setItem];

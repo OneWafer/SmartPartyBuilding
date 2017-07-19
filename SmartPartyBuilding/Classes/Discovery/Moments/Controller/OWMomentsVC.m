@@ -6,12 +6,15 @@
 //  Copyright © 2017年 王卫华. All rights reserved.
 //
 
+#import <SVProgressHUD.h>
 #import "OWMomentsVC.h"
 #import "OWTextImageLineItem.h"
 #import "OWLineLikeItem.h"
 #import "OWLineCommentItem.h"
 #import "OWVideoLineItem.h"
 #import "OWUserMomentsVC.h"
+#import "OWNetworking.h"
+#import "OWTool.h"
 
 @interface OWMomentsVC ()
 
@@ -25,21 +28,39 @@
     self.navigationItem.title = @"光影";
     [self initData];
     [self setHeader];
+    [self dataRequest];
 }
 
+- (void)dataRequest
+{
+    [SVProgressHUD showWithStatus:@"正在加载..."];
+    NSDictionary *par = @{
+                          @"isShadow":@(1)
+                          };
+    [OWNetworking HGET:wh_appendingStr(wh_host, @"mobile/discussion/getList") parameters:par success:^(id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] == 200) {
+            wh_Log(@"---%@",responseObject);
+//            self.collectionList = [OWMineCollection mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+//            [self.tableView reloadData];
+            [SVProgressHUD dismiss];
+        }else{
+            [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
+        }
+    } failure:^(NSError * _Nonnull error) {
+        [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
+    }];
+}
 
 -(void) setHeader
 {
     NSString *coverUrl = @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496242912506&di=8f932d535e33580bc0f66f531bc803bf&imgtype=0&src=http%3A%2F%2Fupload.art.ifeng.com%2F2015%2F0811%2F1439260959533.jpg";
     [self setCover:coverUrl];
     
-//    NSString *avatarUrl = [NSString stringWithFormat:@"http://file-cdn.datafans.net/avatar/1.jpeg_%dx%d.jpeg", (int)self.userAvatarSize, (int)self.userAvatarSize];
-    NSString *avatarUrl = @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496243110313&di=65c0a56d98927400fe6f433e4573dd7b&imgtype=0&src=http%3A%2F%2Fmvimg2.meitudata.com%2F557536d18a78f6559.jpg";
-    [self setUserAvatar:avatarUrl];
+    [self setUserAvatar:[OWTool getUserInfo][@"avatar"]];
     
-    [self setUserNick:@"Allen"];
+    [self setUserNick:[OWTool getUserInfo][@"staffName"]];
     
-    [self setUserSign:@"梦想还是要有的 万一实现了呢"];
+    [self setUserSign:[OWTool getUserInfo][@"signature"]];
     
 }
 
@@ -259,7 +280,7 @@
 -(void)onLike:(long long)itemId
 {
     //点赞
-    wh_Log(@"onLike: %lld", itemId);
+//    wh_Log(@"onLike: %lld", itemId);
     
     OWLineLikeItem *likeItem = [[OWLineLikeItem alloc] init];
     likeItem.userId = 10092;
@@ -272,7 +293,7 @@
 -(void)onClickUser:(NSUInteger)userId
 {
     //点击左边头像 或者 点击评论和赞的用户昵称
-    wh_Log(@"onClickUser: %ld", userId);
+//    wh_Log(@"onClickUser: %ld", userId);
 
     OWUserMomentsVC *controller = [[OWUserMomentsVC alloc] init];
     [self.navigationController pushViewController:controller animated:YES];

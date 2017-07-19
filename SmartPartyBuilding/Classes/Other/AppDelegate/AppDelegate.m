@@ -7,6 +7,7 @@
 //
 
 #import <AFHTTPSessionManager.h>
+#import <AMapFoundationKit/AMapFoundationKit.h>
 #import "AppDelegate.h"
 #import "OWPlusBtn.h"
 #import "OWTabBarControllerConfig.h"
@@ -36,6 +37,9 @@
     [self.window makeKeyAndVisible];
     [OWGuideView push];
     [OWTool SVProgressHUD];
+    
+    /** 注册高德地图 */
+    [AMapServices sharedServices].apiKey = @"226a993622f9ce74d0c4de0da932ae3e";
     
     /** 延长启动页停留时间 */
     [NSThread sleepForTimeInterval:1];

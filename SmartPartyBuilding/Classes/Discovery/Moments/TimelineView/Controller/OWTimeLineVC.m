@@ -18,7 +18,7 @@
 #import "OWVideoCaptureVC.h"
 #import "OWLineLikeItem.h"
 
-@interface OWTimeLineVC ()<OWLineCellDelegate, OWCommentInputViewDelegate, TZImagePickerControllerDelegate, UIImagePickerControllerDelegate, UINavigationBarDelegate, OWImagesSendVCDelegate, OWVideoCaptureVCDelegate>
+@interface OWTimeLineVC ()<OWLineCellDelegate, OWCommentInputViewDelegate, TZImagePickerControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, OWImagesSendVCDelegate, OWVideoCaptureVCDelegate>
 
 @property (nonatomic, strong) NSMutableArray *items;
 
@@ -97,7 +97,7 @@
 - (void)setupNavi
 {
     wh_weakSelf(self);
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem wh_itemWithType:WHItemTypeRight norImage:@"tab_store_slt" highImage:@"" offset:0 actionHandler:^(UIButton *sender) {
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem wh_itemWithType:WHItemTypeRight norImage:@"discovery_camera" highImage:@"" offset:0 actionHandler:^(UIButton *sender) {
         [weakself onClickCamera:sender];
     }];
     
@@ -136,19 +136,16 @@
         
         switch (buttonIndex) {
             case 1:
-                [weakself captureViedo];
-                break;
-            case 2:
                 [weakself takePhoto];
                 break;
-            case 3:
+            case 2:
                 [weakself pickFromAlbum];
                 break;
             default:
                 break;
         }
         
-    } otherButtonTitleArray:@[@"小视频", @"拍照", @"从相册选取"]];
+    } otherButtonTitleArray:@[@"拍照", @"从相册选取"]];
     [actionSheet show];
     
 }

@@ -67,7 +67,7 @@
                           @"phoneNumber":r.content
                           };
     wh_Log(@"---%@",par);
-    [OWNetworking GET:wh_appendingStr(wh_host, @"mobile/validCode") parameters:par success:^(id  _Nullable responseObject) {
+    [OWNetworking GET:wh_appendingStr(wh_host, @"mobile/otherValidCode") parameters:par success:^(id  _Nullable responseObject) {
         wh_Log(@"---%@",responseObject);
         if ([responseObject[@"code"] intValue] == 200) {
 //            self.verCode = responseObject[@"data"];

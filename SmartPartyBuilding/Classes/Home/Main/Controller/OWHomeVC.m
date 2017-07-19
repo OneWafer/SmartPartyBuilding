@@ -22,8 +22,8 @@
 #import "OWHomeNoticeVC.h"
 #import "OWPartyFeeVC.h"
 #import "OWHomeActivityVC.h"
-//#import "OWHomeApprovalVC.h"
 #import "OWExcPartyMemberVC.h"
+#import "OWHomeConsultationVC.h"
 #import "OWVolunteerVC.h"
 #import "OWQuestionnaireVC.h"
 #import "OWDiscussionVC.h"
@@ -379,7 +379,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.section == 3 && indexPath.row > 0) {
+    if (indexPath.section == 2 && indexPath.row > 0) {
         OWNewsDetailVC *newsVC = [[OWNewsDetailVC alloc] init];
         newsVC.news = self.newsList[indexPath.row - 1];
         [self.navigationController pushViewController:newsVC animated:YES];
@@ -403,8 +403,8 @@
         OWExcPartyMemberVC *excPartyMember = [[OWExcPartyMemberVC alloc] init];
         [weakself.navigationController pushViewController:excPartyMember animated:YES];
     }else if (tag == 1005){
-//        OWExcPartyMemberVC *excPartyMember = [[OWExcPartyMemberVC alloc] init];
-//        [weakself.navigationController pushViewController:excPartyMember animated:YES];
+        OWHomeConsultationVC *consultationVC = [[OWHomeConsultationVC alloc] init];
+        [weakself.navigationController pushViewController:consultationVC animated:YES];
     }else if (tag == 1006){
         OWVolunteerVC *volunteer = [[OWVolunteerVC alloc] init];
         [weakself.navigationController pushViewController:volunteer animated:YES];

@@ -22,6 +22,6 @@ pod 'TZImagePickerController'
 pod 'YLGIFImage'
 pod 'LBXScan/LBXNative'
 pod 'LBXScan/UI'
-pod 'XHWaterfallFlowLayout'
+pod 'AMapLocation'
 
 end

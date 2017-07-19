@@ -6,14 +6,14 @@
 //  Copyright © 2017年 王卫华. All rights reserved.
 //
 
-#import <XHWaterfallFlowLayout.h>
+//#import <XHWaterfallFlowLayout.h>
 #import "OWCommodityFallCell.h"
 #import "OWCommodityItemCell.h"
 
-@interface OWCommodityFallCell ()<UICollectionViewDelegate,UICollectionViewDataSource,XHWaterfallFlowLayoutDelegate>
+@interface OWCommodityFallCell ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (strong, nonatomic) UICollectionView *collectionView;
-@property(nonatomic, strong) XHWaterfallFlowLayout *flowLayout;
+//@property(nonatomic, strong) XHWaterfallFlowLayout *flowLayout;
 
 @end
 
@@ -52,20 +52,20 @@ static NSString *const identifier = @"OWCommodityFallCell";
 /** 设置内容框 */
 - (void)setupContentView
 {
-    self.flowLayout = [[XHWaterfallFlowLayout alloc] init];
-    self.flowLayout.columnCount = 2;
-    self.flowLayout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
-    self.flowLayout.minimumInteritemSpacing = 10;
-    self.flowLayout.minimumLineSpacing = 10;
-    self.flowLayout.sDelegate = self;
+//    self.flowLayout = [[XHWaterfallFlowLayout alloc] init];
+//    self.flowLayout.columnCount = 2;
+//    self.flowLayout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
+//    self.flowLayout.minimumInteritemSpacing = 10;
+//    self.flowLayout.minimumLineSpacing = 10;
+//    self.flowLayout.sDelegate = self;
     
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, wh_screenWidth, ((wh_screenWidth - 30) * 0.75 + 10) * 5 + 10) collectionViewLayout:self.flowLayout];
-    self.collectionView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    self.collectionView.dataSource = self;
-    self.collectionView.delegate = self;
-    self.collectionView.scrollEnabled = NO;
-    [self.collectionView registerClass:[OWCommodityItemCell class] forCellWithReuseIdentifier:ItemCellId];
-    [self.contentView addSubview:self.collectionView];
+//    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, wh_screenWidth, ((wh_screenWidth - 30) * 0.75 + 10) * 5 + 10) collectionViewLayout:self.flowLayout];
+//    self.collectionView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+//    self.collectionView.dataSource = self;
+//    self.collectionView.delegate = self;
+//    self.collectionView.scrollEnabled = NO;
+//    [self.collectionView registerClass:[OWCommodityItemCell class] forCellWithReuseIdentifier:ItemCellId];
+//    [self.contentView addSubview:self.collectionView];
 }
 
 

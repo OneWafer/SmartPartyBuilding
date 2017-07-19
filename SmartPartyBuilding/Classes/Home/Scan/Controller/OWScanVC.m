@@ -7,9 +7,11 @@
 //
 
 #import <LBXScanView.h>
+#import <SVProgressHUD.h>
 #import <LBXScanNative.h>
 #import "OWScanVC.h"
 #import "OWScanPermissions.h"
+#import "OWNetworking.h"
 
 @interface OWScanVC ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -150,8 +152,23 @@
         return;
     }
     
-    wh_Log(@"%@---%@",strResult,self.scanImage);
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    [SVProgressHUD showWithStatus:@"正在登录..."];
+    NSString *token = [strResult substringFromIndex:12];
+    NSDictionary *par = @{
+                          @"token":token
+                          };
+    [OWNetworking HGET:wh_appendingStr(wh_host, @"mobile/qrcodeLogin") parameters:par success:^(id  _Nullable responseObject) {
+        wh_Log(@"---%@",responseObject);
+        if ([responseObject[@"code"] intValue] == 200) {
+            [SVProgressHUD showSuccessWithStatus:@"登录成功!"];
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
+        }
+    } failure:^(NSError * _Nonnull error) {
+        [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
+    }];
     
 //    //震动提醒
 //     [LBXScanWrapper systemVibrate];

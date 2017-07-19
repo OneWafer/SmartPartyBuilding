@@ -10,6 +10,9 @@
 
 @interface OWConstant : NSObject
 
+/** host */
 UIKIT_EXTERN NSString const *wh_host;
+/** 高德地图key */
+UIKIT_EXTERN NSString const *wh_mapKey;
 
 @end
