@@ -6,6 +6,7 @@
 //  Copyright © 2017年 王卫华. All rights reserved.
 //
 
+#import <Masonry.h>
 #import <UIImageView+WebCache.h>
 #import "OWBaseLineCell.h"
 #import "OWBaseLineItem.h"
@@ -18,7 +19,7 @@
 #define UserNickFont [UIFont systemFontOfSize:16]
 #define TitleLabelFont [UIFont systemFontOfSize:13]
 
-#define LocationLabelFont [UIFont systemFontOfSize:10]
+#define LocationLabelFont [UIFont systemFontOfSize:11.5f]
 
 #define TimeLabelFont [UIFont systemFontOfSize:12]
 
@@ -69,6 +70,9 @@
 
 @property (nonatomic, assign) BOOL isLikeCommentToolbarShow;
 
+
+@property (nonatomic, weak) UIView *lineView;
+
 @end
 
 @implementation OWBaseLineCell
@@ -80,7 +84,7 @@
     if (self) {
         
         _isLikeCommentToolbarShow = NO;
-        
+        self.lineView.backgroundColor = wh_lineColor;
         [self initBaseCell];
     }
     return self;
@@ -144,7 +148,7 @@
     
     if (_locationLabel == nil) {
         _locationLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _locationLabel.textColor = [UIColor colorWithRed:35/255.0 green:83/255.0 blue:120/255.0 alpha:1.0];
+        _locationLabel.textColor = [UIColor colorWithRed:35/255.0 green:83/255.0 blue:120/250.0 alpha:1.0];
         _locationLabel.font = LocationLabelFont;
         _locationLabel.hidden = YES;
         [self.contentView addSubview:_locationLabel];
@@ -272,6 +276,7 @@
     height = TimeLabelHeight;
     _timeLabel.hidden = NO;
     _timeLabel.frame = CGRectMake(x, y, width, height);
+    wh_Log(@"---%lld",self.item.ts);
     _timeLabel.text = [OWTool preettyTime:self.item.ts];
     
     
@@ -428,4 +433,18 @@
     }
 }
 
+
+- (UIView *)lineView
+{
+    if (!_lineView) {
+        UIView *view = [[UIView alloc] init];
+        [self.contentView addSubview:view];
+        [view makeConstraints:^(MASConstraintMaker *make) {
+            make.left.bottom.right.equalTo(self);
+            make.height.equalTo(0.5);
+        }];
+        _lineView = view;
+    }
+    return _lineView;
+}
 @end

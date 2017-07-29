@@ -16,15 +16,15 @@
 @property (nonatomic, assign) CGFloat cellHeight;
 
 @property (nonatomic, assign) NSUInteger userId;
-@property (nonatomic, strong) NSString *userNick;
-@property (nonatomic, strong) NSString *userAvatar;
+@property (nonatomic, copy) NSString *userNick;
+@property (nonatomic, copy) NSString *userAvatar;
 
-@property (nonatomic, strong) NSString *title;
+@property (nonatomic, copy) NSString *title;
 
 
-@property (nonatomic, strong) NSString *location;
+@property (nonatomic, copy) NSString *location;
 
-@property (nonatomic, assign) long long ts;
+@property (nonatomic, assign) double ts;
 
 
 @property (nonatomic, strong) NSMutableArray *likes;

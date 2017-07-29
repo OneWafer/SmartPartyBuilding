@@ -18,9 +18,9 @@
 
 @interface OWGridImageView ()
 
-@property (nonatomic, strong) NSMutableArray *images;
+@property (nonatomic, strong) NSArray *images;
 
-@property (nonatomic, strong) NSMutableArray *srcImages;
+@property (nonatomic, strong) NSArray *srcImages;
 
 @property (nonatomic, strong) NSMutableArray *imageViews;
 
@@ -80,7 +80,7 @@
     
 }
 
-- (void)updateWithImages:(NSMutableArray *)images srcImages:(NSMutableArray *)srcImages oneImageWidth:(CGFloat)oneImageWidth oneImageHeight:(CGFloat)oneImageHeight
+- (void)updateWithImages:(NSArray *)images srcImages:(NSArray *)srcImages oneImageWidth:(CGFloat)oneImageWidth oneImageHeight:(CGFloat)oneImageHeight
 {
     
     self.images = images;
@@ -219,7 +219,7 @@
 }
 
 
-+(CGFloat)getHeight:(NSMutableArray *)images maxWidth:(CGFloat)maxWidth oneImageWidth:(CGFloat)oneImageWidth oneImageHeight:(CGFloat)oneImageHeight
++(CGFloat)getHeight:(NSArray *)images maxWidth:(CGFloat)maxWidth oneImageWidth:(CGFloat)oneImageWidth oneImageHeight:(CGFloat)oneImageHeight
 {
     CGFloat height= (maxWidth - 2*Padding)/3;
     

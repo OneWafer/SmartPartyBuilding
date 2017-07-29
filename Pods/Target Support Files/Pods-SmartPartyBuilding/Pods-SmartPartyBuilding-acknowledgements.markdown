@@ -34,6 +34,11 @@ Copyright © 2014 AutoNavi. All Rights Reserved.
 Copyright © 2014 AutoNavi. All Rights Reserved.
 
 
+## AMapSearch
+
+Copyright © 2014 AutoNavi. All Rights Reserved.
+
+
 ## CYLTabBarController
 
 Copyright (c) 2015 CYLTabBarController(https://github.com/ChenYilong/CYLTabBarController), L.L.C. All rights reserved.

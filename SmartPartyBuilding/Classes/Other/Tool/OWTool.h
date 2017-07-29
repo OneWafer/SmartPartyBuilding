@@ -15,7 +15,7 @@
 /** md5加密 */
 +(NSString *) md5:(NSString *) str;
 
-+(NSString *) preettyTime:(long long) ts;
++(NSString *) preettyTime:(double) ts;
 
 /** 存储token */
 + (void)setToken:(NSString *)token;

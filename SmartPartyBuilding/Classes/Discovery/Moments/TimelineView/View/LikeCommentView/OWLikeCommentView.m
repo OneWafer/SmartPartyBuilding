@@ -39,7 +39,7 @@
 
 #define LinkLabelTag 100
 
-@interface OWLikeCommentView ()
+@interface OWLikeCommentView () <OWLinkClickLabelDelegate>
 
 @property (nonatomic, strong) UIImageView *likeCmtBg;
 

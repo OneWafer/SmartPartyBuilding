@@ -23,5 +23,5 @@ pod 'YLGIFImage'
 pod 'LBXScan/LBXNative'
 pod 'LBXScan/UI'
 pod 'AMapLocation'
-
+pod 'AMapSearch'
 end

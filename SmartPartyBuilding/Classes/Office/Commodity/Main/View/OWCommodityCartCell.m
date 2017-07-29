@@ -109,7 +109,7 @@ static NSString *const identifier = @"OWCommodityCartCell";
     if (!_titleLabel) {
         UILabel *label = [[UILabel alloc] init];
         label.textColor = wh_norFontColor;
-        label.font = [UIFont systemFontOfSize:14];
+        label.font = [UIFont systemFontOfSize:14.0f];
         label.numberOfLines = 2;
         [self.contentView addSubview:label];
         [label makeConstraints:^(MASConstraintMaker *make) {

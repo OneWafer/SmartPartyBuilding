@@ -47,54 +47,42 @@ NSString *const UserInfo = @"userInfo";
 }
 
 
-+(NSString *)preettyTime:(long long)ts
++(NSString *)preettyTime:(double)ts
 {
     //原有时间
-    NSString *firstDateStr=[OWTool FormatTime:@"yyyy-MM-dd" timeInterval:ts];
+    NSString *firstDateStr = [NSDate wh_getDateStirngWithTimestamp:[NSString stringWithFormat:@"%f",ts] Format:@"yyyy-MM-dd"];
+    wh_Log(@"%@",firstDateStr);
     NSArray *firstDateStrArr=[firstDateStr componentsSeparatedByString:@"-"];
     
     //现在时间
     NSDate *now = [NSDate date];
-    NSDateComponents *componentsNow = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:now];
+    NSDateComponents *componentsNow = [[NSCalendar currentCalendar] components:kCFCalendarUnitDay | kCFCalendarUnitMonth | kCFCalendarUnitYear fromDate:now];
     NSString *nowDateStr = [NSString stringWithFormat:@"%ld-%ld-%ld", (long)[componentsNow year], (long)[componentsNow month], (long)[componentsNow day]];
     NSArray *nowDateStrArr = [nowDateStr componentsSeparatedByString:@"-"];
     
     
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:ts/1000];
-    NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
+    NSString *dateStr = [NSString stringWithFormat:@"%f",ts];
     
     //同年
     if ([firstDateStrArr[0] intValue] == [nowDateStrArr[0] intValue]){
         
         //当天
         if( [firstDateStrArr[1] intValue] == [nowDateStrArr[1] intValue] && [nowDateStrArr[2] intValue]== [firstDateStrArr[2] intValue]){
-            [dateformatter setDateFormat:@"HH:mm"];
-            return [NSString stringWithFormat:@"%@", [dateformatter stringFromDate:date]];
+            return [NSDate wh_getDateStirngWithTimestamp:dateStr Format:@"HH:mm"];
         }
         
         //昨天
         if( [firstDateStrArr[1] intValue]==[nowDateStrArr[1] intValue] && ([nowDateStrArr[2] intValue]-[firstDateStrArr[2] intValue]==1)){
-            [dateformatter setDateFormat:@"HH:mm"];
-            return [NSString stringWithFormat:@"昨天 %@", [dateformatter stringFromDate:date]];
+            return [NSString stringWithFormat:@"昨天 %@", [NSDate wh_getDateStirngWithTimestamp:dateStr Format:@"HH:mm"]];
             
         }else{//昨天之前
-            [dateformatter setDateFormat:@"MM-dd HH:mm"];
-            return  [dateformatter stringFromDate:date];
+            return [NSDate wh_getDateStirngWithTimestamp:dateStr Format:@"MM-dd HH:mm"];
         }
         
     }else{
-        [dateformatter setDateFormat:@"yyyy-MM-dd HH:mm"];
-        return [dateformatter stringFromDate:date];
+        return [NSDate wh_getDateStirngWithTimestamp:dateStr Format:@"yyyy-MM-dd HH:mm"];
     }
     
-}
-
-+ (NSString *)FormatTime:(NSString *)format timeInterval:(double)value;
-{
-    NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:value / 1000];
-    [dateformatter setDateFormat:format];
-    return [dateformatter stringFromDate:date];
 }
 
 

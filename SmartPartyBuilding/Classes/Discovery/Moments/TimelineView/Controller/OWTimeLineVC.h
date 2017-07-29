@@ -12,6 +12,12 @@
 @class OWLineCommentItem;
 @interface OWTimeLineVC : OWBaseTimeLineVC
 
+@property (nonatomic, strong) NSMutableArray *items;
+
+@property (nonatomic, strong) NSMutableDictionary *itemDic;
+
+@property (nonatomic, strong) NSMutableDictionary *commentDic;
+
 //添加到末尾
 -(void) addItem:(OWBaseLineItem *) item;
 

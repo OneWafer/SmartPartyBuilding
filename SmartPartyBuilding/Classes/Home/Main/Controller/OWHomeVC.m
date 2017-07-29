@@ -34,6 +34,7 @@
 #import "OWNewsDetailVC.h"
 #import "OWHomeBulletinVC.h"
 #import "OWHomeMessageVC.h"
+#import "OWHomeSearchVC.h"
 
 @interface OWHomeVC ()<SDCycleScrollViewDelegate>
 
@@ -108,7 +109,8 @@
     }];
     
     [self.searchView wh_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
-        wh_Log(@"---点击了搜索按钮");
+        OWHomeSearchVC *searchVC = [[OWHomeSearchVC alloc] init];
+        [weakself.navigationController pushViewController:searchVC animated:YES];
     }];
 }
 

@@ -11,9 +11,9 @@
 @interface OWTextImageLineItem : OWBaseLineItem
 
 @property (nonatomic, strong) NSString *text;
-@property (nonatomic, strong) NSMutableArray *thumbImages;
-@property (nonatomic, strong) NSMutableArray *thumbPreviewImages;
-@property (nonatomic, strong) NSMutableArray *srcImages;
+@property (nonatomic, strong) NSArray *thumbImages;
+@property (nonatomic, strong) NSArray *thumbPreviewImages;
+@property (nonatomic, strong) NSArray *srcImages;
 @property (nonatomic, assign) CGFloat width;
 @property (nonatomic, assign) CGFloat height;
 

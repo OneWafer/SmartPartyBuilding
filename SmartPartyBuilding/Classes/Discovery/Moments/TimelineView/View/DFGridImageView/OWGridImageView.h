@@ -10,9 +10,9 @@
 
 @interface OWGridImageView : UIView
 
-- (void) updateWithImages:(NSMutableArray *)images srcImages:(NSMutableArray *)srcImages oneImageWidth:(CGFloat)oneImageWidth oneImageHeight:(CGFloat)oneImageHeight;
+- (void) updateWithImages:(NSArray *)images srcImages:(NSArray *)srcImages oneImageWidth:(CGFloat)oneImageWidth oneImageHeight:(CGFloat)oneImageHeight;
 
-+ (CGFloat) getHeight:(NSMutableArray *) images maxWidth:(CGFloat)maxWidth oneImageWidth:(CGFloat)oneImageWidth oneImageHeight:(CGFloat)oneImageHeight;
++ (CGFloat) getHeight:(NSArray *) images maxWidth:(CGFloat)maxWidth oneImageWidth:(CGFloat)oneImageWidth oneImageHeight:(CGFloat)oneImageHeight;
 
 - (NSInteger) getIndexFromPoint: (CGPoint) point;
 

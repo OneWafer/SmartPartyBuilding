@@ -12,7 +12,7 @@
 
 @optional
 
--(void) onSendTextImage:(NSString *) text images:(NSArray *)images;
+-(void) onSendTextImage:(NSString *) text images:(NSArray *)images location:(NSString *)location;
 
 
 @end

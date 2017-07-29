@@ -20,12 +20,6 @@
 
 @interface OWTimeLineVC ()<OWLineCellDelegate, OWCommentInputViewDelegate, TZImagePickerControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, OWImagesSendVCDelegate, OWVideoCaptureVCDelegate>
 
-@property (nonatomic, strong) NSMutableArray *items;
-
-@property (nonatomic, strong) NSMutableDictionary *itemDic;
-
-@property (nonatomic, strong) NSMutableDictionary *commentDic;
-
 
 @property (strong, nonatomic) OWCommentInputView *commentInputView;
 
@@ -487,7 +481,7 @@
 
 #pragma mark - DFImagesSendViewControllerDelegate
 
--(void)onSendTextImage:(NSString *)text images:(NSArray *)images
+-(void)onSendTextImage:(NSString *)text images:(NSArray *)images  location:(NSString *)location
 {
     
 }

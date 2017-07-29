@@ -8,6 +8,7 @@
 
 #import "OWUserMomentsVC.h"
 #import "OWTextImageUserLineItem.h"
+#import "OWTool.h"
 
 @interface OWUserMomentsVC ()
 
@@ -25,15 +26,11 @@
 
 -(void) setHeader
 {
-    NSString *coverUrl = [NSString stringWithFormat:@"http://file-cdn.datafans.net/temp/12.jpg_%dx%d.jpeg", (int)self.coverWidth, (int)self.coverHeight];
+    NSString *coverUrl = @"http://bpic.588ku.com/back_pic/04/27/56/99583becb4a8df7.jpg!/fh/300/quality/90/unsharp/true/compress/true";
     [self setCover:coverUrl];
-    
-    NSString *avatarUrl = [NSString stringWithFormat:@"http://file-cdn.datafans.net/avatar/1.jpeg_%dx%d.jpeg", (int)self.userAvatarSize, (int)self.userAvatarSize];
-    [self setUserAvatar:avatarUrl];
-    
-    [self setUserNick:@"Allen"];
-    
-    [self setUserSign:@"梦想还是要有的 万一实现了呢"];
+    [self setUserAvatar:[OWTool getUserInfo][@"avatar"]];
+    [self setUserNick:[OWTool getUserInfo][@"staffName"]];
+    [self setUserSign:[OWTool getUserInfo][@"signature"]];
     
 }
 

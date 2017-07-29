@@ -10,8 +10,8 @@
 #import "OWBaseTimeLineVC.h"
 #import "MLLabel+Size.h"
 
-#define TableHeaderHeight 290*([UIScreen mainScreen].bounds.size.width / 375.0)
-#define CoverHeight 240*([UIScreen mainScreen].bounds.size.width / 375.0)
+#define TableHeaderHeight 270*([UIScreen mainScreen].bounds.size.width / 375.0)
+#define CoverHeight 220*([UIScreen mainScreen].bounds.size.width / 375.0)
 
 
 #define AvatarSize 70*([UIScreen mainScreen].bounds.size.width / 375.0)
@@ -59,13 +59,13 @@
     [super viewDidLoad];
     [self initTableView];
     [self initHeader];
-    [self initFooter];
+//    [self initFooter];
 }
 
 -(void) initTableView
 {
     _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
-    //_tableView.backgroundColor = [UIColor darkGrayColor];
+    _tableView.separatorStyle = NO;
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.separatorInset = UIEdgeInsetsZero;
@@ -226,7 +226,7 @@
     
     if (scrollView.contentOffset.y+self.tableView.frame.size.height - 30 > scrollView.contentSize.height) {
         
-        [self showFooter];
+//        [self showFooter];
     }
 }
 

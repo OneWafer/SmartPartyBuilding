@@ -17,6 +17,8 @@ PODS:
   - AMapFoundation (1.4.0)
   - AMapLocation (2.4.0):
     - AMapFoundation (~> 1.4)
+  - AMapSearch (5.0.0):
+    - AMapFoundation (~> 1.2)
   - CYLTabBarController (1.10.0)
   - DZNEmptyDataSet (1.8.1)
   - IQKeyboardManager (4.0.9)
@@ -52,6 +54,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - AMapLocation
+  - AMapSearch
   - CYLTabBarController
   - DZNEmptyDataSet
   - IQKeyboardManager
@@ -75,6 +78,7 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   AMapFoundation: 458974f46a39df8407fd818ab83d2630d494c726
   AMapLocation: 47b62b5381a66e4d0c2931b70ffde72682427896
+  AMapSearch: cf7fd100d533995822d92c22586abfaf7cdf6eef
   CYLTabBarController: 2de9a4c26f50d33574398becf8e7b0aaed794240
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   IQKeyboardManager: 322c7405df3eb5f7e50dede32ea937bf3d4364e0
@@ -93,6 +97,6 @@ SPEC CHECKSUMS:
   WHCategories: 2d6f8ca5efe229842422cec68cd348bd20ced9a2
   YLGIFImage: c0ae132fe80e5282b2762a97d14e23ba71a748ae
 
-PODFILE CHECKSUM: 202f48fbad58276fc5c7a22ff443bb0cb70b9925
+PODFILE CHECKSUM: 831d3acfed73cf8fa21ed77315b40a747047a8ec
 
 COCOAPODS: 1.1.1
