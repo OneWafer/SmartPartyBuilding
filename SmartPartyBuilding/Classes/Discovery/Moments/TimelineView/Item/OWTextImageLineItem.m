@@ -16,9 +16,9 @@
     if (self) {
         
         _text = @"";
-        _thumbImages = [NSMutableArray array];
-        _thumbPreviewImages = [NSMutableArray array];
-        _srcImages = [NSMutableArray array];
+        _thumbImages = [NSArray array];
+        _thumbPreviewImages = [NSArray array];
+        _srcImages = [NSArray array];
     }
     return self;
 }

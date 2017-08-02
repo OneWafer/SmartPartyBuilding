@@ -87,7 +87,7 @@
     self.srcImages = srcImages;
     
     if (images.count > 0) {
-        id img = [images objectAtIndex:0];
+        id img = [images firstObject];
         if ([img isKindOfClass:[UIImage class]]) {
             UIImage *image = img;
             oneImageWidth = image.size.width;
@@ -106,11 +106,11 @@
             _oneImageButton.frame = CGRectMake(0, 0, oneImageWidth, oneImageHeight);
         }
         
-        id img = [images objectAtIndex:0];
+        id img = [images firstObject];
         if ([img isKindOfClass:[UIImage class]]) {
             _oneImageView.image = img;
         }else{
-            [_oneImageView sd_setImageWithURL:[NSURL URLWithString:[images objectAtIndex:0]]];
+            [_oneImageView sd_setImageWithURL:[NSURL URLWithString:[images firstObject]]];
         }
         _oneImageButton.tag = 0;
         
@@ -197,11 +197,11 @@
         
     }else{
         MJPhoto *photo = [[MJPhoto alloc] init];
-        id img = [self.srcImages objectAtIndex:0];
+        id img = [self.srcImages firstObject];
         if ([img isKindOfClass:[UIImage class]]) {
             photo.image = img;
         }else{
-            photo.url = [NSURL URLWithString:[self.srcImages objectAtIndex:0]];
+            photo.url = [NSURL URLWithString:[self.srcImages firstObject]];
         }
         
         photo.srcImageView = _oneImageView;
@@ -223,34 +223,53 @@
 {
     CGFloat height= (maxWidth - 2*Padding)/3;
     
+//    if (images == nil || images.count == 0) {
+//        return 0.0;
+//    }
+//    
+//    if (images.count == 1) {
+//        id img = [images firstObject];
+//        if ([img isKindOfClass:[UIImage class]]) {
+//            UIImage *image = img;
+//            oneImageWidth = image.size.width;
+//            oneImageHeight = image.size.height;
+//        }
+//        
+//        if (oneImageWidth > OneImageMaxWidth) {
+//            return oneImageHeight*(OneImageMaxWidth/oneImageWidth);
+//        }
+//        return oneImageHeight;
+//    }
+//    
+//    if (images.count >1 && images.count <=3 ) {
+//        return height;
+//    }
+//    
+//    if (images.count >3 && images.count <=6 ) {
+//        return height*2+Padding;
+//    }
+//    
+//    return height*3+Padding*2;
+    
     if (images == nil || images.count == 0) {
         return 0.0;
-    }
-    
-    if (images.count == 1) {
-        id img = [images objectAtIndex:0];
+    }else if (images.count == 1) {
+        id img = [images firstObject];
         if ([img isKindOfClass:[UIImage class]]) {
             UIImage *image = img;
             oneImageWidth = image.size.width;
             oneImageHeight = image.size.height;
-        }
-        
-        if (oneImageWidth > OneImageMaxWidth) {
+        }else if (oneImageWidth > OneImageMaxWidth) {
             return oneImageHeight*(OneImageMaxWidth/oneImageWidth);
         }
         return oneImageHeight;
-    }
-    
-    if (images.count >1 && images.count <=3 ) {
+    }else if (images.count >1 && images.count <=3 ) {
         return height;
-    }
-    
-    if (images.count >3 && images.count <=6 ) {
+    }else if (images.count >3 && images.count <=6 ) {
         return height*2+Padding;
+    }else {
+        return height*3+Padding*2;
     }
-    
-    return height*3+Padding*2;
-    
 }
 
 

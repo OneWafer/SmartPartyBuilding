@@ -6,9 +6,19 @@
 //  Copyright © 2017年 王卫华. All rights reserved.
 //
 
+#import <MJExtension.h>
+#import <ReactiveCocoa.h>
+#import <SVProgressHUD.h>
 #import "OWHomeSearchVC.h"
+#import "OWNetworking.h"
+#import "OWNews.h"
+#import "OWHomeNewsCell.h"
+#import "OWNewsDetailVC.h"
 
 @interface OWHomeSearchVC ()
+
+@property (nonatomic, weak) UITextField *searchTF;
+@property (nonatomic, strong) NSArray *resultList;
 
 @end
 
@@ -16,83 +26,88 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.separatorStyle = NO;
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self setupSearchView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+/** 设置searchView */
+- (void)setupSearchView
+{
+    wh_weakSelf(self);
+    [self.searchTF becomeFirstResponder];
+    [self.searchTF.rac_textSignal subscribeNext:^(NSString *x) {
+        if (x.length) [weakself dataRequest:x];
+    }];
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+/** 请求订单数据 */
+- (void)dataRequest:(NSString *)keyword
+{
+    NSDictionary *par = @{
+                          @"title":keyword
+                          };
+    wh_Log(@"--%@",par);
+    [OWNetworking HGET:wh_appendingStr(wh_host, @"mobile/appset/getSearchInfo") parameters:par success:^(id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] == 200) {
+            wh_Log(@"==%@",responseObject);
+            _resultList = [OWNews mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"newsList"]];
+            [self.tableView reloadData];
+            //            [SVProgressHUD dismiss];
+        }else{
+            [SVProgressHUD showInfoWithStatus:responseObject[@"message"]];
+        }
+    } failure:^(NSError * _Nonnull error) {
+        [SVProgressHUD showInfoWithStatus:@"请检查网络"];
+    }];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+#pragma mark - ---------- TableViewDataSource ----------
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.resultList.count;
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100.0f;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    OWHomeNewsCell *cell = [OWHomeNewsCell cellWithTableView:tableView];
+    cell.news = _resultList[indexPath.row];
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+#pragma mark - ---------- TableViewDelegate ----------
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+        OWNewsDetailVC *newsVC = [[OWNewsDetailVC alloc] init];
+        newsVC.news = self.resultList[indexPath.row - 1];
+        [self.navigationController pushViewController:newsVC animated:YES];
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+
+#pragma mark - ---------- lazy ----------
+
+- (UITextField *)searchTF
+{
+    if (_searchTF == nil) {
+        UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, wh_screenWidth * 0.7, 35)];
+        //        tf.backgroundColor = [UIColor whiteColor];
+        tf.borderStyle = UITextBorderStyleRoundedRect;
+        //        tf.tintColor = wh_themeColor;
+        self.navigationItem.titleView = tf;
+        _searchTF = tf;
+    }
+    return _searchTF;
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -90,11 +90,194 @@
             item.thumbImages = imgList;
             item.thumbPreviewImages = imgList;
         }
+        
+        item.width = 100;
+        item.height = 100;
         if (obj.addressInfo) item.location = obj.addressInfo;
         [self addItem:item];
     }];
     
-    
+//    OWTextImageLineItem *textImageItem = [[OWTextImageLineItem alloc] init];
+//    textImageItem.itemId = 1;
+//    textImageItem.userId = 10086;
+//    textImageItem.userAvatar = @"http://file-cdn.datafans.net/avatar/1.jpeg";
+//    textImageItem.userNick = @"Allen";
+//    textImageItem.title = @"";
+//    textImageItem.text = @"你是我的小苹果 小苹果 我爱你 就像老鼠爱大米 18680551720 [亲亲]";
+//    
+//    NSMutableArray *srcImages = [NSMutableArray array];
+//    [srcImages addObject:@"http://106.14.171.197/static/201781/014b1c47-397b-452a-9f12-7e65f8513494.jpg"];
+////    [srcImages addObject:@"http://106.14.171.197/static/201781/014b1c47-397b-452a-9f12-7e65f8513494.jpg"];
+////    [srcImages addObject:@"http://106.14.171.197/static/201781/014b1c47-397b-452a-9f12-7e65f8513494.jpg"];
+////    [srcImages addObject:@"http://106.14.171.197/static/201781/014b1c47-397b-452a-9f12-7e65f8513494.jpg"];
+////    [srcImages addObject:@"http://106.14.171.197/static/201781/014b1c47-397b-452a-9f12-7e65f8513494.jpg"];
+//    
+//    
+//    textImageItem.srcImages = srcImages;
+//    
+//    
+//    NSMutableArray *thumbImages = [NSMutableArray array];
+//    [thumbImages addObject:@"http://106.14.171.197/static/201781/014b1c47-397b-452a-9f12-7e65f8513494.jpg"];
+////    [thumbImages addObject:@"http://106.14.171.197/static/201781/014b1c47-397b-452a-9f12-7e65f8513494.jpg"];
+////    [thumbImages addObject:@"http://106.14.171.197/static/201781/014b1c47-397b-452a-9f12-7e65f8513494.jpg"];
+////    [thumbImages addObject:@"http://106.14.171.197/static/201781/014b1c47-397b-452a-9f12-7e65f8513494.jpg"];
+////    [thumbImages addObject:@"http://106.14.171.197/static/201781/014b1c47-397b-452a-9f12-7e65f8513494.jpg"];
+//    textImageItem.thumbImages = thumbImages;
+//    
+//    
+//    NSMutableArray *thumbPreviewImages = [NSMutableArray array];
+//    [thumbPreviewImages addObject:@"http://106.14.171.197/static/201781/014b1c47-397b-452a-9f12-7e65f8513494.jpg"];
+////    [thumbPreviewImages addObject:@"http://106.14.171.197/static/201781/014b1c47-397b-452a-9f12-7e65f8513494.jpg"];
+////    [thumbPreviewImages addObject:@"http://106.14.171.197/static/201781/014b1c47-397b-452a-9f12-7e65f8513494.jpg"];
+////    [thumbPreviewImages addObject:@"http://106.14.171.197/static/201781/014b1c47-397b-452a-9f12-7e65f8513494.jpg"];
+////    [thumbPreviewImages addObject:@"http://106.14.171.197/static/201781/014b1c47-397b-452a-9f12-7e65f8513494.jpg"];
+////    [thumbPreviewImages addObject:@"http://106.14.171.197/static/201781/014b1c47-397b-452a-9f12-7e65f8513494.jpg"];
+//    textImageItem.thumbPreviewImages = thumbPreviewImages;
+//    
+//    
+//    textImageItem.location = @"中国 • 广州";
+//    textImageItem.ts = [[NSDate date] timeIntervalSince1970]*1000;
+//    
+//    
+//    OWLineLikeItem *likeItem1_1 = [[OWLineLikeItem alloc] init];
+//    likeItem1_1.userId = 10086;
+//    likeItem1_1.userNick = @"Allen";
+//    [textImageItem.likes addObject:likeItem1_1];
+//    
+//    
+//    OWLineLikeItem *likeItem1_2 = [[OWLineLikeItem alloc] init];
+//    likeItem1_2.userId = 10088;
+//    likeItem1_2.userNick = @"奥巴马";
+//    [textImageItem.likes addObject:likeItem1_2];
+//    
+//    
+//    
+//    OWLineCommentItem *commentItem1_1 = [[OWLineCommentItem alloc] init];
+//    commentItem1_1.commentId = 10001;
+//    commentItem1_1.userId = 10086;
+//    commentItem1_1.userNick = @"习大大";
+//    commentItem1_1.text = @"精彩 大家鼓掌";
+//    [textImageItem.comments addObject:commentItem1_1];
+//    
+//    
+//    OWLineCommentItem *commentItem1_2 = [[OWLineCommentItem alloc] init];
+//    commentItem1_2.commentId = 10002;
+//    commentItem1_2.userId = 10088;
+//    commentItem1_2.userNick = @"奥巴马";
+//    commentItem1_2.text = @"欢迎来到美利坚";
+//    commentItem1_2.replyUserId = 10086;
+//    commentItem1_2.replyUserNick = @"习大大";
+//    [textImageItem.comments addObject:commentItem1_2];
+//    
+//    
+//    OWLineCommentItem *commentItem1_3 = [[OWLineCommentItem alloc] init];
+//    commentItem1_3.commentId = 10003;
+//    commentItem1_3.userId = 10010;
+//    commentItem1_3.userNick = @"神雕侠侣";
+//    commentItem1_3.text = @"呵呵";
+//    [textImageItem.comments addObject:commentItem1_3];
+//    
+//    [self addItem:textImageItem];
+//    
+//    
+//    OWTextImageLineItem *textImageItem2 = [[OWTextImageLineItem alloc] init];
+//    textImageItem2.itemId = 2;
+//    textImageItem2.userId = 10088;
+//    textImageItem2.userAvatar = @"http://file-cdn.datafans.net/avatar/2.jpg";
+//    textImageItem2.userNick = @"奥巴马";
+//    textImageItem2.title = @"发表了";
+//    textImageItem2.text = @"京东JD.COM-专业的综合网上购物商城，销售超数万品牌、4020万种商品，http://jd.com 囊括家电、手机、电脑、服装、图书、母婴、个护、食品、旅游等13大品类。秉承客户为先的理念，京东所售商品为正品行货、全国联保、机打发票。@刘强东";
+//    
+//    NSMutableArray *srcImages2 = [NSMutableArray array];
+//    [srcImages2 addObject:@"http://file-cdn.datafans.net/temp/20.jpg"];
+////    [srcImages2 addObject:@"http://file-cdn.datafans.net/temp/21.jpg"];
+////    [srcImages2 addObject:@"http://file-cdn.datafans.net/temp/22.jpg"];
+////    [srcImages2 addObject:@"http://file-cdn.datafans.net/temp/23.jpg"];
+//    textImageItem2.srcImages = srcImages2;
+//    
+//    
+//    NSMutableArray *thumbImages2 = [NSMutableArray array];
+//    [thumbImages2 addObject:@"http://file-cdn.datafans.net/temp/20.jpg_160x160.jpeg"];
+////    [thumbImages2 addObject:@"http://file-cdn.datafans.net/temp/21.jpg_160x160.jpeg"];
+////    [thumbImages2 addObject:@"http://file-cdn.datafans.net/temp/22.jpg_160x160.jpeg"];
+////    [thumbImages2 addObject:@"http://file-cdn.datafans.net/temp/23.jpg_160x160.jpeg"];
+//    textImageItem2.thumbImages = thumbImages2;
+//    
+//    
+//    NSMutableArray *thumbPreviewImages2 = [NSMutableArray array];
+//    [thumbPreviewImages2 addObject:@"http://file-cdn.datafans.net/temp/20.jpg_600x600.jpeg"];
+////    [thumbPreviewImages2 addObject:@"http://file-cdn.datafans.net/temp/21.jpg_600x600.jpeg"];
+////    [thumbPreviewImages2 addObject:@"http://file-cdn.datafans.net/temp/22.jpg_600x600.jpeg"];
+////    [thumbPreviewImages2 addObject:@"http://file-cdn.datafans.net/temp/23.jpg_600x600.jpeg"];
+//    textImageItem2.thumbPreviewImages = thumbPreviewImages2;
+//    
+//    OWLineLikeItem *likeItem2_1 = [[OWLineLikeItem alloc] init];
+//    likeItem2_1.userId = 10086;
+//    likeItem2_1.userNick = @"Allen";
+//    [textImageItem2.likes addObject:likeItem2_1];
+//    
+//    
+//    OWLineCommentItem *commentItem2_1 = [[OWLineCommentItem alloc] init];
+//    commentItem2_1.commentId = 18789;
+//    commentItem2_1.userId = 10088;
+//    commentItem2_1.userNick = @"奥巴马";
+//    commentItem2_1.text = @"欢迎来到美利坚";
+//    commentItem2_1.replyUserId = 10086;
+//    commentItem2_1.replyUserNick = @"习大大";
+//    [textImageItem2.comments addObject:commentItem2_1];
+//    
+//    OWLineCommentItem *commentItem2_2 = [[OWLineCommentItem alloc] init];
+//    commentItem2_2.commentId = 234657;
+//    commentItem2_2.userId = 10010;
+//    commentItem2_2.userNick = @"神雕侠侣";
+//    commentItem2_2.text = @"大家好";
+//    [textImageItem2.comments addObject:commentItem2_2];
+//    
+//    
+//    [self addItem:textImageItem2];
+//    
+//    
+//    
+//    
+//    OWTextImageLineItem *textImageItem3 = [[OWTextImageLineItem alloc] init];
+//    textImageItem3.itemId = 3;
+//    textImageItem3.userId = 10088;
+//    textImageItem3.userAvatar = @"http://file-cdn.datafans.net/avatar/2.jpg";
+//    textImageItem3.userNick = @"奥巴马";
+//    textImageItem3.title = @"发表了";
+//    textImageItem3.text = @"京东JD.COM-专业的综合网上购物商城";
+//    
+//    NSMutableArray *srcImages3 = [NSMutableArray array];
+//    [srcImages3 addObject:@"http://106.14.171.197/static/201781/014b1c47-397b-452a-9f12-7e65f8513494.jpg"];
+//    textImageItem3.srcImages = srcImages3;
+//    
+//    
+//    NSMutableArray *thumbImages3 = [NSMutableArray array];
+//    [thumbImages3 addObject:@"http://106.14.171.197/static/201781/014b1c47-397b-452a-9f12-7e65f8513494.jpg"];
+//    textImageItem3.thumbImages = thumbImages3;
+//    
+//    
+////    NSMutableArray *thumbPreviewImages3 = [NSMutableArray array];
+////    [thumbPreviewImages3 addObject:@"http://106.14.171.197/static/201781/014b1c47-397b-452a-9f12-7e65f8513494.jpg"];
+////    textImageItem3.thumbPreviewImages = thumbPreviewImages3;
+//    
+//    
+//    textImageItem3.width = 50;
+//    textImageItem3.height = 50;
+//    
+//    textImageItem3.location = @"广州信息港";
+//    
+//    OWLineCommentItem *commentItem3_1 = [[OWLineCommentItem alloc] init];
+//    commentItem3_1.commentId = 78718789;
+//    commentItem3_1.userId = 10010;
+//    commentItem3_1.userNick = @"狄仁杰";
+//    commentItem3_1.text = @"神探是我";
+//    [textImageItem3.comments addObject:commentItem3_1];
+//    
+//    
+//    
+//    
+//    [self addItem:textImageItem3];
 }
 
 
@@ -230,7 +413,7 @@
     //接着上传图片 和 请求服务器接口
     //请求完成之后 刷新整个界面
     [SVProgressHUD showWithStatus:@"正在发布..."];
-    [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/common/fileUpload") parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/common/fileUpload1") parameters:@{@"key":@"123"} constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         [images wh_each:^(UIImage *obj) {
             [formData appendPartWithFileData:UIImageJPEGRepresentation(obj, 0.1) name:@"files" fileName:@"head.jpg" mimeType:@"image/jpg"];
         }];
@@ -243,6 +426,7 @@
         }
     } failure:^(NSError * _Nonnull error) {
         [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
+        wh_Log(@"---%@",error);
     }];
 }
 
