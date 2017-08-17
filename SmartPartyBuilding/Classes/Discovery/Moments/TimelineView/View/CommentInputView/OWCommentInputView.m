@@ -21,8 +21,6 @@
 
 @property (strong,nonatomic) UIView *inputView;
 
-@property (strong,nonatomic) UITextField *inputTextView;
-
 @property (strong,nonatomic) UIButton *sendButton;
 
 @property (strong, nonatomic) UIView *maskView;
@@ -156,34 +154,34 @@
 
 #pragma mark - Notification
 
--(void) addNotify
-
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onKeyboradShow:) name:UIKeyboardWillShowNotification object:nil];
-}
-
-
--(void) removeNotify
-
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-    
-}
+//-(void) addNotify
+//
+//{
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onKeyboradShow:) name:UIKeyboardWillShowNotification object:nil];
+//}
+//
+//
+//-(void) removeNotify
+//
+//{
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+//    
+//}
 
 
 
 #pragma mark - Keyboard
 
--(void) onKeyboradShow:(NSNotification *) notify
-{
-    NSDictionary *info = notify.userInfo;
-    CGRect frame = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    _keyboardAnimationDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    _keyboardAnimationCurve = [[info objectForKey:UIKeyboardAnimationCurveUserInfoKey] integerValue];
-    
-    [self changeInputViewOffsetY:(frame.origin.y - InputViewHeight) ];
-    
-}
+//-(void) onKeyboradShow:(NSNotification *) notify
+//{
+//    NSDictionary *info = notify.userInfo;
+//    CGRect frame = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+//    _keyboardAnimationDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+//    _keyboardAnimationCurve = [[info objectForKey:UIKeyboardAnimationCurveUserInfoKey] integerValue];
+//    
+//    [self changeInputViewOffsetY:(frame.origin.y - InputViewHeight - 64) ];
+//    
+//}
 
 
 

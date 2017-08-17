@@ -194,6 +194,7 @@
         _likeCommentToolbar = [[OWLikeCommentToolbar alloc] initWithFrame:CGRectMake(x, y, width, height)];
         _likeCommentToolbar.delegate = self;
         _likeCommentToolbar.hidden = YES;
+        _likeCommentToolbar.momentId = self.item.itemId;
         [self.contentView addSubview:_likeCommentToolbar];
     }
     
@@ -230,6 +231,8 @@
     _titleLabel.frame = CGRectMake(x, y, width, height);
     _titleLabel.text = item.title;
     _titleLabel.hidden = item.title == nil || [item.title isEqualToString:@""];
+    
+    _likeCommentToolbar.num = item.num;
 }
 
 
@@ -276,7 +279,7 @@
     height = TimeLabelHeight;
     _timeLabel.hidden = NO;
     _timeLabel.frame = CGRectMake(x, y, width, height);
-    wh_Log(@"---%lld",self.item.ts);
+    wh_Log(@"---%f",self.item.ts);
     _timeLabel.text = [OWTool preettyTime:self.item.ts];
     
     
@@ -426,7 +429,7 @@
     
 }
 
-- (void)onClickComment:(long long)commentId
+- (void)onClickComment:(int)commentId
 {
     if (_delegate != nil && [_delegate respondsToSelector:@selector(onClickComment:itemId:)]) {
         [_delegate onClickComment:commentId itemId:self.item.itemId];

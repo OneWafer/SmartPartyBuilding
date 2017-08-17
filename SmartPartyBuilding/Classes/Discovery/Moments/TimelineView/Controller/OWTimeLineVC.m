@@ -6,7 +6,9 @@
 //  Copyright © 2017年 王卫华. All rights reserved.
 //
 
+#import <SVProgressHUD.h>
 #import <LCActionSheet.h>
+#import <IQKeyboardManager.h>
 #import <TZImagePickerController.h>
 #import "OWTimeLineVC.h"
 #import "OWLineCellManager.h"
@@ -17,8 +19,10 @@
 #import "OWImagesSendVC.h"
 #import "OWVideoCaptureVC.h"
 #import "OWLineLikeItem.h"
+#import "UIView+KeyBoardShowAndHidden.h"
+#import "OWNetworking.h"
 
-@interface OWTimeLineVC ()<OWLineCellDelegate, OWCommentInputViewDelegate, TZImagePickerControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, OWImagesSendVCDelegate, OWVideoCaptureVCDelegate>
+@interface OWTimeLineVC ()<OWLineCellDelegate, OWCommentInputViewDelegate, TZImagePickerControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, OWImagesSendVCDelegate, OWVideoCaptureVCDelegate, UITextFieldDelegate>
 
 
 @property (strong, nonatomic) OWCommentInputView *commentInputView;
@@ -64,25 +68,18 @@
 
 
 
-
--(void)viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    
-    [_commentInputView addNotify];
-    
-    [_commentInputView addObserver];
-    
+    [[IQKeyboardManager sharedManager] setEnable:NO];
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];
 }
 
--(void)viewWillDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    
-    [_commentInputView removeNotify];
-    
-    [_commentInputView removeObserver];
+    [[IQKeyboardManager sharedManager] setEnable:YES];
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:YES];
 }
 
 
@@ -116,7 +113,10 @@
         _commentInputView = [[OWCommentInputView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
         _commentInputView.hidden = YES;
         _commentInputView.delegate = self;
+        _commentInputView.inputTextView.delegate = self;
         [self.view addSubview:_commentInputView];
+        [_commentInputView showAccessoryViewAnimation];
+        [_commentInputView hiddenAccessoryViewAnimation];
     }
     
 }
@@ -316,11 +316,11 @@
 
 #pragma mark - DFLineCellDelegate
 
--(void)onComment:(long long)itemId
+-(void)onComment:(int)itemId
 {
     _currentItemId = itemId;
     
-    _commentInputView.commentId = 0;
+    _commentInputView.commentId = itemId;
     
     _commentInputView.hidden = NO;
     
@@ -356,9 +356,26 @@
 }
 
 
--(void)onCommentCreate:(long long)commentId text:(NSString *)text
+-(void)onCommentCreate:(int)commentId text:(NSString *)text
 {
-    [self onCommentCreate:commentId text:text itemId:_currentItemId];
+    // 上传评论
+//    wh_Log(@"---%d  上传了回复",commentId);
+    [SVProgressHUD showWithStatus:@"正在提交..."];
+    NSDictionary *par = @{
+                          @"content":text,
+                          @"articleId":@(commentId),
+                          @"articleType":@(9)
+                          };
+    [OWNetworking HPOST:wh_appendingStr(wh_host, @"mobile/reply/reply") parameters:par success:^(id  _Nullable responseObject) {
+        if ([responseObject[@"code"] intValue] == 200) {
+            wh_Log(@"---%@",responseObject);
+            [SVProgressHUD showSuccessWithStatus:@"评论成功!"];
+        }else{
+            [SVProgressHUD showInfoWithStatus:responseObject[@"msg"]];
+        }
+    } failure:^(NSError * _Nonnull error) {
+        [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
+    }];
 }
 
 
@@ -497,6 +514,12 @@
 -(void)onSendVideo:(NSString *)text videoPath:(NSString *)videoPath screenShot:(UIImage *)screenShot
 {
     
+}
+
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [_commentInputView setHidden:YES];
 }
 
 @end

@@ -19,6 +19,7 @@
 
 @interface OWLikeCommentToolbar : UIImageView
 
+@property (nonatomic, assign) int momentId;
 @property (nonatomic, weak) id<OWLikeCommentToolbarDelegate> delegate;
-
+@property (nonatomic, copy) NSString *num;
 @end

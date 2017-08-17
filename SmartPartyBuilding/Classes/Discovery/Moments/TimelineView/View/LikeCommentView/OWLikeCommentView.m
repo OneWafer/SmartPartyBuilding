@@ -308,7 +308,7 @@
     wh_Log(@"长按了Label");
 }
 
--(void)onClickOutsideLink:(long long)uniqueId
+-(void)onClickOutsideLink:(int)uniqueId
 {
     wh_Log(@"单击了Label: %lld", uniqueId);
     if (_delegate && [_delegate respondsToSelector:@selector(onClickComment:)]) {

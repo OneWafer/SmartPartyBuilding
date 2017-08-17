@@ -12,7 +12,7 @@
 
 @required
 
--(void) onCommentCreate:(long long ) commentId text:(NSString *) text;
+-(void) onCommentCreate:(int) commentId text:(NSString *) text;
 
 
 @end
@@ -23,9 +23,11 @@
 
 @property (nonatomic, assign) long long commentId;
 
--(void) addNotify;
+@property (strong,nonatomic) UITextField *inputTextView;
 
--(void) removeNotify;
+//-(void) addNotify;
+//
+//-(void) removeNotify;
 
 -(void) addObserver;
 

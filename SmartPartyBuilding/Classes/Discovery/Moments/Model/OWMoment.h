@@ -14,6 +14,12 @@
 @property (nonatomic, assign) int id;
 /** 用户id */
 @property (nonatomic, assign) int userId;
+/** 点赞数 */
+@property (nonatomic, assign) int likeNum;
+/** 收藏数 */
+@property (nonatomic, assign) int markNum;
+/** 评论数 */
+@property (nonatomic, assign) int replyNum;
 /** 用户姓名 */
 @property (nonatomic, copy) NSString *staffName;
 /** 用户头像 */

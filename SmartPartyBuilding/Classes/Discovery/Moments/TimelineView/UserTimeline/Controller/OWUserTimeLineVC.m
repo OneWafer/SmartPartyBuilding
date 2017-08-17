@@ -101,12 +101,22 @@
 - (void)addItem:(OWBaseUserLineItem *)item
 {
     
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:(item.ts/1000)];
-    NSCalendar* calendar = [NSCalendar currentCalendar];
-    NSDateComponents* components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:date];
-    NSInteger month = [components month];
-    NSInteger day = [components day];
-    NSInteger year = [components year];
+//    NSDate *date = [NSDate dateWithTimeIntervalSince1970:(item.ts/1000)];
+//    NSCalendar* calendar = [NSCalendar currentCalendar];
+//    NSDateComponents* components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:date];
+//    NSInteger month = [components month];
+//    NSInteger day = [components day];
+//    NSInteger year = [components year];
+    NSString *timestamp = [NSString stringWithFormat:@"%d",item.ts];
+    NSTimeInterval interval = timestamp.length == 13 ? [timestamp doubleValue] / 1000.0f : [timestamp doubleValue];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:interval];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSUInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+    NSDateComponents *dateComponent = [calendar components:unitFlags fromDate:date];
+    
+    NSInteger year = [dateComponent year];
+    NSInteger month = [dateComponent month];
+    NSInteger day = [dateComponent day];
     
     item.year = year;
     item.month = month;

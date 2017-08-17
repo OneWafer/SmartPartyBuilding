@@ -68,10 +68,10 @@
     _tableView.separatorStyle = NO;
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    _tableView.separatorInset = UIEdgeInsetsZero;
-    if ([_tableView respondsToSelector:@selector(setLayoutMargins:)]) {
-        _tableView.layoutMargins = UIEdgeInsetsZero;
-    }
+//    _tableView.separatorInset = UIEdgeInsetsZero;
+//    if ([_tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+//        _tableView.layoutMargins = UIEdgeInsetsZero;
+//    }
     [self.view addSubview:_tableView];
 }
 

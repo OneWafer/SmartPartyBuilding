@@ -12,7 +12,7 @@
 
 @optional
 
--(void) onClickOutsideLink:(long long) uniqueId;
+-(void) onClickOutsideLink:(int) uniqueId;
 -(void) onLongPress;
 
 @end

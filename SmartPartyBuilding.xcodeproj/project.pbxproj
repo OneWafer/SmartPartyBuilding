@@ -17,6 +17,7 @@
 		5301DCFD1F012F9700A0161A /* OWGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5301DCFC1F012F9700A0161A /* OWGuideView.m */; };
 		5301DD001F01518F00A0161A /* OWHomeCommentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5301DCFF1F01518F00A0161A /* OWHomeCommentVC.m */; };
 		5301DD031F01524300A0161A /* OWHomeCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5301DD021F01524300A0161A /* OWHomeCommentCell.m */; };
+		5303AFDD1F44A37400D015FA /* OWMomentCommentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5303AFDC1F44A37400D015FA /* OWMomentCommentVC.m */; };
 		5308C0991ED00F2300662D34 /* OWMettingManagerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5308C0981ED00F2300662D34 /* OWMettingManagerVC.m */; };
 		5308C09C1ED00F4400662D34 /* OWMettingManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5308C09B1ED00F4400662D34 /* OWMettingManagerCell.m */; };
 		5308C09F1ED0197600662D34 /* OWMettingDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5308C09E1ED0197600662D34 /* OWMettingDetailVC.m */; };
@@ -244,6 +245,8 @@
 		5301DCFF1F01518F00A0161A /* OWHomeCommentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWHomeCommentVC.m; sourceTree = "<group>"; };
 		5301DD011F01524300A0161A /* OWHomeCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWHomeCommentCell.h; sourceTree = "<group>"; };
 		5301DD021F01524300A0161A /* OWHomeCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWHomeCommentCell.m; sourceTree = "<group>"; };
+		5303AFDB1F44A37400D015FA /* OWMomentCommentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWMomentCommentVC.h; sourceTree = "<group>"; };
+		5303AFDC1F44A37400D015FA /* OWMomentCommentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWMomentCommentVC.m; sourceTree = "<group>"; };
 		5308C0971ED00F2300662D34 /* OWMettingManagerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWMettingManagerVC.h; sourceTree = "<group>"; };
 		5308C0981ED00F2300662D34 /* OWMettingManagerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWMettingManagerVC.m; sourceTree = "<group>"; };
 		5308C09A1ED00F4400662D34 /* OWMettingManagerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWMettingManagerCell.h; sourceTree = "<group>"; };
@@ -2640,6 +2643,8 @@
 				53EBCCA31ECEEF2A00CBA695 /* OWUserMomentsVC.m */,
 				53E7CF141F2A37FB00604149 /* OWMomentLocationVC.h */,
 				53E7CF151F2A37FB00604149 /* OWMomentLocationVC.m */,
+				5303AFDB1F44A37400D015FA /* OWMomentCommentVC.h */,
+				5303AFDC1F44A37400D015FA /* OWMomentCommentVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3311,6 +3316,7 @@
 				53000CED1F1A3A7000A6D719 /* OWMineCltCommentVC.m in Sources */,
 				53000CF31F1A540000A6D719 /* OWThumCommentVC.m in Sources */,
 				53E3ABD01EEFFF29008C1D9B /* OWMeetOrder.m in Sources */,
+				5303AFDD1F44A37400D015FA /* OWMomentCommentVC.m in Sources */,
 				53E90BD21EF3B1D10087F35F /* OWPartyFeeConfCell.m in Sources */,
 				53F0ECA51ECD862C005ED86A /* OWTimeLineVC.m in Sources */,
 				53EB760B1EE995FF00DFDC4F /* OWCarOrder.m in Sources */,

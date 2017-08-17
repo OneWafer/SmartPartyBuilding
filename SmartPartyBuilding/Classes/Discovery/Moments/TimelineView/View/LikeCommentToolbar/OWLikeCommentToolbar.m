@@ -51,7 +51,7 @@
     [self addSubview:_likeButton];
     
     x = width;
-    _commentButton = [self getButton:CGRectMake(x, y, width, height) title:@"评" image:@"AlbumComment"];
+    _commentButton = [self getButton:CGRectMake(x, y, width, height) title:@"0" image:@"AlbumComment"];
     [_commentButton addTarget:self action:@selector(onComment:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_commentButton];
     
@@ -77,7 +77,11 @@
     return btn;
 }
 
-
+- (void)setNum:(NSString *)num
+{
+    _num = num;
+    [_commentButton setTitle:num forState:UIControlStateNormal];
+}
 
 -(void) onLike:(id) sender
 {

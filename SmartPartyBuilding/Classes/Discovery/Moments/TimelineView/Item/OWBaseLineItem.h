@@ -11,7 +11,7 @@
 @interface OWBaseLineItem : NSObject
 
 //时间轴itemID 需要全局唯一 一般服务器下发
-@property (nonatomic, assign) long long itemId;
+@property (nonatomic, assign) int itemId;
 
 @property (nonatomic, assign) CGFloat cellHeight;
 
@@ -30,6 +30,7 @@
 @property (nonatomic, strong) NSMutableArray *likes;
 @property (nonatomic, strong) NSMutableArray *comments;
 
+@property (nonatomic, copy) NSString *num;
 
 @property (nonatomic, strong) NSMutableAttributedString *likesStr;
 

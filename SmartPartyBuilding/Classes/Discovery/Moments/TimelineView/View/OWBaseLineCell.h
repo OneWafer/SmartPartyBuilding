@@ -22,7 +22,7 @@
 @optional
 - (void) onLike:(long long) itemId;
 
-- (void) onComment:(long long) itemId;
+- (void) onComment:(int) itemId;
 
 - (void) onClickUser:(NSUInteger) userId;
 

@@ -12,7 +12,7 @@
 
 @property (nonatomic, assign) long long itemId;
 
-@property (nonatomic, assign) long long ts;
+@property (nonatomic, assign) int ts;
 
 @property (nonatomic, assign) NSUInteger year;
 
